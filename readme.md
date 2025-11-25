@@ -88,7 +88,7 @@ Handling multi-currency transactions and rates.
 
 ---
 
-## 🛠️ Phase 4: Refactoring & Advanced Concepts
+##  Phase 4: Refactoring & Advanced Concepts
 Polishing the code and implementing generic programming.
 
 - [ ] **Project 5:** Template Functions & Classes
