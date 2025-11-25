@@ -13,7 +13,7 @@ Before building the main system, these utility libraries need to be solid.
 
 ---
 
-## 🏦 Phase 2: Bank System (Core & UI)
+##  Phase 2: Bank System (Core & UI)
 
 ###  Bank System (Core Features)
 - [ ] Find Client
