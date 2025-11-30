@@ -63,6 +63,11 @@ static void Swap(int &num1 , int &num2) {
  // generate random values according to enum
  static char GetRandomChar(enCharType CharType)
  {
+// if mix chars then return digit or ca or sma
+if (CharType =enCharType::mixChar) {
+ CharType = (enCharType)Random(1,3);
+}
+
   // Use a switch-case to handle the different character types.
   switch (CharType)
   {
@@ -72,12 +77,6 @@ static void Swap(int &num1 , int &num2) {
 
    case enCharType::capitalLetter:
     return char(Random(65, 90));
-    break;
-
-   case enCharType::mixChar:
- if (Random(1,2)==1)  return char(Random(97, 122)); //capital
-    else return char(Random(65, 90)); // small
-
     break;
 
    case enCharType::specialCharacter:
