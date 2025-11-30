@@ -8,7 +8,9 @@ Here is the tracking list for all Projects in this repo
 Before building the main system, these utility libraries need to be solid.
 
 
-  [✓] **Project 1** Utility Library 
+ - [x] **Project 1** – Utility Library
+
+ 
 - [ ]  **Project 2** Input & Validation Library 
 
 ---
