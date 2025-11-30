@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include<string>
 #include <random>
+#include
 #include <ctime>
 using namespace std;
 
@@ -28,6 +29,29 @@ public:
 
  static  int Random(int from, int to) {
   return rand() % (to - from + 1) + from;
+ }
+
+static void Swap(int &num1 , int &num2) {
+  int temp = num1;
+  num1= num2 ;
+  num2 = temp;
+ }
+
+ static void Swap(bool &B1 , bool &b2) {
+  int temp = B1;
+  B1= b2 ;
+  b2 = temp;
+ }
+ static void Swap(double &num1 , double &num2) {
+  double temp = num1;
+  num1= num2 ;
+  num2 = temp;
+ }
+
+ static void Swap(string &str1 , string &str2) {
+  string temp = str1;
+  str1= str2 ;
+  str2 = temp;
  }
 
  // generate random values according to enum
@@ -71,10 +95,10 @@ static string GenerateRandomWord(enCharType CharType,short NumberOfChars =5) {
   return Word;
  }
 
- static string GenerateKey(short LengthOfKey=5,enCharType CharType=capitalLetter,short NumberOfCharsForEachUnit =5)
+ static string GenerateKey(short NumOfKeys=5,enCharType CharType=capitalLetter,short NumberOfCharsForEachUnit =5)
  {
   string Key ="";
-  for (int i=0; i<LengthOfKey; i++ ) {
+  for (int i=0; i<NumOfKeys; i++ ) {
   Key+= GenerateRandomWord(CharType , NumberOfCharsForEachUnit)+"-";
   }
   Key.pop_back();
@@ -94,5 +118,44 @@ static string GenerateRandomWord(enCharType CharType,short NumberOfChars =5) {
 
   return Keys;
  }
+
+ static void FillArrayWithRandomNumbers(  short arr[] ,short Length ,int From , int To ) {
+  for (short  i=0; i<Length; i++ )
+   arr[i] = Random(From,To);
+ }
+
+ static void FillArrayWithRandomWords(string arr[] ,short Length ,enCharType CharType=capitalLetter,short NumberOfChars =5  )
+ {
+  for (int i=0; i<Length; i++)
+  arr [i] = GenerateRandomWord(CharType , NumberOfChars) ;
+ }
+
+static void FillArrayWithRandomKey(string arr[] , short length ,enCharType CharType=capitalLetter,short NumberOfCharsForEachUnit =5)
+ {
+     for (short i=0; i<length; i++)
+      arr[i] = GenerateKey(length,CharType,NumberOfCharsForEachUnit);
+ }
+
+ static void CopyArray(string arr[] , short length , string arr2[] ) {
+  for (short i=0; i<length ; i++)
+   arr2[i] = arr[i];
+
+ }
+
+ static void ShuffleArray(string arr[]  , short length) {
+  if (arr[0] =="" ) {
+   throw std::invalid_argument("your array must be filled with elements!\a");
+
+  }
+ for (short i=0; i<length; i++)
+  Swap(arr[Random(1,length)-1 ] , arr[Random(1,length)-1 ]);
+
+ }
+
+ static void ShuffleArray(int arr[]  , short length) {
+  for (short i=0; i<length; i++)
+   Swap(arr[Random(1,length)-1 ] , arr[Random(1,length)-1 ]);
+ }
+
 
 };
