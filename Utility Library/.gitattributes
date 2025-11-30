@@ -1,0 +1,24 @@
+* text=auto
+
+# C++ source files
+*.cpp text diff=cpp eol=lf
+*.h text diff=cpp eol=lf
+*.hpp text diff=cpp eol=lf
+*.cc text diff=cpp eol=lf
+*.cxx text diff=cpp eol=lf
+
+# CMake
+CMakeLists.txt text eol=lf
+*.cmake text eol=lf
+
+# Documentation
+*.md text eol=lf
+README.md text eol=lf
+
+# Binary files
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.o binary
+
