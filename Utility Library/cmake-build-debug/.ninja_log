@@ -1,0 +1,13 @@
+# ninja log v7
+6	1008	7862144495916061	CMakeFiles/Utility_Library.dir/main.cpp.obj.ddi	6fe0b2bb671e94a4
+15	1019	7862144496015518	CMakeFiles/Utility_Library_Test.dir/test.cpp.obj.ddi	8ee8131cb6b7c4c8
+1010	1150	7862144507224425	CMakeFiles/Utility_Library.dir/CXX.dd	9550bc7589e8fdc4
+1010	1150	7862144507224425	E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Utility Library/cmake-build-debug/CMakeFiles/Utility_Library.dir/CXXModules.json	9550bc7589e8fdc4
+1010	1150	7862144507224425	CMakeFiles/Utility_Library.dir/main.cpp.obj.modmap	9550bc7589e8fdc4
+1022	1160	7862144507224425	CMakeFiles/Utility_Library_Test.dir/CXX.dd	a922869f2be3009b
+1022	1160	7862144507224425	E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Utility Library/cmake-build-debug/CMakeFiles/Utility_Library_Test.dir/CXXModules.json	a922869f2be3009b
+1022	1160	7862144507224425	CMakeFiles/Utility_Library_Test.dir/test.cpp.obj.modmap	a922869f2be3009b
+1152	5153	7862144507375089	CMakeFiles/Utility_Library.dir/main.cpp.obj	341f045e400886ca
+5162	5499	7862144547467610	Utility_Library.exe	80e21322b797916d
+1163	5630	7862144507485657	CMakeFiles/Utility_Library_Test.dir/test.cpp.obj	28a4a548c3524445
+5630	5940	7862144552132999	Utility_Library_Test.exe	f6289b3c7121ff9

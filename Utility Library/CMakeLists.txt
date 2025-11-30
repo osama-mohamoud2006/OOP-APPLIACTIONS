@@ -3,5 +3,5 @@ project(Utility_Library)
 
 set(CMAKE_CXX_STANDARD 26)
 
-add_executable(Utility_Library main.cpp
-        clsUtillity.h)
+add_executable(Utility_Library main.cpp clsUtillity.h)
+add_executable(Utility_Library_Test test.cpp clsUtillity.h)

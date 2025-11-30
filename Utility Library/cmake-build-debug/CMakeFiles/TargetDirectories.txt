@@ -1,0 +1,4 @@
+E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Utility Library/cmake-build-debug/CMakeFiles/Utility_Library.dir
+E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Utility Library/cmake-build-debug/CMakeFiles/Utility_Library_Test.dir
+E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Utility Library/cmake-build-debug/CMakeFiles/edit_cache.dir
+E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Utility Library/cmake-build-debug/CMakeFiles/rebuild_cache.dir
