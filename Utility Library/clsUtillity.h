@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include<string>
 #include <random>
-#include
+#include "clsDate.h"
 #include <ctime>
 using namespace std;
 
@@ -31,12 +31,19 @@ public:
   return rand() % (to - from + 1) + from;
  }
 
+ static void Swap(clsDate &Date1 , clsDate &Date2 ) {
+  clsDate::swapDates(Date1,Date2);
+ }
+static void Swap(char & a  , char &b) {
+  char temp = a;
+  a =b ;
+  b =temp ;
+ }
 static void Swap(int &num1 , int &num2) {
   int temp = num1;
   num1= num2 ;
   num2 = temp;
  }
-
  static void Swap(bool &B1 , bool &b2) {
   int temp = B1;
   B1= b2 ;
@@ -47,7 +54,6 @@ static void Swap(int &num1 , int &num2) {
   num1= num2 ;
   num2 = temp;
  }
-
  static void Swap(string &str1 , string &str2) {
   string temp = str1;
   str1= str2 ;
@@ -157,5 +163,28 @@ static void FillArrayWithRandomKey(string arr[] , short length ,enCharType CharT
    Swap(arr[Random(1,length)-1 ] , arr[Random(1,length)-1 ]);
  }
 
+ static string Tabs(short NumOfTabs) {
+  string s ="";
+  for (short i=0; i<NumOfTabs; i++)
+   s+="\t";
+  return s;
+ }
+
+ static void EncryptText(string &Text , short EncryptionKey) {
+  string temp="";
+  for (int i=0; i<Text.length(); i++) {
+   temp += char (int(Text[i]) +  EncryptionKey);
+  }
+  Text = temp;
+
+ }
+
+ static  void DecryptText(string &Text , short EncryptionKey) {
+  string temp="";
+  for (int i=0; i<Text.length(); i++) {
+   temp += char (int(Text[i]) -  EncryptionKey);
+  }
+  Text = temp;
+ }
 
 };
