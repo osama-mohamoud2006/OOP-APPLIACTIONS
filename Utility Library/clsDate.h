@@ -75,6 +75,19 @@ public:
         this-> y= y;
     }
 
+    //Get 
+
+    short GetD() {
+        return this->d;
+    }
+
+    short GetM() {
+        return this->m;
+    }
+
+    short GetY() {
+        return this->y;
+    }
 
     static string numberToText(int num)
     {

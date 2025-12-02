@@ -1,0 +1,7 @@
+# ninja log v6
+28	4052	7863369756095768	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.ddi	916e98d71605afa1
+4053	4135	7863369797016195	CMakeFiles/Input_Validation_Library.dir/CXX.dd	c729d73856ae8a44
+4053	4135	7863369797016195	E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Input&Validation Library/cmake-build-debug/CMakeFiles/Input_Validation_Library.dir/CXXModules.json	c729d73856ae8a44
+4053	4135	7863369797016195	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.modmap	c729d73856ae8a44
+4136	18508	7863369797157618	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj	e18661f3e343b522
+18512	18938	7863369940914677	Input_Validation_Library.exe	95e0c966f7f07754

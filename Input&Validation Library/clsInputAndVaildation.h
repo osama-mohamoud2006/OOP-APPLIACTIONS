@@ -12,15 +12,11 @@ using namespace  std;
 class clsInputAndValidation  {
 
 static  string time() {
-
    std::time_t currentTime = std::time(0);
    std::tm* localTime = std::localtime(&currentTime);
 return std::asctime(localTime) ;
 
    }
-
-
-
 
    // write to file to use it to store the last input to file
   static  void WriteTheLastResultToFile(string LastResult) {
@@ -35,7 +31,6 @@ return std::asctime(localTime) ;
          write.close();
       }
 
-
    }
    static  void WriteTheLastResultToFile(int LastResult) {
      fstream write;
@@ -47,7 +42,6 @@ return std::asctime(localTime) ;
            <<"\nThe last OutputIs: "<<to_string(LastResult);
         write.close();
      }
-
 
   }
    static  void WriteTheLastResultToFile(double LastResult) {
@@ -141,7 +135,128 @@ static bool IsDateBetween(clsDate DtoCompare , clsDate d2 , clsDate d3) {
       return res;
   }
 
+   // enter postive number
+  static double enter_postive_number(string text) {
+     bool vaild = false ;
+     double n=0;
+     do {
+        cout << text;
+        cin >> n;
+        if(cin.fail()){
+           cin.clear(); // to reuse cin>>
+           cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+           cout << "\a";
+           system("color 4F"); // red if number isn't in range
+        }
+
+        else if (0>=n  ) {
+           cout << "\a";
+           system("color 4F"); // red if number isn't in range
+           cout << "\nplease enter postive number!\n ";
+
+        }
+
+        else{
+           vaild = true ;
+        }
+
+     } while (vaild == false );
+
+     system("color 0F"); //rest screen color
+     WriteTheLastResultToFile(n);
+     return n;
+  }
+
+   // enter nunmber in range
+   static double enter_number_from_to(double from,double to,string text) {
+     bool is_ok= false;
+     double number=0;
+     do{
+
+        cout << text<< " (" << from << " to " << to << "): ";
+        cin >> number;
+        if(cin.fail()){
+           cin.clear();
+           cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+           cout << "\a";
+           system("color 4F"); // red if number isn't in range
+           cout << "\nplease enter correct number which in range you assigned!\n";
+
+        }
+        else if (from > number || number > to) {
+           cout << "\a";
+           system("color 4F"); // red if number isn't in range
+           cout << "\nplease enter correct number which in range you assigned!\n";
+        }
+
+        else {
+           is_ok = true ;
+        }
+     } while (is_ok==false);
+
+     system("color 0F"); //rest screen color
+     WriteTheLastResultToFile(number);
+     return number;
+  }
+
+   // enter nunmber in range (overloaded )
+   static double enter_number_from_to(double from, double to) {
+     bool is_ok = false;
+     double number = 0;
+     do {
 
 
+        cin >> number;
+        if (cin.fail()) {
+           cin.clear();
+           cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+           cout << "\a";
+           system("color 4F"); // red if number isn't in range
+           cout << "\nplease enter correct number which in range you assigned!\n";
+
+        }
+        else if (from > number || number > to) {
+           cout << "\a";
+           system("color 4F"); // red if number isn't in range
+           cout << "\nplease enter correct number which in range you assigned!\n";
+        }
+
+        else {
+           is_ok = true;
+        }
+     } while (is_ok == false);
+     system("color 0F"); //rest screen color
+     WriteTheLastResultToFile(number);
+     return number;
+  }
+
+   // read string
+  static string read_string(string message) {
+     cout << message;
+     string str;
+     cin >> str;
+     WriteTheLastResultToFile(str);
+     return str;
+  }
+
+
+   // read full line
+   static string read_full_line(const string& message) {
+     cout << message;
+     if (cin.peek() == '\n') {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+     }
+
+     string line="";
+     getline(cin, line);
+     WriteTheLastResultToFile(line);
+     return line;
+  }
+
+   static bool IsVaildDate(clsDate d) {
+   if (    (d.GetD()  <=0 )|| ( d.GetD()  > d.NumberOfDaysInMonth( d.GetY(),d.GetM() ) )  ||
+   (d.GetM() >12 )|| (d.GetM() <=0 ))  return false;
+     return true;
+  }
 
 };
