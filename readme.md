@@ -11,7 +11,7 @@ Before building the main system, these utility libraries need to be solid.
  - (done) **Project 1** – Utility Library
 
  
-- [ ]  **Project 2** Input & Validation Library 
+- (done) **Project 2** Input & Validation Library 
 
 ---
 
