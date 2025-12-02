@@ -1,7 +1,31 @@
 # ninja log v6
-28	4052	7863369756095768	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.ddi	916e98d71605afa1
-4053	4135	7863369797016195	CMakeFiles/Input_Validation_Library.dir/CXX.dd	c729d73856ae8a44
-4053	4135	7863369797016195	E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Input&Validation Library/cmake-build-debug/CMakeFiles/Input_Validation_Library.dir/CXXModules.json	c729d73856ae8a44
-4053	4135	7863369797016195	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.modmap	c729d73856ae8a44
-4136	18508	7863369797157618	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj	e18661f3e343b522
-18512	18938	7863369940914677	Input_Validation_Library.exe	95e0c966f7f07754
+15	555	7863745234434578	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.ddi	916e98d71605afa1
+555	598	7863745239828240	CMakeFiles/Input_Validation_Library.dir/CXX.dd	c729d73856ae8a44
+2794	3073	7863745262222238	Input_Validation_Library.exe	95e0c966f7f07754
+555	598	7863745239828240	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.modmap	c729d73856ae8a44
+555	598	7863745239828240	E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Input&Validation Library/cmake-build-debug/CMakeFiles/Input_Validation_Library.dir/CXXModules.json	c729d73856ae8a44
+598	2794	7863745240265168	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj	e18661f3e343b522
+27	1128	7863745480956178	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.ddi	916e98d71605afa1
+1129	1213	7863745491980755	CMakeFiles/Input_Validation_Library.dir/CXX.dd	c729d73856ae8a44
+1129	1213	7863745491980755	E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Input&Validation Library/cmake-build-debug/CMakeFiles/Input_Validation_Library.dir/CXXModules.json	c729d73856ae8a44
+1129	1213	7863745491980755	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.modmap	c729d73856ae8a44
+1214	5252	7863745492837665	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj	e18661f3e343b522
+5252	5469	7863745533210713	Input_Validation_Library.exe	95e0c966f7f07754
+8	332	7863745852311791	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.ddi	916e98d71605afa1
+332	364	7863745855541172	CMakeFiles/Input_Validation_Library.dir/CXX.dd	c729d73856ae8a44
+332	364	7863745855541172	E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Input&Validation Library/cmake-build-debug/CMakeFiles/Input_Validation_Library.dir/CXXModules.json	c729d73856ae8a44
+332	364	7863745855541172	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.modmap	c729d73856ae8a44
+365	2017	7863745855875273	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj	e18661f3e343b522
+2018	2138	7863745872399065	Input_Validation_Library.exe	95e0c966f7f07754
+11	384	7863746248081555	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.ddi	916e98d71605afa1
+384	423	7863746251799447	CMakeFiles/Input_Validation_Library.dir/CXX.dd	c729d73856ae8a44
+384	423	7863746251799447	E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Input&Validation Library/cmake-build-debug/CMakeFiles/Input_Validation_Library.dir/CXXModules.json	c729d73856ae8a44
+384	423	7863746251799447	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.modmap	c729d73856ae8a44
+424	2573	7863746252199587	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj	e18661f3e343b522
+2573	2827	7863746273699046	Input_Validation_Library.exe	95e0c966f7f07754
+14	372	7863747240703052	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.ddi	916e98d71605afa1
+372	404	7863747244278265	CMakeFiles/Input_Validation_Library.dir/CXX.dd	c729d73856ae8a44
+372	404	7863747244278265	E:/projects/c++ course/11 - OOP as it Should Be (Applications)/Input&Validation Library/cmake-build-debug/CMakeFiles/Input_Validation_Library.dir/CXXModules.json	c729d73856ae8a44
+372	404	7863747244278265	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj.modmap	c729d73856ae8a44
+405	2587	7863747244605392	CMakeFiles/Input_Validation_Library.dir/main.cpp.obj	e18661f3e343b522
+2587	2709	7863747266432928	Input_Validation_Library.exe	95e0c966f7f07754

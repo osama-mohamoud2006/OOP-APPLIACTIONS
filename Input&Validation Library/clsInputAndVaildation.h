@@ -23,8 +23,7 @@ static  string time() {
       if (write.is_open())
       {
          // write the time and the last output to file
-         write<< "\nDate And time is: "<<time()
-           <<"\nThe last OutputIs: "<<LastResult;
+         write<< "\nDate And time is: "<<time() <<"\nThe last OutputIs: "<<LastResult;
          write.close();
       }
 
@@ -35,8 +34,7 @@ static  string time() {
      if (write.is_open())
      {
         // write the time and the last output to file
-        write<< "\nDate And time is: "<<time()
-           <<"\nThe last OutputIs: "<<to_string(LastResult);
+        write<< "\nDate And time is: "<<time() <<"\nThe last OutputIs: "<<to_string(LastResult);
         write.close();
      }
 
@@ -47,8 +45,7 @@ static  string time() {
      if (write.is_open())
      {
         // write the time and the last output to file
-        write<< "\nDate And time is: "<<time()
-        <<"\nThe last OutputIs: "<<to_string(LastResult);
+        write<< "\nDate And time is: "<<time()<<"\nThe last OutputIs: "<<to_string(LastResult);
         write.close();
      }
 
@@ -60,8 +57,7 @@ static  string time() {
      if (write.is_open())
      {
         // write the time and the last output to file
-        write<< "\nDate And time is: "<<time()
-        <<"\nThe last OutputIs: "<<to_string(LastResult);
+        write<< "\nDate And time is: "<<time()<<"\nThe last OutputIs: "<<to_string(LastResult);
         write.close();
      }
 
@@ -93,7 +89,6 @@ public:
    // enter normal number without any validation
   static double enter_number(string message){
      cout<<message;
-     int TheInput=0;
      double number;
      cin>>number;
      while(cin.fail()){
@@ -121,13 +116,12 @@ public:
      return res;
   }
 static bool IsDateBetween(clsDate DtoCompare , clsDate d2 , clsDate d3) {
-     if (clsDate::CompareDates(d2,d3)==clsDate::After) clsDate::swapDates(d2,d3);
+     if (clsDate::CompareDates(d2,d3)==clsDate::After) clsDate::swapDates(d2,d3); // if d2>d3
 
      bool  res = (clsDate::CompareDates(DtoCompare , d3)!=clsDate::After
-      &&
-      clsDate::CompareDates(DtoCompare,d2)!=clsDate::Before);
+        && clsDate::CompareDates(DtoCompare,d2)!=clsDate::Before);
 
-   PrintTrueOrFalse(res);
+   WriteTheLastResultToFile(res);
 
       return res;
   }
@@ -166,63 +160,32 @@ static bool IsDateBetween(clsDate DtoCompare , clsDate d2 , clsDate d3) {
 
    // enter nunmber in range
    static double enter_number_from_to(double from,double to,string text) {
-     bool is_ok= false;
+
      double number=0;
-     do{
-
-        cout << text<< " (" << from << " to " << to << "): ";
-        cin >> number;
-        if(cin.fail()){
-           cin.clear();
-           cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+       string mess = text+ " (" +to_string(from) + " to "  +  to_string(to) + "):  ";
+        number = enter_number(mess);
+       while (!IsNumberBetween(number,from,to)) {
            cout << "\a";
            system("color 4F"); // red if number isn't in range
            cout << "\nplease enter correct number which in range you assigned!\n";
-
-        }
-        else if (from > number || number > to) {
-           cout << "\a";
-           system("color 4F"); // red if number isn't in range
-           cout << "\nplease enter correct number which in range you assigned!\n";
+          number = enter_number(text);
         }
 
-        else {
-           is_ok = true ;
-        }
-     } while (is_ok==false);
-
-     system("color 0F"); //rest screen color
      WriteTheLastResultToFile(number);
      return number;
   }
 
    // enter nunmber in range (overloaded )
    static double enter_number_from_to(double from, double to) {
-     bool is_ok = false;
      double number = 0;
-     do {
+     number = enter_number("");
+     while (! IsNumberBetween(number,from,to)) {
+        system("color 0F"); //rest screen color
+        cout<<"\nEnter correct number within range you assigned ! \n";
+        cout<<"\a";
+        number = enter_number("");
+     }
 
-
-        cin >> number;
-        if (cin.fail()) {
-           cin.clear();
-           cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-           cout << "\a";
-           system("color 4F"); // red if number isn't in range
-           cout << "\nplease enter correct number which in range you assigned!\n";
-
-        }
-        else if (from > number || number > to) {
-           cout << "\a";
-           system("color 4F"); // red if number isn't in range
-           cout << "\nplease enter correct number which in range you assigned!\n";
-        }
-
-        else {
-           is_ok = true;
-        }
-     } while (is_ok == false);
-     system("color 0F"); //rest screen color
      WriteTheLastResultToFile(number);
      return number;
   }
@@ -235,7 +198,6 @@ static bool IsDateBetween(clsDate DtoCompare , clsDate d2 , clsDate d3) {
      WriteTheLastResultToFile(str);
      return str;
   }
-
 
    // read full line
    static string read_full_line(const string& message) {
@@ -251,9 +213,10 @@ static bool IsDateBetween(clsDate DtoCompare , clsDate d2 , clsDate d3) {
   }
 
    static bool IsVaildDate(clsDate d) {
-   if (    (d.GetD()  <=0 )|| ( d.GetD()  > d.NumberOfDaysInMonth( d.GetY(),d.GetM() ) )  ||
-   (d.GetM() >12 )|| (d.GetM() <=0 ))  return false;
-     return true;
+bool res = ! (    (d.GetD()  <=0 )|| ( d.GetD()  > d.NumberOfDaysInMonth( d.GetY(),d.GetM() ) )  ||
+   (d.GetM() >12 )|| (d.GetM() <=0 ) )  ;
+     WriteTheLastResultToFile(res);
+     return res;
   }
 
 };
