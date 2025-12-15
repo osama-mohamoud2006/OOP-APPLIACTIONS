@@ -36,13 +36,13 @@ class clsPerson {
               string GetPhone(string Phone) { return this->_Phone; }
 
              // Print person data 
-              void Print() {
+            virtual  void Print() {
                 cout << "\n_________________________________\n";
                 cout << "The First Name is : " << _FirstName << endl;
                 cout << "The Last Name  is : " << _LastName << endl;
                 cout << "The Email is : " << _Email << endl;
                 cout << "The Phone Number is : " << _Phone << endl;
-                cout << "_________________________________\n";
+                
               }
 
 };

@@ -15,7 +15,8 @@ class clsBankClient : public clsPerson{
 		  string _AccountNumber;
           string _Pin;
            double _Balance=0.0;
-           string FileName = 
+          string FileName = "Clients.txt";
+          string 
 
            public:
                // parametrized constructor 
@@ -30,7 +31,39 @@ class clsBankClient : public clsPerson{
 
                }
 
+               //set 
+               void SetFileName(string FileName) { this->FileName = FileName;  }
+               void SetAccountNumber(string AccountNumber) {
+               this->_AccountNumber = AccountNumber;
+               }
+               void SetPin(string Pin) { this->_Pin = Pin; }
+               void SetBalance(double Balance) { this->_Balance = Balance; }
 
+               //get
+               string  GetAccountNumber() {
+                 return this->_AccountNumber;
+               }
+               string  GetPin() {  return this->_Pin ; }
+               double  GetBalance() {
+                 return this->_Balance ;
+               }
+
+               bool IsEmptyClientObj() {
+                 return (_enMode::enEmptyClientObject == _Mode);
+               }
  
+               void Print() override {
+                   clsPerson::Print();
+                 cout << "The Account Number is: "<<_AccountNumber<<endl;
+                   cout << "The Pin is: " << _Pin << endl;
+                 cout << "The Balance is : " << _Balance << endl;
+               }
 
+               // Manage Files For
+             private:
+                 clsBankClient ConvertLineToObject(string Line) {
+                     //1-split string 
+                     //2-each index consider a data member of object
+                   vector<clsBankClient> Client = clsString::SplitString(Line)
+               }
 };
