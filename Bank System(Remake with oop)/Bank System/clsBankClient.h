@@ -1,7 +1,9 @@
 #pragma once
 #include "E:\projects\c++ course\10-OOP Concepts\Project 2\Project 2\clsString.h"
+#include"E:\projects\my library\AllStuff.h"  
 #include "clsPerson.h"
 #include<fstream>
+#include<string>
 #include<vector>
 #include<iostream>
 using namespace std ;
@@ -15,8 +17,8 @@ class clsBankClient : public clsPerson{
 		  string _AccountNumber;
           string _Pin;
            double _Balance=0.0;
-          string FileName = "Clients.txt";
-          string 
+        static  string FileName ;
+           static string Delmi ;
 
            public:
                // parametrized constructor 
@@ -61,9 +63,84 @@ class clsBankClient : public clsPerson{
 
                // Manage Files For
              private:
-                 clsBankClient ConvertLineToObject(string Line) {
+                static clsBankClient ConvertLineToObject(string Line) {
                      //1-split string 
                      //2-each index consider a data member of object
-                   vector<clsBankClient> Client = clsString::SplitString(Line)
+                   clsString::SetDelmi(Delmi);
+                   vector<string> Client =clsString::SplitString(Line); // convert line to vector data 
+                 // create temp object
+                       clsBankClient Temp = clsBankClient(
+                       _enMode::enUpdateClient, Client.at(0),
+                                 Client.at(1), Client.at(2), Client.at(3),
+                                 Client.at(4),Client.at(5),stod( Client.at(6) )  ); // call the constructor 
+
+                   return Temp;
                }
+                static clsBankClient ReturnEmptyObject() 
+                {
+                     return clsBankClient(_enMode::enEmptyClientObject, "", "", "", "", "", "",0.0 );
+                }
+
+
+                 public:
+                     // if it found the client it would return  object
+                     static clsBankClient Find(string AccountNumber) {
+                     fstream Read;
+                       Read.open(FileName, ios::in); //read mode
+                     if (Read.is_open()) 
+                     {
+                         string Line = ""; // line of data
+                       while ( getline(Read, Line) ) 
+                       {
+                           clsBankClient Client = ConvertLineToObject(Line); // convert the line from file to object
+                         if (Client.GetAccountNumber() == AccountNumber) {
+                             Read.close();
+                           return Client; // return the object of this client if it found 
+                         }
+
+                       }
+
+                     } 
+                     else {
+                       screen_color(red);
+                       cout << "\aCouldn't Open FIle! ";
+                       Read.close();
+                    
+                     }
+                      
+                     // if it didn't find the desired AccountNumber in file 
+                    return ReturnEmptyObject();
+                   }
+                     static clsBankClient Find(string AccountNumber,string Pin) {
+                       fstream Read;
+                       Read.open(FileName, ios::in); // read mode
+                       if (Read.is_open()) {
+                         string Line = ""; // line of data
+                         while (getline(Read, Line)) {
+                           clsBankClient Client = ConvertLineToObject( Line); // convert the line from file to object
+
+                           if (Client.GetAccountNumber() == AccountNumber &&  Client.GetPin() == Pin) {
+                             Read.close();
+                             return Client; // return the object of this client  if it found      
+                           }
+
+                         }
+
+                       } 
+
+                       else {
+                         screen_color(red);
+                         cout << "\aCouldn't Open FIle! ";
+                         Read.close();
+                       }
+
+                       // if it didn't find the desired AccountNumber in file
+                       return ReturnEmptyObject();
+                     }
+
+
+
 };
+
+string clsBankClient::FileName = "Clients.txt";
+string clsBankClient::Delmi = "#//#";
