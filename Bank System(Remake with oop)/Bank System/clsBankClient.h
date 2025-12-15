@@ -51,7 +51,7 @@ class clsBankClient : public clsPerson{
                }
 
                bool IsEmptyClientObj() {
-                 return (_enMode::enEmptyClientObject == _Mode);
+                 return ( _Mode== _enMode::enEmptyClientObject);
                }
  
                void Print() override {
@@ -138,7 +138,11 @@ class clsBankClient : public clsPerson{
                        return ReturnEmptyObject();
                      }
 
-
+                     static bool IsClientExist(string AccountNumber, string Pin) {
+                         clsBankClient temp = clsBankClient::Find(AccountNumber, Pin);
+                         return !(  temp.IsEmptyClientObj() ) ;
+                         
+                     }
 
 };
 
