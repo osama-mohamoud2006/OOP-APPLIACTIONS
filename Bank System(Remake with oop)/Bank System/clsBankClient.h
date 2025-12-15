@@ -11,14 +11,14 @@ using namespace std ;
 class clsBankClient : public clsPerson{
     // clsBankClient is sub class of clsPerson
 	private:
-  enum _enMode {enUpdateClient=1,enEmptyClientObject=2};
+  enum _enMode {enUpdateClient=0,enEmptyClientObject=1};
           _enMode _Mode=_enMode::enEmptyClientObject;
 
 		  string _AccountNumber;
           string _Pin;
-           double _Balance=0.0;
-        static  string FileName ;
-           static string Delmi ;
+          double _Balance=0.0;
+          static  string FileName ;
+            static string Delmi ;
 
            public:
                // parametrized constructor 
@@ -28,6 +28,7 @@ class clsBankClient : public clsPerson{
                    : clsPerson(FirstName, LastName, Email, Phone) 
               {  
                this->_AccountNumber = AccountNumber;
+               this->_Mode = mode;
                  this->_Pin = Pin;
                this->_Balance = Balance;
 
@@ -46,10 +47,16 @@ class clsBankClient : public clsPerson{
                  return this->_AccountNumber;
                }
                string  GetPin() {  return this->_Pin ; }
+
+               // for testing puposes 
+               void  GetCurrentMode() {
+                   (!IsEmptyClientObj()) ? cout << "Client is existing!\n" : cout << "empty object!\a\n";
+               }
+
                double  GetBalance() {
                  return this->_Balance ;
                }
-
+               
                bool IsEmptyClientObj() {
                  return ( _Mode== _enMode::enEmptyClientObject);
                }
@@ -69,13 +76,12 @@ class clsBankClient : public clsPerson{
                    clsString::SetDelmi(Delmi);
                    vector<string> Client =clsString::SplitString(Line); // convert line to vector data 
                  // create temp object
-                       clsBankClient Temp = clsBankClient(
+                   return clsBankClient(
                        _enMode::enUpdateClient, Client.at(0),
                                  Client.at(1), Client.at(2), Client.at(3),
-                                 Client.at(4),Client.at(5),stod( Client.at(6) )  ); // call the constructor 
-
-                   return Temp;
+                                 Client.at(4),Client.at(5),stod( Client.at(6) )  ); // call the constructor
                }
+
                 static clsBankClient ReturnEmptyObject() 
                 {
                      return clsBankClient(_enMode::enEmptyClientObject, "", "", "", "", "", "",0.0 );
@@ -144,7 +150,10 @@ class clsBankClient : public clsPerson{
                          
                      }
 
+                 
 };
+
+
 
 string clsBankClient::FileName = "Clients.txt";
 string clsBankClient::Delmi = "#//#";
