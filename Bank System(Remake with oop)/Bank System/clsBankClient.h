@@ -49,9 +49,9 @@ class clsBankClient : public clsPerson{
                string  GetPin() {  return this->_Pin ; }
 
                // for testing puposes 
-               void  GetCurrentMode() {
+       /*        void  GetCurrentMode() {
                    (!IsEmptyClientObj()) ? cout << "Client is existing!\n" : cout << "empty object!\a\n";
-               }
+               }*/
 
                double  GetBalance() {
                  return this->_Balance ;
@@ -62,7 +62,7 @@ class clsBankClient : public clsPerson{
                }
  
                void Print() override {
-                   clsPerson::Print();
+                   clsPerson::Print(); // call the print method of super class 
                  cout << "The Account Number is: "<<_AccountNumber<<endl;
                    cout << "The Pin is: " << _Pin << endl;
                  cout << "The Balance is : " << _Balance << endl;
@@ -150,9 +150,29 @@ class clsBankClient : public clsPerson{
                          
                      }
 
-                 
-};
+                     static bool IsClientExist(string AccountNumber) {
+                         clsBankClient temp = clsBankClient::Find(AccountNumber);
+                         return !(temp.IsEmptyClientObj());
 
+                     }
+
+                     static bool ReturnCurrentClient_if_ItExists(string AccountNumber , clsBankClient & FoundCurrentClient) {
+
+                         clsBankClient temp = clsBankClient::Find(AccountNumber); // -> obj : Empty
+                  
+                         if (!(temp.IsEmptyClientObj())) {
+                             FoundCurrentClient = temp; // return the current object which have data 
+                             return true;
+                         }
+                         else return false;
+                     }
+
+                 
+              /////// //  ////                                            Update Client Data                                                                                  ///////////
+
+
+
+};
 
 
 string clsBankClient::FileName = "Clients.txt";
