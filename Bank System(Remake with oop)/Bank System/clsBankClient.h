@@ -185,11 +185,19 @@ public:
      // --> if  it found then change the record to the new object 
 
     private:
-         // string FirstName , string LastName , string Email , string Phone, // for clsPerson()
-      //  string AccountNumber, string Pin, double Balance
+         //,  , s/ for clsPerson()
+      //  string , , double Balance
         string _ConvertObjectToLine(clsBankClient CurrentClient) {
             string record
                 = CurrentClient.GetFirstName()+ Delmi
+                + CurrentClient.GetLastName()+Delmi
+                + CurrentClient.GetEmail()+Delmi
+                + CurrentClient.GetPhone()+Delmi
+                +CurrentClient.GetAccountNumber()+Delmi
+                + CurrentClient.GetPin()+Delmi
+                +CurrentClient.GetBalance
+
+
                 ;
          }
 
