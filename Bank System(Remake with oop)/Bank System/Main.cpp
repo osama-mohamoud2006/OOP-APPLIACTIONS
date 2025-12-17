@@ -50,7 +50,7 @@ void UpdateClientInfo() {
 
 	cout << "\nUpdate Info\n";
 	client=EnterNewDataToUpdate(); // take the new data and set them to the object
-
+	client.Update();
 
 
 }

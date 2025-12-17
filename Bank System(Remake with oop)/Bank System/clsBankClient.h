@@ -195,7 +195,7 @@ public:
                 +CurrentClient.GetAccountNumber()+Delmi
                 + CurrentClient.GetPin()+Delmi
                 +to_string(CurrentClient.GetBalance()) ;
-                
+            return record;
          }
 
         static vector<clsBankClient>_LoadClientsFile() { 
@@ -216,7 +216,7 @@ public:
                 screen_color(red);
                 cout << "\a\nCann't Load File On Vector Please Check the " << FileName << " And Try Again!" << endl;
                 Read.close();
-                return;
+                exit(0);
             }
 
             return FileOfClientsLoadedOnVector;
@@ -226,11 +226,25 @@ public:
         {
             fstream Write;
             Write.open(FileName, ios::out); // overwrite 
-            for (clsBankClient C : VectorOfClients) {
+            if (Write.is_open()) {
+
+                string FromVectorLineOfData = "";
+                for (clsBankClient C : VectorOfClients) 
+                {
+                    Write << _ConvertObjectToLine(C) << endl; // convert object from file to line of record 
+                }
 
             }
 
+            else {
+                screen_color(red);
+                cout << "\a\nCouldn't Save File Please Check the " << FileName << " And Try Again!" << endl;
+                Write.close();
+                exit(0);
+            }
+
         }
+
 
         public:
             void Update() 
@@ -245,10 +259,10 @@ public:
                         C = *this; // make the Client of file takes updated object 
                         break;
                     }
-
-                    // Load New Data to File 
-
                 }
+
+                // Load New Data to File 
+                _UpdateFile(FileOfClients);
 
         }
 
