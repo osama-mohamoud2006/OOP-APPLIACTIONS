@@ -41,7 +41,10 @@ class clsBankClient : public clsPerson{
 
 
                //set 
+protected :
                void SetFileName(string FileName) { this->FileName = FileName;  }
+
+public:
                void SetAccountNumber(string AccountNumber) {
                this->_AccountNumber = AccountNumber;
                }

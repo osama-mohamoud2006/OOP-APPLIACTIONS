@@ -1,7 +1,36 @@
 #include <iostream>
+#include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
 #include "AllClasses.h" 
  
 using namespace std;
+
+clsBankClient EnterNewDataToUpdate() {
+	clsBankClient Temp;
+	string DataToFill = "";
+
+	DataToFill = clsInputAndValidation::read_string("\nEnter New Account number: ");
+	 Temp.SetAccountNumber(DataToFill);
+
+	 DataToFill = clsInputAndValidation::read_string("\nEnter New First Name: ");
+	 Temp.SetFirstName(DataToFill);
+
+	 DataToFill = clsInputAndValidation::read_string("\nEnter New Last Name: ");
+	 Temp.SetLastName(DataToFill);
+
+	 DataToFill = clsInputAndValidation::read_string("\nEnter New Pin number: ");
+	 Temp.SetPin(DataToFill);
+
+	 DataToFill = clsInputAndValidation::read_string("\nEnter Email: ");
+	 Temp.SetEmail(DataToFill);
+
+	 DataToFill = clsInputAndValidation::read_string("\nEnter New Phone number: ");
+	 Temp.SetPhone(DataToFill);
+
+	 double balance  = clsInputAndValidation::enter_postive_number("\nEnter Balance: ");
+	 Temp.SetBalance(balance);
+
+	 return Temp;
+}
 
 void UpdateClientInfo() {
 	string AccountNumber="";
@@ -19,6 +48,10 @@ void UpdateClientInfo() {
 	screen_color(black);
 	cout << "\nCurrent Client Info: \n";
 	client.Print();
+
+	cout << "\nUpdate Info\n";
+	client=EnterNewDataToUpdate(); // take the new data and set them to the object
+
 
 
 }
