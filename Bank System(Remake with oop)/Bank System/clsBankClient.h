@@ -185,9 +185,8 @@ public:
      // --> if  it found then change the record to the new object 
 
     private:
-         //,  , s/ for clsPerson()
-      //  string , , double Balance
-        string _ConvertObjectToLine(clsBankClient CurrentClient) {
+
+        static string _ConvertObjectToLine(clsBankClient CurrentClient) {
             string record
                 = CurrentClient.GetFirstName()+ Delmi
                 + CurrentClient.GetLastName()+Delmi
@@ -195,17 +194,61 @@ public:
                 + CurrentClient.GetPhone()+Delmi
                 +CurrentClient.GetAccountNumber()+Delmi
                 + CurrentClient.GetPin()+Delmi
-                +CurrentClient.GetBalance
-
-
-                ;
+                +to_string(CurrentClient.GetBalance()) ;
+                
          }
+
+        static vector<clsBankClient>_LoadClientsFile() { 
+            fstream Read;
+            vector< clsBankClient> FileOfClientsLoadedOnVector;
+            Read.open(FileName, ios::in);
+            if (Read.is_open()) {
+
+                string Record;
+                while (getline(Read, Record)) {
+                    // convert line to object then push it to vector
+                    FileOfClientsLoadedOnVector.push_back(_ConvertLineToObject(Record));
+                }
+
+                Read.close();
+            }
+            else {
+                screen_color(red);
+                cout << "\a\nCann't Load File On Vector Please Check the " << FileName << " And Try Again!" << endl;
+                Read.close();
+                return;
+            }
+
+            return FileOfClientsLoadedOnVector;
+        }
+
+        static void _UpdateFile(const vector<clsBankClient> & VectorOfClients) 
+        {
+            fstream Write;
+            Write.open(FileName, ios::out); // overwrite 
+            for (clsBankClient C : VectorOfClients) {
+
+            }
+
+        }
 
         public:
             void Update() 
             {
                
-                vector<clsBankClient> FileOfClients; // load file of clients 
+                vector<clsBankClient> FileOfClients= _LoadClientsFile(); // load file of clients 
+                
+                for (clsBankClient& C : FileOfClients)
+                {
+                    // c --> client from file record  
+                    if (C.GetAccountNumber() == this->GetAccountNumber()) {
+                        C = *this; // make the Client of file takes updated object 
+                        break;
+                    }
+
+                    // Load New Data to File 
+
+                }
 
         }
 
