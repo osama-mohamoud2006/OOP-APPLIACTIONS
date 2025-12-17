@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning(disable : 4996)
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Utility Library\clsDate.h"
 #include<iostream>
 #include <string>

@@ -21,6 +21,9 @@ class clsPerson {
 
               }
 
+              clsPerson() {
+
+              }
               // Set and Get methods
 
               //set

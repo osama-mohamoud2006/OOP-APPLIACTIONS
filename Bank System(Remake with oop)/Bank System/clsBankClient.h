@@ -34,6 +34,12 @@ class clsBankClient : public clsPerson{
 
                }
 
+             // Used to just initlize 
+               clsBankClient(){
+                   *this = clsBankClient::_ReturnEmptyObject(); // make empty object 
+               } 
+
+
                //set 
                void SetFileName(string FileName) { this->FileName = FileName;  }
                void SetAccountNumber(string AccountNumber) {
@@ -70,7 +76,7 @@ class clsBankClient : public clsPerson{
 
                // Manage Files For
              private:
-                static clsBankClient ConvertLineToObject(string Line) {
+                static clsBankClient _ConvertLineToObject(string Line) {
                      //1-split string 
                      //2-each index consider a data member of object
                    clsString::SetDelmi(Delmi);
@@ -82,7 +88,7 @@ class clsBankClient : public clsPerson{
                                  Client.at(4),Client.at(5),stod( Client.at(6) )  ); // call the constructor
                }
 
-                static clsBankClient ReturnEmptyObject() 
+                static clsBankClient _ReturnEmptyObject() 
                 {
                      return clsBankClient(_enMode::enEmptyClientObject, "", "", "", "", "", "",0.0 );
                 }
@@ -98,7 +104,7 @@ class clsBankClient : public clsPerson{
                          string Line = ""; // line of data
                        while ( getline(Read, Line) ) 
                        {
-                           clsBankClient Client = ConvertLineToObject(Line); // convert the line from file to object
+                           clsBankClient Client = _ConvertLineToObject(Line); // convert the line from file to object
                          if (Client.GetAccountNumber() == AccountNumber) {
                              Read.close();
                            return Client; // return the object of this client if it found 
@@ -115,7 +121,7 @@ class clsBankClient : public clsPerson{
                      }
                       
                      // if it didn't find the desired AccountNumber in file 
-                    return ReturnEmptyObject();
+                    return _ReturnEmptyObject();
                    }
                      static clsBankClient Find(string AccountNumber,string Pin) {
                        fstream Read;
@@ -123,7 +129,7 @@ class clsBankClient : public clsPerson{
                        if (Read.is_open()) {
                          string Line = ""; // line of data
                          while (getline(Read, Line)) {
-                           clsBankClient Client = ConvertLineToObject( Line); // convert the line from file to object
+                           clsBankClient Client = _ConvertLineToObject( Line); // convert the line from file to object
 
                            if (Client.GetAccountNumber() == AccountNumber &&  Client.GetPin() == Pin) {
                              Read.close();
@@ -141,7 +147,7 @@ class clsBankClient : public clsPerson{
                        }
 
                        // if it didn't find the desired AccountNumber in file
-                       return ReturnEmptyObject();
+                       return _ReturnEmptyObject();
                      }
 
                      static bool IsClientExist(string AccountNumber, string Pin) {
