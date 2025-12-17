@@ -36,10 +36,10 @@ class clsPerson {
               void SetPhone(string Phone) { this->_Phone = Phone; }
 
               // get
-              string GetFirstName(string fname) { return this->_FirstName; }
-              string GetLastName(string lname) { return this->_LastName; }
-              string GetEmail(string Email) { return this->_Email; }
-              string GetPhone(string Phone) { return this->_Phone; }
+              string GetFirstName( ) { return this->_FirstName; }
+              string GetLastName( ) { return this->_LastName; }
+              string GetEmail( ) { return this->_Email; }
+              string GetPhone( ) { return this->_Phone; }
 
              // Print person data 
             virtual  void Print() {

@@ -8,9 +8,6 @@ clsBankClient EnterNewDataToUpdate() {
 	clsBankClient Temp;
 	string DataToFill = "";
 
-	DataToFill = clsInputAndValidation::read_string("\nEnter New Account number: ");
-	 Temp.SetAccountNumber(DataToFill);
-
 	 DataToFill = clsInputAndValidation::read_string("\nEnter New First Name: ");
 	 Temp.SetFirstName(DataToFill);
 
@@ -33,6 +30,7 @@ clsBankClient EnterNewDataToUpdate() {
 }
 
 void UpdateClientInfo() {
+
 	string AccountNumber="";
 	AccountNumber = clsInputAndValidation::read_string("Enter Account Number: ");
 	clsBankClient client = clsBankClient();
@@ -44,6 +42,7 @@ void UpdateClientInfo() {
 			cout << "Try agian !\n";
 		AccountNumber = clsInputAndValidation::read_string("Enter Account Number: ");
 	}
+
 	// it will exit loop only if it found the desired account number 
 	screen_color(black);
 	cout << "\nCurrent Client Info: \n";

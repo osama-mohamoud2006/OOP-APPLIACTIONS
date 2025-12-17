@@ -179,6 +179,27 @@ public:
                  
               /////// //  ////                                            Update Client Data                                                                                  ///////////
 
+                 
+                         //The high level explanation  of Data update client data: ///
+     //  load file --> search the account number on file(check if account number of current obj == record on file)
+     // --> if  it found then change the record to the new object 
+
+    private:
+         // string FirstName , string LastName , string Email , string Phone, // for clsPerson()
+      //  string AccountNumber, string Pin, double Balance
+        string _ConvertObjectToLine(clsBankClient CurrentClient) {
+            string record
+                = CurrentClient.GetFirstName()+ Delmi
+                ;
+         }
+
+        public:
+            void Update() 
+            {
+               
+                vector<clsBankClient> FileOfClients; // load file of clients 
+
+        }
 
 
 };
