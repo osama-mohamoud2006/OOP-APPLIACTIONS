@@ -4,8 +4,8 @@
  
 using namespace std;
 
-clsBankClient EnterNewDataToUpdate() {
-	clsBankClient Temp;
+void  EnterNewDataToUpdate(clsBankClient &Temp) {
+
 	string DataToFill = "";
 
 	 DataToFill = clsInputAndValidation::read_string("\nEnter New First Name: ");
@@ -26,7 +26,7 @@ clsBankClient EnterNewDataToUpdate() {
 	 double balance  = clsInputAndValidation::enter_postive_number("\nEnter Balance: ");
 	 Temp.SetBalance(balance);
 
-	 return Temp;
+	 
 }
 
 void UpdateClientInfo() {
@@ -49,8 +49,9 @@ void UpdateClientInfo() {
 	client.Print();
 
 	cout << "\nUpdate Info\n";
-	client=EnterNewDataToUpdate(); // take the new data and set them to the object
-	client.Update();
+EnterNewDataToUpdate(client); // take the new data and set them to the object
+
+
 
 
 }

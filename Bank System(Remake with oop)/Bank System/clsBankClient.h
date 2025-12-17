@@ -245,27 +245,38 @@ public:
 
         }
 
+        void _Update()
+        {
 
-        public:
-            void Update() 
+            vector<clsBankClient> FileOfClients = _LoadClientsFile(); // load file of clients 
+
+            for (clsBankClient& C : FileOfClients)
             {
-               
-                vector<clsBankClient> FileOfClients= _LoadClientsFile(); // load file of clients 
-                
-                for (clsBankClient& C : FileOfClients)
-                {
-                    // c --> client from file record  
-                    if (C.GetAccountNumber() == this->GetAccountNumber()) {
-                        C = *this; // make the Client of file takes updated object 
-                        break;
-                    }
+                // c --> client from file record  
+                if (C.GetAccountNumber() == GetAccountNumber()) {
+                    C = *this; // make the Client of file takes updated object 
+                    break;
                 }
+            }
 
-                // Load New Data to File 
-                _UpdateFile(FileOfClients);
+            // Load New Data to File 
+            _UpdateFile(FileOfClients);
 
         }
 
+        public:
+      
+            enum enSaveMode {FailedToSave=0,SuccessToSave=1};
+
+            //this method check if it is empty object then update will be failed other wise it will update normally
+            enSaveMode Save() {
+
+                switch (_Mode) {
+                case enEmptyClientObject:
+                    return enSaveMode::FailedToSave;
+                }
+
+            }
 
 };
 
