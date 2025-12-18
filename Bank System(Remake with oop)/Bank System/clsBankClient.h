@@ -19,7 +19,7 @@ class clsBankClient : public clsPerson{
           double _Balance=0.0;
           static  string FileName ;
             static string Delmi ;
-           static  bool _MarkForDelete ; 
+             bool _MarkForDelete=false ; 
    
             static void ThrowExceptionCouldnotOpenFile() {
                 throw::invalid_argument("failed to open/read file\a");
@@ -27,6 +27,10 @@ class clsBankClient : public clsPerson{
 
             void SetClientMarkedForDelete() {
                 _MarkForDelete = true;
+            }
+
+            bool GetClientDeleteStatus(){
+                return _MarkForDelete;
             }
 
            public:
@@ -235,6 +239,7 @@ public:
 
         static void _UpdateFile(const vector<clsBankClient> & VectorOfClients) 
         {
+            if (VectorOfClients.empty()) ThrowExceptionCouldnotOpenFile(); // vector is empty no data on file ! 
             fstream Write;
             Write.open(FileName, ios::out); // overwrite 
             if (Write.is_open()) {
@@ -242,9 +247,12 @@ public:
                 string FromVectorLineOfData = "";
                 for (clsBankClient C : VectorOfClients) 
                 {
-                    if (_MarkForDelete == false)Write << _ConvertObjectToLine(C) << endl; // convert object from file to line of record 
+                    if (C.GetClientDeleteStatus() == false) {
+                        Write << _ConvertObjectToLine(C) << endl; // convert object from file to line of record 
+                    }
                 }
 
+                Write.close();
             }
 
             else {
@@ -252,7 +260,6 @@ public:
               //  cout << "\a\nCouldn't Save File Please Check the " << FileName << " And Try Again!" << endl;
                 ThrowExceptionCouldnotOpenFile();
                 Write.close();
-                exit(0);
             }
 
         }
@@ -339,9 +346,9 @@ public:
                      vector<clsBankClient> FileOfClients = _LoadClientsFile(); // load the clients file 
 
                      for (clsBankClient& c : FileOfClients) {
-                         if (c.GetAccountNumber() == _AccountNumber) { // search the account number 
-                             c.SetClientMarkedForDelete(); // mark the account for deletion 
-                             break; 
+                         if (c.GetAccountNumber() == this->GetAccountNumber()) { // search the account number 
+                             c._MarkForDelete=true; // mark the account for deletion
+                             break;
                          }
                      }
 
@@ -357,4 +364,3 @@ public:
 
 string clsBankClient::FileName = "Clients.txt";
 string clsBankClient::Delmi = "#//#";
-bool clsBankClient::_MarkForDelete = false;
