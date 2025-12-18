@@ -4,6 +4,7 @@
  
 using namespace std;
 
+
 void  EnterNewDataToUpdate(clsBankClient &Temp) {
 
 	string DataToFill = "";
@@ -45,13 +46,23 @@ void UpdateClientInfo() {
 
 	// it will exit loop only if it found the desired account number 
 	screen_color(black);
-	cout << "\nCurrent Client Info: \n";
+	cout << "\nCurrent Client Info: ";
 	client.Print();
 
 	cout << "\nUpdate Info\n";
-EnterNewDataToUpdate(client); // take the new data and set them to the object
+   EnterNewDataToUpdate(client); // take the new data and set them to the object
 
-
+   clsBankClient::enSaveMode FinalSave;
+   FinalSave = client.Save();
+  
+   if (FinalSave == clsBankClient::enSaveMode::SuccessToSave) {
+	   screen_color(green);
+	   cout << "saved successfully!" << endl;
+   }
+   else {
+	   screen_color(red);
+	   cout << "failed  to save!" << endl;
+   }
 
 
 }
@@ -82,7 +93,7 @@ int main() {
 
 
 	//if (!Client2.IsEmptyClientObj()) {
-	//	cout << "Isn't exisiting \a\n";
+	//	cout << "Isn't exisitting \a\n";
 	//}
 
 	//cout << "___________________\n";

@@ -19,6 +19,7 @@ class clsBankClient : public clsPerson{
           double _Balance=0.0;
           static  string FileName ;
             static string Delmi ;
+   
 
            public:
                // parametrized constructor 
@@ -42,31 +43,32 @@ class clsBankClient : public clsPerson{
 
                //set 
 protected :
-               void SetFileName(string FileName) { this->FileName = FileName;  }
+               void SetFileName(const string& FileName) { this->FileName = FileName;  }
 
 public:
-               void SetAccountNumber(string AccountNumber) {
+               
+               void SetAccountNumber(const string &AccountNumber) {
                this->_AccountNumber = AccountNumber;
                }
-               void SetPin(string Pin) { this->_Pin = Pin; }
-               void SetBalance(double Balance) { this->_Balance = Balance; }
+               void SetPin(const string& Pin) { this->_Pin = Pin; }
+               void SetBalance(const double& Balance) { this->_Balance = Balance; }
 
                //get
-               string  GetAccountNumber() {
+               string  GetAccountNumber()const {
                  return this->_AccountNumber;
                }
-               string  GetPin() {  return this->_Pin ; }
+               string  GetPin() const  {  return this->_Pin ; }
 
                // for testing puposes 
        /*        void  GetCurrentMode() {
                    (!IsEmptyClientObj()) ? cout << "Client is existing!\n" : cout << "empty object!\a\n";
                }*/
 
-               double  GetBalance() {
+               double  GetBalance()const {
                  return this->_Balance ;
                }
                
-               bool IsEmptyClientObj() {
+               bool IsEmptyClientObj()const {
                  return ( _Mode== _enMode::enEmptyClientObject);
                }
  
@@ -96,7 +98,6 @@ public:
                      return clsBankClient(_enMode::enEmptyClientObject, "", "", "", "", "", "",0.0 );
                 }
 
-
                  public:
                      // if it found the client it would return  object
                      static clsBankClient Find(string AccountNumber) {
@@ -117,8 +118,9 @@ public:
 
                      } 
                      else {
-                       screen_color(red);
-                       cout << "\aCouldn't Open FIle! ";
+                     //  screen_color(red);
+                       //cout << "\aCouldn't Open FIle! ";
+                         throw std::invalid_argument("Failed to open file !\n\a");
                        Read.close();
                     
                      }
@@ -144,8 +146,9 @@ public:
                        } 
 
                        else {
-                         screen_color(red);
-                         cout << "\aCouldn't Open FIle! ";
+                         //screen_color(red);
+                        // cout << "\aCouldn't Open FIle! ";
+                           throw std::invalid_argument("Failed to open file !\n\a");
                          Read.close();
                        }
 
@@ -165,6 +168,14 @@ public:
 
                      }
 
+
+                     /////// //  ////                                            Update Client Data                                                                                  ///////////
+
+
+ //The high level explanation  of Data update client data: ///
+//  load file --> search the account number on file(check if account number of current obj == record on file)
+// --> if  it found then change the record to the new object 
+
                      static bool ReturnCurrentClient_if_ItExists(string AccountNumber , clsBankClient & FoundCurrentClient) {
 
                          clsBankClient temp = clsBankClient::Find(AccountNumber); // -> obj : Empty
@@ -175,14 +186,6 @@ public:
                          }
                          else return false;
                      }
-
-                 
-              /////// //  ////                                            Update Client Data                                                                                  ///////////
-
-                 
-                         //The high level explanation  of Data update client data: ///
-     //  load file --> search the account number on file(check if account number of current obj == record on file)
-     // --> if  it found then change the record to the new object 
 
     private:
 
@@ -213,8 +216,9 @@ public:
                 Read.close();
             }
             else {
-                screen_color(red);
-                cout << "\a\nCann't Load File On Vector Please Check the " << FileName << " And Try Again!" << endl;
+              //  screen_color(red);
+               // cout << "\a\nCann't Load On Vector File  Please Check the " << FileName << " And Try Again!" << endl;
+                throw std::invalid_argument("Failed to open file !\n\a");
                 Read.close();
                 exit(0);
             }
@@ -237,8 +241,9 @@ public:
             }
 
             else {
-                screen_color(red);
-                cout << "\a\nCouldn't Save File Please Check the " << FileName << " And Try Again!" << endl;
+               // screen_color(red);
+              //  cout << "\a\nCouldn't Save File Please Check the " << FileName << " And Try Again!" << endl;
+                throw std::invalid_argument("Failed to open file !\n\a");
                 Write.close();
                 exit(0);
             }
@@ -274,6 +279,10 @@ public:
                 switch (_Mode) {
                 case enEmptyClientObject:
                     return enSaveMode::FailedToSave;
+
+                case enUpdateClient:
+                    _Update();
+                    return enSaveMode::SuccessToSave;
                 }
 
             }

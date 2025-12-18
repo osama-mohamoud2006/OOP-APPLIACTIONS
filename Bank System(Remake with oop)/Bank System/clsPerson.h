@@ -30,16 +30,16 @@ class clsPerson {
               // Set and Get methods
 
               //set
-              void SetFirstName(string fname) { this->_FirstName = fname;  }
-              void SetLastName(string lname) { this->_LastName = lname; }
-              void SetEmail(string Email) { this->_Email = Email; }
-              void SetPhone(string Phone) { this->_Phone = Phone; }
+              void SetFirstName(const string &fname) { this->_FirstName = fname;  }
+              void SetLastName(const string &lname) { this->_LastName = lname; }
+              void SetEmail(const string&Email) { this->_Email = Email; }
+              void SetPhone(const string &Phone) { this->_Phone = Phone; }
 
               // get
-              string GetFirstName( ) { return this->_FirstName; }
-              string GetLastName( ) { return this->_LastName; }
-              string GetEmail( ) { return this->_Email; }
-              string GetPhone( ) { return this->_Phone; }
+              string GetFirstName( )const { return this->_FirstName; }
+              string GetLastName( )const { return this->_LastName; }
+              string GetEmail( )const { return this->_Email; }
+              string GetPhone( ) const { return this->_Phone; }
 
              // Print person data 
             virtual  void Print() {
