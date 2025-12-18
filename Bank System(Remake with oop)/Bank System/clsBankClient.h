@@ -52,7 +52,7 @@ protected :
                void SetFileName(const string& FileName) { this->FileName = FileName;  }
 
 public:
-               
+   
                void SetAccountNumber(const string &AccountNumber) {
                this->_AccountNumber = AccountNumber;
                }
@@ -60,6 +60,7 @@ public:
                void SetBalance(const double& Balance) { this->_Balance = Balance; }
 
                //get
+             
                string  GetAccountNumber()const {
                  return this->_AccountNumber;
                }
@@ -334,8 +335,8 @@ public:
               }
 
 
-            
-             ///                                                                                  Delete Client                                                                                                                      ////////
+             
+             ///                                                                                        Delete Client                                                                                                                      ////////
           
 
              public:
@@ -358,7 +359,13 @@ public:
                  }
 
 
+                  //                                                                Print Clients                                                                                         ////////////                          
 
+                  // don't forget here in this class we foucs only on the core no ui !
+
+                  static vector<clsBankClient> GetAllClientsInVector() { // For using in Priniting 
+                      return _LoadClientsFile();
+                  }
 };
 
 

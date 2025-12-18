@@ -35,7 +35,9 @@ class clsPerson {
               string GetLastName( )const { return this->_LastName; }
               string GetEmail( )const { return this->_Email; }
               string GetPhone( ) const { return this->_Phone; }
-
+              string GetFullName() {
+                  return _FirstName + " " + _LastName;
+              }
              // Print person data 
             virtual  void Print() {
               //  cout << "\n_________________________________\n";

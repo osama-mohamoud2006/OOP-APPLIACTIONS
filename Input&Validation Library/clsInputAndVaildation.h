@@ -24,7 +24,7 @@ static  string time() {
       if (write.is_open())
       {
          // write the time and the last output to file
-         write<< "\nDate And time is: "<<time() <<"\nThe last OutputIs: "<<LastResult;
+         write<< "\nDate And time is: "<<time() <<"\nThe last input is:  "<<LastResult<<endl;
          write.close();
       }
 
@@ -35,7 +35,7 @@ static  string time() {
      if (write.is_open())
      {
         // write the time and the last output to file
-        write<< "\nDate And time is: "<<time() <<"\nThe last OutputIs: "<<to_string(LastResult);
+        write<< "\nDate And time is: "<<time() <<"\nThe last  input  is:  "<<to_string(LastResult)<<endl;
         write.close();
      }
 
@@ -46,7 +46,7 @@ static  string time() {
      if (write.is_open())
      {
         // write the time and the last output to file
-        write<< "\nDate And time is: "<<time()<<"\nThe last OutputIs: "<<to_string(LastResult);
+        write<< "\nDate And time is: "<<time()<<"\nThe last input is:  "<<to_string(LastResult)<<endl;
         write.close();
      }
 
@@ -58,7 +58,7 @@ static  string time() {
      if (write.is_open())
      {
         // write the time and the last output to file
-        write<< "\nDate And time is: "<<time()<<"\nThe last OutputIs: "<<to_string(LastResult);
+        write<< "\nDate And time is: "<<time()<<"\nThe last input is:  "<<to_string(LastResult)<<endl;
         write.close();
      }
 
