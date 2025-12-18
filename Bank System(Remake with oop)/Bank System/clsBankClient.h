@@ -20,6 +20,9 @@ class clsBankClient : public clsPerson{
           static  string FileName ;
             static string Delmi ;
    
+            static void ThrowExceptionCouldnotOpenFile() {
+                throw::invalid_argument("failed to open/read file\a");
+            }
 
            public:
                // parametrized constructor 
@@ -94,7 +97,7 @@ public:
 
                  public:
 
-                     static clsBankClient EmptyObjForIntilizing() {
+                     static clsBankClient EmptyObjForInitializing() {
                          return _ReturnEmptyObject();
                      }
 
@@ -217,7 +220,7 @@ public:
             else {
               //  screen_color(red);
                // cout << "\a\nCann't Load On Vector File  Please Check the " << FileName << " And Try Again!" << endl;
-                throw std::invalid_argument("Failed to open file !\n\a");
+                ThrowExceptionCouldnotOpenFile();
                 Read.close();
                 exit(0);
             }
@@ -242,7 +245,7 @@ public:
             else {
                // screen_color(red);
               //  cout << "\a\nCouldn't Save File Please Check the " << FileName << " And Try Again!" << endl;
-                throw std::invalid_argument("Failed to open file !\n\a");
+                ThrowExceptionCouldnotOpenFile();
                 Write.close();
                 exit(0);
             }
@@ -270,18 +273,30 @@ public:
 
         public:
       
-            enum enSaveMode {FailedToSave=0,SuccessedToSave=1};
+            enum enSaveMode {FailedOrEmptyObj=0,SuccessedToSave=1,AccountNumberExists=3};
 
             //this method check if it is empty object then update will be failed other wise it will update normally
             enSaveMode Save() {
 
                 switch (_Mode) {
                 case enEmptyClientObject:
-                    return enSaveMode::FailedToSave;
+                    return enSaveMode::FailedOrEmptyObj; // consider failure also 
 
                 case enUpdateClient:
                     _Update();
                     return enSaveMode::SuccessedToSave;
+
+                case enAddNewClient:
+                    if (IsClientExist( this->GetAccountNumber() ) ) // when add new client to file check if account is already exists in file
+                    {
+                        return   enSaveMode::AccountNumberExists; 
+                    }
+                    else {
+                        _AddNewClientToFile(); // take the current obj and throw it in file 
+                        _Mode = _enMode::enUpdateClient; /// rest it 
+                        return enSaveMode::SuccessedToSave;
+                    }
+
                 }
 
             }
@@ -289,10 +304,26 @@ public:
 
             ////                                                                                  Add New Client                                                                                                                          //////////////
 
-         static  clsBankClient IntializeToAddNewClient() {
+         static  clsBankClient InitializeToAddNewClient() {
                 return  clsBankClient(enAddNewClient, "", "", "", "", "", "", 0.0);
             }
 
+         private:
+
+             static void _WriteNewLineToFile(string Line ) {
+                 fstream write;
+                 write.open(FileName, ios::out | ios::app);
+                 if (write.is_open()) {
+                     write << Line << endl; 
+                 }
+                 else     ThrowExceptionCouldnotOpenFile();
+             }
+             void _AddNewClientToFile() 
+             {
+                 _WriteNewLineToFile (_ConvertObjectToLine(*this));
+              }
+
+             public:
 
 };
 
