@@ -19,9 +19,14 @@ class clsBankClient : public clsPerson{
           double _Balance=0.0;
           static  string FileName ;
             static string Delmi ;
+           static  bool _MarkForDelete ; 
    
             static void ThrowExceptionCouldnotOpenFile() {
                 throw::invalid_argument("failed to open/read file\a");
+            }
+
+            void SetClientMarkedForDelete() {
+                _MarkForDelete = true;
             }
 
            public:
@@ -122,7 +127,7 @@ public:
                      else {
                      //  screen_color(red);
                        //cout << "\aCouldn't Open FIle! ";
-                         throw std::invalid_argument("Failed to open file !\n\a");
+                         ThrowExceptionCouldnotOpenFile();
                        Read.close();
                     
                      }
@@ -150,7 +155,7 @@ public:
                        else {
                          //screen_color(red);
                         // cout << "\aCouldn't Open FIle! ";
-                           throw std::invalid_argument("Failed to open file !\n\a");
+                           ThrowExceptionCouldnotOpenFile();
                          Read.close();
                        }
 
@@ -237,7 +242,7 @@ public:
                 string FromVectorLineOfData = "";
                 for (clsBankClient C : VectorOfClients) 
                 {
-                    Write << _ConvertObjectToLine(C) << endl; // convert object from file to line of record 
+                    if (_MarkForDelete == false)Write << _ConvertObjectToLine(C) << endl; // convert object from file to line of record 
                 }
 
             }
@@ -307,9 +312,7 @@ public:
          static  clsBankClient InitializeToAddNewClient() {
                 return  clsBankClient(enAddNewClient, "", "", "", "", "", "", 0.0);
             }
-
          private:
-
              static void _WriteNewLineToFile(string Line ) {
                  fstream write;
                  write.open(FileName, ios::out | ios::app);
@@ -323,10 +326,35 @@ public:
                  _WriteNewLineToFile (_ConvertObjectToLine(*this));
               }
 
+
+            
+             ///                                                                                  Delete Client                                                                                                                      ////////
+          
+
              public:
+                  bool DeleteClient() {
+                      // check if client is existing
+                     if(!(clsBankClient ::IsClientExist(GetAccountNumber()))) return false;
+  
+                     vector<clsBankClient> FileOfClients = _LoadClientsFile(); // load the clients file 
+
+                     for (clsBankClient& c : FileOfClients) {
+                         if (c.GetAccountNumber() == _AccountNumber) { // search the account number 
+                             c.SetClientMarkedForDelete(); // mark the account for deletion 
+                             break; 
+                         }
+                     }
+
+                     _UpdateFile(FileOfClients);
+                     *this = clsBankClient::_ReturnEmptyObject();
+                     return true; 
+                 }
+
+
 
 };
 
 
 string clsBankClient::FileName = "Clients.txt";
 string clsBankClient::Delmi = "#//#";
+bool clsBankClient::_MarkForDelete = false;

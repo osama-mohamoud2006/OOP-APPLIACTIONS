@@ -1,9 +1,15 @@
 #include <iostream>
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
 #include "AllClasses.h" 
+#include<string>
  
 using namespace std;
 
+char EnterChar() {
+	char c;
+	cin >> c;
+	return toupper(c);
+}
 
 void  EnterNewDataToUpdate(clsBankClient &Temp) {
 
@@ -82,6 +88,7 @@ void AddNewClient() {
 	
 	cout << "\nAdd New Client \n";
 	EnterNewDataToUpdate(client);
+	client.SetAccountNumber(AccountNumber);
 
 	clsBankClient::enSaveMode SaveStatus;
 	SaveStatus = client.Save();
@@ -89,6 +96,26 @@ void AddNewClient() {
 	if (SaveStatus == clsBankClient::enSaveMode::FailedOrEmptyObj) cout << "Failed to save\a\n";
 	else if (SaveStatus == clsBankClient::AccountNumberExists) cout << "Account number is already exists so failed to save!\n\a";
 	else cout << "saved to file !\n";
+
+}
+
+void DeleteClient() 
+{
+	string AccountNumber = "";
+	AccountNumber = clsInputAndValidation::read_string("Enter account number");
+	while (! (clsBankClient::IsClientExist(AccountNumber))) { // if account isn't exist then you should enter exist account number 
+		cout << "\nAccount number " << AccountNumber << " isn't exist please enter correct account number !";
+		AccountNumber = clsInputAndValidation::read_string("Enter account number");
+	}
+
+	cout << "\nAre you sure?[y],[n]\n";
+	char choice = EnterChar();
+	
+	if (choice == 'Y') {
+		 // call delete here 
+
+	}
+
 
 }
 
