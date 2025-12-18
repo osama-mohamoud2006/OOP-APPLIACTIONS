@@ -34,7 +34,7 @@ void UpdateClientInfo() {
 
 	string AccountNumber="";
 	AccountNumber = clsInputAndValidation::read_string("Enter Account Number: ");
-	clsBankClient client = clsBankClient();
+	clsBankClient client = clsBankClient::EmptyObjForIntilizing();
 	
 	// if the account isn't exisiting 
 	while ( !(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, client)) ) {
@@ -55,7 +55,7 @@ void UpdateClientInfo() {
    clsBankClient::enSaveMode FinalSave;
    FinalSave = client.Save();
   
-   if (FinalSave == clsBankClient::enSaveMode::SuccessToSave) {
+   if (FinalSave == clsBankClient::enSaveMode::SuccessedToSave) {
 	   screen_color(green);
 	   cout << "saved successfully!" << endl;
    }

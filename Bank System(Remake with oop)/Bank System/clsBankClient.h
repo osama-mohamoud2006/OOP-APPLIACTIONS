@@ -11,7 +11,7 @@ using namespace std ;
 class clsBankClient : public clsPerson{
     // clsBankClient is sub class of clsPerson
 	private:
-  enum _enMode {enUpdateClient=0,enEmptyClientObject=1};
+  enum _enMode {enUpdateClient=0,enAddNewClient=1,enEmptyClientObject=2};
           _enMode _Mode=_enMode::enEmptyClientObject;
 
 		  string _AccountNumber;
@@ -34,12 +34,6 @@ class clsBankClient : public clsPerson{
                this->_Balance = Balance;
 
                }
-
-             // Used to just initlize 
-               clsBankClient(){
-                   *this = clsBankClient::_ReturnEmptyObject(); // make empty object 
-               } 
-
 
                //set 
 protected :
@@ -86,7 +80,7 @@ public:
                      //2-each index consider a data member of object
                    clsString::SetDelmi(Delmi);
                    vector<string> Client =clsString::SplitString(Line); // convert line to vector data 
-                 // create temp object
+                
                    return clsBankClient(
                        _enMode::enUpdateClient, Client.at(0),
                                  Client.at(1), Client.at(2), Client.at(3),
@@ -99,6 +93,11 @@ public:
                 }
 
                  public:
+
+                     static clsBankClient EmptyObjForIntilizing() {
+                         return _ReturnEmptyObject();
+                     }
+
                      // if it found the client it would return  object
                      static clsBankClient Find(string AccountNumber) {
                      fstream Read;
@@ -250,7 +249,7 @@ public:
 
         }
 
-        void _Update()
+         void _Update()
         {
 
             vector<clsBankClient> FileOfClients = _LoadClientsFile(); // load file of clients 
@@ -271,7 +270,7 @@ public:
 
         public:
       
-            enum enSaveMode {FailedToSave=0,SuccessToSave=1};
+            enum enSaveMode {FailedToSave=0,SuccessedToSave=1};
 
             //this method check if it is empty object then update will be failed other wise it will update normally
             enSaveMode Save() {
@@ -282,10 +281,18 @@ public:
 
                 case enUpdateClient:
                     _Update();
-                    return enSaveMode::SuccessToSave;
+                    return enSaveMode::SuccessedToSave;
                 }
 
             }
+
+
+            ////                                                                                  Add New Client                                                                                                                          //////////////
+
+         static  clsBankClient IntializeToAddNewClient() {
+                return  clsBankClient(enAddNewClient, "", "", "", "", "", "", 0.0);
+            }
+
 
 };
 

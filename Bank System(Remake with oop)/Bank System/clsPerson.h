@@ -21,12 +21,7 @@ class clsPerson {
 
               }
 
-              clsPerson() {
-                  this->_FirstName = "";
-                  this->_LastName = "";
-                  this->_Email = "";
-                  this->_Phone = "";
-              }
+         
               // Set and Get methods
 
               //set
