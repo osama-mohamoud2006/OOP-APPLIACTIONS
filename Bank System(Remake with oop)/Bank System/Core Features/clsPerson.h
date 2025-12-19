@@ -38,14 +38,6 @@ class clsPerson {
               string GetFullName() {
                   return _FirstName + " " + _LastName;
               }
-             // Print person data 
-            virtual  void Print() {
-              //  cout << "\n_________________________________\n";
-                cout << "\nThe First Name is : " << _FirstName << endl;
-                cout << "The Last Name  is : " << _LastName << endl;
-                cout << "The Email is : " << _Email << endl;
-                cout << "The Phone Number is : " << _Phone << endl;
-                
-              }
+ 
 
 };

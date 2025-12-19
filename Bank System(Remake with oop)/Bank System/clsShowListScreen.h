@@ -6,7 +6,7 @@
 class clsShowListScreen
 {
 private:
-    // Print One Client Record
+    // PrintBasicPersonData One Client Record
     void PrintClientRecord(clsBankClient Client) {
 
         cout << "| " << setw(15) << left << Client.GetAccountNumber();

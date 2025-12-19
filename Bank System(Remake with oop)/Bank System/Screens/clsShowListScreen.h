@@ -3,6 +3,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsPerson.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsScreen.h"
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
+
 #include<vector>
 #include<string>
 
@@ -23,13 +24,13 @@ private:
     // Print One Client Record
     static void _PrintClientRecord(clsBankClient Client) {
 
-       std:: cout << "| " << setw(15) << left << Client.GetAccountNumber();
-       std::cout << "| " << setw(25) << left << Client.GetFullName();
-       std::cout << "| " << setw(15) << left << Client.GetPhone();
-       std::cout << "| " << setw(30) << left << Client.GetEmail();
-       std::cout << "| " << setw(10) << left << Client.GetPin();
-       std::cout << "| " << setw(12) << left << Client.GetBalance();
-       std::cout << endl;
+        std::cout << "| " << setw(15) << left << Client.GetAccountNumber();
+        std::cout << "| " << setw(25) << left << Client.GetFullName();
+        std::cout << "| " << setw(15) << left << Client.GetPhone();
+        std::cout << "| " << setw(30) << left << Client.GetEmail();
+        std::cout << "| " << setw(10) << left << Client.GetPin();
+        std::cout << "| " << setw(12) << left << Client.GetBalance();
+        std::cout << endl;
     }
 
 public:
@@ -37,11 +38,11 @@ public:
     static void PrintClientList() {
 
         std::vector<clsBankClient> clients = clsBankClient::GetAllClientsInVector();
-  
-        clsScreen::_PrintMenuOption( +"             (" + to_string(clients.size()) + ") Client(s).");
 
-        _PrintHeader(); 
- 
+        clsScreen::_PrintMenuOption(+"             (" + to_string(clients.size()) + ") Client(s).");
+
+        _PrintHeader();
+
 
         if (clients.empty()) {
             std::cout << colorText("\a\n\t\t\t\tNo Clients Available In the System!", "red") << endl;
@@ -58,4 +59,6 @@ public:
 
 
 };
+
+
 

@@ -3,8 +3,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsPerson.h"
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowListScreen.h"
-#include<iostream>
-#include<string>
+
 
 class clsMainMenuScreen : protected clsScreen
 {
@@ -44,14 +43,16 @@ class clsMainMenuScreen : protected clsScreen
 		std::cout<<colorText("Good Bye :)","cyan")<<"\n\n\n";
 	}
 
-	//1 
+	//1  (done)
 	static void _ShowListClient() {
 	/*	std::cout << "Will be Show List Client Soon...............\n";*/
 		clsShowListScreen::PrintClientList();
 	}
+
 	//2
 	static  void _ShowAddNewClientScreen() {
-		std::cout << "Will be Add New Client Soon...............\n";
+		//std::cout << "Will be Add New Client Soon...............\n";
+
 	}
 
     //3
@@ -156,7 +157,7 @@ public:
 
 		while (OptionByUser != _enMainMenuOptions::eExitScreen) {
 			system("cls");
-			clsScreen::_PrintMenuOption(colorText("               Main Menu","lightpurple")); // Print the name of menu 
+			clsScreen::_PrintMenuOption(colorText("               Main Menu","lightpurple")); // PrintBasicPersonData the name of menu 
 			_EMainMenu(); // print main menu elements 
 			std::cout << setw(37) << left << "" << "Enter Option";
 			OptionByUser =_PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 9, ""));

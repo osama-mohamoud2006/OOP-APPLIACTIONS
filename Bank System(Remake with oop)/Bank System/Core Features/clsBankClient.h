@@ -79,13 +79,7 @@ public:
                  return ( _Mode== _enMode::enEmptyClientObject);
                }
  
-               void Print() override {
-                   clsPerson::Print(); // call the print method of super class 
-                 cout << "The Account Number is: "<<_AccountNumber<<endl;
-                   cout << "The Pin is: " << _Pin << endl;
-                 cout << "The Balance is : " << _Balance << endl;
-               }
-
+    
                // Manage Files For
              private:
                 static clsBankClient _ConvertLineToObject(string Line) {
@@ -359,7 +353,7 @@ public:
                  }
 
 
-                  //                                                                Print Clients                                                                                         ////////////                          
+                  //                                                                PrintBasicPersonData Clients                                                                                         ////////////                          
 
                   // don't forget here in this class we foucs only on the core no ui !
 
