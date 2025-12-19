@@ -54,6 +54,13 @@ private:
 
 	}
 
+	static  bool _Confirm() {
+		char choice = ' ';
+		cout << "\t\t\t\t   Do you Want To Add Another Client? [y],[n] ";
+		choice = clsInputAndValidation::EnterChar();
+		return (choice=='Y');
+	}
+
 public:
 	static void AddNewClient() {
 		system("cls");
@@ -85,11 +92,9 @@ public:
 		else if (SaveStatus == clsBankClient::AccountNumberExists) cout << "Account number is already exists so failed to save!\n\a";
 		else  _PrintClientData(client);
 
-		char choice = ' ';
-		cout << "\t\t\t\tDo you Want To Add Another Client? [y],[n] ";
-		choice =clsInputAndValidation::EnterChar();
+	
 
-		while (choice == 'Y')
+		while (_Confirm())
 		{
 			AddNewClient();
 		}
