@@ -58,7 +58,7 @@ class clsMainMenuScreen : protected clsScreen
 		clsAddNewClientScreen::AddNewClient();
 	}
 
-    //3
+    //3 (done)
     static void _ShowDeleteClientScreen(){
         //std::cout << "Will be Delete Client Soon...............\n";
 		clsShowDeleteClientScreen::DeleteClient();
@@ -108,13 +108,11 @@ class clsMainMenuScreen : protected clsScreen
 			break;
 
 		case _enMainMenuOptions::eDeleteClientScreen: //3
-		
 			_ShowDeleteClientScreen();// call delete  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eUpdateClientScreen: //4
-			clsScreen::_PrintMenuOption(colorText("               Update Client Screen","blue"));
 			_ShowUpdateClientScreen();// call update  client screen 
 			_BackToMainMenuAgain();
 			break;
