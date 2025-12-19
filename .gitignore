@@ -45,3 +45,14 @@ install_manifest.txt
 .DS_Store
 Thumbs.db
 
+# Visual Studio
+.vs/
+.vscode/
+x64/
+Debug/
+Release/
+*.ilk
+*.pdb
+*.tlog
+*.obj
+*.exe
