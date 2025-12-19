@@ -19,15 +19,19 @@ class clsMainMenuScreen : protected clsScreen
 
 	static void _EMainMenu() {
 	
-		std::cout << setw(4) << "\t[1] print the clients list." << std::endl;
-		std::cout << setw(4) << "\t[2] add new client." << std::endl;
-		std::cout << setw(4) << "\t[3] delete client." << std::endl;
-		std::cout << setw(4) << "\t[4] update clients info." << std::endl;
-		std::cout << setw(4) << "\t[5] find client." << std::endl;
-		std::cout << setw(4) << "\t[6] Transactions." << std::endl;
-		std::cout << setw(4) << "\t[7] Admins screen." << std::endl;
-		std::cout << setw(4) << "\t[8] Logout." << std::endl;
-		std::cout << setw(4) << "\t[8] Exit." << std::endl;
+		std::cout << setw(37) << left << "" << "===========================================\n";
+		std::cout << setw(37) << left << "" << "\t\t\tMain Menu\n";
+		std::cout << setw(37) << left << "" << "===========================================\n";
+		std::cout << setw(37) << left << "" << "\t[1] Show Client List.\n";
+		std::cout << setw(37) << left << "" << "\t[2] Add New Client.\n";
+		std::cout << setw(37) << left << "" << "\t[3] Delete Client.\n";
+		std::cout << setw(37) << left << "" << "\t[4] Update Client Info.\n";
+		std::cout << setw(37) << left << "" << "\t[5] Find Client.\n";
+		std::cout << setw(37) << left << "" << "\t[6] Transactions.\n";
+		std::cout << setw(37) << left << "" << "\t[7] Admin Menu.\n";
+		std::cout << setw(37) << left << "" << "\t[8] Logout.\n";
+		std::cout << setw(37) << left << "" << "\t[8] Exit.\n";
+		std::cout << setw(37) << left << "" << "===========================================\n";
 
 	}
 
@@ -98,8 +102,9 @@ public:
 	static void _ShowMainMenuScreen() {
 
 	
-			clsScreen:: _ShowScreenHeader("Main Menu");
+			clsScreen:: _PrintMenuOption("Main Menu");
 			_EMainMenu();
+			std::cout << setw(37) << left << "" << clsInputAndValidation::enter_number_from_to(1, 9,"Enter Option From ");
 		
 
 	}

@@ -159,11 +159,11 @@ static bool IsDateBetween(clsDate DtoCompare , clsDate d2 , clsDate d3) {
      return n;
   }
 
-   // enter nunmber in range
+   // enter nmber in range
    static double enter_number_from_to(double from,double to,string text) {
 
      double number=0;
-       string mess = text+ " (" +to_string(from) + " to "  +  to_string(to) + "):  ";
+       string mess = text+ " (" +to_string((int)from) + " to "  +  to_string((int)to) + "):  ";
         number = enter_number(mess);
        while (!IsNumberBetween(number,from,to)) {
            cout << "\a";
