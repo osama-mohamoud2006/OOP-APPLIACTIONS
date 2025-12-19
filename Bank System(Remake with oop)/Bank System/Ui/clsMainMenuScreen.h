@@ -11,7 +11,7 @@ class clsMainMenuScreen : protected clsScreen
 	private:
 
     enum _enMainMenuOptions {
-        eListClientsScreen = 1, eAddNewClientScreen = 2, eDeleteClientScreen = 3,
+        none=0,eListClientsScreen = 1, eAddNewClientScreen = 2, eDeleteClientScreen = 3,
         eUpdateClientScreen = 4, eFindClientScreen = 5, eShowTransactionsMenueScreen = 6,
         eAdminScreen = 7, eLogoutScreen = 8 , eExitScreen=9
     };
@@ -30,82 +30,135 @@ class clsMainMenuScreen : protected clsScreen
 		std::cout << setw(37) << left << "" << "\t[6] Transactions.\n";
 		std::cout << setw(37) << left << "" << "\t[7] Admin Menu.\n";
 		std::cout << setw(37) << left << "" << "\t[8] Logout.\n";
-		std::cout << setw(37) << left << "" << "\t[8] Exit.\n";
+		std::cout << setw(37) << left << "" << "\t[9] Exit.\n";
 		std::cout << setw(37) << left << "" << "===========================================\n";
 
 	}
-
 	static  void  _BackToMainMenuAgain() {
+		std::cout << colorText("\n\n\n\t\t\t\t To Back To Main Menu ","red");
 		system("pause");
-		std::cout << colorText("\n\tPress Any Key To Back To Main Menu.................\n","orange");
+	}
+	static void _ShowExitScreen() {
+		std::cout << "\n\n\n\n\n Exit The System................\n ";
+		std::cout<<colorText("Good Bye :)","cyan")<<"\n\n\n";
 	}
 
+	//1 
+	static void _ShowListClient() {
+		std::cout << "Will be Show List Client Soon...............\n";
+	}
+	//2
+	static  void _ShowAddNewClientScreen() {
+		std::cout << "Will be Add New Client Soon...............\n";
+	}
+
+    //3
+    static void _ShowDeleteClientScreen(){
+        std::cout << "Will be Delete Client Soon...............\n";
+    }
+
+    //4 
+    static void _ShowUpdateClientScreen(){
+        std::cout<<"Will Be Client Update Screen\n";
+    }
+    
+    //5 
+    static void _ShowFindClientScreen(){
+        std::cout<<"Will Be Client Find Screen\n";
+    }
+
+    //6 
+    static void _ShowTransactionsScreen(){
+        std::cout<<"Will Be Transactions Screen\n";
+    }
+
+    //7 
+    static void _ShowAdminScreen(){
+        std::cout<<"Will Be Admin Screen\n";
+    }
+
+    //8 
+    static void _ShowLogoutScreen(){
+        std::cout<<"Will Be Logout Screen\n";
+    }
 
 
-
-
-	static _enMainMenuOptions _PerformMainMenuOption(_enMainMenuOptions OptionByuser)
+	static _enMainMenuOptions  _PerformMainMenuOption(_enMainMenuOptions OptionByuser)
 	{
+		system("cls");
 		switch (OptionByuser) {
 
 		case _enMainMenuOptions::eListClientsScreen: //1 
-			// call list  client screen 
+
+			clsScreen::_PrintMenuOption("List Clients Screen");
+			_ShowListClient();// call list  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eAddNewClientScreen: //2 
-			// call add new client screen 
+			clsScreen::_PrintMenuOption("List Clients Screen");
+			_ShowAddNewClientScreen();// call add new client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eDeleteClientScreen: //3
-			// call delete  client screen 
+			clsScreen::_PrintMenuOption("Delete Client Screen");
+			_ShowDeleteClientScreen();// call delete  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eUpdateClientScreen: //4
-			// call update  client screen 
+			clsScreen::_PrintMenuOption("Update Client Screen");
+			_ShowUpdateClientScreen();// call update  client screen 
 			_BackToMainMenuAgain();
 			break;
 
+
 		case _enMainMenuOptions::eFindClientScreen: //5
-			// call find  client screen 
+            clsScreen::_PrintMenuOption(colorText("Find Client Screen","yellow") );
+            _ShowFindClientScreen();// call find  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eShowTransactionsMenueScreen: //6
-			// call transactions   screen 
+            clsScreen::_PrintMenuOption("Transactions Screen");
+            _ShowTransactionsScreen();	// call transactions   screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eAdminScreen: //7
-			// call manage   screen 
+            clsScreen::_PrintMenuOption("Admin Screen");
+            _ShowAdminScreen();		// call manage   screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eLogoutScreen: //8
-			// call login again
-
+            clsScreen::_PrintMenuOption("Logout Screen");
+            _ShowLogoutScreen();	// call login again
 			break;
 
 		case _enMainMenuOptions::eExitScreen: //9
-			// exit the program
+			_ShowExitScreen();// exit the program
 			break;
 
 	  }
 
 
+		return OptionByuser;
 	}
 
 
 public: 
 	static void _ShowMainMenuScreen() {
+		_enMainMenuOptions OptionByUser= _enMainMenuOptions::none;
 
-	
-			clsScreen:: _PrintMenuOption("Main Menu");
-			_EMainMenu();
-			std::cout << setw(37) << left << "" << clsInputAndValidation::enter_number_from_to(1, 9,"Enter Option From ");
-		
+		while (OptionByUser != _enMainMenuOptions::eExitScreen) {
+			system("cls");
+			clsScreen::_PrintMenuOption(colorText("Main Menu","lightpurple")); // Print the name of menu 
+			_EMainMenu(); // print main menu elements 
+			std::cout << setw(37) << left << "" << "Enter Option";
+			OptionByUser =_PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 9, ""));
+		}
 
 	}
 
