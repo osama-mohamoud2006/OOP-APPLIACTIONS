@@ -90,25 +90,25 @@ class clsMainMenuScreen : protected clsScreen
 
 		case _enMainMenuOptions::eListClientsScreen: //1 
 
-			clsScreen::_PrintMenuOption("List Clients Screen");
+			clsScreen::_PrintMenuOption(colorText("List Clients Screen","purple"));
 			_ShowListClient();// call list  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eAddNewClientScreen: //2 
-			clsScreen::_PrintMenuOption("List Clients Screen");
+			clsScreen::_PrintMenuOption(colorText("Add New Client Screen","cyan"));
 			_ShowAddNewClientScreen();// call add new client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eDeleteClientScreen: //3
-			clsScreen::_PrintMenuOption("Delete Client Screen");
+			clsScreen::_PrintMenuOption(colorText("Delete Client Screen","red"));
 			_ShowDeleteClientScreen();// call delete  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eUpdateClientScreen: //4
-			clsScreen::_PrintMenuOption("Update Client Screen");
+			clsScreen::_PrintMenuOption(colorText("Update Client Screen","blue"));
 			_ShowUpdateClientScreen();// call update  client screen 
 			_BackToMainMenuAgain();
 			break;
@@ -121,19 +121,19 @@ class clsMainMenuScreen : protected clsScreen
 			break;
 
 		case _enMainMenuOptions::eShowTransactionsMenueScreen: //6
-            clsScreen::_PrintMenuOption("Transactions Screen");
+            clsScreen::_PrintMenuOption(colorText("Transactions Screen","magenta"));
             _ShowTransactionsScreen();	// call transactions   screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eAdminScreen: //7
-            clsScreen::_PrintMenuOption("Admin Screen");
+            clsScreen::_PrintMenuOption(colorText("Admin Screen","orange"));
             _ShowAdminScreen();		// call manage   screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eLogoutScreen: //8
-            clsScreen::_PrintMenuOption("Logout Screen");
+            clsScreen::_PrintMenuOption(colorText("Logout Screen","pink"));
             _ShowLogoutScreen();	// call login again
 			break;
 
