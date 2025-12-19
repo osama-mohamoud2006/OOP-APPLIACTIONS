@@ -39,7 +39,7 @@ public:
         while (!(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, client)))
         { // if account isn't exist then you should enter exist account number
             screen_color(red);
-            cout << "\n\aAccount number:  " << AccountNumber << " isn't exist please enter correct account number !\n";
+            cout << "\n\aAccount number: " << AccountNumber << " isn't exist please enter correct account number !\n";
             AccountNumber = clsInputAndValidation::read_string("\nEnter account number: ");
         }
 
@@ -50,14 +50,14 @@ public:
             // called delete here
             system("cls");
             std::cout << "\n\t\t\tdeleted successfully!\n";
-            std::cout << "For Confrimation Purpose!\n";
+            std::cout << "\n\t\t\tFor Confrimation Purpose!\n";
             _PrintClientData(client);
         }
         else
         {
             system("cls");
-            std::cout << "\t\t\t\nNo change!\n";
-            std::cout << "For Confrimation Purpose!\n";
+            std::cout << "\n\t\t\tNo change!\n";
+            std::cout << "\n\t\t\tFor Confrimation Purpose!\n";
             _PrintClientData(client);
         }
     }
