@@ -3,14 +3,9 @@
 #include "AllClasses.h" 
 #include <string>
 #include <iomanip>
- 
 using namespace std;
 
-char EnterChar() {
-	char c;
-	cin >> c;
-	return toupper(c);
-}
+///  ctrl + m+o
 
 void  EnterNewDataToUpdate(clsBankClient &Temp) {
 
@@ -111,7 +106,7 @@ void DeleteClient()
 	}
 
 	cout << "\nAre you sure?[y],[n]\n";
-	char choice = EnterChar();
+	char choice =clsInputAndValidation:: EnterChar();
 	
 	if (choice == 'Y' && client.DeleteClient()) {
 		 // call delete here 
@@ -134,6 +129,16 @@ void PrintClientRecord(clsBankClient Client) {
     cout << "| " << setw(15) << left << Client.GetPhone();
     cout << "| " << setw(30) << left << Client.GetEmail();
     cout << "| " << setw(10) << left << Client.GetPin();
+    cout << "| " << setw(12) << left << Client.GetBalance();
+    cout << endl;
+}
+
+// Print One Client Record
+// Print One Client Record
+void PrintClientBalanceRecord(clsBankClient Client) {
+
+    cout << "| " << setw(15) << left << Client.GetAccountNumber();
+    cout << "| " << setw(40) << left << Client.GetFullName();
     cout << "| " << setw(12) << left << Client.GetBalance();
     cout << endl;
 }
@@ -166,6 +171,35 @@ void PrintClientList() {
         cout << "\n_____________________________________________________________________________________________________________________\n" << endl;
     }
 
+}
+
+void PrintBalancesClientList() {
+
+    vector<clsBankClient> clients = clsBankClient::GetAllClientsInVector();
+    string SubTitle = "\t\t   Client Balances List (" + to_string(clients.size()) + ") Client(s).";
+
+    cout << "\n__________________________________________________________________________________________________\n\n";
+    cout << SubTitle;
+    cout << "\n__________________________________________________________________________________________________\n" << endl;
+
+    cout << "| " << left << colorText("Account Number", "lightpurple") << setw(15 - 14) << "";
+    cout << "| " << left << colorText("Client Name", "lightpurple") << setw(40 - 11) << "";
+    cout << "| " << left << colorText("Balance", "lightpurple") << setw(12 - 7) << "";
+    cout << "\n__________________________________________________________________________________________________\n" << endl;
+
+    if (clients.empty()) {
+        cout << colorText("\n\t\t\t\tNo Clients Available In the System!", "red") << endl;
+    }
+    else {
+
+        for (const clsBankClient& c : clients) {
+            PrintClientBalanceRecord(c);
+        }
+        cout << "\n__________________________________________________________________________________________________\n" << endl;
+    }
+    double total = clsBankClient::GetTotalBalances();
+    cout << "\n\t\t\t\t   Total Balances = " << total << endl;
+    cout << "\t\t\t\t   ( " << clsInputAndValidation::NumberToText((int)total) << ")" << endl;
 }
 
 int main() {
@@ -207,7 +241,9 @@ int main() {
 
 	//DeleteClient();
 
-	PrintClientList();
+	//PrintClientList();
 
+	PrintBalancesClientList();
+	system("pause");
 	return 0; 
 }

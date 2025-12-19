@@ -1,7 +1,7 @@
 #pragma once
 #include "E:\projects\c++ course\10-OOP Concepts\Project 2\Project 2\clsString.h"
 #include"E:\projects\my library\AllStuff.h"  
-#include "clsPerson.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsPerson.h"
 #include<fstream>
 #include<string>
 #include<vector>
@@ -366,6 +366,19 @@ public:
                   static vector<clsBankClient> GetAllClientsInVector() { // For using in Priniting 
                       return _LoadClientsFile();
                   }
+
+
+                  ////                                                   Total Balances                              ////////////////////////////
+
+                  static double GetTotalBalances() {
+                      vector<clsBankClient> clients = _LoadClientsFile();
+                      double total = 0.0; 
+                      for (clsBankClient c : clients) { total += c.GetBalance(); }
+                      return total;
+                  }
+
+
+
 };
 
 
