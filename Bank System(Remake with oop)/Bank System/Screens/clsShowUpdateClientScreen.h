@@ -17,23 +17,103 @@ private:
         //_PrintMenuOption(colorText("        Adding New Client", "green"));
         string DataToFill = "";
 
-        DataToFill = clsInputAndValidation::read_string("\nEnter New First Name: ");
+        DataToFill = clsInputAndValidation::read_string("\n\tEnter New First Name: ");
         Temp.SetFirstName(DataToFill);
 
-        DataToFill = clsInputAndValidation::read_string("\nEnter New Last Name: ");
+        DataToFill = clsInputAndValidation::read_string("\n\tEnter New Last Name: ");
         Temp.SetLastName(DataToFill);
 
-        DataToFill = clsInputAndValidation::read_string("\nEnter New Pin number: ");
+        DataToFill = clsInputAndValidation::read_string("\n\tEnter New Pin number: ");
         Temp.SetPin(DataToFill);
 
-        DataToFill = clsInputAndValidation::read_string("\nEnter Email: ");
+        DataToFill = clsInputAndValidation::read_string("\n\tEnter Email: ");
         Temp.SetEmail(DataToFill);
 
-        DataToFill = clsInputAndValidation::read_string("\nEnter New Phone number: ");
+        DataToFill = clsInputAndValidation::read_string("\n\tEnter New Phone number: ");
         Temp.SetPhone(DataToFill);
 
-        double balance = clsInputAndValidation::enter_postive_number("\nEnter Balance: ");
+        double balance = clsInputAndValidation::enter_postive_number("\n\tEnter Balance: ");
         Temp.SetBalance(balance);
+    }
+
+    enum _enUpdateSpecific
+    {
+        enChageName = 1,
+        enChangePin = 2,
+        enchangeEmail = 3,
+        enChangePhoneNumber = 4,
+        enChangeBalance = 5,
+        enChangeAll = 6
+    };
+
+    static void _PerformAccordingTheOrder(_enUpdateSpecific WhatWillbeChanged, clsBankClient &Temp)
+    {
+        cout << "\n\n";
+        string DataToFill = "";
+        switch (WhatWillbeChanged)
+        {
+
+        case   _enUpdateSpecific::enChageName: {
+
+            DataToFill = clsInputAndValidation::read_string("\n\tEnter New First Name: ");
+            Temp.SetFirstName(DataToFill);
+            DataToFill = clsInputAndValidation::read_string("\n\tEnter New Last Name: ");
+            Temp.SetLastName(DataToFill);
+
+            break;
+        }
+
+        case  _enUpdateSpecific::enChangePin: {
+            DataToFill = clsInputAndValidation::read_string("\n\tEnter New Pin number: ");
+            Temp.SetPin(DataToFill);
+            break;
+        }
+
+        case _enUpdateSpecific::enchangeEmail: {
+            DataToFill = clsInputAndValidation::read_string("\n\tEnter Email: ");
+            Temp.SetEmail(DataToFill);
+            break;
+        }
+
+        case  _enUpdateSpecific::enChangePhoneNumber: {
+            DataToFill = clsInputAndValidation::read_string("\n\tEnter New Phone number: ");
+            Temp.SetPhone(DataToFill);
+            break;
+        }
+
+        case   _enUpdateSpecific::enChangeBalance :{
+            DataToFill = "";
+            double balance = 0.0;
+            balance = clsInputAndValidation::enter_postive_number("\n\tEnter Balance: ");
+            Temp.SetBalance(balance);
+            break;
+        }
+          
+
+        case  _enUpdateSpecific::enChangeAll: {
+            DataToFill = "";
+            _EnterNewDataToUpdate(Temp);
+            break;
+        }
+         
+        }
+
+
+    }
+
+    static void _ShowUpdateOptionsMenu()
+    {
+     
+
+        std::cout << setw(37) << left << "" << "===========================================\n";
+        std::cout << setw(37) << left << "" << "\t[1] Change The Name Only.\n";
+        std::cout << setw(37) << left << "" << "\t[2] Change The Pin Only.\n";
+        std::cout << setw(37) << left << "" << "\t[3] Change The Email Only.\n";
+        std::cout << setw(37) << left << "" << "\t[4] Change The Phone Number Only.\n";
+        std::cout << setw(37) << left << "" << "\t[5] Change The Balance Only.\n";
+        std::cout << setw(37) << left << "" << "\t[6] Update All Client Info.\n";
+
+        std::cout << setw(37) << left << "" << "===========================================\n\n";
     }
 
 public:
@@ -49,8 +129,8 @@ public:
         while (!(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, client)))
         {
             screen_color(red);
-            cout << "\a\nAccount number: " << AccountNumber << " isn't exising!" << endl;
-            cout << "Try agian !\n";
+            cout << "\a\nAccount number: " << AccountNumber << " isn't existing!" << endl;
+            cout << "Try again !\n";
             AccountNumber = clsInputAndValidation::read_string("Enter Account Number: ");
         }
 
@@ -61,11 +141,13 @@ public:
         clsUtilPrintClientData::PrintClientData(client, "Current Client Info");
 
         if (clsInputAndValidation::Confirm(
-            colorText("\n\n\t\tAre You Sure About Updating?[y],[n]: ","cyan") )  )
+                colorText("\n\n\t\tAre You Sure About Updating?[y],[n]: ", "cyan")))
         {
             system("cls");
             clsScreen::_PrintMenuOption(colorText("        Updating.....", "cyan"));
-            _EnterNewDataToUpdate(client); // take the new data and set them to the object
+            _ShowUpdateOptionsMenu();
+            _PerformAccordingTheOrder( (_enUpdateSpecific)clsInputAndValidation::enter_number_from_to(1, 6, "\t\t\t\tEnter What You Want To Change"), client);
+            // _EnterNewDataToUpdate(client); // take the new data and set them to the object
             clsBankClient::enSaveMode FinalSave;
             FinalSave = client.Save();
             if (FinalSave == clsBankClient::enSaveMode::SuccessedToSave)
@@ -79,11 +161,14 @@ public:
                 cout << "failed  to save!" << endl;
             }
         }
-    
-        else{
-            cout<<"\n\n\t\t\t\tOkay No Change Has Happned!\n";
+
+        else
+        {
+            cout << "\n\n\t\t\t\tOkay No Change Has Happened!\n";
         }
-    
+
         screen_color(black);
     }
+
+
 };
