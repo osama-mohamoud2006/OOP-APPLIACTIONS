@@ -39,13 +39,15 @@ class clsMainMenuScreen : protected clsScreen
 		system("pause");
 	}
 	static void _ShowExitScreen() {
-		std::cout << "\n\n\n\n\n Exit The System................\n ";
+		std::cout << "\n\n\n\n\n Exiting The System................\n ";
 		std::cout<<colorText("Good Bye :)","cyan")<<"\n\n\n";
 	}
 
 	//1 
 	static void _ShowListClient() {
 		std::cout << "Will be Show List Client Soon...............\n";
+		int x;
+		cin >> x;
 	}
 	//2
 	static  void _ShowAddNewClientScreen() {
