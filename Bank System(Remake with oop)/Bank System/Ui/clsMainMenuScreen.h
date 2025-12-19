@@ -3,6 +3,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsPerson.h"
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowListScreen.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsAddNewClientScreen.h"
 
 
 class clsMainMenuScreen : protected clsScreen
@@ -49,10 +50,10 @@ class clsMainMenuScreen : protected clsScreen
 		clsShowListScreen::PrintClientList();
 	}
 
-	//2
+	//2  (done) 
 	static  void _ShowAddNewClientScreen() {
 		//std::cout << "Will be Add New Client Soon...............\n";
-
+		clsAddNewClientScreen::AddNewClient();
 	}
 
     //3
@@ -93,13 +94,12 @@ class clsMainMenuScreen : protected clsScreen
 
 		case _enMainMenuOptions::eListClientsScreen: //1 
 
-			clsScreen::_PrintMenuOption(colorText("           List Clients Screen","purple"));
+		
 			_ShowListClient();// call list  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eAddNewClientScreen: //2 
-			clsScreen::_PrintMenuOption(colorText("               Add New Client Screen","cyan"));
 			_ShowAddNewClientScreen();// call add new client screen 
 			_BackToMainMenuAgain();
 			break;

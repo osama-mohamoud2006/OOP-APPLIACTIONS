@@ -36,7 +36,7 @@ private:
 public:
 
     static void PrintClientList() {
-
+        clsScreen::_PrintMenuOption(colorText("           List Clients Screen", "purple"));
         std::vector<clsBankClient> clients = clsBankClient::GetAllClientsInVector();
 
         clsScreen::_PrintMenuOption(+"             (" + to_string(clients.size()) + ") Client(s).");
