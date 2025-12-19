@@ -103,8 +103,6 @@ private:
 
     static void _ShowUpdateOptionsMenu()
     {
-     
-
         std::cout << setw(37) << left << "" << "===========================================\n";
         std::cout << setw(37) << left << "" << "\t[1] Change The Name Only.\n";
         std::cout << setw(37) << left << "" << "\t[2] Change The Pin Only.\n";

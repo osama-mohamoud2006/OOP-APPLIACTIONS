@@ -9,17 +9,6 @@ using namespace std;
 ///  ctrl + m+o
 
 
-
-
-
-
-
-
-
-
-
-
-
 //balance 
 void PrintClientBalanceRecord(clsBankClient Client) {
 
@@ -56,9 +45,6 @@ void PrintBalancesClientList() {
 	cout << "\n\t\t\t\t   Total Balances = " << total << endl;
 	cout << "\t\t\t\t   ( " << clsInputAndValidation::NumberToText((int)total) << ")" << endl;
 }
-
-
-
 
 
 int main() {

@@ -133,6 +133,7 @@
     <ClInclude Include="AllClasses.h" />
     <ClInclude Include="clsAddNewClientScreen.h" />
     <ClInclude Include="clsBankClient.h" />
+    <ClInclude Include="clsFindClientScreen.h" />
     <ClInclude Include="clsPerson.h" />
     <ClInclude Include="clsShowListScreen.h" />
   </ItemGroup>

@@ -73,7 +73,8 @@ class clsMainMenuScreen : protected clsScreen
     
     //5 
     static void _ShowFindClientScreen(){
-        std::cout<<"Will Be Client Find Screen\n";
+      //  std::cout<<"Will Be Client Find Screen\n";
+
     }
 
     //6 
@@ -121,7 +122,6 @@ class clsMainMenuScreen : protected clsScreen
 
 
 		case _enMainMenuOptions::eFindClientScreen: //5
-            clsScreen::_PrintMenuOption(colorText("               Find Client Screen","yellow") );
             _ShowFindClientScreen();// call find  client screen 
 			_BackToMainMenuAgain();
 			break;
