@@ -2,31 +2,32 @@
 
 > **Status:**  In Development
 
-Here is the tracking list for all Projects in this repo 
+Here is the tracking list for all Projects in this repo
 
 ## Phase 1: The Foundation (Libraries)
+
 Before building the main system, these utility libraries need to be solid.
 
+- [x] **Project 1** – Utility Library
 
- - (done) **Project 1** – Utility Library
-
- 
-- (done) **Project 2** Input & Validation Library 
+- [x] **Project 2** Input & Validation Library
 
 ---
 
-##  Phase 2: Bank System (Core & UI)
+## Phase 2: Bank System (Core & UI)
 
-###  Bank System (Core Features)
-- [ ] Find Client
-- [ ] Update Client
-- [ ] Add New Client
-- [ ] Delete Client
-- [ ] List Clients
-- [ ] Total Balances
+### Bank System (Core Features)
 
-###  Bank System - UI - Main Menu
-- [ ] UI - **Main Menu**
+- [x] Find Client
+- [x] Update Client
+- [x] Add New Client
+- [x] Delete Client
+- [x] List Clients
+- [x] Total Balances
+
+### Bank System - UI - Main Menu
+
+- [x] UI - **Main Menu**
 - [ ] UI - **List clients Screen**
 - [ ] UI - **Add new clients screen**
 - [ ] UI - **Delete clients screen**
@@ -34,12 +35,14 @@ Before building the main system, these utility libraries need to be solid.
 - [ ] UI - **Find clients screen**
 
 ### Bank System - UI - Transactions Menu
+
 - [ ] UI - **Transactions screen**
 - [ ] UI - **Deposit screen**
 - [ ] UI - **Withdraw screen**
 - [ ] UI - **Total balances screen**
 
 ### Bank System - UI - Manage Users Menu
+
 - [ ] UI - **manage users screen**
 - [ ] UI - **perpare user class**
 - [ ] UI - **list users screen**
@@ -49,12 +52,14 @@ Before building the main system, these utility libraries need to be solid.
 - [ ] UI - **find user screen**
 
 ### Bank System - Login And Permissions
+
 - [ ]  **Login**
 - [ ]  **Logout**
 - [ ]  **Show login screen at logout**
 - [ ]  **Apply permissions**
 
 ### Bank Extensions (Features)
+
 - [ ] Extension 01 - add Date and Logged In User to All Screens
 
 - [ ] Extension 02 - Lock the System After 3 failed Logins
@@ -77,7 +82,8 @@ Before building the main system, these utility libraries need to be solid.
 
 ---
 
-##  Phase 3: Currency Exchange System
+## Phase 3: Currency Exchange System
+
 Handling multi-currency transactions and rates.
 
 - [ ] Currency Exchange Main System
@@ -90,7 +96,8 @@ Handling multi-currency transactions and rates.
 
 ---
 
-##  Phase 4: Refactoring & Advanced Concepts
+## Phase 4: Refactoring & Advanced Concepts
+
 Polishing the code and implementing generic programming.
 
 - [ ] **Project 5:** Template Functions & Classes
