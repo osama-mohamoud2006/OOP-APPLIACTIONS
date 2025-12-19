@@ -243,7 +243,8 @@ int main() {
 
 	//PrintClientList();
 
-	PrintBalancesClientList();
+	//PrintBalancesClientList();
+	clsScreen::_ShowScreenHeader("Main menu screen");
 	system("pause");
 	return 0; 
 }
