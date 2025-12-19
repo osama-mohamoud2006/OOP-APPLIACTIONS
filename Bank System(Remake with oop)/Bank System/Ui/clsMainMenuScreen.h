@@ -2,6 +2,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsPerson.h"
+#include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowListScreen.h"
 #include<iostream>
 #include<string>
 
@@ -45,9 +46,8 @@ class clsMainMenuScreen : protected clsScreen
 
 	//1 
 	static void _ShowListClient() {
-		std::cout << "Will be Show List Client Soon...............\n";
-		int x;
-		cin >> x;
+	/*	std::cout << "Will be Show List Client Soon...............\n";*/
+		clsShowListScreen::PrintClientList();
 	}
 	//2
 	static  void _ShowAddNewClientScreen() {
@@ -92,50 +92,50 @@ class clsMainMenuScreen : protected clsScreen
 
 		case _enMainMenuOptions::eListClientsScreen: //1 
 
-			clsScreen::_PrintMenuOption(colorText("List Clients Screen","purple"));
+			clsScreen::_PrintMenuOption(colorText("           List Clients Screen","purple"));
 			_ShowListClient();// call list  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eAddNewClientScreen: //2 
-			clsScreen::_PrintMenuOption(colorText("Add New Client Screen","cyan"));
+			clsScreen::_PrintMenuOption(colorText("               Add New Client Screen","cyan"));
 			_ShowAddNewClientScreen();// call add new client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eDeleteClientScreen: //3
-			clsScreen::_PrintMenuOption(colorText("Delete Client Screen","red"));
+			clsScreen::_PrintMenuOption(colorText("               Delete Client Screen","red"));
 			_ShowDeleteClientScreen();// call delete  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eUpdateClientScreen: //4
-			clsScreen::_PrintMenuOption(colorText("Update Client Screen","blue"));
+			clsScreen::_PrintMenuOption(colorText("               Update Client Screen","blue"));
 			_ShowUpdateClientScreen();// call update  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 
 		case _enMainMenuOptions::eFindClientScreen: //5
-            clsScreen::_PrintMenuOption(colorText("Find Client Screen","yellow") );
+            clsScreen::_PrintMenuOption(colorText("               Find Client Screen","yellow") );
             _ShowFindClientScreen();// call find  client screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eShowTransactionsMenueScreen: //6
-            clsScreen::_PrintMenuOption(colorText("Transactions Screen","magenta"));
+            clsScreen::_PrintMenuOption(colorText("               Transactions Screen","magenta"));
             _ShowTransactionsScreen();	// call transactions   screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eAdminScreen: //7
-            clsScreen::_PrintMenuOption(colorText("Admin Screen","orange"));
+            clsScreen::_PrintMenuOption(colorText("               Admin Screen","orange"));
             _ShowAdminScreen();		// call manage   screen 
 			_BackToMainMenuAgain();
 			break;
 
 		case _enMainMenuOptions::eLogoutScreen: //8
-            clsScreen::_PrintMenuOption(colorText("Logout Screen","pink"));
+            clsScreen::_PrintMenuOption(colorText("               Logout Screen","pink"));
             _ShowLogoutScreen();	// call login again
 			break;
 
@@ -156,7 +156,7 @@ public:
 
 		while (OptionByUser != _enMainMenuOptions::eExitScreen) {
 			system("cls");
-			clsScreen::_PrintMenuOption(colorText("Main Menu","lightpurple")); // Print the name of menu 
+			clsScreen::_PrintMenuOption(colorText("               Main Menu","lightpurple")); // Print the name of menu 
 			_EMainMenu(); // print main menu elements 
 			std::cout << setw(37) << left << "" << "Enter Option";
 			OptionByUser =_PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 9, ""));

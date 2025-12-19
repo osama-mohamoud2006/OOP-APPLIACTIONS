@@ -32,6 +32,8 @@ void  EnterNewDataToUpdate(clsBankClient &Temp) {
 	 
 }
 
+
+
 void UpdateClientInfo() {
 
 	string AccountNumber="";
@@ -69,6 +71,9 @@ void UpdateClientInfo() {
 
 }
 
+
+
+
 void AddNewClient() {
 
 	string AccountNumber = "";
@@ -94,6 +99,9 @@ void AddNewClient() {
 	else cout << "saved to file !\n";
 
 }
+
+
+
 
 void DeleteClient() 
 {
@@ -122,85 +130,57 @@ void DeleteClient()
 }
 
 // Print One Client Record
-void PrintClientRecord(clsBankClient Client) {
 
-    cout << "| " << setw(15) << left << Client.GetAccountNumber();
-    cout << "| " << setw(25) << left << Client.GetFullName();
-    cout << "| " << setw(15) << left << Client.GetPhone();
-    cout << "| " << setw(30) << left << Client.GetEmail();
-    cout << "| " << setw(10) << left << Client.GetPin();
-    cout << "| " << setw(12) << left << Client.GetBalance();
-    cout << endl;
-}
 
 // Print One Client Record
 // Print One Client Record
+
+
+
+
+
+
+
+
 void PrintClientBalanceRecord(clsBankClient Client) {
 
-    cout << "| " << setw(15) << left << Client.GetAccountNumber();
-    cout << "| " << setw(40) << left << Client.GetFullName();
-    cout << "| " << setw(12) << left << Client.GetBalance();
-    cout << endl;
+	cout << "| " << setw(15) << left << Client.GetAccountNumber();
+	cout << "| " << setw(40) << left << Client.GetFullName();
+	cout << "| " << setw(12) << left << Client.GetBalance();
+	cout << endl;
 }
-
-void PrintClientList() {
-
-    vector<clsBankClient> clients = clsBankClient::GetAllClientsInVector();
-    string SubTitle = "\t\t\t\t\tClient List (" + to_string(clients.size()) + ") Client(s).";
-
-    cout << "\n_____________________________________________________________________________________________________________________\n\n";
-    cout << SubTitle;
-    cout << "\n_____________________________________________________________________________________________________________________\n" << endl;
-
-    cout << "| " << left << colorText("Account Number", "lightpurple") << setw(15 - 14) << "" ;
-    cout << "| " << left << colorText("Client Name", "lightpurple") << setw(25 - 11) << "";
-    cout << "| " << left << colorText("Phone", "lightpurple") << setw(15 - 5) << "";
-    cout << "| " << left << colorText("Email", "lightpurple") << setw(30 - 5) << "";
-    cout << "| " << left << colorText("Pin Code", "lightpurple") << setw(10 - 8) << "";
-    cout << "| " << left << colorText("Balance", "lightpurple") << setw(12 - 7) << "";
-    cout << "\n_____________________________________________________________________________________________________________________\n" << endl;
-
-    if (clients.empty()) {
-        cout << colorText("\n\t\t\t\tNo Clients Available In the System!", "red") << endl;
-    }
-    else {
-
-        for (const clsBankClient& c : clients) { 
-            PrintClientRecord(c); 
-        }
-        cout << "\n_____________________________________________________________________________________________________________________\n" << endl;
-    }
-
-}
-
 void PrintBalancesClientList() {
 
-    vector<clsBankClient> clients = clsBankClient::GetAllClientsInVector();
-    string SubTitle = "\t\t   Client Balances List (" + to_string(clients.size()) + ") Client(s).";
+	vector<clsBankClient> clients = clsBankClient::GetAllClientsInVector();
+	string SubTitle = "\t\t   Client Balances List (" + to_string(clients.size()) + ") Client(s).";
 
-    cout << "\n__________________________________________________________________________________________________\n\n";
-    cout << SubTitle;
-    cout << "\n__________________________________________________________________________________________________\n" << endl;
+	cout << "\n__________________________________________________________________________________________________\n\n";
+	cout << SubTitle;
+	cout << "\n__________________________________________________________________________________________________\n" << endl;
 
-    cout << "| " << left << colorText("Account Number", "lightpurple") << setw(15 - 14) << "";
-    cout << "| " << left << colorText("Client Name", "lightpurple") << setw(40 - 11) << "";
-    cout << "| " << left << colorText("Balance", "lightpurple") << setw(12 - 7) << "";
-    cout << "\n__________________________________________________________________________________________________\n" << endl;
+	cout << "| " << left << colorText("Account Number", "lightpurple") << setw(15 - 14) << "";
+	cout << "| " << left << colorText("Client Name", "lightpurple") << setw(40 - 11) << "";
+	cout << "| " << left << colorText("Balance", "lightpurple") << setw(12 - 7) << "";
+	cout << "\n__________________________________________________________________________________________________\n" << endl;
 
-    if (clients.empty()) {
-        cout << colorText("\n\t\t\t\tNo Clients Available In the System!", "red") << endl;
-    }
-    else {
+	if (clients.empty()) {
+		cout << colorText("\n\t\t\t\tNo Clients Available In the System!", "red") << endl;
+	}
+	else {
 
-        for (const clsBankClient& c : clients) {
-            PrintClientBalanceRecord(c);
-        }
-        cout << "\n__________________________________________________________________________________________________\n" << endl;
-    }
-    double total = clsBankClient::GetTotalBalances();
-    cout << "\n\t\t\t\t   Total Balances = " << total << endl;
-    cout << "\t\t\t\t   ( " << clsInputAndValidation::NumberToText((int)total) << ")" << endl;
+		for (const clsBankClient& c : clients) {
+			PrintClientBalanceRecord(c);
+		}
+		cout << "\n__________________________________________________________________________________________________\n" << endl;
+	}
+	double total = clsBankClient::GetTotalBalances();
+	cout << "\n\t\t\t\t   Total Balances = " << total << endl;
+	cout << "\t\t\t\t   ( " << clsInputAndValidation::NumberToText((int)total) << ")" << endl;
 }
+
+
+
+
 
 int main() {
 

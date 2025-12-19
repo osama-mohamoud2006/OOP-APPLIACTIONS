@@ -29,5 +29,8 @@
     <ClInclude Include="AllClasses.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clsShowListScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
