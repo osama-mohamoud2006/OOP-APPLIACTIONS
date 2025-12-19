@@ -53,31 +53,7 @@ using namespace std;
 
 
 
-//void DeleteClient() 
-//{
-//	string AccountNumber = "";
-//	AccountNumber = clsInputAndValidation::read_string("Enter account number: ");
-//	clsBankClient client = clsBankClient::EmptyObjForInitializing();
-//	while (! (clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber,client))) { // if account isn't exist then you should enter exist account number 
-//		cout << "\n\aAccount number:  " << AccountNumber << " isn't exist please enter correct account number !\n";
-//		AccountNumber = clsInputAndValidation::read_string("Enter account number: ");
-//	}
-//
-//	cout << "\nAre you sure?[y],[n]\n";
-//	char choice =clsInputAndValidation:: EnterChar();
-//	
-//	if (choice == 'Y' && client.DeleteClient()) {
-//		 // call delete here 
-//		cout << "deleted successfully!\n";
-//		client.PrintBasicPersonData();
-//	}
-//	else {
-//		cout << "No change!\n";
-//		client.PrintBasicPersonData();
-//	}
-//
-//
-//}
+
 
 //balance 
 void PrintClientBalanceRecord(clsBankClient Client) {

@@ -2,8 +2,10 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsPerson.h"
+//Core Features 
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowListScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsAddNewClientScreen.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowDeleteScreen.h"
 
 
 class clsMainMenuScreen : protected clsScreen
@@ -58,7 +60,8 @@ class clsMainMenuScreen : protected clsScreen
 
     //3
     static void _ShowDeleteClientScreen(){
-        std::cout << "Will be Delete Client Soon...............\n";
+        //std::cout << "Will be Delete Client Soon...............\n";
+		clsShowDeleteClientScreen::DeleteClient();
     }
 
     //4 
@@ -105,7 +108,7 @@ class clsMainMenuScreen : protected clsScreen
 			break;
 
 		case _enMainMenuOptions::eDeleteClientScreen: //3
-			clsScreen::_PrintMenuOption(colorText("               Delete Client Screen","red"));
+		
 			_ShowDeleteClientScreen();// call delete  client screen 
 			_BackToMainMenuAgain();
 			break;
