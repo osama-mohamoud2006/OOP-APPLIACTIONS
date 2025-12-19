@@ -20,21 +20,21 @@ public:
             AccountNumber = clsInputAndValidation::read_string("\nEnter account number: ");
         }
 
-        // Confriming Before Deletion
+        // Confirming Before Deletion
         screen_color(enScreen_color::red_on_black);
         if (clsInputAndValidation::Confirm("\nAre you sure?[y],[n]: ") && client.DeleteClient())
         {
             // called delete here
             system("cls");
             std::cout << "\n\t\t\tdeleted successfully!\n";
-            std::cout << "\n\t\t\tFor Confrimation Purpose!\n";
+            std::cout << "\n\t\t\tFor Conformation Purpose!\n";
              clsUtilPrintClientData::PrintClientData(client,"Client Details");
         }
         else
         {
             system("cls");
             std::cout << "\n\t\t\tNo change!\n";
-            std::cout << "\n\t\t\tFor Confrimation Purpose!\n";
+            std::cout << "\n\t\t\tFor Conformation Purpose!\n";
             clsUtilPrintClientData::PrintClientData(client,"Client Details");
         }
     }

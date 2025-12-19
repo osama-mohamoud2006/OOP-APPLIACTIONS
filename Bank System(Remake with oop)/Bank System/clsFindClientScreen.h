@@ -7,8 +7,22 @@ class clsFindClientScreen : protected clsScreen
 	
 public:
 	static void FindClientByAccountNumber() {
-		cout << "\n\n\n\n";
-		clsScreen::_PrintMenuOption(colorText("               Find Client Screen", "yellow"));
+
+		string AccountNumber = "";
+		clsBankClient Client = clsBankClient::EmptyObjForInitializing();
+
+	               //  check if client is existing if it exits then return object ///
+		do {
+			system("cls");
+			cout << "\n\n\n\n";
+			clsScreen::_PrintMenuOption(colorText("            Find Client Screen", "yellow"));
+			AccountNumber = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Account Number : ");
+
+		} while (!(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, Client) ));
+
+		// if exists
+		clsUtilPrintClientData::PrintClientData(Client);
+
 	}
 
 };

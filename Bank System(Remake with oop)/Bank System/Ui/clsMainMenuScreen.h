@@ -1,13 +1,14 @@
 #pragma once 
+//core
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsPerson.h"
-//Core Features 
+//Screens
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowListScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsAddNewClientScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowDeleteScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowUpdateClientScreen.h"
-
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\clsFindClientScreen.h"
 
 class clsMainMenuScreen : protected clsScreen
 {
@@ -71,15 +72,17 @@ class clsMainMenuScreen : protected clsScreen
 		clsShowUpdateClientScreen::UpdateClientInfo();
     }
     
-    //5 
+    //5 (done)
     static void _ShowFindClientScreen(){
       //  std::cout<<"Will Be Client Find Screen\n";
+		clsFindClientScreen::FindClientByAccountNumber();
 
     }
 
     //6 
     static void _ShowTransactionsScreen(){
-        std::cout<<"Will Be Transactions Screen\n";
+        //std::cout<<"Will Be Transactions Screen\n";
+		//  clsScreen::_PrintMenuOption(colorText("               Transactions Screen", "magenta"));
     }
 
     //7 
@@ -98,54 +101,59 @@ class clsMainMenuScreen : protected clsScreen
 		system("cls");
 		switch (OptionByuser) {
 
-		case _enMainMenuOptions::eListClientsScreen: //1 
-
-		
+		case _enMainMenuOptions::eListClientsScreen: {//1 
 			_ShowListClient();// call list  client screen 
 			_BackToMainMenuAgain();
 			break;
+		}
 
-		case _enMainMenuOptions::eAddNewClientScreen: //2 
+		case _enMainMenuOptions::eAddNewClientScreen: { //2 
 			_ShowAddNewClientScreen();// call add new client screen 
 			_BackToMainMenuAgain();
 			break;
+		}
 
-		case _enMainMenuOptions::eDeleteClientScreen: //3
+		case _enMainMenuOptions::eDeleteClientScreen: {//3
 			_ShowDeleteClientScreen();// call delete  client screen 
 			_BackToMainMenuAgain();
 			break;
+		}
 
-		case _enMainMenuOptions::eUpdateClientScreen: //4
+		case _enMainMenuOptions::eUpdateClientScreen: {//4
 			_ShowUpdateClientScreen();// call update  client screen 
 			_BackToMainMenuAgain();
 			break;
+		}
 
-
-		case _enMainMenuOptions::eFindClientScreen: //5
-            _ShowFindClientScreen();// call find  client screen 
+		case _enMainMenuOptions::eFindClientScreen: { //5
+			_ShowFindClientScreen();// call find  client screen 
 			_BackToMainMenuAgain();
 			break;
+		}
 
-		case _enMainMenuOptions::eShowTransactionsMenueScreen: //6
-            clsScreen::_PrintMenuOption(colorText("               Transactions Screen","magenta"));
-            _ShowTransactionsScreen();	// call transactions   screen 
+		case _enMainMenuOptions::eShowTransactionsMenueScreen: {//6
+			_ShowTransactionsScreen();	// call transactions   screen 
 			_BackToMainMenuAgain();
 			break;
+		}
 
-		case _enMainMenuOptions::eAdminScreen: //7
-            clsScreen::_PrintMenuOption(colorText("               Admin Screen","orange"));
-            _ShowAdminScreen();		// call manage   screen 
+		case _enMainMenuOptions::eAdminScreen: { //7
+			clsScreen::_PrintMenuOption(colorText("               Admin Screen", "orange"));
+			_ShowAdminScreen();		// call manage   screen 
 			_BackToMainMenuAgain();
 			break;
+		}
 
-		case _enMainMenuOptions::eLogoutScreen: //8
-            clsScreen::_PrintMenuOption(colorText("               Logout Screen","pink"));
-            _ShowLogoutScreen();	// call login again
+		case _enMainMenuOptions::eLogoutScreen: {//8
+			clsScreen::_PrintMenuOption(colorText("               Logout Screen", "pink"));
+			_ShowLogoutScreen();	// call login again
 			break;
+		}
 
-		case _enMainMenuOptions::eExitScreen: //9
+		case _enMainMenuOptions::eExitScreen: {//9
 			_ShowExitScreen();// exit the program
 			break;
+		}
 
 	  }
 

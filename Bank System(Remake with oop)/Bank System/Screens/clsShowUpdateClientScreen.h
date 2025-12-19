@@ -123,7 +123,7 @@ public:
         AccountNumber = clsInputAndValidation::read_string("Enter Account Number: ");
         clsBankClient client = clsBankClient::EmptyObjForInitializing();
 
-        // if the account isn't exisiting
+        // if the account isn't existing
         while (!(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, client)))
         {
             screen_color(red);

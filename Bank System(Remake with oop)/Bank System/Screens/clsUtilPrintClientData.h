@@ -4,7 +4,7 @@
 
 class clsUtilPrintClientData{
     public:
-      static void PrintClientData(const clsBankClient &client , string NameOfList="CLIENT DETAILS")
+      static void PrintClientData(const clsBankClient &client , string NameOfList="        CLIENT DETAILS   ")
     {
 
         std::cout << "\n\n";
