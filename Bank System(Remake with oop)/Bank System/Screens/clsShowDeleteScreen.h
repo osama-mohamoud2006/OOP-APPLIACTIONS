@@ -1,33 +1,10 @@
 #pragma once
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsUtilPrintClientData.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
 
 class clsShowDeleteClientScreen : protected clsScreen
 {
-private:
-    static void _PrintClientData(const clsBankClient &client)
-    {
-
-        std::cout << "\n\n";
-        std::cout << setw(37) << left << "" << colorText("================================================", "cyan") << "\n";
-        std::cout << setw(37) << left << "" << "   " << colorText(">> CLIENT DETAILS<<", "green") << "\n";
-        std::cout << setw(37) << left << "" << colorText("================================================", "cyan") << "\n\n";
-
-        std::cout << setw(37) << left << "" << colorText("  PERSONAL INFORMATION", "lightpurple") << "\n";
-        std::cout << setw(37) << left << "" << "  ----------------------------------------------\n";
-        std::cout << setw(37) << left << "" << "    Name       : " << client.GetFirstName() << " " << client.GetLastName() << "\n";
-        std::cout << setw(37) << left << "" << "    Email      : " << client.GetEmail() << "\n";
-        std::cout << setw(37) << left << "" << "    Phone      : " << client.GetPhone() << "\n\n";
-
-        std::cout << setw(37) << left << "" << colorText("  ACCOUNT DETAILS", "yellow") << "\n";
-        std::cout << setw(37) << left << "" << "  ----------------------------------------------\n";
-        std::cout << setw(37) << left << "" << "    Account No : " << colorText(client.GetAccountNumber(), "cyan") << "\n";
-        std::cout << setw(37) << left << "" << "    PIN Code   : " << colorText(client.GetPin(), "yellow") << "\n";
-        std::cout << setw(37) << left << "" << "    Balance    : " << colorText("$", "green") << fixed << setprecision(2) << colorText(to_string(client.GetBalance()), "green") << "\n\n";
-
-        std::cout << setw(37) << left << "" << colorText("================================================", "cyan") << "\n\n";
-    }
-
 public:
     static void DeleteClient()
     {
@@ -51,14 +28,15 @@ public:
             system("cls");
             std::cout << "\n\t\t\tdeleted successfully!\n";
             std::cout << "\n\t\t\tFor Confrimation Purpose!\n";
-            _PrintClientData(client);
+             clsUtilPrintClientData::PrintClientData(client,"Client Details");
         }
         else
         {
             system("cls");
             std::cout << "\n\t\t\tNo change!\n";
             std::cout << "\n\t\t\tFor Confrimation Purpose!\n";
-            _PrintClientData(client);
+            clsUtilPrintClientData::PrintClientData(client,"Client Details");
         }
     }
+
 };

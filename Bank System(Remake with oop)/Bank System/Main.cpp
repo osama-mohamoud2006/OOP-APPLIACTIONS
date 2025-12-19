@@ -11,42 +11,7 @@ using namespace std;
 
 
 
-//void UpdateClientInfo() {
-//
-//	string AccountNumber="";
-//	AccountNumber = clsInputAndValidation::read_string("Enter Account Number: ");
-//	clsBankClient client = clsBankClient::EmptyObjForInitializing();
-//	
-//	// if the account isn't exisiting 
-//	while ( !(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, client)) ) {
-//		screen_color(red);
-//		cout << "\a\nAccount number: " << AccountNumber << " isn't exising!" << endl;
-//			cout << "Try agian !\n";
-//		AccountNumber = clsInputAndValidation::read_string("Enter Account Number: ");
-//	}
-//
-//	// it will exit loop only if it found the desired account number 
-//	screen_color(black);
-//	cout << "\nCurrent Client Info: ";
-//	_PrintBasicPersonData();
-//
-//	cout << "\nUpdate Info\n";
-//   _EnterNewDataToUpdate(client); // take the new data and set them to the object
-//
-//   clsBankClient::enSaveMode FinalSave;
-//   FinalSave = client.Save();
-//  
-//   if (FinalSave == clsBankClient::enSaveMode::SuccessedToSave) {
-//	   screen_color(green);
-//	   cout << "saved successfully!" << endl;
-//   }
-//   else {
-//	   screen_color(red);
-//	   cout << "failed  to save!" << endl;
-//   }
-//
-//
-//}
+
 
 
 

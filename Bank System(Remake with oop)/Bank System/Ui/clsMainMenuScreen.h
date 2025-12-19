@@ -6,6 +6,7 @@
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowListScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsAddNewClientScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowDeleteScreen.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsShowUpdateClientScreen.h"
 
 
 class clsMainMenuScreen : protected clsScreen
@@ -64,9 +65,10 @@ class clsMainMenuScreen : protected clsScreen
 		clsShowDeleteClientScreen::DeleteClient();
     }
 
-    //4 
+    //4 (done)
     static void _ShowUpdateClientScreen(){
-        std::cout<<"Will Be Client Update Screen\n";
+        //std::cout<<"Will Be Client Update Screen\n";
+		clsShowUpdateClientScreen::UpdateClientInfo();
     }
     
     //5 
