@@ -46,7 +46,7 @@ public:
 		system("cls");
 		// if account is existing
 		screen_color(black);
-		clsUtilClientPrintBalance::PrintClientBalanceRecord(Client);    //print balance details
+		clsUtilClientBalance::PrintClientBalanceRecord(Client);    //print balance details
 
 		double amount = clsInputAndValidation::enter_postive_number("\n\n\t\t\t\tEnter The Amount You Want To Deposit: ");
 		double PerBalance = Client.GetBalance();
@@ -59,7 +59,7 @@ public:
 			if (clsBankClient::enSaveMode::SuccessedToSave == SaveStatus) {
 				system("cls");
 				_PrintDepositedSuccessful();
-				clsUtilClientPrintBalance::PrintClientBalanceRecord(Client, PerBalance);    //print balance details
+				clsUtilClientBalance::PrintClientBalanceRecord(Client, PerBalance);    //print balance details
 			}
 			else _PrintDepositFailed();
 		}

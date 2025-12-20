@@ -2,9 +2,8 @@
 #include  "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsUtilPrintClientBalance.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
-#include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
 
-class clsFindAccountBalanceScreen : protected clsScreen
+class  clsFindAccountBalanceScreen : protected clsScreen
 {
 
 public:
@@ -43,7 +42,7 @@ public:
 			AccountNumber = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Account Number : ");
 
 			if (clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, Client)) { // print client data then break
-				clsUtilClientPrintBalance::PrintClientBalanceRecord(Client);
+				clsUtilClientBalance::PrintClientBalanceRecord(Client);
 				break;
 			}
 

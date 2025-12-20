@@ -1,7 +1,7 @@
 #pragma once 
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsDepositScreen.h"
-#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\clsWithDrawScreen.h"
-
+#include  "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsWithDrawScreen.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsFindAccountBalanceScreen.h"
 class clsTransactionMenu {
 
 private:
@@ -51,7 +51,7 @@ private:
 
 	//4 
 	static void _ShowFIndClientBalanceScreen() {
-
+		clsFindAccountBalanceScreen::FindClientByAccountNumberToGetHisBalance();
 	}
 
 	static _enTransactionMenuElements _PerformOptionInTransactionMenu(_enTransactionMenuElements option) 
@@ -59,7 +59,6 @@ private:
 		system("cls"); // just clear screen on every option call 
 		switch (option)
 		{
-
 
 		case _enTransactionMenuElements::eDeposit: { //1
 			_ShowDepositScreen();
@@ -80,7 +79,9 @@ private:
 		};
 
 		case 	_enTransactionMenuElements::eFindClientBalance: {
-
+			_ShowFIndClientBalanceScreen();
+			_BackToTransactionsMenuAgain();
+			break;
 		}
 
 		case _enTransactionMenuElements::eBackToMainMenu: {
