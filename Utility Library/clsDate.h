@@ -1,5 +1,5 @@
-// cpp
 #pragma once
+
 #include <iostream>
 #include "E:\projects\c++ course\10-OOP Concepts\Project 2\Project 2\clsString.h"
 #include <string>
@@ -9,7 +9,6 @@
 #include <cmath>
 #include <ctime>
 
-using namespace  std;
 // Abstract class(contract)
 class clsDateFunctions {
     virtual   bool isLeap()=0;
