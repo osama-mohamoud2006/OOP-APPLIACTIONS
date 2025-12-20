@@ -137,19 +137,18 @@ class clsMainMenuScreen : protected clsScreen
 
 		case _enMainMenuOptions::eShowTransactionsMenueScreen: {//6
 			_ShowTransactionsScreen();	// call transactions   screen 
-			_BackToMainMenuAgain();
 			break;
 		}
 
 		case _enMainMenuOptions::eAdminScreen: { //7
-			clsScreen::_PrintMenuOption(colorText("               Admin Screen", "orange"));
+			//clsScreen::_PrintMenuOption(colorText("               Admin Screen", "orange"));
 			_ShowAdminScreen();		// call manage   screen 
 			_BackToMainMenuAgain();
 			break;
 		}
 
 		case _enMainMenuOptions::eLogoutScreen: {//8
-			clsScreen::_PrintMenuOption(colorText("               Logout Screen", "pink"));
+			//clsScreen::_PrintMenuOption(colorText("               Logout Screen", "pink"));
 			_ShowLogoutScreen();	// call login again
 			break;
 		}

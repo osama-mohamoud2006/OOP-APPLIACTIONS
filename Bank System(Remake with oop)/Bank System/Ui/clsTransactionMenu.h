@@ -4,11 +4,11 @@ class clsTransactionMenu {
 
 private:
 
-	enum _enTransactionMenuElements{
-		eNone=0,eDeposit=1,eWithDraw=2,eTotalBalances=3,eBackToMainMenu=4};
+	enum _enTransactionMenuElements
+	{	eNone=0,eDeposit=1,eWithDraw=2,eTotalBalances=3,eBackToMainMenu=4};
 
 	static void _ETransactionsMenu() {
-
+		cout << "\n\n\n\n";
 		std::cout << setw(37) << left << "" << "===========================================\n";
 		std::cout << setw(37) << left << "" << colorText("\t\t\Transactions Menu\n","orange");
 		std::cout << setw(37) << left << "" << "===========================================\n";
@@ -20,19 +20,63 @@ private:
 		std::cout << setw(37) << left << "" << "===========================================\n";
 
 	}
-
 	static  void  _BackToTransactionsMenuAgain() {
 		std::cout << colorText("\n\n\n\t\t\t\t To Back To Transactions Menu ", "red");
 		system("pause");
 	}
 
 
-
-	static _enTransactionMenuElements PerformOptionInTransactionMenu(_enTransactionMenuElements option) 
-	{
-
+	 /// Features in the screen
+	
+	//1
+	static void _ShowDepositScreen(){
+		cout << "\nWill Be Deposit Screen Soon!\n";
 	}
 
+	//2
+	static void _ShowWithDrawScreen() {
+		cout << "\nWill Be WithDraw Screen Soon!\n";
+	}
+
+	//3 
+	static  void _ShowTotalBalancesScreen() {
+		cout << "\nWill Be Show Total Balances Screen Soon!\n";
+	}
+
+
+	static _enTransactionMenuElements _PerformOptionInTransactionMenu(_enTransactionMenuElements option) 
+	{
+		system("cls"); // just clear screen on every option call 
+		switch (option)
+		{
+
+
+		case _enTransactionMenuElements::eDeposit: { //1
+			_ShowDepositScreen();
+			_BackToTransactionsMenuAgain();
+			break;
+		};
+
+		case _enTransactionMenuElements::eWithDraw: {
+			_ShowWithDrawScreen();
+			_BackToTransactionsMenuAgain();
+			break;
+		};
+
+		case _enTransactionMenuElements::eTotalBalances: {
+			_ShowTotalBalancesScreen();
+			_BackToTransactionsMenuAgain();
+			break;
+		};
+
+		case _enTransactionMenuElements::eBackToMainMenu: {
+			return _enTransactionMenuElements::eBackToMainMenu;
+		}
+
+		};
+
+		return option;
+	}
 
 public :
 	static void ShowTransactionMenu() {
@@ -44,7 +88,7 @@ public :
 			system("cls");
 			_ETransactionsMenu(); // show elements of menu 
 			std::cout << setw(37) << left << "" << "Enter Option";
-			//OptionByUser = _PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 9, ""));
+			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::enter_number_from_to(1, 4, ""));
 		}
 
 	}
