@@ -10,14 +10,15 @@ private :
 		return ( amount < 0  ) ? true : false; 
 	}
 
-	// if the client balance < amount you want to withdraw then return false 
-	static bool _CheckBeforeWithDraw(double amount, clsBankClient &Temp) {
-		return (Temp.GetBalance() < amount) ? false : true;
+	// if the client balance < amount you want to withdraw then return true 
+	static bool _IsCurrentBalanceLessThanAmount(double amount, clsBankClient &Temp) {
+		return (Temp.GetBalance() < amount) ? true : false;
 	}
 
 public: 
 	static  clsBankClient::enSaveMode  Deposit(clsBankClient & Client,double amount) {
-		if (_IsNegative(amount) ) return;
+
+		if (_IsNegative(amount)) return clsBankClient::enSaveMode::FailedOrEmptyObj;
 		double NBalance  = Client.GetBalance()+amount; // Get the current account balance and it new amount to it
 		Client.SetBalance(NBalance); 
 		return Client.Save();
@@ -25,8 +26,8 @@ public:
 	}
 
 	static  clsBankClient::enSaveMode  WithDraw(clsBankClient& Client, double amount) {
-		if (_IsNegative(amount)) return;
-		double NBalance = Client.GetBalance() + amount; // Get the current account balance and it new amount to it
+		if (_IsNegative(amount) || _IsCurrentBalanceLessThanAmount(amount, Client)) return clsBankClient::enSaveMode::FailedOrEmptyObj;
+		double NBalance = Client.GetBalance() - amount; // Get the current account balance and it new amount to it
 		Client.SetBalance(NBalance);
 		return Client.Save();
 
