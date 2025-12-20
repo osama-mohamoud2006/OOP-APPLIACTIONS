@@ -9,9 +9,8 @@
 
 class clsAddNewClientScreen  : protected clsScreen
 {
-// clsUtilPrintClientData::PrintClientData(client,"CLIENT ADDED SUCCESSFULLY ");
+
 private:
-    
 	static void  _EnterNewDataToUpdate(clsBankClient& Temp) {
 		std::cout << "\n\n";
 		_PrintMenuOption(colorText("        Adding New Client" ,"green"));
@@ -40,14 +39,16 @@ private:
 
 public:
 	static void AddNewClient() {
-		system("cls");
+
+		do {
+
+	      system("cls");
 		clsScreen::_PrintMenuOption(colorText("        Add New Client Screen", "cyan"));
 		string AccountNumber = "";
 		AccountNumber = clsInputAndValidation::read_string("Enter account number: ");
 
-		while (clsBankClient::IsClientExist(AccountNumber))
+		while (clsBankClient::IsClientExist(AccountNumber)) // if account number is existing then ask user to enter another acc num
 		{
-		
 			screen_color(red);
 			cout << "\t\t\t\a\nThe client with account number: " << AccountNumber << " is existing \nplease enter valid account number!\n";
 			AccountNumber = clsInputAndValidation::read_string("\nEnter account number: ");
@@ -59,10 +60,10 @@ public:
 		clsBankClient client = clsBankClient::InitializeToAddNewClient();
 
 	
-		_EnterNewDataToUpdate(client);
+		_EnterNewDataToUpdate(client); // fill the new data 
 		client.SetAccountNumber(AccountNumber);
 
-		clsBankClient::enSaveMode SaveStatus;
+		clsBankClient::enSaveMode SaveStatus; // check the save status 
 		SaveStatus = client.Save();
 
 		if (SaveStatus == clsBankClient::enSaveMode::FailedOrEmptyObj) {
@@ -74,14 +75,10 @@ public:
 			return;
 		}
 
-		else clsUtilPrintClientData::PrintClientData(client,"CLIENT ADDED SUCCESSFULLY ");(client);
+		else clsUtilPrintClientData::PrintClientData(client,"CLIENT ADDED SUCCESSFULLY ");  
 
-		// Do You Want To Add More Clients?
-
-		while (clsInputAndValidation::Confirm("\t\t\t\t   Do you Want To Add Another Client? [y],[n] ") )
-		{
-			AddNewClient();
-		}
+		} while (clsInputAndValidation::Confirm("\t\t\t\t   Do you Want To Add Another Client? [y],[n] ") );	// Do You Want To Add More Clients?
+	
 
 	}
 

@@ -17,7 +17,7 @@ public:
 		bool Exit = false; 
 	               //  check if client is existing if it exits then return object ///
 		do {
-			Trials++; //2 , 3,4,  5
+			Trials++;
 			system("cls");
 			cout << "\n\n\n\n";
 			clsScreen::_PrintMenuOption(colorText("            Find Client Screen", "yellow"));
@@ -37,6 +37,10 @@ public:
 				}
 
 			}
+
+
+
+
 			AccountNumber = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Account Number : ");
 
 		} while ( !(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, Client) ) && (Exit == false));
@@ -44,6 +48,36 @@ public:
 
 	  // if exists
 		if(!Exit) clsUtilPrintClientData::PrintClientData(Client);
+
+
+		while (true) 
+		{
+
+			Trials++;
+			system("cls");
+			cout << "\n\n\n\n";
+			clsScreen::_PrintMenuOption(colorText("            Find Client Screen", "yellow"));
+
+
+			if (Trials > 4)
+			{
+				std::cout << colorText("\n\t\t\t\t\t\aYou Tried For " + to_string(Trials - 1) + " Times To Find The Account !\n\t\t\t\t\tExit To Main Menu[y] Or Try Again[n] ? [y], [n] : ", "red");
+				if (clsInputAndValidation::Confirm("")) {
+					break; // exit the loop and will call return to the main menu 
+				}
+				else {
+					Trials = 0;
+					Exit = false;
+					FindClientByAccountNumber();
+				}
+
+			}
+
+
+
+
+	      }
+
 	
 	}
 
