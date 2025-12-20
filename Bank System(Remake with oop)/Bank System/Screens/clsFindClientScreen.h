@@ -32,7 +32,7 @@ public:
 				}
 				else {
 					Trials = 0;
-					continue; // exit the loop and will call return to the main menu 
+					continue; // skip this loop and start again 
 				}
 
 			}
