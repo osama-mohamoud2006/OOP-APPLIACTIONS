@@ -37,9 +37,10 @@ private:
 		clsDepositScreen::ShowDepositBalanceFromClientScreen();
 	}
 
-	//2 ()
+	//2 (done)
 	static void _ShowWithDrawScreen() {
 		//cout << "\nWill Be WithDraw Screen Soon!\n";
+		clsWithDrawScreen::ShowWithDrawFromClientScreen();
 
 	}
 
