@@ -8,6 +8,22 @@ using namespace std;
 
 ///  ctrl + m+o
 
+//46 = .
+bool _CheckIfNumberIsnotFake(double amount ) 
+{
+	string AmountToCheck = to_string(amount);
+	for (int i = 0; i < AmountToCheck.length(); i++) {
+
+		if (AmountToCheck[i] == '.') continue; // skip the loop if the number have '.' (1.2,12.222)
+
+		else {
+	          if (!( isdigit(AmountToCheck[i]) ) ) return false;
+		}
+
+	}
+	return true;
+}
+
 
 //balance 
 void PrintClientBalanceRecord(clsBankClient Client) {
@@ -62,4 +78,7 @@ int main() {
 
 	clsMainMenuScreen::_ShowMainMenuScreen();
 		 return 0;
+
+	/*cout<< _CheckIfNumberIsnotFake(1042)<<endl;*/
+
 }
