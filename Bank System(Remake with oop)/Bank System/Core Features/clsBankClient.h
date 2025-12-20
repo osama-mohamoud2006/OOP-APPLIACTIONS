@@ -365,12 +365,6 @@ public:
 
                   ////                                                   Total Balances                              ////////////////////////////  ( will be separated later)
 
-                  static double GetTotalBalances() {
-                      vector<clsBankClient> clients = _LoadClientsFile();
-                      double total = 0.0; 
-                      for (clsBankClient c : clients) { total += c.GetBalance(); }
-                      return total;
-                  }
 
 
 

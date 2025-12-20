@@ -33,4 +33,14 @@ public:
 
 	}
 
+	// Total Balances
+
+	static double GetTotalBalances() {
+		vector<clsBankClient> clients = clsBankClient::GetAllClientsInVector(); // Fill Vector With All Clients 
+		double total = 0.0;
+		for (clsBankClient c : clients) { total += c.GetBalance(); }
+		return total;
+	}
+
+
 };
