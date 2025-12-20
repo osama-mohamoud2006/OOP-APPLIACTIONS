@@ -8,6 +8,7 @@ class clsShowDeleteClientScreen : protected clsScreen
 public:
     static void DeleteClient()
     {
+
         clsScreen::_PrintMenuOption(colorText("           Delete Client Screen", "red"));
         string AccountNumber = "";
         AccountNumber = clsInputAndValidation::read_string("Enter account number: ");
@@ -21,9 +22,12 @@ public:
             AccountNumber = clsInputAndValidation::read_string("\nEnter account number: ");
         }
 
+        
+        clsUtilPrintClientData::PrintClientData(client, "Client Details"); // view client details before deletion 
+
         // Confirming Before Deletion
         screen_color(enScreen_color::red_on_black);
-        if (clsInputAndValidation::Confirm("\nAre you sure?[y],[n]: ") && client.DeleteClient())
+        if (clsInputAndValidation::Confirm("\n\n\nAre you sure?[y],[n]: ") && client.DeleteClient())
         {
             // called delete here
             system("cls");
