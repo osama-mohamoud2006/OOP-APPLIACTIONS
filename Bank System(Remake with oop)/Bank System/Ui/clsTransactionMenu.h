@@ -10,7 +10,7 @@ private:
 	static void _ETransactionsMenu() {
 
 		std::cout << setw(37) << left << "" << "===========================================\n";
-		std::cout << setw(37) << left << "" << "\t\t\Transactions Menu\n";
+		std::cout << setw(37) << left << "" << colorText("\t\t\Transactions Menu\n","orange");
 		std::cout << setw(37) << left << "" << "===========================================\n";
 		std::cout << setw(37) << left << "" << "\t[1] Deposit.\n";
 		std::cout << setw(37) << left << "" << "\t[2] WithDraw.\n";
@@ -28,16 +28,23 @@ private:
 
 
 
+	static _enTransactionMenuElements PerformOptionInTransactionMenu(_enTransactionMenuElements option) 
+	{
+
+	}
 
 
 public :
 	static void ShowTransactionMenu() {
 
-		_enTransactionMenuElements Option = eNone; // just for intilizing 
+		_enTransactionMenuElements Option = eNone; // just for initializing 
 
-		while (Option != _enTransactionMenuElements::eBackToMainMenu)
+		while (Option != _enTransactionMenuElements::eBackToMainMenu) // if the option isn't main menu just call them again 
 		{
+			system("cls");
 			_ETransactionsMenu(); // show elements of menu 
+			std::cout << setw(37) << left << "" << "Enter Option";
+			//OptionByUser = _PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 9, ""));
 		}
 
 	}
