@@ -7,7 +7,7 @@ class clsTransactionMenu {
 private:
 
 	enum _enTransactionMenuElements
-	{	eNone=0,eDeposit=1,eWithDraw=2,eTotalBalances=3,eFindClientBalance=4,eBackToMainMenu=5};
+	{	eNone=0,eDeposit=1,eWithDraw=2,eTotalBalances=3,eFindClientBalance=4,eTransferBetween2Clients=5,eBackToMainMenu=6};
 
 	static void _ETransactionsMenu() {
 		cout << "\n\n\n\n";
@@ -18,6 +18,7 @@ private:
 		std::cout << setw(37) << left << "" << "\t[2] WithDraw.\n";
 		std::cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
 		std::cout << setw(37) << left << "" << "\t[4] Find Account Balances.\n";
+		std::cout << setw(37) << left << "" << "\t[4] Transfer Money Between 2 Clients.\n";
 		std::cout << setw(37) << left << "" << "\t[5] Main Menu.\n";
 		
 		std::cout << setw(37) << left << "" << "===========================================\n";
@@ -50,9 +51,14 @@ private:
 	}
 
 
-	//4 
+	//4  (done)
 	static void _ShowFIndClientBalanceScreen() {
 		clsFindAccountBalanceScreen::FindClientByAccountNumberToGetHisBalance();
+	}
+
+	//5 
+	static void _ShowTransferBetween2ClientsScreen() {
+
 	}
 
 	static _enTransactionMenuElements _PerformOptionInTransactionMenu(_enTransactionMenuElements option) 
@@ -85,6 +91,12 @@ private:
 			break;
 		}
 
+		case _enTransactionMenuElements::eTransferBetween2Clients: {
+			_ShowTransferBetween2ClientsScreen();
+			_BackToTransactionsMenuAgain();
+			break;
+		}
+
 		case _enTransactionMenuElements::eBackToMainMenu: {
 			return _enTransactionMenuElements::eBackToMainMenu;
 		}
@@ -105,7 +117,7 @@ public :
 			system("cls");
 			_ETransactionsMenu(); // show elements of menu 
 			std::cout << setw(37) << left << "" << "Enter Option";
-			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::enter_number_from_to(1, 5, ""));
+			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::enter_number_from_to(1, 6, ""));
 		}
 
 	}
