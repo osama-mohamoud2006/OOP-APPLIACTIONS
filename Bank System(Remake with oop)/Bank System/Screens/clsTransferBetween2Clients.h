@@ -92,7 +92,7 @@ public :
 			cout << "\n\n\t\t\t\t" << "Enter The Amount You Want To Send To Another Client:  ";
 			amount = clsInputAndValidation::enter_postive_number( ""); 
 			
-			if ((PerAmountOfClient > amount)) break; // correct amount 
+			if ((PerAmountOfClient >= amount)) break; // correct amount 
 			else  	_PrintWithdrawFailed(amount, PerAmountOfClient);
 			
 			if (Trials > 4) {
@@ -115,10 +115,19 @@ public :
 			system("cls");
 			clsScreen::_PrintMenuOption(colorText("The Client Who Will Receive", "cyan"));
 			clsBankClient ClientWhoWillReceive = _CheckAccountBeforeContinue(); // check if the second account is existing 
+
+			if (ClientWhoWillReceive.GetAccountNumber() == ClientWhoWillSend.GetAccountNumber()) {
+				cout << "\n\n\t\t\t\t" << colorText("\nYOU CANN'T TRANSFER TO YOURSELF!!!!", "red")<<"\n";
+				// undo --> return;
+				clsManageClientBalance::Deposit(ClientWhoWillSend,amount);  // return the amount that he withdrawed 
+			}
+
 			SaveStatus = clsManageClientBalance::Deposit(ClientWhoWillReceive, amount);
 
 			if (clsBankClient::enSaveMode::SuccessedToSave == SaveStatus)
 			{
+				system("cls");
+				screen_color(black);
 				_PrintSuccess(ClientWhoWillSend, ClientWhoWillReceive,amount);
 				}
 
