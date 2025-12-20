@@ -1,6 +1,6 @@
 #pragma once 
-#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
-#include   "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsManageClientBalanceAccount.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h" // core 
+#include   "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsManageClientBalanceAccount.h" // core -- > Deposit 
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsUtilPrintClientBalance.h"
 
@@ -18,7 +18,7 @@ private :
 	}
 
 	static void _PrintDepositFailed() {
-		cout << "\n\n";
+		cout << "\n\n\a";
 		cout << setw(37) << left << "" << colorText("================================================", "cyan") << "\n";
 		cout << setw(37) << left << "" << "  " << colorText(">> FAILED <<", "red") << "\n";
 		cout << setw(37) << left << "" << colorText("================================================", "cyan") << "\n\n";
@@ -29,7 +29,7 @@ private :
 
 
 public:
-	static void DepositBalanceFromClient() 
+	static void ShowDepositBalanceFromClientScreen() 
 	{
 		clsScreen::_PrintMenuOption(colorText("            Deposit Screen", "cyan"));
 		string AccountNumber = "";
@@ -39,7 +39,7 @@ public:
 		while (  !(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, Client) ) ) // if the client isn't existing ask for entering the account number again 
 		{
 			screen_color(red);
-			cout << "\n\nThe Account Number " << AccountNumber << " Isn't Existing !\a" << endl;
+			cout << "\n\n\aThe Account Number " << AccountNumber << " Isn't Existing !\a" << endl;
 			AccountNumber = clsInputAndValidation::read_string("\nEnter Account Number: ");
 		}
 

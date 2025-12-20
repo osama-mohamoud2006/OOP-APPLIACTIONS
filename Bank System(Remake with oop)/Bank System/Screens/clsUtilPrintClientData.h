@@ -4,27 +4,30 @@
 
 class clsUtilPrintClientData{
     public:
-      static void PrintClientData(const clsBankClient &client , string NameOfList="        CLIENT DETAILS   ")
-    {
+        static void PrintClientData(const clsBankClient& client, string NameOfList = "        CLIENT DETAILS   ")
+        {
+            // Get terminal width
+            int terminalWidth = 120; // Adjust based on your terminal size
+            int contentWidth = 48;   // Width of the content box
+            int leftPadding = (terminalWidth - contentWidth) / 2;
 
-        std::cout << "\n\n";
-        std::cout << setw(37) << left << "" << colorText("================================================", "cyan") << "\n";
-        std::cout << setw(37) << left << "" << "   " <<
-         colorText(">> "+ NameOfList+" <<", "green") << "\n";
-        std::cout << setw(37) << left << "" << colorText("================================================", "cyan") << "\n\n";
+            std::cout << "\n\n";
+            std::cout << setw(leftPadding) << "" << colorText("================================================", "cyan") << "\n";
+            std::cout << setw(leftPadding) << "" << "   " << colorText(">> " + NameOfList + " <<", "green") << "\n";
+            std::cout << setw(leftPadding) << "" << colorText("================================================", "cyan") << "\n\n";
 
-        std::cout << setw(37) << left << "" << colorText("  PERSONAL INFORMATION", "lightpurple") << "\n";
-        std::cout << setw(37) << left << "" << "  ----------------------------------------------\n";
-        std::cout << setw(37) << left << "" << "    Name       : " << client.GetFirstName() << " " << client.GetLastName() << "\n";
-        std::cout << setw(37) << left << "" << "    Email      : " << client.GetEmail() << "\n";
-        std::cout << setw(37) << left << "" << "    Phone      : " << client.GetPhone() << "\n\n";
+            std::cout << setw(leftPadding) << "" << colorText("  PERSONAL INFORMATION", "lightpurple") << "\n";
+            std::cout << setw(leftPadding) << "" << "  ----------------------------------------------\n";
+            std::cout << setw(leftPadding) << "" << "    Name       : " << client.GetFirstName() << " " << client.GetLastName() << "\n";
+            std::cout << setw(leftPadding) << "" << "    Email      : " << client.GetEmail() << "\n";
+            std::cout << setw(leftPadding) << "" << "    Phone      : " << client.GetPhone() << "\n\n";
 
-        std::cout << setw(37) << left << "" << colorText("  ACCOUNT DETAILS", "yellow") << "\n";
-        std::cout << setw(37) << left << "" << "  ----------------------------------------------\n";
-        std::cout << setw(37) << left << "" << "    Account No : " << colorText(client.GetAccountNumber(), "cyan") << "\n";
-        std::cout << setw(37) << left << "" << "    PIN Code   : " << colorText(client.GetPin(), "yellow") << "\n";
-        std::cout << setw(37) << left << "" << "    Balance    : " << colorText("$", "green") << fixed << setprecision(2) << colorText(to_string(client.GetBalance()), "green") << "\n\n";
+            std::cout << setw(leftPadding) << "" << colorText("  ACCOUNT DETAILS", "yellow") << "\n";
+            std::cout << setw(leftPadding) << "" << "  ----------------------------------------------\n";
+            std::cout << setw(leftPadding) << "" << "    Account No : " << colorText(client.GetAccountNumber(), "cyan") << "\n";
+            std::cout << setw(leftPadding) << "" << "    PIN Code   : " << colorText(client.GetPin(), "yellow") << "\n";
+            std::cout << setw(leftPadding) << "" << "    Balance    : " << colorText("$", "green") << fixed << setprecision(2) << colorText(to_string(client.GetBalance()), "green") << "\n\n";
 
-        std::cout << setw(37) << left << "" << colorText("================================================", "cyan") << "\n\n";
-    } 
+            std::cout << setw(leftPadding) << "" << colorText("================================================", "cyan") << "\n\n";
+        }
 };

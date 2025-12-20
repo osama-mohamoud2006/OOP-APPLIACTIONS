@@ -1,11 +1,13 @@
 #pragma once 
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsDepositScreen.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\clsWithDrawScreen.h"
+
 class clsTransactionMenu {
 
 private:
 
 	enum _enTransactionMenuElements
-	{	eNone=0,eDeposit=1,eWithDraw=2,eTotalBalances=3,eBackToMainMenu=4};
+	{	eNone=0,eDeposit=1,eWithDraw=2,eTotalBalances=3,eFindClientBalance=4,eBackToMainMenu=5};
 
 	static void _ETransactionsMenu() {
 		cout << "\n\n\n\n";
@@ -15,7 +17,8 @@ private:
 		std::cout << setw(37) << left << "" << "\t[1] Deposit.\n";
 		std::cout << setw(37) << left << "" << "\t[2] WithDraw.\n";
 		std::cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
-		std::cout << setw(37) << left << "" << "\t[4] Main Menu.\n";
+		std::cout << setw(37) << left << "" << "\t[4] Find Account Balances.\n";
+		std::cout << setw(37) << left << "" << "\t[5] Main Menu.\n";
 		
 		std::cout << setw(37) << left << "" << "===========================================\n";
 
@@ -28,15 +31,16 @@ private:
 
 	 /// Features in the screen
 	
-	//1 ()
+	//1 (done)
 	static void _ShowDepositScreen(){
 	/*	cout << "\nWill Be Deposit Screen Soon!\n";*/
-		clsDepositScreen::DepositBalanceFromClient();
+		clsDepositScreen::ShowDepositBalanceFromClientScreen();
 	}
 
 	//2 ()
 	static void _ShowWithDrawScreen() {
-		cout << "\nWill Be WithDraw Screen Soon!\n";
+		//cout << "\nWill Be WithDraw Screen Soon!\n";
+
 	}
 
 	//3 ()
@@ -44,6 +48,11 @@ private:
 		cout << "\nWill Be Show Total Balances Screen Soon!\n";
 	}
 
+
+	//4 
+	static void _ShowFIndClientBalanceScreen() {
+
+	}
 
 	static _enTransactionMenuElements _PerformOptionInTransactionMenu(_enTransactionMenuElements option) 
 	{
@@ -70,9 +79,14 @@ private:
 			break;
 		};
 
+		case 	_enTransactionMenuElements::eFindClientBalance: {
+
+		}
+
 		case _enTransactionMenuElements::eBackToMainMenu: {
 			return _enTransactionMenuElements::eBackToMainMenu;
 		}
+
 
 		};
 
@@ -89,7 +103,7 @@ public :
 			system("cls");
 			_ETransactionsMenu(); // show elements of menu 
 			std::cout << setw(37) << left << "" << "Enter Option";
-			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::enter_number_from_to(1, 4, ""));
+			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::enter_number_from_to(1, 5, ""));
 		}
 
 	}
