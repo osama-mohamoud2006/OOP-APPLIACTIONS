@@ -20,7 +20,7 @@ private:
 		std::cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
 		std::cout << setw(37) << left << "" << "\t[4] Find Account Balances.\n";
 		std::cout << setw(37) << left << "" << "\t[5] Transfer Money Between 2 Clients.\n";
-		std::cout << setw(37) << left << "" << "\t[5] Main Menu.\n";
+		std::cout << setw(37) << left << "" << "\t[6] Main Menu.\n";
 		
 		std::cout << setw(37) << left << "" << "===========================================\n";
 
