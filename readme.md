@@ -39,6 +39,7 @@ Before building the main system, these utility libraries need to be solid.
 - [x] screen - **Transactions screen**
 - [x] screen - **Deposit screen**
 - [x] screen - **Withdraw screen**
+- [x] screen - **Transfer between 2 clients screen(my idea)**
 - [ ] screen - **Transfer between 2 clients screen**
 - [ ] screen - **Total balances screen**
 
