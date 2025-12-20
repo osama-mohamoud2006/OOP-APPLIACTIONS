@@ -1,5 +1,5 @@
 #pragma once 
-
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsDepositScreen.h"
 class clsTransactionMenu {
 
 private:
@@ -30,7 +30,8 @@ private:
 	
 	//1 ()
 	static void _ShowDepositScreen(){
-		cout << "\nWill Be Deposit Screen Soon!\n";
+	/*	cout << "\nWill Be Deposit Screen Soon!\n";*/
+		clsDepositScreen::DepositBalanceFromClient();
 	}
 
 	//2 ()
