@@ -27,19 +27,20 @@ Before building the main system, these utility libraries need to be solid.
 
 ### Bank System - UI - Main Menu
 
-- [x] UI - **Main Menu**
-- [x] UI - **List clients Screen**
-- [x] UI - **Add new clients screen**
-- [x] UI - **Delete clients screen**
-- [x] UI - **Update clients screen**
-- [x] UI - **Find clients screen**
+- [x] screen - **Main Menu**
+- [x] screen - **List clients Screen**
+- [x] screen - **Add new clients screen**
+- [x] screen - **Delete clients screen**
+- [x] screen - **Update clients screen**
+- [x] screen - **Find clients screen**
 
 ### Bank System - UI - Transactions Menu
 
-- [ ] UI - **Transactions screen**
-- [ ] UI - **Deposit screen**
-- [ ] UI - **Withdraw screen**
-- [ ] UI - **Total balances screen**
+- [x] screen - **Transactions screen**
+- [x] screen - **Deposit screen**
+- [x] screen - **Withdraw screen**
+- [ ] screen - **Transfer between 2 clients screen**
+- [ ] screen - **Total balances screen**
 
 ### Bank System - UI - Manage Users Menu
 
