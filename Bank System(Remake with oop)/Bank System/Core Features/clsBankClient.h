@@ -6,8 +6,6 @@
 #include<string>
 #include<vector>
 
-
-
 class clsBankClient : public clsPerson{
     // clsBankClient is sub class of clsPerson
 	private:
@@ -66,7 +64,7 @@ public:
                }
                string  GetPin() const  {  return this->_Pin ; }
 
-               // for testing puposes 
+               // for testing purposes 
        /*        void  GetCurrentMode() {
                    (!IsEmptyClientObj()) ? cout << "Client is existing!\n" : cout << "empty object!\a\n";
                }*/
@@ -80,7 +78,7 @@ public:
                }
  
     
-               // Manage Files For
+               // Manage Files
              private:
                 static clsBankClient _ConvertLineToObject(string Line) {
                      //1-split string 
@@ -104,6 +102,9 @@ public:
                      static clsBankClient EmptyObjForInitializing() {
                          return _ReturnEmptyObject();
                      }
+
+
+                     ////                                                                                                                Find  Client                                                                                                                   /////
 
                      // if it found the client it would return  object
                      static clsBankClient Find(string AccountNumber) {
@@ -353,16 +354,16 @@ public:
                  }
 
 
-                  //                                                                PrintBasicPersonData Clients                                                                                         ////////////                          
+                  //                                                                For Using it In Print Clients Feature                                                                                         ////////////                          
 
-                  // don't forget here in this class we foucs only on the core no ui !
+                  // don't forget here in this class we focus only on the core no ui !
 
-                  static vector<clsBankClient> GetAllClientsInVector() { // For using in Priniting 
+                  static vector<clsBankClient> GetAllClientsInVector() { // For using in Printing or what ever 
                       return _LoadClientsFile();
                   }
 
 
-                  ////                                                   Total Balances                              ////////////////////////////
+                  ////                                                   Total Balances                              ////////////////////////////  ( will be separated later)
 
                   static double GetTotalBalances() {
                       vector<clsBankClient> clients = _LoadClientsFile();
