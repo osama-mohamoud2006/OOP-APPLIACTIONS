@@ -2,6 +2,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsDepositScreen.h"
 #include  "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsWithDrawScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsFindAccountBalanceScreen.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsTransferBetween2Clients.h"
 class clsTransactionMenu {
 
 private:
@@ -18,7 +19,7 @@ private:
 		std::cout << setw(37) << left << "" << "\t[2] WithDraw.\n";
 		std::cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
 		std::cout << setw(37) << left << "" << "\t[4] Find Account Balances.\n";
-		std::cout << setw(37) << left << "" << "\t[4] Transfer Money Between 2 Clients.\n";
+		std::cout << setw(37) << left << "" << "\t[5] Transfer Money Between 2 Clients.\n";
 		std::cout << setw(37) << left << "" << "\t[5] Main Menu.\n";
 		
 		std::cout << setw(37) << left << "" << "===========================================\n";
@@ -56,9 +57,9 @@ private:
 		clsFindAccountBalanceScreen::FindClientByAccountNumberToGetHisBalance();
 	}
 
-	//5 
+	//5 ()
 	static void _ShowTransferBetween2ClientsScreen() {
-
+		clsTransferBetween2UsersScreen::TransFerBetween2Clients();
 	}
 
 	static _enTransactionMenuElements _PerformOptionInTransactionMenu(_enTransactionMenuElements option) 
