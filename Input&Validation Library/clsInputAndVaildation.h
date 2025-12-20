@@ -6,7 +6,7 @@
 #include <ctime>
 #include <limits>
 #include<fstream>
-using namespace  std;
+
 
 class clsInputAndValidation  {
 

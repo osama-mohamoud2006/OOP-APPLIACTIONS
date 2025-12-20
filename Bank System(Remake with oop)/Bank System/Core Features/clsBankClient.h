@@ -5,8 +5,8 @@
 #include<fstream>
 #include<string>
 #include<vector>
-#include<iostream>
-using namespace std ;
+
+
 
 class clsBankClient : public clsPerson{
     // clsBankClient is sub class of clsPerson
