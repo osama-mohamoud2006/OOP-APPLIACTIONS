@@ -8,15 +8,9 @@ using namespace std;
 
 ///  ctrl + m+o
 
-
-
-//balance 
-
-
-
 int main() {
 
-	clsMainMenuScreen::_ShowMainMenuScreen();
+clsMainMenuScreen::_ShowMainMenuScreen();
 		 return 0;
 
 }

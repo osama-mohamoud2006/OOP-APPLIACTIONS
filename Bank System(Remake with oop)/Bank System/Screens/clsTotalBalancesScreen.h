@@ -3,6 +3,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsManageClientBalanceAccount.h"
+#include  "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Utility Library\clsUtillity.h"
 
 class clsTotalBalanceScreen : protected clsScreen
 {
@@ -43,7 +44,7 @@ public:
             // Total Section
             double total = clsManageClientBalance::GetTotalBalances();
             cout << "\n\t\t\t\t   " << colorText("Total Balances = $", "green") << fixed << setprecision(2) << colorText(to_string(total), "green") << endl;
-            cout << "\t\t\t\t   ( " << colorText(clsInputAndValidation::NumberToText((int)total), "lightpurple") << " )" << endl;
+            cout << "\t\t\t\t   ( " << colorText(clsUtil::NumberToText((int)total), "lightpurple") << " )" << endl;
         }
     }
 };
