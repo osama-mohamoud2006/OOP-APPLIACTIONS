@@ -1,6 +1,6 @@
 #pragma once
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsUtilPrintClientData.h"
-#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsScreen.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
 
 class clsShowDeleteClientScreen : protected clsScreen
@@ -27,7 +27,8 @@ public:
 
         // Confirming Before Deletion
         screen_color(enScreen_color::red_on_black);
-        if (clsInputAndValidation::Confirm("\n\n\nAre you sure?[y],[n]: ") && client.DeleteClient())
+        /// If y and delete done successfully 
+        if (clsInputAndValidation::Confirm("\n\t\t\t\t\tAre you sure?[y],[n]: ") && client.DeleteClient())
         {
             // called delete here
             system("cls");

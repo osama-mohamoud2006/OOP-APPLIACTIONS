@@ -3,7 +3,8 @@
 #include  "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsWithDrawScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsFindAccountBalanceScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsTransferBetween2Clients.h"
-class clsTransactionMenu {
+
+class clsTransactionMenu : clsScreen {
 
 private:
 
@@ -57,7 +58,7 @@ private:
 		clsFindAccountBalanceScreen::FindClientByAccountNumberToGetHisBalance();
 	}
 
-	//5 ()
+	//5 (done)
 	static void _ShowTransferBetween2ClientsScreen() {
 		clsTransferBetween2UsersScreen::TransFerBetween2Clients();
 	}
