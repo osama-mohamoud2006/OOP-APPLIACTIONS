@@ -40,7 +40,7 @@ Before building the main system, these utility libraries need to be solid.
 - [x] screen - **Deposit screen**
 - [x] screen - **Withdraw screen**
 - [x] screen - **Transfer between 2 clients screen(additional idea)**
-- [ ] screen - **Total balances screen**
+- [x] screen - **Total balances screen**
 
 ### Bank System - UI - Manage Users Menu
 
