@@ -4,6 +4,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsFindAccountBalanceScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsTransferBetween2Clients.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsTotalBalancesScreen.h"
+#include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
 
 class clsTransactionMenu : clsScreen {
 
@@ -48,7 +49,7 @@ private:
 
 	}
 
-	//3 ()
+	//3 (done)
 	static  void _ShowTotalBalancesScreen() {
 	/*	cout << "\nWill Be Show Total Balances Screen Soon!\n";*/
 		clsTotalBalanceScreen::PrintBalancesClientList();
@@ -77,31 +78,31 @@ private:
 			break;
 		};
 
-		case _enTransactionMenuElements::eWithDraw: {
+		case _enTransactionMenuElements::eWithDraw: { //2
 			_ShowWithDrawScreen();
 			_BackToTransactionsMenuAgain();
 			break;
 		};
 
-		case _enTransactionMenuElements::eTotalBalances: {
+		case _enTransactionMenuElements::eTotalBalances: { //3 
 			_ShowTotalBalancesScreen();
 			_BackToTransactionsMenuAgain();
 			break;
 		};
 
-		case 	_enTransactionMenuElements::eFindClientBalance: {
+		case 	_enTransactionMenuElements::eFindClientBalance: { //4 
 			_ShowFIndClientBalanceScreen();
 			_BackToTransactionsMenuAgain();
 			break;
 		}
 
-		case _enTransactionMenuElements::eTransferBetween2Clients: {
+		case _enTransactionMenuElements::eTransferBetween2Clients: { //5 
 			_ShowTransferBetween2ClientsScreen();
 			_BackToTransactionsMenuAgain();
 			break;
 		}
 
-		case _enTransactionMenuElements::eBackToMainMenu: {
+		case _enTransactionMenuElements::eBackToMainMenu: { //6 
 			return _enTransactionMenuElements::eBackToMainMenu;
 		}
 

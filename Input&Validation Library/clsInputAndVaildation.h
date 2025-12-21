@@ -228,10 +228,6 @@ bool res = ! (    (d.GetD()  <=0 )|| ( d.GetD()  > d.NumberOfDaysInMonth( d.GetY
      return res;
   }
 
-
-
-
-
    // return true if 'Y' or 'y'
    static  bool Confirm(string message ) {
        char choice = ' ';
@@ -239,5 +235,7 @@ bool res = ! (    (d.GetD()  <=0 )|| ( d.GetD()  > d.NumberOfDaysInMonth( d.GetY
        choice = clsInputAndValidation::EnterChar();
        return (choice == 'Y');
    }
+
+
 
 };
