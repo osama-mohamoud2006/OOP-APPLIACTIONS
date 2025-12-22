@@ -175,14 +175,6 @@ public:
 
                      }
 
-
-                     /////// //  ////                                            Update Client Data                                                                                  ///////////
-
-
- //The high level explanation  of Data update client data: ///
-//  load file --> search the account number on file(check if account number of current obj == record on file)
-// --> if  it found then change the record to the new object 
-
                      static bool ReturnCurrentClient_if_ItExists(string AccountNumber , clsBankClient & FoundCurrentClient) {
 
                          clsBankClient temp = clsBankClient::Find(AccountNumber); // -> obj : Empty
@@ -193,6 +185,15 @@ public:
                          }
                          else return false;
                      }
+
+
+
+                     /////// //  ////                                            Update Client Data                                                                                  ///////////
+
+
+ //The high level explanation  of Data update client data: ///
+//  load file --> search the account number on file(check if account number of current obj == record on file)
+// --> if  it found then change the record to the new object 
 
     private:
 
@@ -363,10 +364,7 @@ public:
                   }
 
 
-                  ////                                                   Total Balances                              ////////////////////////////  ( will be separated later)
-
-
-
+                  
 
 };
 

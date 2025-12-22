@@ -82,7 +82,7 @@ class clsMainMenuScreen : protected clsScreen
 
     }
 
-    //6 
+    //6 (done)
     static void _ShowTransactionsScreen(){
         //std::cout<<"Will Be Transactions Screen\n";
 		//  clsScreen::_PrintMenuOption(colorText("               Transactions Screen", "magenta"));
