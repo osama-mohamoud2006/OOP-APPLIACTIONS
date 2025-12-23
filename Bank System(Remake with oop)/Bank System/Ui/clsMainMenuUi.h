@@ -30,9 +30,9 @@ class clsMainMenuScreen : protected clsScreen
 
 	static void _EMainMenu() {
 	
-		std::cout << setw(37) << left << "" << "===========================================\n";
-		std::cout << setw(37) << left << "" << "\t\t\tMain Menu\n";
-		std::cout << setw(37) << left << "" << "===========================================\n";
+		//std::cout << setw(37) << left << "" << "===========================================\n";
+		//std::cout << setw(37) << left << "" << "\t\t\tMain Menu\n";
+		//std::cout << setw(37) << left << "" << "===========================================\n";
 		std::cout << setw(37) << left << "" << "\t[1] Show Client List.\n";
 		std::cout << setw(37) << left << "" << "\t[2] Add New Client.\n";
 		std::cout << setw(37) << left << "" << "\t[3] Delete Client.\n";
