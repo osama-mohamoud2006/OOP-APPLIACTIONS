@@ -13,6 +13,9 @@
 // Transaction Menu
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsTransactionMenuUi.h"
 
+// Mange Users
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsManageUsersMenu.h"
+
 class clsMainMenuScreen : protected clsScreen
 {
 
@@ -89,9 +92,10 @@ class clsMainMenuScreen : protected clsScreen
 		clsTransactionMenu::ShowTransactionMenu();
     }
 
-    //7 
+    //7  (done)
     static void _ShowAdminScreen(){
-        std::cout<<"Will Be Admin Screen\n";
+     /*   std::cout<<"Will Be Admin Screen\n";*/
+		clsMangeUsersMenu::ShowManageUsersMenu();
     }
 
     //8 
