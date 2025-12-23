@@ -44,7 +44,7 @@ Before building the main system, these utility libraries need to be solid.
 
 ### Bank System - UI - Manage Users Menu
 
-- [ ] UI - **manage users screen**
+- [x] UI - **manage users screen**
 - [ ] UI - **perpare user class**
 - [ ] UI - **list users screen**
 - [ ] UI - **add new user screen**
