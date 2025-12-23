@@ -123,7 +123,7 @@ public:
 		{
 			system("cls");
 			cout << "\n\n";
-			clsScreen::_PrintMenuOption(colorText("\t   Manage UsersMenu", "green"));
+			clsScreen::_PrintMenuOption(colorText("\t   Manage Users Menu", "green"));
 			_EManageUsersMenu(); // Show the menu options 
 			std::cout << setw(37) << left << "" << "Enter Option";
 			option = _PerformMenuOption((_enManagUsers)clsInputAndValidation::enter_number_from_to(1,6,""));
