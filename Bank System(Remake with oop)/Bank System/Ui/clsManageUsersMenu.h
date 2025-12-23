@@ -36,10 +36,32 @@ private:
 		cout << "\n\t\t\t" << "Will Be List Users Screen\n";
 	}
 
-	static void _AddNewClientScreen()
+	//2 () 
+	static void _AddNewUsersScreen()
 	{
 		cout << "\n\t\t\t" << "Will Be Add New Users Screen\n";
 	}
+
+	//3 ()
+	static void _DeleteUsersScreen()
+	{
+		cout << "\n\t\t\t" << "Will Be  Delete Users Screen\n";
+	}
+
+
+	//4 ()
+	static void _UpdateUsersScreen()
+	{
+		cout << "\n\t\t\t" << "Will Be  Update Users Screen\n";
+	}
+
+	//5()
+	static void _FindUsersScreen() 
+	{
+		cout << "\n\t\t\t" << "Will Be  Find Users Screen\n";
+	}
+
+
 
 	static _enManagUsers _PerformMenuOption(_enManagUsers Option ) {
 		system("cls");
@@ -56,28 +78,28 @@ private:
 
 		case _enManagUsers::eAddNewUser: 
 		{
-			_AddNewClientScreen();
+			_AddNewUsersScreen();
 			_BackToManageUsersMenuAgain();
 			break;
 		};
 
 		case _enManagUsers::eDeleteUser: 
 		{
-
+			_DeleteUsersScreen();
 			_BackToManageUsersMenuAgain();
 			break;
 		}
 		
 		case _enManagUsers::eUpdateUser:
 		{
-
+			_UpdateUsersScreen();
 			_BackToManageUsersMenuAgain();
 			break;
 		}
 
 		case _enManagUsers::eFindUser:
 		{
-
+			_FindUsersScreen();
 			_BackToManageUsersMenuAgain();
 			break;
 		}
