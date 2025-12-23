@@ -31,6 +31,15 @@ private:
 		system("pause");
 	}
 	
+	//1 ()
+	static  void _ShowListUsersScreen() {
+		cout << "\n\t\t\t" << "Will Be List Users Screen\n";
+	}
+
+	static void _AddNewClientScreen()
+	{
+		cout << "\n\t\t\t" << "Will Be Add New Users Screen\n";
+	}
 
 	static _enManagUsers _PerformMenuOption(_enManagUsers Option ) {
 		system("cls");
@@ -40,14 +49,14 @@ private:
 
 		case _enManagUsers::eListUsers: 
 		{
-
+			_ShowListUsersScreen();
 			_BackToManageUsersMenuAgain();
 			break;
 		}
 
 		case _enManagUsers::eAddNewUser: 
 		{
-
+			_AddNewClientScreen();
 			_BackToManageUsersMenuAgain();
 			break;
 		};
@@ -78,7 +87,6 @@ private:
 			return _enManagUsers::eMainMenu;
 		}
 
-
 		}
 
 		return Option;
@@ -92,9 +100,10 @@ public:
 		while (option!= _enManagUsers::eMainMenu) 
 		{
 			system("cls");
-			clsScreen::_PrintMenuOption(colorText("\t\t\tManage UsersMenu\n", "green"));
+			clsScreen::_PrintMenuOption(colorText("\t   Manage UsersMenu", "green"));
 			_EManageUsersMenu(); // Show the menu options 
-			
+			std::cout << setw(37) << left << "" << "Enter Option";
+			option = _PerformMenuOption((_enManagUsers)clsInputAndValidation::enter_number_from_to(1,6,""));
 		}
 
 	}

@@ -147,7 +147,6 @@ class clsMainMenuScreen : protected clsScreen
 		case _enMainMenuOptions::eAdminScreen: { //7
 			//clsScreen::_PrintMenuOption(colorText("               Admin Screen", "orange"));
 			_ShowAdminScreen();		// call manage   screen 
-			_BackToMainMenuAgain();
 			break;
 		}
 
