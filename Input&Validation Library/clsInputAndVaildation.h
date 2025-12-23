@@ -127,7 +127,7 @@ static bool IsDateBetween(clsDate DtoCompare , clsDate d2 , clsDate d3) {
       return res;
   }
 
-   // enter postive number
+   // enter positive number
   static double enter_postive_number(string text) {
      bool vaild = false ;
      double n=0;
@@ -159,7 +159,7 @@ static bool IsDateBetween(clsDate DtoCompare , clsDate d2 , clsDate d3) {
      return n;
   }
 
-   // enter nmber in range
+   // enter number in range
    static double enter_number_from_to(double from,double to,string text) {
 
      double number=0;
@@ -176,7 +176,7 @@ static bool IsDateBetween(clsDate DtoCompare , clsDate d2 , clsDate d3) {
      return number;
   }
 
-   // enter nunmber in range (overloaded )
+   // enter number in range (overloaded )
    static double enter_number_from_to(double from, double to) {
      double number = 0;
      number = enter_number("");
