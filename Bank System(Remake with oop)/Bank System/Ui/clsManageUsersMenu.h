@@ -13,7 +13,7 @@ private:
 
 
 	static void _EManageUsersMenu() {
-
+		
 	//	std::cout << setw(37) << left << "" << "===========================================\n";
 		
 		//std::cout << setw(37) << left << "" << "===========================================\n";
@@ -122,6 +122,7 @@ public:
 		while (option!= _enManagUsers::eMainMenu) 
 		{
 			system("cls");
+			cout << "\n\n";
 			clsScreen::_PrintMenuOption(colorText("\t   Manage UsersMenu", "green"));
 			_EManageUsersMenu(); // Show the menu options 
 			std::cout << setw(37) << left << "" << "Enter Option";

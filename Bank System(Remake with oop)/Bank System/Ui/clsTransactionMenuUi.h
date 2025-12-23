@@ -14,10 +14,10 @@ private:
 	{	eNone=0,eDeposit=1,eWithDraw=2,eTotalBalances=3,eFindClientBalance=4,eTransferBetween2Clients=5,eBackToMainMenu=6};
 
 	static void _ETransactionsMenu() {
-		cout << "\n\n\n\n";
-		std::cout << setw(37) << left << "" << "===========================================\n";
-		std::cout << setw(37) << left << "" << colorText("\t\t\Transactions Menu\n","orange");
-		std::cout << setw(37) << left << "" << "===========================================\n";
+	
+		//std::cout << setw(37) << left << "" << "===========================================\n";
+		//std::cout << setw(37) << left << "" << colorText("\t\t\Transactions Menu\n","orange");
+		//std::cout << setw(37) << left << "" << "===========================================\n";
 		std::cout << setw(37) << left << "" << "\t[1] Deposit.\n";
 		std::cout << setw(37) << left << "" << "\t[2] WithDraw.\n";
 		std::cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
@@ -120,6 +120,8 @@ public :
 		while (Option != _enTransactionMenuElements::eBackToMainMenu) // if the option isn't main menu just call them again 
 		{
 			system("cls");
+			cout << "\n\n";
+			clsScreen::_PrintMenuOption(colorText("\t  Transactions Menu", "orange"));
 			_ETransactionsMenu(); // show elements of menu 
 			std::cout << setw(37) << left << "" << "Enter Option";
 			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::enter_number_from_to(1, 6, ""));
