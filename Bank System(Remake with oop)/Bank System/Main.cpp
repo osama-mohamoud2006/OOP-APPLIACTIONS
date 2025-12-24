@@ -28,10 +28,11 @@ void FindUser()
 
 	while (!( clsUser::FindUserAndReturnObj_If_exist(UserName,user) )  )  // if it isn't existing 
 	{
+		screen_color(red); 
 		cout << "\n\t\t\t\t\aThe Username " << UserName << " isn't existing !\n";
 		UserName = clsInputAndValidation::read_string("\n\t\t\t\tEnter Another Username : ");
 	}
-
+	system("color 0F");
 	cout<< "the User is found successfully \n";
 	PrintUserInfo(user);
 
