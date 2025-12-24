@@ -10,7 +10,13 @@ using namespace std;
 
 int main() {
 
-clsMainMenuScreen::_ShowMainMenuScreen();
+
+///clsMainMenuScreen::_ShowMainMenuScreen();
+
+	clsUser User1 = clsUser::ReturnEmptyObjForInitializingUser();
+	string line = "username #//# password  #//#  permissions  #//# first name #//# last name  #//# email #//# phone ";
+	User1._AddLineToFile(line); 
+
 		 return 0;
 
 }

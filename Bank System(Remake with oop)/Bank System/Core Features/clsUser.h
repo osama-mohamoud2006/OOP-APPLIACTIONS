@@ -13,12 +13,19 @@ private :
 	enum _enMode {enEmptyMode=1 , enUpdateMode=2 , enAddMode =3 };
 
 	_enMode _CurrentMode;
+	
+
+	static void ThrowExceptionCouldnotOpenFile() {
+		throw::invalid_argument("failed to open/read file\a");
+	}
 
 public:
 	// Parametrized Constructor 
-	clsUser(string FirstName, string LastName, string Email, string Phone, // for clsPerson 
-		_enMode Mode,string Username , string  Password , int Permissions) :
-		clsPerson(FirstName, LastName, Email, Phone) 
+
+	
+	clsUser( _enMode Mode, string Username, string  Password, int Permissions
+		,string FirstName, string LastName, string Email, string Phone ) :
+	clsPerson(FirstName, LastName, Email, Phone) 
 	{	
 		this->_CurrentMode = Mode;
 		this->_Username = Username;
@@ -60,18 +67,54 @@ public:
 
 	
 	// Important Methods to use
+
 	bool IsEmpty() 
 	{
 		return (_CurrentMode == _enMode::enEmptyMode); 
 	}
 
-private:
-	// record sample : username#//#first name#//# last name#//# password #//# permissions 
-	
-	string _ConvertObjectToLine( const clsUser & User) 
+public :
+
+	static clsUser ReturnEmptyObjForInitializingUser() 
 	{
-		return ()
+		return clsUser(_enMode::enEmptyMode, "", "", 0, "", "", "", "");
 	}
+
+
+private :
+
+public :
+	// record sample : username #//# password  #//#  permissions  #//# first name #//# last name  #//# email #//# phone 
+	
+	 string _ConvertObjectToLine( const clsUser & User) 
+	{
+		return (User._Username + _Delmi  + User._Password +_Delmi + to_string(User._Permissions) + _Delmi + User.GetFirstName() + _Delmi + User.GetLastName() + _Delmi + User.GetEmail() + _Delmi + User.GetPhone());
+	}
+
+	 clsUser _ConvertLineToObject(const string & UserRecordLine) 
+	{
+		clsString::SetDelmi(_Delmi);
+		vector <string> RecordIntoVector =clsString::SplitString(UserRecordLine);
+
+		return  clsUser(_enMode::enUpdateMode, RecordIntoVector.at(0), RecordIntoVector.at(1), stoi(RecordIntoVector.at(2)), RecordIntoVector.at(3), RecordIntoVector.at(4), RecordIntoVector.at(4), RecordIntoVector.at(5) ) ; 
+	}
+
+	 void _AddLineToFile(string Line) 
+	 {
+		 fstream Write; // write mode to write on file
+		 Write.open(_FileName, ios::out | ios::app);
+		 if (Write.is_open() ) 
+		 {
+			 Write << Line << endl; 
+			 Write.close();
+		}
+		 else 
+		 {
+			 ThrowExceptionCouldnotOpenFile();
+		 }
+
+	 }
+
 
 
 
