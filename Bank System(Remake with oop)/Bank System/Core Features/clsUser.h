@@ -73,25 +73,16 @@ public:
 		return (_CurrentMode == _enMode::enEmptyMode); 
 	}
 
-public :
-
-	static clsUser ReturnEmptyObjForInitializingUser() 
-	{
-		return clsUser(_enMode::enEmptyMode, "", "", 0, "", "", "", "");
-	}
-
 
 private :
-
-public :
 	// record sample : username #//# password  #//#  permissions  #//# first name #//# last name  #//# email #//# phone 
 	
-	 string _ConvertObjectToLine( const clsUser & User) 
+	static  string _ConvertObjectToLine( const clsUser & User) 
 	{
 		return (User._Username + _Delmi  + User._Password +_Delmi + to_string(User._Permissions) + _Delmi + User.GetFirstName() + _Delmi + User.GetLastName() + _Delmi + User.GetEmail() + _Delmi + User.GetPhone());
 	}
 
-	 clsUser _ConvertLineToObject(const string & UserRecordLine) 
+	static  clsUser _ConvertLineToObject(const string & UserRecordLine) 
 	{
 		clsString::SetDelmi(_Delmi);
 		vector <string> RecordIntoVector =clsString::SplitString(UserRecordLine);
@@ -114,6 +105,101 @@ public :
 		 }
 
 	 }
+
+	 static vector<clsUser> _LoadFileOnVector() {
+
+		 vector<clsUser> Records;
+		 fstream Read;
+		 Read.open(_FileName, ios::in);
+		 if (Read.is_open())
+		 {
+			 string Record = "";
+			 while (getline(Read, Record))
+			 {
+				 Records.push_back(_ConvertLineToObject(Record) ); // read file line by line then push it to file 
+			 }
+			 Read.close();
+		 }
+		 else { ThrowExceptionCouldnotOpenFile(); }
+		return Records;
+	 }
+
+	 static clsUser _EmptyObj() {
+		 return clsUser(_enMode::enEmptyMode, "", "", 0, "", "", "", "");
+	 }
+
+	 public:
+
+		 static clsUser ReturnEmptyObjForInitializingUser()
+		 {
+			 return _EmptyObj();
+		 }
+
+		 ////                                                                Find                                                                                                               ////
+
+		 static clsUser FindUser(const string &  UserNameOFUserToFind) 
+		 {
+			 // 1: load file on vector , 2 make for loop vector , 3 check if the account number of obj is exist in vector if okay return true , else return false 
+			 vector<clsUser> Records = _LoadFileOnVector();
+			 fstream Read;
+			 Read.open(_FileName, ios::in);
+			 if (Read.is_open()) 
+			 {
+				 for (clsUser& User : Records) 
+				 {
+					 if (User._Username == UserNameOFUserToFind) {
+						 Read.close();
+						 return User;
+					 }
+				 }
+
+				 return _EmptyObj();
+			 }
+			 else { ThrowExceptionCouldnotOpenFile(); }
+		 }
+		 static clsUser FindUser(const string& UserNameOFUserToFind , const string &Password )
+		 {
+			 // 1: load file on vector , 2 make for loop vector , 3 check if the account number of obj is exist in vector if okay return true , else return false 
+			 vector<clsUser> Records = _LoadFileOnVector();
+			 fstream Read;
+			 Read.open(_FileName, ios::in);
+			 if (Read.is_open())
+			 {
+				 for (clsUser& User : Records)
+				 {
+					 if (User._Username == UserNameOFUserToFind && User._Password == Password ) {
+						 Read.close();
+						 return User;
+					 }
+				 }
+
+				 return _EmptyObj();
+			 }
+			 else { ThrowExceptionCouldnotOpenFile(); }
+		 }
+
+		 static bool IsUserExist(const string& UserNameOFUserToFind) 
+		 {
+			 clsUser User = FindUser(UserNameOFUserToFind);
+			 return  (!(User.IsEmpty())) ? true : false;
+		 }
+		 static bool IsUserExist(const string& UserNameOFUserToFind  , const string& Password)
+		 {
+			 clsUser User = FindUser(UserNameOFUserToFind, Password);
+			 return  (!(User.IsEmpty())) ? true : false;
+		 }
+
+		 static bool  FindUserAndReturnObj_If_exist(const string UserNameOFUserToFind , clsUser &User)
+		 {
+			  User= FindUser(UserNameOFUserToFind);
+			  return  (!( User.IsEmpty() )  ) ? true : false; 
+		 }
+
+		 static bool  FindUserAndReturnObj_If_exist(const string UserNameOFUserToFind, const string& Password,clsUser& User)
+		 {
+			 User = FindUser(UserNameOFUserToFind,Password);
+			 return  (!(User.IsEmpty())) ? true : false;
+		 }
 
 
 

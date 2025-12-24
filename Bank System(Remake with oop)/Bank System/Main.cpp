@@ -13,10 +13,14 @@ int main() {
 
 ///clsMainMenuScreen::_ShowMainMenuScreen();
 
-	clsUser User1 = clsUser::ReturnEmptyObjForInitializingUser();
-	string line = "username #//# password  #//#  permissions  #//# first name #//# last name  #//# email #//# phone ";
-	User1._AddLineToFile(line); 
+	//clsUser User1 = clsUser::ReturnEmptyObjForInitializingUser();
+	//string line = "username#//#password#//#0#//#first name#//# last name#//#email#//#phone";
+	//User1._AddLineToFile(line); 
+	//User1._ConvertLineToObject(line); 
 
+	clsUser user = clsUser::ReturnEmptyObjForInitializingUser();
+		 clsUser::FindUserAndReturnObj_If_exist("Admin", user);
+		cout << user.GetUserName() << endl; 
 		 return 0;
 
 }
