@@ -189,13 +189,12 @@ private :
 			 return  (!(User.IsEmpty())) ? true : false;
 		 }
 
-		 static bool  FindUserAndReturnObj_If_exist(const string UserNameOFUserToFind , clsUser &User)
+		 static bool  FindUserAndReturnObj_If_exist(const string &UserNameOFUserToFind , clsUser &User)
 		 {
 			  User= FindUser(UserNameOFUserToFind);
 			  return  (!( User.IsEmpty() )  ) ? true : false; 
 		 }
-
-		 static bool  FindUserAndReturnObj_If_exist(const string UserNameOFUserToFind, const string& Password,clsUser& User)
+		 static bool  FindUserAndReturnObj_If_exist(const string &UserNameOFUserToFind, const string& Password,clsUser& User)
 		 {
 			 User = FindUser(UserNameOFUserToFind,Password);
 			 return  (!(User.IsEmpty())) ? true : false;
