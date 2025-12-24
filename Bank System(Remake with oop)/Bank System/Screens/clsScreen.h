@@ -18,13 +18,13 @@ protected:
     }
 
     // PrintBasicPersonData person data 
-    static  void PrintBasicPersonData(const clsBankClient &client) {
+ /*   static  void PrintBasicPersonData(const clsBankClient &client) {
         std::cout << "\nThe First Name is : " << client.GetFirstName() << endl;
         std::cout << "The Last Name  is : " << client.GetLastName() << endl;
         std::cout << "The Email is : " << client.GetEmail() << endl;
         std::cout << "The Phone Number is : " << client.GetPhone() << endl;
 
-    }
+    }*/
 
 
 
