@@ -90,22 +90,6 @@ private :
 		return  clsUser(_enMode::enUpdateMode, RecordIntoVector.at(0), RecordIntoVector.at(1), stoi(RecordIntoVector.at(2)), RecordIntoVector.at(3), RecordIntoVector.at(4), RecordIntoVector.at(4), RecordIntoVector.at(5) ) ; 
 	}
 
-	 void _AddLineToFile(string Line) 
-	 {
-		 fstream Write; // write mode to write on file
-		 Write.open(_FileName, ios::out | ios::app);
-		 if (Write.is_open() ) 
-		 {
-			 Write << Line << endl; 
-			 Write.close();
-		}
-		 else 
-		 {
-			 ThrowExceptionCouldnotOpenFile();
-		 }
-
-	 }
-
 	 static vector<clsUser> _LoadFileOnVector() {
 
 		 vector<clsUser> Records;
@@ -135,7 +119,7 @@ private :
 			 return _EmptyObj();
 		 }
 
-		 ////                                                                Find                                                                                                               ////
+		 ////                                                                                             Find                                                                                                               ////
 
 		 static clsUser FindUser(const string &  UserNameOFUserToFind) 
 		 {
@@ -183,6 +167,7 @@ private :
 			 clsUser User = FindUser(UserNameOFUserToFind);
 			 return  (!(User.IsEmpty())) ? true : false;
 		 }
+
 		 static bool IsUserExist(const string& UserNameOFUserToFind  , const string& Password)
 		 {
 			 clsUser User = FindUser(UserNameOFUserToFind, Password);
@@ -199,6 +184,78 @@ private :
 			 User = FindUser(UserNameOFUserToFind,Password);
 			 return  (!(User.IsEmpty())) ? true : false;
 		 }
+
+
+
+
+		 //Save For [ add  , update ]
+
+		 public:
+			static  enum enSave {enSavedSuccessfully=1 , enFailedOrEmptyToSave =2 , enUsernameExists =3 };
+			 //Save To file and return enum for knowing the status 
+			 enSave Save() 
+			 {
+				 switch ( _CurrentMode )
+				 {
+
+				 case _enMode::enUpdateMode: 
+				 {
+					 return enSavedSuccessfully;
+				 }
+
+				 case _enMode::enEmptyMode:
+				 {
+					 return enFailedOrEmptyToSave;
+				 }
+
+				 case _enMode::enAddMode:
+				 {
+					 if (this->IsEmpty()) return enFailedOrEmptyToSave; // failed to add
+					 else {
+						 if( !IsUserExist(this->_Username) ) // check if it isn't exist then save 
+						 {
+							 _AddNewUser();
+							 _CurrentMode = enUpdateMode; //rest it
+							 return enSavedSuccessfully;
+
+						 }
+						 else {return  enUsernameExists; }
+					 }
+				 }
+
+				 }
+
+			 }
+			
+
+
+			 //////                                                                                            Add User                                                                   ////
+
+			static clsUser InitializeToAddNewUser() {
+				 return clsUser(enAddMode, "", "", 0, "", "", "", "");
+			 }
+
+		 private :
+			 void _AddLineToFile(string Line)
+			 {
+				 fstream Write; // write mode to write on file
+				 Write.open(_FileName, ios::out | ios::app);
+				 if (Write.is_open())
+				 {
+					 Write << Line << endl;
+					 Write.close();
+				 }
+				 else
+				 {
+					 ThrowExceptionCouldnotOpenFile();
+				 }
+
+			 }
+
+			 void _AddNewUser() 
+			 {
+				 _AddLineToFile(_ConvertObjectToLine(*this));
+			 }
 
 
 
