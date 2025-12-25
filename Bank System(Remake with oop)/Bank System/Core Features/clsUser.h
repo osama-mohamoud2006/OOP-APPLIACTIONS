@@ -142,13 +142,17 @@ private :
 			 if (Read.is_open()) 
 			 {
 				 string Record = "";
-				 while (getline(Read, Record)) 
+				 while (getline(Read, Record))
 				 {
-					 clsUser Temp = _ConvertLineToObject(Record); 
+					 clsUser Temp = _ConvertLineToObject(Record);
 					 if (Temp._Username == UserNameOFUserToFind) {
 						 Read.close();
 						 return Temp;
 					 }
+				 
+
+
+
 				 }
 				
 				          Read.close();
@@ -158,31 +162,34 @@ private :
 			else   ThrowExceptionCouldnotOpenFile(); 
 			 }
 			  
-		 
 		 static clsUser FindUser(const string& UserNameOFUserToFind , const string &Password )
 		 {
 			 // 1: load file on vector , 2 make for loop vector , 3 check if the account number of obj is exist in vector if okay return true , else return false 
-			 vector<clsUser> Records = _LoadFileOnVector();
+
 			 fstream Read;
 			 Read.open(_FileName, ios::in);
 			 if (Read.is_open())
 			 {
-				 for (clsUser& User : Records)
+				 string Record = "";
+				 while (getline(Read, Record))
 				 {
-					 if (User._Username == UserNameOFUserToFind && User._Password == Password ) {
+					 clsUser Temp = _ConvertLineToObject(Record);
+					 if (Temp._Username == UserNameOFUserToFind  && Temp._Password == Password ) {
 						 Read.close();
-						 return User;
+						 return Temp;
 					 }
 				 }
 
+				 Read.close();
 				 return _EmptyObj();
 			 }
-			 else { ThrowExceptionCouldnotOpenFile(); }
+
+			 else   ThrowExceptionCouldnotOpenFile();
 		 }
 
 		 static bool IsUserExist(const string& UserNameOFUserToFind) 
 		 {
-			 clsUser User = FindUser(UserNameOFUserToFind);
+			 clsUser User = FindUser(UserNameOFUserToFind); // empty (empty )
 			 return  (!(User.IsEmpty())) ? true : false;
 		 }
 
@@ -203,7 +210,10 @@ private :
 			 return  (!(User.IsEmpty())) ? true : false;
 		 }
 
-
+		 private:
+			 bool _CheckBeforeSaveForAddUser() { // if the data members are empty then return false 
+				return  (this->_Username == "" || this->_Password == "" || this->GetPhone() == "" || this->GetFullName() == "") ? true : false; 
+			 }
 
 
 		 //Save For [ add  , update ]
@@ -228,10 +238,12 @@ private :
 
 				 case _enMode::enAddMode:
 				 {
+
 					 if (this->IsEmpty()) return enFailedOrEmptyToSave; // failed to add
 					 else {
 						 if( !IsUserExist(this->_Username) ) // check if it isn't exist then save 
 						 {
+							 if(_CheckBeforeSaveForAddUser() ) return enFailedOrEmptyToSave; // failed to add
 							 _AddNewUser();
 							 _CurrentMode = enUpdateMode; //rest it
 							 return enSavedSuccessfully;

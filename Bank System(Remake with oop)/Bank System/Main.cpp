@@ -95,9 +95,12 @@ void AddNewUser() {
         Username = clsInputAndValidation::read_string("\n\t\t\t\tEnter Username: ");
     }
     system("color 0F"); // rest color 
+
     user = clsUser::InitializeToAddNewUser(); 
+
     user.SetUsername(Username);
-    AddNewUser(user);
+   AddNewUser(user);
+
     clsUser::enSave SaveReuslts;
     SaveReuslts= user.Save();
     
@@ -172,10 +175,10 @@ void DeleteUser()
 int main() {
 
 
-clsMainMenuScreen::_ShowMainMenuScreen();
+//clsMainMenuScreen::_ShowMainMenuScreen();
 
 	//FindUser();
-    // AddNewUser();
+    AddNewUser();
     //UpdateUser();
     //DeleteUser();
 }
