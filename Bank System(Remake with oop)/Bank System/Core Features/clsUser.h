@@ -87,7 +87,7 @@ private :
 		clsString::SetDelmi(_Delmi);
 		vector <string> RecordIntoVector =clsString::SplitString(UserRecordLine);
 
-		return  clsUser(_enMode::enUpdateMode, RecordIntoVector.at(0), RecordIntoVector.at(1), stoi(RecordIntoVector.at(2)), RecordIntoVector.at(3), RecordIntoVector.at(4), RecordIntoVector.at(4), RecordIntoVector.at(5) ) ; 
+		return  clsUser(_enMode::enUpdateMode, RecordIntoVector.at(0), RecordIntoVector.at(1), stoi(RecordIntoVector.at(2)), RecordIntoVector.at(3), RecordIntoVector.at(4), RecordIntoVector.at(5), RecordIntoVector.at(6) ) ; 
 	}
 
 	 static vector<clsUser> _LoadFileOnVector() {
@@ -310,7 +310,9 @@ private :
 
 					 ///                                                     For listing Or What Ever                                            ///////////
 					 public:
-
+						 vector<clsUser> LoadTheWholeFileOnVector() {
+							 return _LoadFileOnVector();
+						 }
 };
 
 string clsUser::_Delmi = "#//#";
