@@ -117,7 +117,7 @@ private :
 		 write.open(_FileName, ios::out);
 		 if (write.is_open()) {
 			 for (clsUser u : Users) {
-				 write << _ConvertObjectToLine(u) << endl;
+				 if(!u._GetTrueIfMarkedForDelete() )write << _ConvertObjectToLine(u) << endl;
 			 }
 		 }
 		 else { ThrowExceptionCouldnotOpenFile(); }
@@ -284,6 +284,32 @@ private :
 
 				 _UpdateFile(Load);
 			 }
+
+
+			 //                                                                                                Delete                                                                                                                   ///
+
+			 private:
+				 bool _MarkForDelete = false;
+
+				 void _SetAsMarkedForDeletion() {
+					 _MarkForDelete = true;
+				 }
+				 bool _GetTrueIfMarkedForDelete() {
+					 return (_MarkForDelete == true);
+				 }
+
+				 public:
+					 void Delete() 
+					 {
+						 vector<clsUser> Data = _LoadFileOnVector();
+						 for (clsUser& User : Data) { if (User.GetUserName() == this->_Username) User._SetAsMarkedForDeletion(); };
+						 *this = _EmptyObj();
+						 _UpdateFile(Data);
+					 }
+
+
+					 ///                                                     For listing Or What Ever                                            ///////////
+					 public:
 
 };
 
