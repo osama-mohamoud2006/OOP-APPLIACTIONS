@@ -6,7 +6,7 @@ class clsUser : public clsPerson {
 private :
 	static string _FileName;
 	static string _Delmi; 
-	string _Username;
+	string _Username; // PK 
 	string _Password;
 	int _Permissions; /// it is in bin but will represent it in dec number and using bitwise operator we will make operations on bin level 
 
@@ -15,7 +15,8 @@ private :
 	_enMode _CurrentMode;
 	
 
-	static void ThrowExceptionCouldnotOpenFile() {
+    static void ThrowExceptionCouldnotOpenFile()
+	{
 		throw::invalid_argument("failed to open/read file\a");
 	}
 
@@ -117,7 +118,7 @@ private :
 		 write.open(_FileName, ios::out);
 		 if (write.is_open()) {
 			 for (clsUser u : Users) {
-				 if(!u._GetTrueIfMarkedForDelete() )write << _ConvertObjectToLine(u) << endl;
+				 if(!u._GetTrueIfMarkedForDelete() ) write << _ConvertObjectToLine(u) << endl;
 			 }
 		 }
 		 else { ThrowExceptionCouldnotOpenFile(); }
@@ -135,23 +136,29 @@ private :
 		 static clsUser FindUser(const string &  UserNameOFUserToFind) 
 		 {
 			 // 1: load file on vector , 2 make for loop vector , 3 check if the account number of obj is exist in vector if okay return true , else return false 
-			 vector<clsUser> Records = _LoadFileOnVector();
+		
 			 fstream Read;
 			 Read.open(_FileName, ios::in);
 			 if (Read.is_open()) 
 			 {
-				 for (clsUser& User : Records) 
+				 string Record = "";
+				 while (getline(Read, Record)) 
 				 {
-					 if (User._Username == UserNameOFUserToFind) {
+					 clsUser Temp = _ConvertLineToObject(Record); 
+					 if (Temp._Username == UserNameOFUserToFind) {
 						 Read.close();
-						 return User;
+						 return Temp;
 					 }
 				 }
+				
+				          Read.close();
+						 return _EmptyObj();
+				 }
 
-				 return _EmptyObj();
+			else   ThrowExceptionCouldnotOpenFile(); 
 			 }
-			 else { ThrowExceptionCouldnotOpenFile(); }
-		 }
+			  
+		 
 		 static clsUser FindUser(const string& UserNameOFUserToFind , const string &Password )
 		 {
 			 // 1: load file on vector , 2 make for loop vector , 3 check if the account number of obj is exist in vector if okay return true , else return false 

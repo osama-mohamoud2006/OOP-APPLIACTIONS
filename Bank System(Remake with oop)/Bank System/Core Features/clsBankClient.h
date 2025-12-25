@@ -133,6 +133,7 @@ public:
                      }
                       
                      // if it didn't find the desired AccountNumber in file 
+                     Read.close();
                     return _ReturnEmptyObject();
                    }
                      static clsBankClient Find(string AccountNumber,string Pin) {
@@ -160,6 +161,7 @@ public:
                        }
 
                        // if it didn't find the desired AccountNumber in file
+                       Read.close();
                        return _ReturnEmptyObject();
                      }
 
