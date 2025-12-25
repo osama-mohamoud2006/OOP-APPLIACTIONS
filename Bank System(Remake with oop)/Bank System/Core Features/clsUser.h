@@ -112,6 +112,17 @@ private :
 		 return clsUser(_enMode::enEmptyMode, "", "", 0, "", "", "", "");
 	 }
 
+	 static void _UpdateFile(vector<clsUser> & Users ) {
+		 fstream write;
+		 write.open(_FileName, ios::out);
+		 if (write.is_open()) {
+			 for (clsUser u : Users) {
+				 write << _ConvertObjectToLine(u) << endl;
+			 }
+		 }
+		 else { ThrowExceptionCouldnotOpenFile(); }
+	 }
+
 	 public:
 
 		 static clsUser ReturnEmptyObjForInitializingUser()
@@ -258,7 +269,21 @@ private :
 			 }
 
 
+			    ////                                                                                Update                                                                                                                                   /////////
+			 public:
+			 void Update() 
+			 {
+				 vector<clsUser> Load = _LoadFileOnVector();
+				 for (clsUser& User : Load) {
+					 if (User._Username == this->_Username) 
+					 {
+						 User = *this;
+						 break; 
+					 }
+				 }
 
+				 _UpdateFile(Load);
+			 }
 
 };
 

@@ -117,6 +117,31 @@ void AddNewUser() {
 }
 
 
+void UpdateUser() {
+
+    clsUser user = clsUser::ReturnEmptyObjForInitializingUser();
+    string Username = "";
+    Username = clsInputAndValidation::read_string("\n\t\t\t\tEnter Username: ");
+
+    while (! clsUser::FindUserAndReturnObj_If_exist(Username, user))  // if the user exists 
+    {
+        screen_color(red);
+        cout << "\n\n\t\t\t\tThe User " << Username << " isn't Exists!\a\n";
+        Username = clsInputAndValidation::read_string("\n\t\t\t\tEnter Username: ");
+    }
+    system("color 0F"); // rest color 
+    user = clsUser::InitializeToAddNewUser();
+    user.SetUsername(Username);
+    AddNewUser(user);
+    user.Update();
+    
+
+
+    
+
+}
+
+
 int main() {
 
 
@@ -124,4 +149,6 @@ int main() {
 
 	//FindUser();
     // AddNewUser();
+    UpdateUser();
+
 }
