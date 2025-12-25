@@ -282,8 +282,12 @@ public:
 
         }
 
+         private :
+             bool _CheckBeforeAddClient() {
+				 return (GetAccountNumber() == "" || GetPin() == "" || GetBalance() < 0.0 || GetFirstName() == "" || GetLastName() == "" || GetEmail() == "" || GetPhone() == "") ? true : false;
+             }
+
         public:
-      
             enum enSaveMode {FailedOrEmptyObj=0,SuccessedToSave=1,AccountNumberExists=3};
 
             //this method check if it is empty object then update will be failed other wise it will update normally
@@ -303,6 +307,10 @@ public:
                         return   enSaveMode::AccountNumberExists; 
                     }
                     else {
+                        if (_CheckBeforeAddClient()) {
+                            _Mode = _enMode::enEmptyClientObject; //rest it
+                            return enSaveMode::FailedOrEmptyObj; //  failure  
+                        }
                         _AddNewClientToFile(); // take the current obj and throw it in file 
                         _Mode = _enMode::enUpdateClient; /// rest it 
                         return enSaveMode::SuccessedToSave;

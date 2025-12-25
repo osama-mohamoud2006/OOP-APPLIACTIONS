@@ -212,7 +212,7 @@ private :
 
 		 private:
 			 bool _CheckBeforeSaveForAddUser() { // if the data members are empty then return false 
-				return  (this->_Username == "" || this->_Password == "" || this->GetPhone() == "" || this->GetFullName() == "") ? true : false; 
+				return  (this->_Username == "" || this->_Password == "" || this->GetPhone() == "" || this->GetFullName() == "" ) ? true : false; 
 			 }
 
 
@@ -243,13 +243,16 @@ private :
 					 else {
 						 if( !IsUserExist(this->_Username) ) // check if it isn't exist then save 
 						 {
-							 if(_CheckBeforeSaveForAddUser() ) return enFailedOrEmptyToSave; // failed to add
+							 if(_CheckBeforeSaveForAddUser() ) {
+								 _CurrentMode = enEmptyMode; //rest it
+								 return enFailedOrEmptyToSave; // failed to add
+							 }
 							 _AddNewUser();
 							 _CurrentMode = enUpdateMode; //rest it
 							 return enSavedSuccessfully;
 
 						 }
-						 else {return  enUsernameExists; }
+						 else return  enUsernameExists; 
 					 }
 				 }
 
@@ -296,7 +299,7 @@ private :
 				 for (clsUser& User : Load) {
 					 if (User._Username == this->_Username) 
 					 {
-						 User = *this;
+						 User = *this; // set the updated obj to the vector obj
 						 break; 
 					 }
 				 }
