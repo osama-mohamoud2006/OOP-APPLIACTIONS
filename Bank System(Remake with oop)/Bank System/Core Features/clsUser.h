@@ -332,7 +332,7 @@ private :
 
 					 ///                                                     For listing Or What Ever                                            ///////////
 					 public:
-						 vector<clsUser> LoadTheWholeFileOnVector() {
+					static	 vector<clsUser> LoadTheWholeFileOnVector() {
 							 return _LoadFileOnVector();
 						 }
 };

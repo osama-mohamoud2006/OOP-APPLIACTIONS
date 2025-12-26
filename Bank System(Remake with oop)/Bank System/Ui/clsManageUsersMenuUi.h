@@ -1,7 +1,7 @@
 #pragma once 
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsScreen.h"
-
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsListUsersScreen.h""
 
 class clsMangeUsersMenu  : protected clsScreen 
 {
@@ -31,9 +31,10 @@ private:
 		system("pause");
 	}
 	
-	//1 ()
+	//1 (done )
 	static  void _ShowListUsersScreen() {
-		cout << "\n\t\t\t" << "Will Be List Users Screen\n";
+		/*cout << "\n\t\t\t" << "Will Be List Users Screen\n";*/
+		clsListUsersScreen::ListUsersScreen();
 	}
 
 	//2 () 
@@ -123,7 +124,7 @@ public:
 		{
 			system("cls");
 			cout << "\n\n";
-			clsScreen::_PrintMenuOption(colorText("\t   Manage Users Menu", "green"));
+			clsScreen::_PrintMenuOption(colorText("\t  Manage Users Menu", "green"));
 			_EManageUsersMenu(); // Show the menu options 
 			std::cout << setw(37) << left << "" << "Enter Option";
 			option = _PerformMenuOption((_enManagUsers)clsInputAndValidation::enter_number_from_to(1,6,""));

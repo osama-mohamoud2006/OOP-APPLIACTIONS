@@ -175,10 +175,12 @@ void DeleteUser()
 int main() {
 
 
-//clsMainMenuScreen::_ShowMainMenuScreen();
+  //clsMainMenuScreen::_ShowMainMenuScreen();
+
+    clsMangeUsersMenu::ShowManageUsersMenu();
 
 	//FindUser();
-    AddNewUser();
+  //  AddNewUser();
     //UpdateUser();
     //DeleteUser();
 }
