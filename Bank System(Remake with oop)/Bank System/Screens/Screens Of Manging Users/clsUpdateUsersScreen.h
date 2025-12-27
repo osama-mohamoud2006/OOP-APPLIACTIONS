@@ -26,35 +26,37 @@ private:
 
     static void _PerformAccordingTheOrder(_enUpdateSpecific WhatWillbeChanged, clsUser& Temp)
     {
-        cout << "\n\n";
+        system("cls");
+        clsScreen::_PrintMenuOption(colorText("        Updating.....", "cyan")); // Menu Option
+
         string DataToFill = "";
         switch (WhatWillbeChanged)
         {
 
         case   _enUpdateSpecific::enChageName: {
 
-            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\tEnter New First Name: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter New First Name: ");
             Temp.SetFirstName(DataToFill);
-            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\tEnter New Last Name: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter New Last Name: ");
             Temp.SetLastName(DataToFill);
 
             break;
         }
 
         case  _enUpdateSpecific::enChangePassword: {
-            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\tEnter New Pin number: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter New Pin number: ");
             Temp.SetPassword(DataToFill);
             break;
         }
 
         case _enUpdateSpecific::enchangeEmail: {
-            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\tEnter Email: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Email: ");
             Temp.SetEmail(DataToFill);
             break;
         }
 
         case  _enUpdateSpecific::enChangePhoneNumber: {
-            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\tEnter New Phone number: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter New Phone number: ");
             Temp.SetPhone(DataToFill);
             break;
         }
@@ -95,7 +97,6 @@ private:
     static void _FillToUpdateUser(clsUser& User) {
 
         string Data = "";
-        cout << "\n\n";
         Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter Password: ");
         User.SetPassword(Data);
 
@@ -118,7 +119,7 @@ private:
     }
 
     static void _PrintFailure() {
-        cout << "\n\n";
+        system("cls");
         cout << setw(37) << left << "" << colorText("================================================", "red") << "\n";
         cout << setw(37) << left << "" << "             " << colorText(">> FAILED <<", "red") << "\n";
         cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
@@ -126,7 +127,7 @@ private:
         cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
     }
     static void _PrintSuccess() {
-        cout << "\n\n";
+        system("cls");
         cout << setw(37) << left << "" << colorText("================================================", "green") << "\n";
         cout << setw(37) << left << "" << "             " << colorText(">> SUCCESS <<", "green") << "\n";
         cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
@@ -161,7 +162,7 @@ public:
             if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Update All Data Of " + Username + " [y],[n]: "))
             {
                 system("cls");
-                clsScreen::_PrintMenuOption(colorText("             Updating User ", "orange"));
+                clsScreen::_PrintMenuOption(colorText("            Updating User ", "orange"));
                 _FillToUpdateUser(user);
             }
             else

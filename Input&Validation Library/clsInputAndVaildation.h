@@ -6,6 +6,8 @@
 #include <ctime>
 #include <limits>
 #include<fstream>
+#include <cctype>
+
 
 
 class clsInputAndValidation  {
@@ -231,8 +233,13 @@ bool res = ! (    (d.GetD()  <=0 )|| ( d.GetD()  > d.NumberOfDaysInMonth( d.GetY
    // return true if 'Y' or 'y'
    static  bool Confirm(string message ) {
        char choice = ' ';
-       cout << message;
-       choice = clsInputAndValidation::EnterChar();
+
+       do {
+           cout << message;
+           choice = clsInputAndValidation::EnterChar(); // make the char toupper also 
+
+       } while (choice != 'N' && choice != 'Y');
+        
        return (choice == 'Y');
    }
 
