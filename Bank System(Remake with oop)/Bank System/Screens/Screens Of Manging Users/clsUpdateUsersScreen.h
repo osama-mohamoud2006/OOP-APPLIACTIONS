@@ -137,8 +137,8 @@ public:
         user = clsUser::InitializeForUpdatingUser(); // start Updating by Initializing the process 
         user.SetUsername(Username);
 
-        // If y then will update all data else will update what ever you choice 
-        if (clsInputAndValidation::Confirm("\n\n\t\t\t\tAre You Sure About Updating [y],[n]: ")) 
+        // If y then will start to update  all data or  will update according  you choice 
+        if (clsInputAndValidation::Confirm(colorText("\n\n\t\t\t\tAre You Sure About Updating [y],[n]: ","green")))
         {
 
             if (clsInputAndValidation::Confirm("\n\t\t\t\t\tDo You Want To Update All Data Of " + Username + " [y],[n]: "))
@@ -148,19 +148,29 @@ public:
             }
             else
             {
+                system("cls");
                 clsScreen::_PrintMenuOption(colorText("        Updating.....", "cyan")); // Menu Option
                 _ShowUpdateOptionsMenu(); // Show menu
                 _PerformAccordingTheOrder((_enUpdateSpecific)clsInputAndValidation::enter_number_from_to(1, 6, "\n\t\t\t\t\tEnter Option"), user);
             }
 
         }
+        else {
+            cout << colorText("\n\n\t\t\t\t\tNO CHANGE!\n","pink");
+        }
 
         
 
-        // After Finshing The Fill 
+        // After Fishing The Fill 
         clsUser::enSave SaveStatus;
         SaveStatus= user.Save();
  
+        switch (SaveStatus) 
+        {
+        case  clsUser::enSave::enSavedSuccessfully:
+
+        }
+
 
     }
 

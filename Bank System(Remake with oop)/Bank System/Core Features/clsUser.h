@@ -232,7 +232,7 @@ private :
 				 case _enMode::enUpdateMode: 
 				 {
 					 Update();
-					// return enSavedSuccessfully;
+					 return enSavedSuccessfully;
 				 }
 
 				 case _enMode::enEmptyMode:
