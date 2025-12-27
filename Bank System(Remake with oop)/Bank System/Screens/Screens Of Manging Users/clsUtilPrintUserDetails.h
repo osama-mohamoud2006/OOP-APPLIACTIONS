@@ -1,4 +1,9 @@
-    static  void _PrintUserInfo(clsUser& user)
+#pragma once
+
+class clsUtilPrintUserDetails {
+
+public:
+    static  void  PrintUserInfo(clsUser& user)
     {
         // Get terminal width and calculate padding
         int terminalWidth = 120; // Adjust based on your terminal size
@@ -24,3 +29,5 @@
 
         cout << setw(leftPadding) << "" << colorText("================================================", "green") << "\n\n";
     }
+
+};
