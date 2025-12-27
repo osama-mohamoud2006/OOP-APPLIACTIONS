@@ -223,7 +223,7 @@ private :
 
 		 public:
 			static  enum enSave {enSavedSuccessfully=1 , enFailedOrEmptyToSave =2 , enUsernameExists =3 };
-			 //Save To file and return enum for knowing the status 
+			 //Save To file and return enum to know the status 
 			 enSave Save() 
 			 {
 				 switch ( _CurrentMode )
