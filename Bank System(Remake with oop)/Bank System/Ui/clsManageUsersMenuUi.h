@@ -18,13 +18,13 @@ private:
 	//	std::cout << setw(37) << left << "" << "===========================================\n";
 		
 		//std::cout << setw(37) << left << "" << "===========================================\n";
-		std::cout << setw(37) << left << "" << "\t[1] Show Users List.\n";
-		std::cout << setw(37) << left << "" << "\t[2] Add New User.\n";
-		std::cout << setw(37) << left << "" << "\t[3] Delete User.\n";
-		std::cout << setw(37) << left << "" << "\t[4] Update User Info.\n";
-		std::cout << setw(37) << left << "" << "\t[5] Find User.\n";
-		std::cout << setw(37) << left << "" << "\t[6] Back To Main Menu.\n";
-		std::cout << setw(37) << left << "" << "===========================================\n";
+		std::cout << setw(39) << left << " " << "\t[1] Show Users List.\n";
+		std::cout << setw(39) << left << " " << "\t[2] Add New User.\n";
+		std::cout << setw(39) << left << " " << "\t[3] Delete User.\n";
+		std::cout << setw(39) << left << " " << "\t[4] Update User Info.\n";
+		std::cout << setw(39) << left << " " << "\t[5] Find User.\n";
+		std::cout << setw(39) << left << " " << "\t[6] Back To Main Menu.\n";
+		std::cout << setw(37) << left << " " << "===========================================\n";
 
 	}
 	static  void  _BackToManageUsersMenuAgain() {
@@ -128,7 +128,8 @@ public:
 			cout << "\n\n";
 			clsScreen::_PrintMenuOption(colorText("\t  Manage Users Menu", "green"));
 			_EManageUsersMenu(); // Show the menu options 
-			std::cout << setw(37) << left << "" << "Enter Option";
+			cout << "\n";
+			std::cout << setw(39) << left << "" << "Enter Option";
 			option = _PerformMenuOption((_enManagUsers)clsInputAndValidation::enter_number_from_to(1,6,""));
 		}
 

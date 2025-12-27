@@ -6,23 +6,23 @@ class clsAddUsers : protected  clsScreen
 
 private:
 
-    static  int  _ReadUserPermission( )
+    static  int  _ReadUserPermission()
     {
         system("cls");
         clsScreen::_PrintMenuOption(colorText("        Adding Permissions To User", "orange"));
         int Permissions = 0;
-        if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"List Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eListClients;
-        if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Add Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eAddClient;
-            if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Delete Clients\" [y],[n] : "))Permissions |= clsUser::enUserPermission::eDeleteClient;
-                if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Update Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eUpdateClient;
-                   if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Find Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eFindClient;
-                      if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Do Transactions\"  : ")) Permissions |= clsUser::enUserPermission::eTransactions;
-                        if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Manage Users\"  : "))  Permissions |= clsUser::enUserPermission::eManageUsers;
+        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"List Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eListClients;
+        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Add Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eAddClient;
+        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Delete Clients\" [y],[n] : "))Permissions |= clsUser::enUserPermission::eDeleteClient;
+        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Update Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eUpdateClient;
+        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Find Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eFindClient;
+        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Do Transactions\"  : ")) Permissions |= clsUser::enUserPermission::eTransactions;
+        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Manage Users\"  : "))  Permissions |= clsUser::enUserPermission::eManageUsers;
 
-                        return Permissions;
+        return Permissions;
     }
 
-   static  void _PrintUserInfo(clsUser& user)
+    static  void _PrintUserInfo(clsUser& user)
     {
         // Get terminal width and calculate padding
         int terminalWidth = 120; // Adjust based on your terminal size
@@ -49,7 +49,7 @@ private:
         cout << setw(leftPadding) << "" << colorText("================================================", "green") << "\n\n";
     }
 
-   static void _FillNewUser(clsUser& User) {
+    static void _FillNewUser(clsUser& User) {
         string Data = "";
         cout << "\n\n";
         clsScreen::_PrintMenuOption(colorText("           Adding New User ", "green")); // will replace the clsScreen print option
@@ -70,9 +70,9 @@ private:
         User.SetPhone(Data);
 
         /// Will add permissions later 
-        if (clsInputAndValidation::Confirm(  colorText( "\n\t\t\tDo You Want To Set Full Permissions To This User[y],[n] : ","red") ) ) User.SetPermissions(-1);
+        if (clsInputAndValidation::Confirm(colorText("\n\n\n\t\t\t\tDo You Want To Set Full Permissions To This User[y],[n] : ", "red"))) User.SetPermissions(-1);
         else  User.SetPermissions(_ReadUserPermission());
-       
+
     }
 
 public:
@@ -118,7 +118,7 @@ public:
             case clsUser::enSave::enUsernameExists:
             {
                 system("cls");
-                string message = "\n\t\t\t\t\t\tUsername " + Username + " Exists " + "Failed To Save";
+                string message = "\n\t\t\t\t\t\t\aUsername " + Username + " Exists " + "Failed To Save";
                 cout << colorText(message, "red") << endl;
                 break;
             };
@@ -132,8 +132,8 @@ public:
 
             }
 
-        } while (clsInputAndValidation::Confirm(colorText("\n\n\t\t\tDO YOU WANT TO ADD MORE USERS[Y],[N]: ","green")));
-      
+        } while (clsInputAndValidation::Confirm(colorText("\n\n\t\t\t\t\tDO YOU WANT TO ADD MORE USERS[Y],[N]: ", "green")));
+
     }
 
 };
