@@ -110,32 +110,6 @@ void UpdateUser() {
 }
 
 
-void DeleteUser()
-{
-
-    clsUser user = clsUser::ReturnEmptyObjForInitializingUser();
-    string Username = "";
-    Username = clsInputAndValidation::read_string("\n\t\t\t\tEnter Username: ");
-
-    while (!clsUser::FindUserAndReturnObj_If_exist(Username, user))  // if the user exists 
-    {
-        screen_color(red);
-        cout << "\n\n\t\t\t\tThe User " << Username << " isn't Exists!\a\n";
-        Username = clsInputAndValidation::read_string("\n\t\t\t\tEnter Username: ");
-    }
-
-    screen_color(red_on_black);
-
-    if (clsInputAndValidation::Confirm("\n\n\t\t\t\tAre Sure About Deleting User " + Username + " ? [y],[n]: ")) 
-    {
-        user.Delete();
-        PrintUserInfo(user);
-    }
-    else {
-        cout << "\n\n\n\NO change!\n";
-    }
-     
-}
 
 int main() {
 

@@ -3,6 +3,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsListUsersScreen.h""
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsAddUsers.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsDeleteUsersScreen.h"
 
 class clsMangeUsersMenu  : protected clsScreen 
 {
@@ -48,7 +49,8 @@ private:
 	//3 ()
 	static void _DeleteUsersScreen()
 	{
-		cout << "\n\t\t\t" << "Will Be  Delete Users Screen\n";
+		//cout << "\n\t\t\t" << "Will Be  Delete Users Screen\n";
+		clsDeleteUsersScreen::DeleteUser();
 	}
 
 
