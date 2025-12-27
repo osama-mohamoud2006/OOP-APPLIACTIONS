@@ -8,9 +8,23 @@ private:
 
     enum _enUpdateSpecific
     {
-        enChageName = 1,enChangePin = 2,enchangeEmail = 3,enChangePhoneNumber = 4,enChangePassword=5 , enChangePermissions=6,  enChangeAll = 7  };
+        enChageName = 1,enChangePassword = 2,enchangeEmail = 3,enChangePhoneNumber = 4,enChangePermissions=5,  enChangeAll = 6 };
 
-    static void _PerformAccordingTheOrder(_enUpdateSpecific WhatWillbeChanged, clsBankClient& Temp)
+
+    static void _ShowUpdateOptionsMenu()
+    {
+        std::cout << setw(37) << left << "" << "===========================================\n";
+        std::cout << setw(37) << left << "" << "\t[1] Change The Name Only.\n";
+        std::cout << setw(37) << left << "" << "\t[2] Change The Password Only.\n";
+        std::cout << setw(37) << left << "" << "\t[3] Change The Email Only.\n";
+        std::cout << setw(37) << left << "" << "\t[4] Change The Phone Number Only.\n";
+        std::cout << setw(37) << left << "" << "\t[5] Change The Permissions Only.\n";
+        std::cout << setw(37) << left << "" << "\t[6] Update All User Info.\n";
+
+        std::cout << setw(37) << left << "" << "===========================================\n\n";
+    }
+
+    static void _PerformAccordingTheOrder(_enUpdateSpecific WhatWillbeChanged, clsUser& Temp)
     {
         cout << "\n\n";
         string DataToFill = "";
@@ -27,9 +41,9 @@ private:
             break;
         }
 
-        case  _enUpdateSpecific::enChangePin: {
+        case  _enUpdateSpecific::enChangePassword: {
             DataToFill = clsInputAndValidation::read_string("\n\tEnter New Pin number: ");
-            Temp.SetPin(DataToFill);
+            Temp.SetPassword(DataToFill);
             break;
         }
 
@@ -45,18 +59,15 @@ private:
             break;
         }
 
-        case   _enUpdateSpecific::enChangeBalance: {
-            DataToFill = "";
-            double balance = 0.0;
-            balance = clsInputAndValidation::enter_postive_number("\n\tEnter Balance: ");
-            Temp.SetBalance(balance);
+        case  _enUpdateSpecific::enChangePermissions:
+        {
+            Temp.SetPermissions(_ReadUserPermission());
             break;
         }
-
 
         case  _enUpdateSpecific::enChangeAll: {
             DataToFill = "";
-            _EnterNewDataToUpdate(Temp);
+            _FillToUpdateUser(Temp);
             break;
         }
 
@@ -65,18 +76,6 @@ private:
 
     }
 
-    static void _ShowUpdateOptionsMenu()
-    {
-        std::cout << setw(37) << left << "" << "===========================================\n";
-        std::cout << setw(37) << left << "" << "\t[1] Change The Name Only.\n";
-        std::cout << setw(37) << left << "" << "\t[2] Change The Pin Only.\n";
-        std::cout << setw(37) << left << "" << "\t[3] Change The Email Only.\n";
-        std::cout << setw(37) << left << "" << "\t[4] Change The Phone Number Only.\n";
-        std::cout << setw(37) << left << "" << "\t[5] Change The Balance Only.\n";
-        std::cout << setw(37) << left << "" << "\t[6] Update All Client Info.\n";
-
-        std::cout << setw(37) << left << "" << "===========================================\n\n";
-    }
 
     static  int  _ReadUserPermission()
     {
@@ -93,12 +92,6 @@ private:
 
         return Permissions;
     }
-
-
-
-
-
-
     static void _FillToUpdateUser(clsUser& User) {
 
         string Data = "";
@@ -145,16 +138,26 @@ public:
         user.SetUsername(Username);
 
         // If y then will update all data else will update what ever you choice 
-        if (clsInputAndValidation::Confirm("\n\n\t\t\t\t\tDo You Want To Update All Data Of " + Username + " [y],[n]: "))
-        {
-          _FillToUpdateUser(user);
-        }
-        else 
+        if (clsInputAndValidation::Confirm("\n\n\t\t\t\tAre You Sure About Updating [y],[n]: ")) 
         {
 
+            if (clsInputAndValidation::Confirm("\n\t\t\t\t\tDo You Want To Update All Data Of " + Username + " [y],[n]: "))
+            {
+                system("cls");
+                _FillToUpdateUser(user);
+            }
+            else
+            {
+                clsScreen::_PrintMenuOption(colorText("        Updating.....", "cyan")); // Menu Option
+                _ShowUpdateOptionsMenu(); // Show menu
+                _PerformAccordingTheOrder((_enUpdateSpecific)clsInputAndValidation::enter_number_from_to(1, 6, "\n\t\t\t\t\tEnter Option"), user);
+            }
+
         }
+
         
 
+        // After Finshing The Fill 
         clsUser::enSave SaveStatus;
         SaveStatus= user.Save();
  
