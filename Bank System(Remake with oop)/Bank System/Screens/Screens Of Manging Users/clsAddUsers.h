@@ -20,7 +20,7 @@ private:
                         return Permissions;
     }
 
-   static  void PrintUserInfo(clsUser& user)
+   static  void _PrintUserInfo(clsUser& user)
     {
         // Get terminal width and calculate padding
         int terminalWidth = 120; // Adjust based on your terminal size
@@ -47,7 +47,7 @@ private:
         cout << setw(leftPadding) << "" << colorText("================================================", "green") << "\n\n";
     }
 
-    static void AddNewUser(clsUser& User) {
+   static void _FillNewUser(clsUser& User) {
         string Data = "";
         cout << "\n\n";
         clsScreen::_PrintMenuOption(colorText("        Adding New User ", "green")); // will replace the clsScreen print option
@@ -74,7 +74,9 @@ private:
     }
 
 public:
+
     static void AddNewUser() {
+
         cout << "\n\n";
         clsScreen::_PrintMenuOption(colorText("        Add New User Screen","cyan"));
 
@@ -94,23 +96,36 @@ public:
 
         user = clsUser::InitializeToAddNewUser();
         user.SetUsername(Username);
-        AddNewUser(user);
+        _FillNewUser(user);
 
         clsUser::enSave SaveReuslts;
         SaveReuslts = user.Save();
 
-        if (clsUser::enSave::enSavedSuccessfully == SaveReuslts) {
+        switch (SaveReuslts) {
+
+        case clsUser::enSave::enSavedSuccessfully:
+        {
             cout << colorText("User: " + Username + " Added Successfully ! \n", "green");
-            PrintUserInfo(user);
-        }
-        else  if (clsUser::enSave::enUsernameExists == SaveReuslts) {
+            _PrintUserInfo(user);
+            break;
+        };
+
+        case clsUser::enSave::enUsernameExists: 
+        {
             string message = "\n\t\t\t\tUsername " + Username + " Exists " + "Failed To Save";
             cout << colorText(message, "red") << endl;
+            break;
+        };
+
+        case clsUser::enSave::enFailedOrEmptyToSave: 
+        {
+            cout << colorText("\n\t\t\t\tFailed To Write On File!\n\a", "red");
+            break;
+        };
+
         }
-        else cout << colorText("\n\t\t\t\tFailed To Write On File!\n\a", "red");
 
-
-
+      
     }
 
 };
