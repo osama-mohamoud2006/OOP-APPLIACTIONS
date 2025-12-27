@@ -46,11 +46,11 @@ Before building the main system, these utility libraries need to be solid.
 
 - [x] UI - **manage users screen**
 - [x] Core - **perpare user class**
-- [ ] screen - **list users screen**
-- [ ] screen - **add new user screen**
-- [ ] screen - **delete user screen**
-- [ ] screen - **update user screen**
-- [ ] screen - **find user screen**
+- [x] screen - **list users screen**
+- [x] screen - **add new user screen**
+- [x] screen - **delete user screen**
+- [x] screen - **update user screen**
+- [x] screen - **find user screen**
 
 ### Bank System - Login And Permissions
 
