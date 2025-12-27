@@ -25,13 +25,14 @@ public :
 
         screen_color(red_on_black);
 
-        if (clsInputAndValidation::Confirm("\n\n\t\t\t\tAre Sure About Deleting User " + Username + " [y],[n]: "))
+        if (clsInputAndValidation::Confirm("\n\n\t\t\t\t\tAre Sure About Deleting User " + Username + " [y],[n]: "))
         {
+            system("cls");
             user.Delete();
             clsUtilPrintUserDetails::PrintUserInfo(user);
         }
         else {
-            cout <<colorText( "\n\n\n\t\t\t\t\tNO change!\n","pink");
+            cout <<colorText( "\n\n\n\t\t\t\t\tNO CHANGE!\n","pink");
         }
 
     }
