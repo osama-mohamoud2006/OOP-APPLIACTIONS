@@ -8,6 +8,8 @@ private:
 
     static  int  _ReadUserPermission( )
     {
+        system("cls");
+        clsScreen::_PrintMenuOption(colorText("        Adding Permissions To User", "orange"));
         int Permissions = 0;
         if (clsInputAndValidation::Confirm("\n\t\t\t\t\tDo You Want To Give Access For \"List Clients \" : ")) Permissions |= clsUser::enUserPermission::eListClients;
         if (clsInputAndValidation::Confirm("\n\t\t\t\t\tDo You Want To Give Access For \"Add Clients\" : ")) Permissions |= clsUser::enUserPermission::eAddClient;
@@ -52,23 +54,23 @@ private:
         cout << "\n\n";
         clsScreen::_PrintMenuOption(colorText("           Adding New User ", "green")); // will replace the clsScreen print option
 
-        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter password: ");
+        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter Password: ");
         User.SetPassword(Data);
 
-        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter first name: ");
+        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter First Name: ");
         User.SetFirstName(Data);
 
-        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter last name: ");
+        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter Last Name: ");
         User.SetLastName(Data);
 
-        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter email: ");
+        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter Email: ");
         User.SetEmail(Data);
 
-        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter phone: ");
+        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter Phone: ");
         User.SetPhone(Data);
 
         /// Will add permissions later 
-        if (clsInputAndValidation::Confirm("\n\t\t\t\t\tDo You Want To Set Full Permissions [y],[n] : ")) User.SetPermissions(-1);
+        if (clsInputAndValidation::Confirm(  colorText( "\n\t\t\t\t\tDo You Want To Set Full Permissions [y],[n] : ","red") ) ) User.SetPermissions(-1);
         else  User.SetPermissions(_ReadUserPermission());
        
     }
@@ -77,57 +79,60 @@ public:
 
     static void AddNewUser() {
 
-        cout << "\n\n";
-        clsScreen::_PrintMenuOption(colorText("        Add New User Screen","cyan"));
+        do {
+            system("cls");
+            cout << "\n\n";
+            clsScreen::_PrintMenuOption(colorText("        Add New User Screen", "cyan"));
 
-        clsUser user = clsUser::ReturnEmptyObjForInitializingUser(); 
-        string Username = "";
-        Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
-
-        while (clsUser::FindUserAndReturnObj_If_exist(Username, user))  // if the user exists 
-        {
-            screen_color(red);
-            cout << "\n\n\t\t\t\t\tThe User " << Username << " Exists!\a\n";
+            clsUser user = clsUser::ReturnEmptyObjForInitializingUser();
+            string Username = "";
             Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
-        }
 
-        system("color 0F"); // rest color 
-        system("cls");
+            while (clsUser::FindUserAndReturnObj_If_exist(Username, user))  // if the user exists 
+            {
+                screen_color(red);
+                cout << "\n\n\t\t\t\t\tThe User " << Username << " Exists!\a\n";
+                Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
+            }
 
-        user = clsUser::InitializeToAddNewUser();
-        user.SetUsername(Username);
-        _FillNewUser(user);
-
-        clsUser::enSave SaveReuslts;
-        SaveReuslts = user.Save();
-
-        switch (SaveReuslts) {
-
-        case clsUser::enSave::enSavedSuccessfully:
-        {
+            system("color 0F"); // rest color 
             system("cls");
-            cout << colorText("\n\t\t\t\t\tUser: " + Username + " Added Successfully ! \n", "green");
-            _PrintUserInfo(user);
-            break;
-        };
 
-        case clsUser::enSave::enUsernameExists: 
-        {
-            system("cls");
-            string message = "\n\t\t\t\t\tUsername " + Username + " Exists " + "Failed To Save";
-            cout << colorText(message, "red") << endl;
-            break;
-        };
+            user = clsUser::InitializeToAddNewUser();
+            user.SetUsername(Username);
+            _FillNewUser(user);
 
-        case clsUser::enSave::enFailedOrEmptyToSave: 
-        {
-            system("cls");
-            cout << colorText("\n\t\t\t\t\tFailed To Write On File!\n\a", "red");
-            break;
-        };
+            clsUser::enSave SaveReuslts;
+            SaveReuslts = user.Save();
 
-        }
+            switch (SaveReuslts) {
 
+            case clsUser::enSave::enSavedSuccessfully:
+            {
+                system("cls");
+                cout << colorText("\n\t\t\t\t\tUser: " + Username + " Added Successfully ! \n", "green");
+                _PrintUserInfo(user);
+                break;
+            };
+
+            case clsUser::enSave::enUsernameExists:
+            {
+                system("cls");
+                string message = "\n\t\t\t\t\tUsername " + Username + " Exists " + "Failed To Save";
+                cout << colorText(message, "red") << endl;
+                break;
+            };
+
+            case clsUser::enSave::enFailedOrEmptyToSave:
+            {
+                system("cls");
+                cout << colorText("\n\t\t\t\t\tFailed To Write On File!\n\a", "red");
+                break;
+            };
+
+            }
+
+        } while (clsInputAndValidation::Confirm("\n\n\t\t\t\t\tDO YOU WANT TO ADD OTHER USERS[Y],[N]: "));
       
     }
 
