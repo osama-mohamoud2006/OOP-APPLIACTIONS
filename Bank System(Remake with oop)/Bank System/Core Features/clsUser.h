@@ -131,7 +131,9 @@ private :
 		 {
 			 return _EmptyObj();
 		 }
-
+		 static clsUser InitializeForUpdatingUser(){
+			 return clsUser(_enMode::enUpdateMode, "", "", 0, "", "", "", "");
+		 }
 		 ////                                                                                             Find                                                                                                               ////
 
 		 static clsUser FindUser(const string &  UserNameOFUserToFind) 
@@ -229,7 +231,8 @@ private :
 
 				 case _enMode::enUpdateMode: 
 				 {
-					 return enSavedSuccessfully;
+					 Update();
+					// return enSavedSuccessfully;
 				 }
 
 				 case _enMode::enEmptyMode:
@@ -293,7 +296,7 @@ private :
 
 
 			    ////                                                                                Update                                                                                                                                   /////////
-			 public:
+			 private:
 			 void Update() 
 			 {
 				 vector<clsUser> Load = _LoadFileOnVector();

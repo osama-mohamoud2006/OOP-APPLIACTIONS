@@ -5,6 +5,19 @@
 class clsDeleteUsersScreen :  protected clsScreen 
 {
 
+private:
+
+   static void _PrintConfirmation(string Username) {
+       cout << "\n\n";
+       cout << setw(37) << left << "" << colorText("================================================", "green") << "\n";
+       cout << setw(37) << left << "" << "             " << colorText(">> SUCCESS <<", "green") << "\n";
+       cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
+       cout << setw(37) << left << "" << "         User Deleted Successfully!\n";
+       cout << setw(37) << left << "" << "         Username: " << colorText(Username, "cyan") << "\n\n";
+       cout << setw(37) << left << "" << colorText("         Note: This action is irreversible.", "yellow") << "\n\n";
+       cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
+    }
+
 public :
 
    static void DeleteUser()
@@ -19,7 +32,7 @@ public :
         while (!clsUser::FindUserAndReturnObj_If_exist(Username, user) || Username == "admin")  // if the user exists 
         {
             screen_color(red);
-            cout << "\n\n\t\t\t\t\tThe User " << Username << " isn't Exists!\a\n";
+            cout << "\n\n\t\t\t\t\tThe User Doesn't Exist!\a\n";
             Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
         }
 
@@ -28,11 +41,13 @@ public :
         if (clsInputAndValidation::Confirm("\n\n\t\t\t\t\tAre Sure About Deleting User " + Username + " [y],[n]: "))
         {
             system("cls");
+            _PrintConfirmation(Username);
             user.Delete();
             clsUtilPrintUserDetails::PrintUserInfo(user);
         }
         else {
-            cout <<colorText( "\n\n\n\t\t\t\t\tNO CHANGE!\n","pink");
+            system("cls");
+            cout <<colorText( "\n\n\n\t\t\t\t\t\t\t\t\t\tNO CHANGE!\n","pink");
         }
 
     }

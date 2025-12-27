@@ -64,7 +64,7 @@ public:
             while (clsUser::FindUserAndReturnObj_If_exist(Username, user))  // if the user exists 
             {
                 screen_color(red);
-                cout << "\n\n\t\t\t\t\tThe User " << Username << " Exists!\a\n";
+                cout << "\n\n\t\t\t\t\tThe User Exists!\a\n";
                 Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
             }
 
