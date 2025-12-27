@@ -2,12 +2,13 @@
 class clsUtilPrintUserDetails {
 private:
 
-    static bool _HasPermission(int Permission, clsUser::enUserPermission HasPermission) {
+	static bool _HasPermission(int Permission, clsUser::enUserPermission HasPermission) { // Will Be Moved to clsUser later
         return ((Permission & HasPermission) == HasPermission);
     }
 
     static void _PrintPermissionsOfUser(const int& Permission, int leftPadding)
     {
+
         if (Permission == -1) {
             cout << colorText("All Permissions", "green") << "\n";
             return;
