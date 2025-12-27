@@ -11,13 +11,13 @@ private:
         system("cls");
         clsScreen::_PrintMenuOption(colorText("        Adding Permissions To User", "orange"));
         int Permissions = 0;
-        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"List Clients \" : ")) Permissions |= clsUser::enUserPermission::eListClients;
-        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Add Clients\" : ")) Permissions |= clsUser::enUserPermission::eAddClient;
-            if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Delete Clients\" : "))Permissions |= clsUser::enUserPermission::eDeleteClient;
-                if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Update Clients\" : ")) Permissions |= clsUser::enUserPermission::eUpdateClient;
-                   if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \" Find Clients\" : ")) Permissions |= clsUser::enUserPermission::eFindClient;
-                      if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Do Transactions\"  : ")) Permissions |= clsUser::enUserPermission::eTransactions;
-                        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Manage Users\"  : "))  Permissions |= clsUser::enUserPermission::eManageUsers;
+        if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"List Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eListClients;
+        if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Add Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eAddClient;
+            if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Delete Clients\" [y],[n] : "))Permissions |= clsUser::enUserPermission::eDeleteClient;
+                if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Update Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eUpdateClient;
+                   if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Find Clients\" [y],[n] : ")) Permissions |= clsUser::enUserPermission::eFindClient;
+                      if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Do Transactions\"  : ")) Permissions |= clsUser::enUserPermission::eTransactions;
+                        if (clsInputAndValidation::Confirm("\n\t\t\tDo You Want To Give Access For \"Manage Users\"  : "))  Permissions |= clsUser::enUserPermission::eManageUsers;
 
                         return Permissions;
     }
@@ -70,7 +70,7 @@ private:
         User.SetPhone(Data);
 
         /// Will add permissions later 
-        if (clsInputAndValidation::Confirm(  colorText( "\n\t\t\t\t\tDo You Want To Set Full Permissions To This User[y],[n] : ","red") ) ) User.SetPermissions(-1);
+        if (clsInputAndValidation::Confirm(  colorText( "\n\t\t\tDo You Want To Set Full Permissions To This User[y],[n] : ","red") ) ) User.SetPermissions(-1);
         else  User.SetPermissions(_ReadUserPermission());
        
     }
@@ -110,7 +110,7 @@ public:
             case clsUser::enSave::enSavedSuccessfully:
             {
                 system("cls");
-                cout << colorText("\n\t\t\t\t\tUser: " + Username + " Added Successfully ! \n", "green");
+                cout << colorText("\n\t\t\t\t\t\tUser: " + Username + " Added Successfully ! \n", "green");
                 _PrintUserInfo(user);
                 break;
             };
@@ -118,7 +118,7 @@ public:
             case clsUser::enSave::enUsernameExists:
             {
                 system("cls");
-                string message = "\n\t\t\t\t\tUsername " + Username + " Exists " + "Failed To Save";
+                string message = "\n\t\t\t\t\t\tUsername " + Username + " Exists " + "Failed To Save";
                 cout << colorText(message, "red") << endl;
                 break;
             };
@@ -126,13 +126,13 @@ public:
             case clsUser::enSave::enFailedOrEmptyToSave:
             {
                 system("cls");
-                cout << colorText("\n\t\t\t\t\tFailed To Write On File!\n\a", "red");
+                cout << colorText("\n\t\t\t\t\t\tFailed To Write On File!\n\a", "red");
                 break;
             };
 
             }
 
-        } while (clsInputAndValidation::Confirm("\n\n\t\t\t\t\tDO YOU WANT TO ADD OTHER USERS[Y],[N]: "));
+        } while (clsInputAndValidation::Confirm(colorText("\n\n\t\t\tDO YOU WANT TO ADD MORE USERS[Y],[N]: ","green")));
       
     }
 
