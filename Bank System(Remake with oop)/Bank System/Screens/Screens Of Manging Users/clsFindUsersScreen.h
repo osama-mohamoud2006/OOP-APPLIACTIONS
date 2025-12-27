@@ -5,27 +5,34 @@
 class clsFindUsersScreen :  protected clsScreen 
 {
 
+private:
+	static void _PrintSuccess() {
+		cout << "\n\n";
+		cout << setw(37) << left << "" << colorText("================================================", "green") << "\n";
+		cout << setw(37) << left << "" << "             " << colorText(">> SUCCESS <<", "green") << "\n";
+		cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
+		cout << setw(37) << left << "" << "         USER FOUNDED SUCCESSFULLY!\n";
+		cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
+	}
 
-	static void FindUser(){
+public:
+
+	static void FindUser()
+	{
 	string user_name = "";
 	clsUser User = clsUser::ReturnEmptyObjForInitializingUser();
-
-	// Feature : make user attempt for 3 times if he didn't find the account ask him if he want to continue or not 
-
 	short Trials = 0;
 
-	while (true)
-	{
+	while (true){
 
 		Trials++;
 		system("cls");
 		cout << "\n\n\n\n";
 		clsScreen::_PrintMenuOption(colorText("            Find User Screen", "yellow"));
 
-
 		if (Trials > 4)
 		{
-			std::cout << colorText("\n\t\t\t\t\t\aYou Tried For " + to_string(Trials - 1) + " Times To Find The User !\n\t\t\t\t\tExit To Mange Users Menu[y] Or Try Again[n] ? : ", "red");
+			std::cout << colorText("\n\t\t\t\t\t\aYou Tried For " + to_string(Trials - 1) + " Times To Find The User !\n\t\t\t\t\tExit To Manage Users Menu[y] Or Try Again[n] ? : ", "red");
 			if (clsInputAndValidation::Confirm("")) { // if user entered 'Y' then it will returns true 'confirm()'
 				break; // Back to Manage users  menu 
 			}
@@ -37,10 +44,10 @@ class clsFindUsersScreen :  protected clsScreen
 
 		}
 
-
 		user_name = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
-
 		if (   clsUser::FindUserAndReturnObj_If_exist(user_name,User) ) { // print user  data then break
+			system("cls");
+			_PrintSuccess();
 			clsUtilPrintUserDetails::PrintUserInfo(User);
 			break;
 		}

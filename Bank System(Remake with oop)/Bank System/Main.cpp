@@ -56,8 +56,8 @@ void FindUser()
 int main() {
 
 
-//  clsMainMenuScreen::_ShowMainMenuScreen();
+ clsMainMenuScreen::_ShowMainMenuScreen();
 
-    clsMangeUsersMenu::ShowManageUsersMenu();
+    //clsMangeUsersMenu::ShowManageUsersMenu();
 
 }

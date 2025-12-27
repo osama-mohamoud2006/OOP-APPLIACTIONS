@@ -106,41 +106,44 @@ public :
 
 
 		// ClientWhoWillSend ---> withdraw from him
-		clsBankClient::enSaveMode SaveStatus;
+		if (clsInputAndValidation::Confirm(colorText("\n\t\t\t\tAre You Sure [y],[n]: ","red")))
+		{
+			clsBankClient::enSaveMode SaveStatus;
 
-		SaveStatus= clsManageClientBalance::WithDraw(ClientWhoWillSend, amount);
+			SaveStatus = clsManageClientBalance::WithDraw(ClientWhoWillSend, amount);
 
-		if (clsBankClient::enSaveMode::SuccessedToSave == SaveStatus) { // if the 'ClientWhoWillSend' withdrawal succussed
+			if (clsBankClient::enSaveMode::SuccessedToSave == SaveStatus) { // if the 'ClientWhoWillSend' withdrawal succussed
 
-			system("cls");
-			clsScreen::_PrintMenuOption(colorText("The Client Who Will Receive", "cyan"));
-			clsBankClient ClientWhoWillReceive = _CheckAccountBeforeContinue(); // check if the second account is existing 
-
-			if (ClientWhoWillReceive.GetAccountNumber() == ClientWhoWillSend.GetAccountNumber()) {
 				system("cls");
-				cout <<  colorText(" \n\n\t\t\t\t\aYOU CANN'T TRANSFER TO YOURSELF!!!!", "red")<<"\n";
-				// undo --> return;
-				clsManageClientBalance::Deposit(ClientWhoWillSend,amount);  // return the amount that he withdrawed
-				return; 
-			}
+				clsScreen::_PrintMenuOption(colorText("The Client Who Will Receive", "cyan"));
+				clsBankClient ClientWhoWillReceive = _CheckAccountBeforeContinue(); // check if the second account is existing 
 
-			SaveStatus = clsManageClientBalance::Deposit(ClientWhoWillReceive, amount);
-
-			if (clsBankClient::enSaveMode::SuccessedToSave == SaveStatus)
-			{
-				system("cls");
-				screen_color(black);
-				_PrintSuccess(ClientWhoWillSend, ClientWhoWillReceive,amount);
+				if (ClientWhoWillReceive.GetAccountNumber() == ClientWhoWillSend.GetAccountNumber()) {
+					system("cls");
+					cout << colorText(" \n\n\t\t\t\t\aYOU CANN'T TRANSFER TO YOURSELF!!!!", "red") << "\n";
+					// undo --> return;
+					clsManageClientBalance::Deposit(ClientWhoWillSend, amount);  // return the amount that he withdrawed
+					return;
 				}
 
-			else 
-			{
-				_PrintTransferFailed(ClientWhoWillSend, ClientWhoWillReceive, amount, ClientWhoWillSend.GetBalance());
+				SaveStatus = clsManageClientBalance::Deposit(ClientWhoWillReceive, amount);
+
+				if (clsBankClient::enSaveMode::SuccessedToSave == SaveStatus)
+				{
+					system("cls");
+					screen_color(black);
+					_PrintSuccess(ClientWhoWillSend, ClientWhoWillReceive, amount);
+				}
+
+				else
+				{
+					_PrintTransferFailed(ClientWhoWillSend, ClientWhoWillReceive, amount, ClientWhoWillSend.GetBalance());
+				}
+
 			}
 
+
 		}
-
-
 
 	};
 

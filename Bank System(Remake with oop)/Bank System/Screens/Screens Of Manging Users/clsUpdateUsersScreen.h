@@ -44,7 +44,7 @@ private:
         }
 
         case  _enUpdateSpecific::enChangePassword: {
-            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter New Pin number: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter New Password: ");
             Temp.SetPassword(DataToFill);
             break;
         }

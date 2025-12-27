@@ -21,7 +21,7 @@ private:
         DataToFill = clsInputAndValidation::read_string("\n\tEnter New Last Name: ");
         Temp.SetLastName(DataToFill);
 
-        DataToFill = clsInputAndValidation::read_string("\n\tEnter New Pin number: ");
+        DataToFill = clsInputAndValidation::read_string("\n\tEnter New Pin: ");
         Temp.SetPin(DataToFill);
 
         DataToFill = clsInputAndValidation::read_string("\n\tEnter Email: ");
@@ -130,20 +130,21 @@ public:
             AccountNumber = clsInputAndValidation::read_string("Enter Account Number: ");
         }
 
-        // it will exit loop only if it found the desired account number
+        //  will exit loop only if it found the desired account number
         system("cls");
         screen_color(black);
         cout << "\n";
         clsUtilPrintClientData::PrintClientData(client, "Current Client Info");
 
         if (clsInputAndValidation::Confirm(
-                colorText("\n\n\t\tAre You Sure About Updating?[y],[n]: ", "cyan")))
-        {
+                colorText("\n\n\t\tAre You Sure About Updating?[y],[n]: ", "cyan"))) {
+
             system("cls");
             clsScreen::_PrintMenuOption(colorText("        Updating.....", "cyan"));
             _ShowUpdateOptionsMenu();
+
             _PerformAccordingTheOrder( (_enUpdateSpecific)clsInputAndValidation::enter_number_from_to(1, 6, "\t\t\t\tEnter What You Want To Change"), client);
-            // _EnterNewDataToUpdate(client); // take the new data and set them to the object
+
             clsBankClient::enSaveMode FinalSave;
             FinalSave = client.Save();
             if (FinalSave == clsBankClient::enSaveMode::SuccessedToSave)
@@ -154,8 +155,9 @@ public:
             else
             {
                 screen_color(red);
-                cout << "failed  to save!" << endl;
+                cout << "\n\n\n\t\t\t\tfailed  to save!" << endl;
             }
+
         }
 
         else
