@@ -32,7 +32,7 @@ public :
         while (!clsUser::FindUserAndReturnObj_If_exist(Username, user) || Username == "admin")  // if the user exists 
         {
             screen_color(red);
-            cout << "\n\n\t\t\t\t\tThe User Doesn't Exist!\a\n";
+            cout << "\n\n\t\t\t\t\tThe User Doesn't Exist!\a\n";  // remove which user that doesn't exist for privacy 
             Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
         }
 
@@ -47,7 +47,7 @@ public :
         }
         else {
             system("cls");
-            cout <<colorText( "\n\n\n\t\t\t\t\t\t\t\t\t\tNO CHANGE!\n","pink");
+            cout <<colorText( "\n\n\n\t\t\t\t\t\tNO CHANGE!\n","pink");
         }
 
     }
