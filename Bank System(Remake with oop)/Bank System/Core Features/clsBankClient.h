@@ -294,27 +294,39 @@ public:
             enSaveMode Save() {
 
                 switch (_Mode) {
-                case enEmptyClientObject:
-                    return enSaveMode::FailedOrEmptyObj; // consider failure also 
 
-                case enUpdateClient:
-                    _Update();
-                    return enSaveMode::SuccessedToSave;
+                case enEmptyClientObject: 
+                {
+                    return enSaveMode::FailedOrEmptyObj; //  failure  
+                }
 
-                case enAddNewClient:
-                    if (IsClientExist( this->GetAccountNumber() ) ) // when add new client to file check if account is already exists in file
+                case enUpdateClient: {
+                    if (! _CheckBeforeAddClient() ) { // if isn't empty
+                        _Update();
+                        return SuccessedToSave;
+                    }
+                    else return  FailedOrEmptyObj;  // if empty then the save failed check Before Saving
+                }
+                   
+                case enAddNewClient: 
+                {
+                    if (IsClientExist(this->GetAccountNumber())) // when add new client to file check if account is already exists in file
                     {
-                        return   enSaveMode::AccountNumberExists; 
+                        return   enSaveMode::AccountNumberExists;
                     }
                     else {
                         if (_CheckBeforeAddClient()) {
                             _Mode = _enMode::enEmptyClientObject; //rest it
                             return enSaveMode::FailedOrEmptyObj; //  failure  
                         }
-                        _AddNewClientToFile(); // take the current obj and throw it in file 
-                        _Mode = _enMode::enUpdateClient; /// rest it 
-                        return enSaveMode::SuccessedToSave;
+                        else {
+                            _AddNewClientToFile(); // take the current obj and throw it in file 
+                            _Mode = _enMode::enUpdateClient; /// rest it 
+                            return enSaveMode::SuccessedToSave;
+                        }
+
                     }
+                }
 
                 }
 

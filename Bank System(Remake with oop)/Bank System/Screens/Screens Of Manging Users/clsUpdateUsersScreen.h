@@ -169,8 +169,8 @@ public:
         }
 
         else {
-            cout << colorText("\n\n\t\t\t\t\tNO CHANGE!\n","pink");
-         //   return; // exit the method 
+            _PrintFailure();
+           return;  // exit the method AND WON'T SAVE ANY THING 
         }
 
         
