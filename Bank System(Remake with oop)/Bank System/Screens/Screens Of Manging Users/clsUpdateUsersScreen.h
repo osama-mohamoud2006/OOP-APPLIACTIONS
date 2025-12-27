@@ -119,6 +119,15 @@ private:
 
     }
 
+    static void _PrintFailure() {
+        cout << "\n\n";
+        cout << setw(37) << left << "" << colorText("================================================", "red") << "\n";
+        cout << setw(37) << left << "" << "             " << colorText(">> FAILED <<", "red") << "\n";
+        cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
+        cout << setw(37) << left << "" << "           USER DIDN'T UPDATE !\n";
+        cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
+    }
+
 public:
    static  void UpdateUser() {
 
@@ -160,17 +169,25 @@ public:
         }
 
         
-
-        // After Fishing The Fill 
+        // After Fishing The Fill  and confrimed by y for continuing 
         clsUser::enSave SaveStatus;
         SaveStatus= user.Save();
  
         switch (SaveStatus) 
         {
         case  clsUser::enSave::enSavedSuccessfully:
+        {
+            clsUtilPrintUserDetails::PrintUserInfo(user); // Print updated user info if it succed to save to file 
+            break;
+        };
+
+        case  clsUser::enSave::enFailedOrEmptyToSave:
+        {
+            _PrintFailure();
+            break;
+        };
 
         }
-
 
     }
 
