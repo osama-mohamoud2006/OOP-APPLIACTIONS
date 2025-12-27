@@ -35,35 +35,6 @@ void PrintUserInfo(clsUser& user)
     cout << setw(leftPadding) << "" << colorText("================================================", "green") << "\n\n";
 }
 
-void AddNewUser(clsUser & User) {
-	string Data = "";
-
-	cout << "\n\n\t\t\t\tAdding New User:\n"; // will replace the clsScreen print option
-
-    //Data = clsInputAndValidation::read_full_line("\nEnter Username: ");
-
-
-    Data = clsInputAndValidation::read_full_line("\nEnter password: ");
-    User.SetPassword(Data);
-
-    Data = clsInputAndValidation::read_full_line("\nEnter first name: ");
-	User.SetFirstName(Data);
-
-	Data = clsInputAndValidation::read_full_line("\nEnter last name: ");
-	User.SetLastName(Data);
-
-	Data = clsInputAndValidation::read_full_line("\nEnter email: ");
-	User.SetEmail(Data);
-
-	Data = clsInputAndValidation::read_full_line("\nEnter phone: ");
-	User.SetPhone(Data);
-
-	/// Will add permissions later 
-    User.SetPermissions(0);
-
-
-}
-
 void FindUser() 
 {
 	string UserName = "";
@@ -82,21 +53,11 @@ void FindUser()
 
 }
 
-
-
-
-
-
-
 int main() {
 
 
-  //clsMainMenuScreen::_ShowMainMenuScreen();
+//  clsMainMenuScreen::_ShowMainMenuScreen();
 
     clsMangeUsersMenu::ShowManageUsersMenu();
 
-	//FindUser();
-  //  AddNewUser();
-    //UpdateUser();
-    //DeleteUser();
 }
