@@ -300,12 +300,12 @@ public:
                     return enSaveMode::FailedOrEmptyObj; //  failure  
                 }
 
-                case enUpdateClient: {
+                case enUpdateClient: {// if empty then the save failed check Before Saving
                     if (! _CheckBeforeAddClient() ) { // if isn't empty
                         _Update();
                         return SuccessedToSave;
                     }
-                    else return  FailedOrEmptyObj;  // if empty then the save failed check Before Saving
+                    else return  FailedOrEmptyObj;  
                 }
                    
                 case enAddNewClient: 

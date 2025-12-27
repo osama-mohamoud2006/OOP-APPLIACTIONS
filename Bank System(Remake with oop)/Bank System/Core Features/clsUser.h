@@ -231,11 +231,12 @@ private :
 
 				 case _enMode::enUpdateMode: 
 				 {
-					 if (!_CheckBeforeSaveForAddUser()) {
-						 Update();
+					 // check Before Saving if empty then the save failed 
+					 if (!_CheckBeforeSaveForAddUser()) { // if it isn't empty 
+						 _Update();
 						 return enSavedSuccessfully;
 					 }
-					 else return  enFailedOrEmptyToSave; // if empty then the save failed check Before Saving 
+					 else return  enFailedOrEmptyToSave; 
 				 }
 
 				 case _enMode::enEmptyMode:
@@ -300,7 +301,7 @@ private :
 
 			    ////                                                                                Update                                                                                                                                   /////////
 			 private:
-			 void Update() 
+			 void _Update() 
 			 {
 				 vector<clsUser> Load = _LoadFileOnVector();
 				 for (clsUser& User : Load) {
