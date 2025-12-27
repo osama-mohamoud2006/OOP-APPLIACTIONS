@@ -232,7 +232,7 @@ private :
 				 case _enMode::enUpdateMode: 
 				 {
 					 Update();
-					 return (_CheckBeforeSaveForAddUser()) ? enSavedSuccessfully : enFailedOrEmptyToSave; // check Before Saving 
+					 return (!_CheckBeforeSaveForAddUser()) ? enSavedSuccessfully : enFailedOrEmptyToSave; // if empty then the save failed check Before Saving 
 				 }
 
 				 case _enMode::enEmptyMode:
