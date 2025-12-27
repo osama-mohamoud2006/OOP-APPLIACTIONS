@@ -2,6 +2,7 @@
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsListUsersScreen.h""
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsAddUsers.h"
 
 class clsMangeUsersMenu  : protected clsScreen 
 {
@@ -37,10 +38,11 @@ private:
 		clsListUsersScreen::ListUsersScreen();
 	}
 
-	//2 () 
+	//2 (done) 
 	static void _AddNewUsersScreen()
 	{
-		cout << "\n\t\t\t" << "Will Be Add New Users Screen\n";
+		//cout << "\n\t\t\t" << "Will Be Add New Users Screen\n";
+		clsAddUsers::AddNewUser();
 	}
 
 	//3 ()
