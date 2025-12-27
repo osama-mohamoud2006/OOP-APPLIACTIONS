@@ -131,9 +131,9 @@ private :
 		 {
 			 return _EmptyObj();
 		 }
-		 static clsUser InitializeForUpdatingUser(){
-			 return clsUser(_enMode::enUpdateMode, "", "", 0, "", "", "", "");
-		 }
+	//	 static clsUser InitializeForUpdatingUser(){
+		//	 return clsUser(_enMode::enUpdateMode, "", "", 0, "", "", "", "");
+		// }
 		 ////                                                                                             Find                                                                                                               ////
 
 		 static clsUser FindUser(const string &  UserNameOFUserToFind) 

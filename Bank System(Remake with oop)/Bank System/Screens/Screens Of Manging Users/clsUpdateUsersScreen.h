@@ -33,28 +33,28 @@ private:
 
         case   _enUpdateSpecific::enChageName: {
 
-            DataToFill = clsInputAndValidation::read_string("\n\tEnter New First Name: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\tEnter New First Name: ");
             Temp.SetFirstName(DataToFill);
-            DataToFill = clsInputAndValidation::read_string("\n\tEnter New Last Name: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\tEnter New Last Name: ");
             Temp.SetLastName(DataToFill);
 
             break;
         }
 
         case  _enUpdateSpecific::enChangePassword: {
-            DataToFill = clsInputAndValidation::read_string("\n\tEnter New Pin number: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\tEnter New Pin number: ");
             Temp.SetPassword(DataToFill);
             break;
         }
 
         case _enUpdateSpecific::enchangeEmail: {
-            DataToFill = clsInputAndValidation::read_string("\n\tEnter Email: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\tEnter Email: ");
             Temp.SetEmail(DataToFill);
             break;
         }
 
         case  _enUpdateSpecific::enChangePhoneNumber: {
-            DataToFill = clsInputAndValidation::read_string("\n\tEnter New Phone number: ");
+            DataToFill = clsInputAndValidation::read_string("\n\t\t\t\tEnter New Phone number: ");
             Temp.SetPhone(DataToFill);
             break;
         }
@@ -96,8 +96,6 @@ private:
 
         string Data = "";
         cout << "\n\n";
-        clsScreen::_PrintMenuOption(colorText("           Adding New User ", "green")); // will replace the clsScreen print option
-
         Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter Password: ");
         User.SetPassword(Data);
 
@@ -127,9 +125,18 @@ private:
         cout << setw(37) << left << "" << "           USER DIDN'T UPDATE !\n";
         cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
     }
+    static void _PrintSuccess() {
+        cout << "\n\n";
+        cout << setw(37) << left << "" << colorText("================================================", "green") << "\n";
+        cout << setw(37) << left << "" << "             " << colorText(">> SUCCESS <<", "green") << "\n";
+        cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
+        cout << setw(37) << left << "" << "         USER UPDATED SUCCESSFULLY!\n";
+        cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
+    }
 
 public:
    static  void UpdateUser() {
+
        clsScreen::_PrintMenuOption(colorText("         Update User Screen", "orange"));
         clsUser user = clsUser::ReturnEmptyObjForInitializingUser();
         string Username = "";
@@ -146,16 +153,15 @@ public:
         system("cls");
         clsUtilPrintUserDetails::PrintUserInfo(user);
 
-        user = clsUser::InitializeForUpdatingUser(); // start Updating by Initializing the process 
-        user.SetUsername(Username);
-
         // If y then will start to update  all data or  will update according  you choice 
-        if ( clsInputAndValidation::Confirm(colorText("\n\n\t\t\t\tAre You Sure About Updating [y],[n]: ","green")) )
+        if ( clsInputAndValidation::Confirm(colorText("\n\n\t\t\t\t\tAre You Sure About Updating [y],[n]: ","green")) )
         {
-
-            if (clsInputAndValidation::Confirm("\n\t\t\t\t\tDo You Want To Update All Data Of " + Username + " [y],[n]: "))
+            system("cls");
+            clsScreen::_PrintMenuOption(colorText("        Updating.....", "cyan")); // Menu Option
+            if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Update All Data Of " + Username + " [y],[n]: "))
             {
                 system("cls");
+                clsScreen::_PrintMenuOption(colorText("             Updating User ", "orange"));
                 _FillToUpdateUser(user);
             }
             else
@@ -169,6 +175,7 @@ public:
         }
 
         else {
+            system("cls");
             _PrintFailure();
            return;  // exit the method AND WON'T SAVE ANY THING 
         }
@@ -180,8 +187,10 @@ public:
  
         switch (SaveStatus) 
         {
+            system("cls");
         case  clsUser::enSave::enSavedSuccessfully:
         {
+            _PrintSuccess();
             clsUtilPrintUserDetails::PrintUserInfo(user); // Print updated user info if it succeed to save to file 
             break;
         };
