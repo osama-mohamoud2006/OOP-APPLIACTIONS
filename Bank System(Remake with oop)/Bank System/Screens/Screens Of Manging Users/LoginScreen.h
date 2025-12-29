@@ -28,15 +28,15 @@ private :
 		cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
 	}
 
-public:
-	static void LoginScreen() 
+	static bool _Login() 
 	{
+
 		string Username = "";
 		string Password = "";
 	   bool LoginFailed = false;
 	   short Trials = 3; 
-
-		clsScreen::_PrintMenuOption(colorText("               Login", "green"));
+	  
+		
 		do {
 			
 			  Username=clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
@@ -54,18 +54,25 @@ public:
 				  {
 					  system("cls");
 					  _ExitTheSystemWaring();
-					  exit(0);
+					  return false; 
 				  }
 
 				  LoginFailed = true;
 
-			  } else { LoginFailed = false;}
+			  }
+			  else { return true; }
 			  
 		} while (LoginFailed);
 
 		// If logged in done then Show main menu
 		clsMainMenuScreen::ShowMainMenuScreen(); 
 
+	}
+
+public:
+	static bool ShowLoginScreen() {
+		clsScreen::_PrintMenuOption(colorText("               Login", "green"));
+		return (_Login()) ? true : false; 
 	}
 
 };

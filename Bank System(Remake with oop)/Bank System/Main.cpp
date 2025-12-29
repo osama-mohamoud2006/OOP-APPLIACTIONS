@@ -10,6 +10,6 @@ using namespace std;
 int main() {
 
 	 // Test Delete Yourself (you aren't logged in as admin) 
-	while (true) 	clsLoginScreen::LoginScreen();
+	while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break;
 
 }
