@@ -54,14 +54,14 @@ Before building the main system, these utility libraries need to be solid.
 
 ### Bank System - Login And Permissions
 
-- [ ]  **Login**
-- [ ]  **Logout**
-- [ ]  **Show login screen at logout**
-- [ ]  **Apply permissions**
+- [x]  **Login**
+- [x]  **Logout**
+- [x]  **Show login screen at logout**
+- [x]  **Apply permissions**
 
 ### Bank Extensions (Features)
 
-- [ ] Extension 01 - add Date and Logged In User to All Screens
+- [x] Extension 01 - add Date and Logged In User to All Screens
 
 - [ ] Extension 02 - Lock the System After 3 failed Logins
 
