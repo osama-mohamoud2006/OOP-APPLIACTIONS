@@ -115,6 +115,8 @@ private:
 public :
 	static void ShowTransactionMenu() {
 
+		if (!clsScreen::HavePermission(clsUser::enUserPermission::eTransactions) ) { return; } // if he hasn't per 
+
 		_enTransactionMenuElements Option = eNone; // just for initializing 
 
 		while (Option != _enTransactionMenuElements::eBackToMainMenu) // if the option isn't main menu just call them again 
