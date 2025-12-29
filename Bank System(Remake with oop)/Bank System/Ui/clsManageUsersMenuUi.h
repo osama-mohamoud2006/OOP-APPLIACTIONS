@@ -6,6 +6,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsDeleteUsersScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsUpdateUsersScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsFindUsersScreen.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsUser.h"
 
 class clsMangeUsersMenu  : protected clsScreen 
 {
@@ -134,7 +135,7 @@ public:
 		{
 			system("cls");
 			cout << "\n\n";
-			clsScreen::_PrintMenuOption(colorText("\t  Manage Users Menu", "green"));
+			clsScreen::_PrintMenuOption(colorText("\t  Manage Users Menu", "green"),GCurrentUser);
 			_EManageUsersMenu(); // Show the menu options 
 			cout << "\n";
 			std::cout << setw(39) << left << "" << "Enter Option";

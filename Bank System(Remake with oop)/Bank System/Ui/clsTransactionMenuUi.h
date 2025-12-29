@@ -5,6 +5,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsTransferBetween2Clients.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsTotalBalancesScreen.h"
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsUser.h"
 
 class clsTransactionMenu : clsScreen {
 
@@ -123,7 +124,7 @@ public :
 		{
 			system("cls");
 			cout << "\n\n";
-			clsScreen::_PrintMenuOption(colorText("\t  Transactions Menu", "orange"));
+			clsScreen::_PrintMenuOption(colorText("\t  Transactions Menu", "orange"),GCurrentUser);
 			_ETransactionsMenu(); // show elements of menu 
 			std::cout << setw(37) << left << "" << "Enter Option";
 			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::enter_number_from_to(1, 6, ""));

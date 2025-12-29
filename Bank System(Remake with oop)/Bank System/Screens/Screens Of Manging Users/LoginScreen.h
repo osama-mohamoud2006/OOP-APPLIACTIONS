@@ -16,7 +16,6 @@ public:
 		clsScreen::_PrintMenuOption(colorText("               Login", "green"));
 		do {
 			
-			cout << "\n";
 			  Username=clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
 			  Password = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Password: ");
 
