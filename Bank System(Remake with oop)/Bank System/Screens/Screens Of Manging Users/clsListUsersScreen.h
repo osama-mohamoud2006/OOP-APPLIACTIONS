@@ -41,7 +41,7 @@ public:
 
         if(users.empty())      cout << "\n\t\t\t\tNo Users Available In the System!";
 
-        for (const clsUser& u : users) { _PrintUserRecordLine(u);  cout << endl;  }
+        for ( clsUser& u : users) {  if(  u.GetUserName() != "admin")  _PrintUserRecordLine(u);  cout << endl;  } // Print Everyone Except "admin"
            
         cout << setw(8) << left << "" << "\n\t_______________________________________________________";
         cout << "______________________________________________\n" << endl;
