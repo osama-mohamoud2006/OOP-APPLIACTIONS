@@ -60,6 +60,7 @@ private :
 			  }
 			  else 
 			  { 
+				  LoginFailed = false;
 				  clsMainMenuScreen::ShowMainMenuScreen();
 				  return true; 
 			  }
