@@ -31,7 +31,7 @@ public :
         if (Username == GCurrentUser.GetUserName())
         {
             screen_color(red_on_black);
-            cout << "\n\n\t\t\t\t\tYOU CANN'T DELETE YOUESELF CONTACT THE ADMIN FOR THIS ACTION!\a\n";
+            cout << "\n\n\t\t\t\tYOU CANN'T DELETE YOUESELF CONTACT THE ADMIN FOR THIS ACTION!\a\n";
             return;
         }
 
