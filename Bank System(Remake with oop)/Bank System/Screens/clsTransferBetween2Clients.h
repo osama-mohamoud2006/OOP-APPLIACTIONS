@@ -119,10 +119,11 @@ public :
 				clsBankClient ClientWhoWillReceive = _CheckAccountBeforeContinue(); // check if the second account is existing 
 
 				if (ClientWhoWillReceive.GetAccountNumber() == ClientWhoWillSend.GetAccountNumber()) {
+					system("color 0F");
 					system("cls");
 					cout << colorText(" \n\n\t\t\t\t\aYOU CANN'T TRANSFER TO YOURSELF!!!!", "red") << "\n";
 					// undo --> return;
-					clsManageClientBalance::Deposit(ClientWhoWillSend, amount);  // return the amount that he withdrawed
+					clsManageClientBalance::Deposit(ClientWhoWillSend, amount);  // return the amount that he withdrawal
 					return;
 				}
 

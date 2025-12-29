@@ -73,6 +73,7 @@ protected:
         std::cout << "\n\t\t\t\t\t______________________________________\n\n";
     }
 
+    // Print If you  Don't Have Permission  (_PrintYouDonotHavePermission )
     static bool HavePermission(clsUser::enUserPermission TheNameOfScreen , int PermissionsOfUser = GCurrentUser.GetPermissions() ) 
     {
         if (!(clsUser::CheckPermission(TheNameOfScreen, PermissionsOfUser))) // if he hasn't permission 

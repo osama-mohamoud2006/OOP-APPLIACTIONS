@@ -5,6 +5,28 @@
 
 class clsLoginScreen : protected clsScreen
 {
+private :
+
+	static void _WaringTheLock(short &NumOfTrials) {
+		cout << "\n\n\a";
+		cout << setw(37) << left << "" << colorText("================================================", "red") << "\n";
+		cout << setw(37) << left << "" << "              " << colorText(">> FAILED TO LOGIN <<", "red") << "\n";
+		cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
+		cout << setw(37) << left << "" << "You Still Have "<<to_string(NumOfTrials)<<" Trials Before Locking The System" << ".\n";
+		cout << "\n";
+		cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
+	}
+
+	static  void _ExitTheSystemWaring() {
+		cout << "\n\n\a";
+		cout << setw(37) << left << "" << colorText("================================================", "red") << "\n";
+		cout << setw(37) << left << "" << "              " << colorText(">> LOCKED <<", "red") << "\n";
+		cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
+		cout << setw(37) << left << "" << colorText("         SECURITY ALERT!", "yellow") << "\n\n";
+		cout << setw(37) << left << "" << "         Too many failed login attempts.\n";
+		cout << setw(37) << left << "" << "         The system has been locked for security.\n\n";
+		cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
+	}
 
 public:
 	static void LoginScreen() 
@@ -12,6 +34,7 @@ public:
 		string Username = "";
 		string Password = "";
 	   bool LoginFailed = false;
+	   short Trials = 3; 
 
 		clsScreen::_PrintMenuOption(colorText("               Login", "green"));
 		do {
@@ -23,8 +46,18 @@ public:
 			  // take the username and find it if exist will return true and you will have the object that have that username
 			  if (!clsUser::FindUserAndReturnObj_If_exist(Username, Password, GCurrentUser)) // failed 
 			  {
+				  Trials--;
+				  system("cls");
+				  _WaringTheLock(Trials);
+				  
+				  if(Trials==0)
+				  {
+					  system("cls");
+					  _ExitTheSystemWaring();
+					  exit(0);
+				  }
+
 				  LoginFailed = true;
-				  cout << colorText("\n\n\t\t\t\t\t\aUSERNAME OR PASSWORD ISN'T CORRECT !\n\n", "red");
 
 			  } else { LoginFailed = false;}
 			  
