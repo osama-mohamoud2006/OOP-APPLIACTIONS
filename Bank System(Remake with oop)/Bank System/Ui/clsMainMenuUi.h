@@ -27,7 +27,7 @@ class clsMainMenuScreen : protected clsScreen
     enum _enMainMenuOptions {
         none=0,eListClientsScreen = 1, eAddNewClientScreen = 2, eDeleteClientScreen = 3,
         eUpdateClientScreen = 4, eFindClientScreen = 5, eShowTransactionsMenueScreen = 6,
-        eAdminScreen = 7, eLogoutScreen = 8 , eExitScreen=9
+        eUserscreen = 7, eLogoutScreen = 8 , eDisplayCurrentUserInfo=9,eExitScreen=10
     };
 
 
@@ -44,7 +44,8 @@ class clsMainMenuScreen : protected clsScreen
 		std::cout << setw(37) << left << "" << "\t[6] Transactions.\n";
 		std::cout << setw(37) << left << "" << "\t[7] Admin Menu.\n";
 		std::cout << setw(37) << left << "" << "\t[8] Logout.\n";
-		std::cout << setw(37) << left << "" << "\t[9] Exit.\n";
+		std::cout << setw(37) << left << "" << "\t[8] Display Current User Info.\n";
+		std::cout << setw(37) << left << "" << "\t[10] Exit.\n";
 		std::cout << setw(37) << left << "" << "===========================================\n";
 
 	}
@@ -97,7 +98,7 @@ class clsMainMenuScreen : protected clsScreen
     }
 
     //7  (done)
-    static void _ShowAdminScreen(){
+    static void _ShowManageUsersMenuScreen(){
      /*   std::cout<<"Will Be Admin Screen\n";*/
 		clsMangeUsersMenu::ShowManageUsersMenu();
     }
@@ -109,6 +110,9 @@ class clsMainMenuScreen : protected clsScreen
 		 // clsLoginScreen::LoginScreen();// ---> circular refrence 
     }
 
+	static void _ShowCurrentUserInfo() {
+
+	}
 
 	static _enMainMenuOptions  _PerformMainMenuOption(_enMainMenuOptions OptionByuser)
 	{
@@ -150,9 +154,9 @@ class clsMainMenuScreen : protected clsScreen
 			break;
 		}
 
-		case _enMainMenuOptions::eAdminScreen: { //7
+		case _enMainMenuOptions::eUserscreen: { //7
 			//clsScreen::_PrintMenuOption(colorText("               Admin Screen", "orange"));
-			_ShowAdminScreen();		// call manage   screen 
+			_ShowManageUsersMenuScreen();		// call manage   screen 
 			break;
 		}
 
@@ -162,7 +166,13 @@ class clsMainMenuScreen : protected clsScreen
 			break;
 		}
 
-		case _enMainMenuOptions::eExitScreen: {//9
+		case _enMainMenuOptions::eDisplayCurrentUserInfo: {
+			_ShowCurrentUserInfo();
+			_BackToMainMenuAgain();
+			break;
+		}
+
+		case _enMainMenuOptions::eExitScreen: {//10
 			_ShowExitScreen();// exit the program
 			break;
 		}
@@ -183,7 +193,7 @@ public:
 			clsScreen::_PrintMenuOption(colorText("               Main Menu","yellow"),GCurrentUser); // PrintBasicPersonData the name of menu 
 			_EMainMenu(); // print main menu elements 
 			std::cout << setw(37) << left << "" << "Enter Option";
-			OptionByUser =_PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 9, ""));
+			OptionByUser =_PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 10, ""));
 		}
 
 	}
