@@ -3,6 +3,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsUser.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\Global.h"
+#include  "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Utility Library\clsDate.h"
 
 class clsScreen
 {
@@ -47,6 +48,8 @@ protected:
 
     static void _PrintMenuOption(string Title, string SubTitle = "")
     {
+
+        cout << "\n\n\t\t\t\t\t" << colorText("    THE CURRENT DATE IS: " + clsDate::PrintFullDateForStatic(clsDate::GetCurrentLocalDate()) ,"orange") << endl;
         std::cout << "\t\t\t\t\t______________________________________";
         std::cout << "\n\n\t\t\t\t\t" << Title;
         if (SubTitle != "")
@@ -59,6 +62,8 @@ protected:
     //To Show The Current Logged in User 
     static void _PrintMenuOption(string Title, clsUser ShowTheCurrentUser )
     {
+        cout << "\n\n\t\t\t\t\t" << colorText("    THE CURRENT DATE IS: "+ clsDate::PrintFullDateForStatic(clsDate::GetCurrentLocalDate()), "orange") << endl;
+
         std::cout << "\t\t\t\t\t______________________________________";
         std::cout << "\n\n\t\t\t\t\t" << Title;
       
