@@ -12,7 +12,7 @@ private :
 		cout << setw(37) << left << "" << colorText("================================================", "red") << "\n";
 		cout << setw(37) << left << "" << "              " << colorText(">> FAILED TO LOGIN <<", "red") << "\n";
 		cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
-		cout << setw(37) << left << "" << "You Still Have "<<to_string(NumOfTrials)<<" Trials Before Locking The System" << ".\n";
+		cout << setw(37) << left << "" << "You Still Have "<<to_string(NumOfTrials)<<" Trial(s) Before Locking The System" << ".\n";
 		cout << "\n";
 		cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
 	}
