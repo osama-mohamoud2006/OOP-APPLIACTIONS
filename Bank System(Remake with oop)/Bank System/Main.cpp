@@ -5,14 +5,11 @@
 #include <string>
 #include <iomanip>
 using namespace std;
-
-///  ctrl + m+o
+//  ctrl + m+o
 
 int main() {
 
-
-	clsLoginScreen::LoginScreen();
-
-
+	 // Test Delete Yourself (you aren't logged in as admin) 
+	while (true) 	clsLoginScreen::LoginScreen();
 
 }

@@ -1,6 +1,7 @@
 #pragma once 
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsUser.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\Global.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsMainMenuUi.h"
 
 class clsLoginScreen : protected clsScreen
 {
@@ -12,7 +13,7 @@ public:
 		string Password = "";
 	   bool LoginFailed = false;
 
-		clsScreen::_PrintMenuOption(colorText("               LOGIN", "green"));
+		clsScreen::_PrintMenuOption(colorText("               Login", "green"));
 		do {
 			
 			cout << "\n";
@@ -31,7 +32,7 @@ public:
 		} while (LoginFailed);
 
 		// If logged in done then Show main menu
-		clsMainMenuScreen::_ShowMainMenuScreen();
+		clsMainMenuScreen::ShowMainMenuScreen(); 
 
 	}
 
