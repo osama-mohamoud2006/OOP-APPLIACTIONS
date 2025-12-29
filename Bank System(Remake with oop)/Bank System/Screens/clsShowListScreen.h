@@ -36,6 +36,9 @@ private:
 public:
 
     static void PrintClientList() {
+
+        if (!clsScreen::HavePermission(clsUser::enUserPermission::eListClients)) { return; } // if he hasn't per 
+
         clsScreen::_PrintMenuOption(colorText("          List Clients Screen", "purple"));
         std::vector<clsBankClient> clients = clsBankClient::GetAllClientsInVector();
 

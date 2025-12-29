@@ -115,6 +115,9 @@ private:
 public:
     static void UpdateClientInfo()
     {
+
+        if (!clsScreen::HavePermission(clsUser::enUserPermission::eUpdateClient)) { return; } // if he hasn't per 
+
         clsScreen::_PrintMenuOption(colorText("          Update Client Screen", "pink"));
 
         string AccountNumber = "";

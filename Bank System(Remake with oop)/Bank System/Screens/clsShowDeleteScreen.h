@@ -9,6 +9,8 @@ public:
     static void DeleteClient()
     {
 
+        if (!clsScreen::HavePermission(clsUser::enUserPermission::eDeleteClient)) { return; } // if he hasn't per 
+
         clsScreen::_PrintMenuOption(colorText("           Delete Client Screen", "red"));
         string AccountNumber = "";
         AccountNumber = clsInputAndValidation::read_string("Enter account number: ");

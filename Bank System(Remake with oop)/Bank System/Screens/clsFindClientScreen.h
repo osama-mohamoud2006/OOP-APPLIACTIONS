@@ -7,7 +7,7 @@ class clsFindClientScreen : protected clsScreen
 	
 public:
 	static void FindClientByAccountNumber() {
-
+		if (!clsScreen::HavePermission(clsUser::enUserPermission::eFindClient)) { return; } // if he hasn't per 
 		string AccountNumber = "";
 		clsBankClient Client = clsBankClient::EmptyObjForInitializing();
 

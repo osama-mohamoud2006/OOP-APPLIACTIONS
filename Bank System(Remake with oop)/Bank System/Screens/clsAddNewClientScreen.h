@@ -40,6 +40,8 @@ private:
 public:
 	static void AddNewClient() {
 
+		if (!clsScreen::HavePermission(clsUser::enUserPermission::eAddClient)) { return; } // if he hasn't per 
+
 		do {
 
 	      system("cls");
