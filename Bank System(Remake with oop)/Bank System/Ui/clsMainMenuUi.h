@@ -15,6 +15,9 @@
 
 // Mange Users
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsManageUsersMenuUi.h"
+// Current User Obj
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\Global.h"
+
 class clsMainMenuScreen : protected clsScreen
 {
 
@@ -173,7 +176,7 @@ public:
 
 		while (OptionByUser != _enMainMenuOptions::eExitScreen) {
 			system("cls");
-			clsScreen::_PrintMenuOption(colorText("               Main Menu","lightpurple")); // PrintBasicPersonData the name of menu 
+			clsScreen::_PrintMenuOption(colorText("               Main Menu","lightpurple"),GCurrentUser); // PrintBasicPersonData the name of menu 
 			_EMainMenu(); // print main menu elements 
 			std::cout << setw(37) << left << "" << "Enter Option";
 			OptionByUser =_PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 9, ""));

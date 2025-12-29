@@ -25,7 +25,7 @@ protected:
         std::cout << "\n\n\t\t\t\t\t" << Title;
       
         
-            std::cout << colorText("\n\n\t\t\t\t\t   Current Logged In As: " ,"green") << "@ " << ShowTheCurrentUser.GetUserName();
+            std::cout << colorText("\n\n\t\t\t\t\t   Current Logged In As: " ,"green") << "@" << ShowTheCurrentUser.GetUserName();
         
         std::cout << "\n\t\t\t\t\t______________________________________\n\n";
     }
