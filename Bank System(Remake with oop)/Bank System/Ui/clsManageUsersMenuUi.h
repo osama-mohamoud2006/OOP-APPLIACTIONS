@@ -127,6 +127,8 @@ private:
 public:
 	static void ShowManageUsersMenu() 
 	{
+		if( ! clsScreen::HavePermission(clsUser::enUserPermission::eManageUsers) ) { return; } // if he hasn't per 
+
 		_enManagUsers option = _enManagUsers::none;  // initialize option 
 		while (option!= _enManagUsers::eMainMenu) 
 		{
