@@ -1,10 +1,7 @@
 #pragma once
+
 class clsUtilPrintUserDetails {
 private:
-
-	static bool _HasPermission(int Permission, clsUser::enUserPermission HasPermission) { // Will Be Moved to clsUser later
-        return ((Permission & HasPermission) == HasPermission);
-    }
 
     static void _PrintPermissionsOfUser(const int& Permission, int leftPadding)
     {
@@ -16,36 +13,42 @@ private:
 
         bool hasAnyPermission = false;
 
-        if (_HasPermission(Permission, clsUser::enUserPermission::eAddClient)) {
+        if (clsUser::CheckPermission(clsUser::enUserPermission::eAddClient, Permission)) {
             cout << colorText("Add Client", "green");
             hasAnyPermission = true;
         }
-        if (_HasPermission(Permission, clsUser::enUserPermission::eDeleteClient)) {
+
+        if ( clsUser::CheckPermission(clsUser::enUserPermission::eDeleteClient , Permission) ) {
             if (hasAnyPermission) cout << ", ";
             cout << colorText("Delete Client", "green");
             hasAnyPermission = true;
         }
-        if (_HasPermission(Permission, clsUser::enUserPermission::eFindClient)) {
+
+        if (clsUser::CheckPermission(clsUser::enUserPermission::eFindClient, Permission)) {
             if (hasAnyPermission) cout << ", ";
             cout << colorText("Find Client", "green");
             hasAnyPermission = true;
         }
-        if (_HasPermission(Permission, clsUser::enUserPermission::eListClients)) {
+
+        if (clsUser::CheckPermission(clsUser::enUserPermission::eListClients, Permission)) {
             if (hasAnyPermission) cout << ", ";
             cout << colorText("List Clients", "green");
             hasAnyPermission = true;
         }
-        if (_HasPermission(Permission, clsUser::enUserPermission::eUpdateClient)) {
+
+        if (clsUser::CheckPermission(clsUser::enUserPermission::eUpdateClient, Permission)) {
             if (hasAnyPermission) cout << ", ";
             cout << colorText("Update Client", "green");
             hasAnyPermission = true;
         }
-        if (_HasPermission(Permission, clsUser::enUserPermission::eTransactions)) {
+
+        if (clsUser::CheckPermission(clsUser::enUserPermission::eTransactions, Permission)) {
             if (hasAnyPermission) cout << ", ";
             cout << colorText("Transactions", "green");
             hasAnyPermission = true;
         }
-        if (_HasPermission(Permission, clsUser::enUserPermission::eManageUsers)) {
+
+        if (clsUser::CheckPermission(clsUser::enUserPermission::eManageUsers, Permission))  {
             if (hasAnyPermission) cout << ", ";
             cout << colorText("Manage Users", "green");
             hasAnyPermission = true;

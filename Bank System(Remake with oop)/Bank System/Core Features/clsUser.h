@@ -22,7 +22,7 @@ private :
 
 public:
 
-	enum enUserPermission {eListClients=1, eAddClient=2,eDeleteClient=4,eUpdateClient=8 , eFindClient=16 , eTransactions=32,eManageUsers=64 };
+	enum enUserPermission {eALL=-1,eListClients=1, eAddClient=2,eDeleteClient=4,eUpdateClient=8 , eFindClient=16 , eTransactions=32,eManageUsers=64 };
 
 	// Parametrized Constructor 
 	clsUser( _enMode Mode, string Username, string  Password, int Permissions
@@ -343,6 +343,25 @@ private :
 					static	 vector<clsUser> LoadTheWholeFileOnVector() {
 							 return _LoadFileOnVector();
 						 }
+
+
+					/////////////////////         Check Permission //////////////
+
+					static bool CheckPermission(enUserPermission &CurrentPermissionToCheck, clsUser& UserToCheck) 
+					{
+						if (enUserPermission::eALL == UserToCheck.GetPermissions()) return true;
+						else if ( ( UserToCheck.GetPermissions() & CurrentPermissionToCheck ) == CurrentPermissionToCheck) return true;
+						else return false; 
+					}
+
+					static bool CheckPermission(enUserPermission CurrentPermissionToCheck, int PermOfUserToCheck)
+					{
+						if (enUserPermission::eALL == PermOfUserToCheck ) return true;
+						else if ((PermOfUserToCheck & CurrentPermissionToCheck) == CurrentPermissionToCheck) return true;
+						else return false;
+					}
+
+
 };
 
 string clsUser::_Delmi = "#//#";
