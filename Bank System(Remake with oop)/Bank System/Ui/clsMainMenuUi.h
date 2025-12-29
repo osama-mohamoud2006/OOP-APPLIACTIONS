@@ -19,6 +19,8 @@
 // Current User Obj
  #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\Global.h"
 
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsShowCurrentLoggedinUserInfo.h"
+
 class clsMainMenuScreen : protected clsScreen
 {
 
@@ -44,8 +46,8 @@ class clsMainMenuScreen : protected clsScreen
 		std::cout << setw(37) << left << "" << "\t[6] Transactions.\n";
 		std::cout << setw(37) << left << "" << "\t[7] Admin Menu.\n";
 		std::cout << setw(37) << left << "" << "\t[8] Logout.\n";
-		std::cout << setw(37) << left << "" << "\t[8] Display Current User Info.\n";
-		std::cout << setw(37) << left << "" << "\t[10] Exit.\n";
+		std::cout << setw(37) << left << "" << "\t[9] Display Current User Info.\n";
+		std::cout << setw(36) << left << "" << "\t[10] Exit.\n";
 		std::cout << setw(37) << left << "" << "===========================================\n";
 
 	}
@@ -110,8 +112,9 @@ class clsMainMenuScreen : protected clsScreen
 		 // clsLoginScreen::LoginScreen();// ---> circular refrence 
     }
 
+	// 9 (done)
 	static void _ShowCurrentUserInfo() {
-
+		clsDisplayCurrentUserInfo::DisplayCurrentUserInfo();
 	}
 
 	static _enMainMenuOptions  _PerformMainMenuOption(_enMainMenuOptions OptionByuser)
