@@ -39,10 +39,9 @@ public:
 
         if (!clsScreen::HavePermission(clsUser::enUserPermission::eListClients)) { return; } // if he hasn't per 
 
-        clsScreen::_PrintMenuOption(colorText("          List Clients Screen", "purple"));
-        std::vector<clsBankClient> clients = clsBankClient::GetAllClientsInVector();
-
-        clsScreen::_PrintMenuOption(+"           (" + to_string(clients.size()) + ") Client(s).");
+     std::vector<clsBankClient> clients = clsBankClient::GetAllClientsInVector();
+        clsScreen::_PrintMenuOption(colorText("          List Clients Screen\n", "purple")   , "           (" + to_string(clients.size()) + ") Client(s).");
+   
 
         _PrintHeader();
 
