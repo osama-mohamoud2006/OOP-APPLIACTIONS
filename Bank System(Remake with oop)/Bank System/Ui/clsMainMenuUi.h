@@ -106,7 +106,7 @@ class clsMainMenuScreen : protected clsScreen
     static void _ShowLogoutScreen(){
      //  std::cout<<"Will Be Logout Screen\n";
 		  GCurrentUser = clsUser::ReturnEmptyObjForInitializingUser();  // --> empty the current user 
-		 // clsLoginScreen::LoginScreen();//
+		 // clsLoginScreen::LoginScreen();// ---> circular refrence 
     }
 
 
@@ -178,7 +178,7 @@ public:
 	static void  ShowMainMenuScreen() {
 		_enMainMenuOptions OptionByUser= _enMainMenuOptions::none;
 
-		while (OptionByUser != _enMainMenuOptions::eExitScreen || OptionByUser != _enMainMenuOptions::eLogoutScreen ) {
+		while (OptionByUser != _enMainMenuOptions::eExitScreen && OptionByUser != _enMainMenuOptions::eLogoutScreen ) {
 			system("cls");
 			clsScreen::_PrintMenuOption(colorText("               Main Menu","yellow"),GCurrentUser); // PrintBasicPersonData the name of menu 
 			_EMainMenu(); // print main menu elements 
