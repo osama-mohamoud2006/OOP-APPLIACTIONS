@@ -63,7 +63,7 @@ Before building the main system, these utility libraries need to be solid.
 
 - [x] Extension 01 - add Date and Logged In User to All Screens
 
-- [ ] Extension 02 - Lock the System After 3 failed Logins
+- [x] Extension 02 - Lock the System After 3 failed Logins
 
 - [ ] Extension 03 - Register Logins In a Log File
 
