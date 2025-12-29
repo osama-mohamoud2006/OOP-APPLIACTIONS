@@ -28,6 +28,13 @@ public :
         string Username = "";
         Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
 
+        if (Username == GCurrentUser.GetUserName())
+        {
+            screen_color(red_on_black);
+            cout << "\n\n\t\t\t\t\tYOU CANN'T DELETE YOUESELF CONTACT THE ADMIN FOR THIS ACTION!\a\n";
+            return;
+        }
+
         // won't allow to delete the "admin" as it is the main user and he controls every thing
         while (!clsUser::FindUserAndReturnObj_If_exist(Username, user) || Username == "admin")  // if the user exists 
         {

@@ -145,15 +145,15 @@ public:
         string Username = "";
         Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
 
- 
-        while (!clsUser::FindUserAndReturnObj_If_exist(Username, user) || Username== "admin" || Username==GCurrentUser.GetUserName() )  // if the user exists || it is admin cuz admin isn't preparade to be updated  
-        {
-            screen_color(red);
-            if (Username == GCurrentUser.GetUserName()) {// New Feature : You Cannot Edit The Current User Permissions 
+         if (Username == GCurrentUser.GetUserName()) {    // New Feature : You Cannot Edit The Current User Permissions 
                 screen_color(red_on_black);
                 cout << "\n\n\t\t\t\t\tYOU CANN'T UPDATE YOURSELF GET OUT! \a\n";
                 return;  
             }
+ 
+        while (!clsUser::FindUserAndReturnObj_If_exist(Username, user) || Username== "admin"  )  // if the user exists || it is admin cuz admin isn't preparade to be updated  
+        {
+            screen_color(red);
             cout << "\n\n\t\t\t\t\tThe User Doesn't Exist!\a\n"; // remove which user that doesn't exist for privacy 
             Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
         }
