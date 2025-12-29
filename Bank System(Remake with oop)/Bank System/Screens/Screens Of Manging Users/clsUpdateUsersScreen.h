@@ -1,6 +1,7 @@
 #pragma once 
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsUtilPrintUserDetails.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsUser.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\Global.h"
 
 class clsUpdateUsersScreen : protected clsScreen
 {
@@ -136,6 +137,7 @@ private:
     }
 
 public:
+
    static  void UpdateUser() {
 
        clsScreen::_PrintMenuOption(colorText("         Update User Screen", "orange"));
@@ -143,9 +145,15 @@ public:
         string Username = "";
         Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
 
-        while (!clsUser::FindUserAndReturnObj_If_exist(Username, user) || Username== "admin"  )  // if the user exists || it is admin cuz admin isn't preparade to be updated  
+ 
+        while (!clsUser::FindUserAndReturnObj_If_exist(Username, user) || Username== "admin" || Username==GCurrentUser.GetUserName() )  // if the user exists || it is admin cuz admin isn't preparade to be updated  
         {
             screen_color(red);
+            if (Username == GCurrentUser.GetUserName()) {// New Feature : You Cannot Edit The Current User Permissions 
+                screen_color(red_on_black);
+                cout << "\n\n\t\t\t\t\tYOU CANN'T UPDATE YOURSELF GET OUT! \a\n";
+                return;  
+            }
             cout << "\n\n\t\t\t\t\tThe User Doesn't Exist!\a\n"; // remove which user that doesn't exist for privacy 
             Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
         }
