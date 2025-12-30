@@ -19,6 +19,9 @@ private:
             case  clsUser::enUserPermission::eDeleteClient:
                 return "DELETE CLIENT SCRREN";
 
+            case clsUser::enUserPermission::eUpdateClient:
+                return "UPDATE CLIENT SCREEN";
+
                 case  clsUser::enUserPermission::eFindClient :
                     return "FIND CLIENT SCREEN";
 
@@ -32,7 +35,7 @@ private:
                                 return "TRANSACTIONS SCREEN";
                             
                             case clsUser::eViewLoginLog:
-                                return  "LOG OF LOGIN SCREEN";
+                                return  "VIEW THE LOG OF LOGIN SCREEN";
         }
         return "";
     }

@@ -32,7 +32,7 @@ class clsMainMenuScreen : protected clsScreen
     enum _enMainMenuOptions {
         none=0,eListClientsScreen = 1, eAddNewClientScreen = 2, eDeleteClientScreen = 3,
         eUpdateClientScreen = 4, eFindClientScreen = 5, eShowTransactionsMenueScreen = 6,
-        eUserscreen = 7, eLogoutScreen = 8 , eDisplayCurrentUserInfo=9,eLoginLogScreen=10,eExitScreen=11
+        eManageUsersScreen = 7, eDisplayCurrentUserInfo=8,eLoginLogScreen=9, eLogoutScreen = 10, eExitScreen=11
     };
 
 
@@ -48,9 +48,9 @@ class clsMainMenuScreen : protected clsScreen
 		std::cout << setw(37) << left << "" << "\t[5] Find Client.\n";
 		std::cout << setw(37) << left << "" << "\t[6] Transactions.\n";
 		std::cout << setw(37) << left << "" << "\t[7] Admin Menu.\n";
-		std::cout << setw(37) << left << "" << "\t[8] Logout.\n";
-		std::cout << setw(37) << left << "" << "\t[9] Display Current User Info.\n";
-		std::cout << setw(36) << left << "" << "\t[10] Login Log Screen.\n";
+		std::cout << setw(37) << left << "" << "\t[8] Display Current User Info.\n";
+		std::cout << setw(36) << left << "" << "\t[9] Login Log Screen.\n";
+		std::cout << setw(37) << left << "" << "\t[10] Logout.\n";
 		std::cout << setw(36) << left << "" << "\t[11] Exit.\n";
 		std::cout << setw(37) << left << "" << "===========================================\n";
 
@@ -168,7 +168,7 @@ class clsMainMenuScreen : protected clsScreen
 			break;
 		}
 
-		case _enMainMenuOptions::eUserscreen: { //7
+		case _enMainMenuOptions::eManageUsersScreen: { //7
 			//clsScreen::_PrintMenuOption(colorText("               Admin Screen", "orange"));
 			_ShowManageUsersMenuScreen();		// call manage   screen 
 			break;
