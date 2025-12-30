@@ -3,8 +3,7 @@
 
 class clsManageClientBalance {
 private :
-
-
+	
 	// if the amount < 0 then return true 
 	static bool  _IsNegative(double amount) {
 		return ( amount < 0  ) ? true : false; 
@@ -17,19 +16,35 @@ private :
 
 public: 
 	static  clsBankClient::enSaveMode  Deposit(clsBankClient & Client,double amount) {
+		double OldBalance = Client.GetBalance();
 
 		if (_IsNegative(amount)) return clsBankClient::enSaveMode::FailedOrEmptyObj;
+
 		double NBalance  = Client.GetBalance()+amount; // Get the current account balance and it new amount to it
-		Client.SetBalance(NBalance); 
-		return Client.Save();
-		
+
+		Client.SetBalance(NBalance);
+
+		if (Client.Save() == clsBankClient::enSaveMode::FailedOrEmptyObj) {
+			Client.SetBalance(OldBalance);
+			return clsBankClient::enSaveMode::FailedOrEmptyObj;
+		}
+
+		else return clsBankClient::enSaveMode::SuccessedToSave;
+
 	}
 
 	static  clsBankClient::enSaveMode  WithDraw(clsBankClient& Client, double amount) {
+		double OldBalance = Client.GetBalance();
+
 		if (_IsNegative(amount) || _IsCurrentBalanceLessThanAmount(amount, Client)) return clsBankClient::enSaveMode::FailedOrEmptyObj;
 		double NBalance = Client.GetBalance() - amount; // Get the current account balance and it new amount to it
 		Client.SetBalance(NBalance);
-		return Client.Save();
+		if (Client.Save() == clsBankClient::enSaveMode::FailedOrEmptyObj) { 
+			Client.SetBalance(OldBalance);  
+			return clsBankClient::enSaveMode::FailedOrEmptyObj;
+		}
+
+		else return clsBankClient::enSaveMode::SuccessedToSave;
 
 	}
 

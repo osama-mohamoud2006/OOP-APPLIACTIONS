@@ -130,6 +130,7 @@ public :
 				// undo --> return;
 				return;
 			}
+			
 
 			WasDone = clsManageClientBalance::WithDraw(ClientWhoWillSend, amount); // withdraw from sender and send the amount to receiver 
 			
@@ -138,8 +139,7 @@ public :
 
 			case clsBankClient::enSaveMode::FailedOrEmptyObj: // if the WithDraw failed 
 			{
-				cout << colorText("\n\n\t\t\t\t\tThe WithDraw Failed!!\a\n","red");
-				clsManageClientBalance::Deposit(ClientWhoWillSend, amount);
+				_PrintTransferFailed(ClientWhoWillSend, ClientWhoWillReceive, amount, ClientWhoWillSend.GetBalance());
 				return;
 			}
 
@@ -148,10 +148,9 @@ public :
 				clsBankClient::enSaveMode  WasOperationDone = clsBankClient::enSaveMode::FailedOrEmptyObj;
 				WasOperationDone= clsManageClientBalance::Deposit(ClientWhoWillReceive, amount); // deposit to the another client 
 
-				if(WasOperationDone == clsBankClient::enSaveMode::FailedOrEmptyObj) // if the recevier didn't receive 
+				if(WasOperationDone == clsBankClient::enSaveMode::FailedOrEmptyObj) // if the receiver didn't receive 
 				{
-					clsManageClientBalance::Deposit(ClientWhoWillSend, amount);
-					cout << "\n\n\a\t\t\t\t\tOperation Failed!\n";
+					clsManageClientBalance::Deposit(ClientWhoWillSend, amount); // back the money to ssender again 
 					return; 
 				}
 
