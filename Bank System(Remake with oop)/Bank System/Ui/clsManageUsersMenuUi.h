@@ -128,7 +128,10 @@ private:
 public:
 	static void ShowManageUsersMenu() 
 	{
-		if( ! clsScreen::HavePermission(clsUser::enUserPermission::eManageUsers) ) { return; } // if he hasn't per 
+		if( ! clsScreen::HavePermission(clsUser::enUserPermission::eManageUsers) ) { // if he hasn't per 
+			cout << "\n\t\t\t\t\t";  system("pause"); // to fix clear screen   if per isn't allowed 
+			return;
+		}
 
 		_enManagUsers option = _enManagUsers::none;  // initialize option 
 		while (option!= _enManagUsers::eMainMenu) 

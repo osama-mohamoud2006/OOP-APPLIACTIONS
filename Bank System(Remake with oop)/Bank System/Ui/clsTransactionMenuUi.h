@@ -116,7 +116,10 @@ private:
 public :
 	static void ShowTransactionMenu() {
 
-		if (!clsScreen::HavePermission(clsUser::enUserPermission::eTransactions) ) { return; } // if he hasn't per 
+		if (!clsScreen::HavePermission(clsUser::enUserPermission::eTransactions) ) { // if he hasn't per 
+			cout << "\n\t\t\t\t\t";  system("pause"); // to fix clear screen   if per isn't allowed 
+			return; 
+		} 
 
 		_enTransactionMenuElements Option = eNone; // just for initializing 
 

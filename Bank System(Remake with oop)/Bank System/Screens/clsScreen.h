@@ -81,8 +81,9 @@ protected:
         if (!(clsUser::CheckPermission(TheNameOfScreen, PermissionsOfUser))) // if he hasn't permission 
         {
             _PrintYouDonotHavePermission(_GetNameOfScreen(TheNameOfScreen));
-            cout << "\n\t\t\t\t\t\a";
-            system("pause");
+            cout << "\a";
+          //  cout << "\n\t\t\t\t\t\a";
+          //  system("pause");
             return false; 
         }
         else return true ; // if he has permission 

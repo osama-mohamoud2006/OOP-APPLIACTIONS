@@ -189,7 +189,7 @@ class clsMainMenuScreen : protected clsScreen
 		case _enMainMenuOptions::eLoginLogScreen: 
 		{
 			_ShowLoginLogScreen();
-			_BackToMainMenuAgain();
+	     _BackToMainMenuAgain();
 			break;
 		}
 
