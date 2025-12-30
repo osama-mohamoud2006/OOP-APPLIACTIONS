@@ -23,7 +23,7 @@ private :
 
 public:
 
-	enum enUserPermission {eALL=-1,eListClients=1, eAddClient=2,eDeleteClient=4,eUpdateClient=8 , eFindClient=16 , eTransactions=32,eManageUsers=64 };
+	enum enUserPermission {eALL=-1,eListClients=1, eAddClient=2,eDeleteClient=4,eUpdateClient=8 , eFindClient=16 , eTransactions=32,eManageUsers=64 , eViewLoginLog=128};
 
 	// Parametrized Constructor 
 	clsUser( _enMode Mode, string Username, string  Password, int Permissions
@@ -132,9 +132,8 @@ private :
 		 {
 			 return _EmptyObj();
 		 }
-	//	 static clsUser InitializeForUpdatingUser(){
-		//	 return clsUser(_enMode::enUpdateMode, "", "", 0, "", "", "", "");
-		// }
+
+
 		 ////                                                                                             Find                                                                                                               ////
 
 		 static clsUser FindUser(const string &  UserNameOFUserToFind) 

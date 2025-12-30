@@ -25,6 +25,8 @@ class clsLoginHistoryScreen : clsScreen
 public:
 	static void ShowLoginHistoryScreen() 
 	{
+        if (!clsScreen::HavePermission(clsUser::eViewLoginLog)) { return;  }
+
 		vector < clsUser::clsLoginHistory> Log = clsUser::clsLoginHistory::FileOnVector();
 		clsScreen::_PrintMenuOption(colorText("         Login History Screen\n", "cyan"), "           (" + to_string(Log.size()) + ") User(s).");
 
