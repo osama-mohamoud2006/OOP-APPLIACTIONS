@@ -3,14 +3,15 @@
 class clsLoginHistory
 {
 private:
-	string _Delmi = "#//#";
+	static string  _Delmi ;
 	static string _LoginLogFileName ;
-	static string DateAndTime;
+	 string DateAndTime;
 	string username;
 	string pass;
 	int permission;
 
 public:
+	string GetTimeDate() {return DateAndTime;}
 	string GetUsername() { return username; }
 	string GetPassword() { return pass;  }
 	string GetPermission() { return to_string(permission); }
@@ -56,3 +57,4 @@ public:
 };
 
 string clsLoginHistory::_LoginLogFileName = "LoginHistory.text";
+string clsLoginHistory::_Delmi = "#//#";
