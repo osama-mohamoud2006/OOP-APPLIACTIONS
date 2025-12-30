@@ -4,8 +4,8 @@ class clsLoginHistory
 {
 private:
 	string _Delmi = "#//#";
-	string _LoginLogFileName = "LoginHistory.text";
-	string DateAndTime;
+	static string _LoginLogFileName ;
+	static string DateAndTime;
 	string username;
 	string pass;
 	int permission;
@@ -24,14 +24,14 @@ public:
 
 private:
 
-	clsLoginHistory _ConvertLineToObject(string line)
+	static clsLoginHistory _ConvertLineToObject(string line)
 	{
 		clsString::SetDelmi(_Delmi);
 		vector<string> RecordsOfLogs = clsString::SplitString(line);
 		return clsLoginHistory(RecordsOfLogs[0], RecordsOfLogs[1], RecordsOfLogs[2], stoi(RecordsOfLogs[3]) );
 	}
 
-	vector <clsLoginHistory> _LoadLogFileOnVector() {
+	static vector <clsLoginHistory> _LoadLogFileOnVector() {
 		vector<clsLoginHistory> Record;
 		fstream read;
 		read.open(_LoginLogFileName, ios::in);
@@ -49,8 +49,10 @@ private:
 
 
 public:
-	vector < clsLoginHistory>  FileOnVector() {
+	static vector < clsLoginHistory>  FileOnVector() {
 		return _LoadLogFileOnVector();
 	}
 
 };
+
+string clsLoginHistory::_LoginLogFileName = "LoginHistory.text";
