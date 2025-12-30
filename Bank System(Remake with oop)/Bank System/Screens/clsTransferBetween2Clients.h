@@ -117,7 +117,7 @@ public :
 		{
 			
 			system("cls");
-			clsBankClient::enSaveMode  WasWithDrawDone = clsBankClient::enSaveMode::FailedOrEmptyObj; // check if the withdraw from who will send done or not 
+			clsBankClient::enSaveMode  WasDepositDone = clsBankClient::enSaveMode::FailedOrEmptyObj; // check if the withdraw from who will send done or not 
 
 			clsScreen::_PrintMenuOption(colorText("     The Client Who Will Receive", "cyan"));
 			ClientWhoWillReceive = _CheckAccountBeforeContinue(); // check if the second account is existing  -- > if found it who will receive will have the  object
@@ -134,21 +134,20 @@ public :
 			// check if the withdraw done
 			if (clsManageClientBalance::WithDraw(ClientWhoWillSend, amount) == clsBankClient::enSaveMode::SuccessedToSave )
 			{
-				WasWithDrawDone = clsBankClient::enSaveMode::SuccessedToSave;
+
+			           // then  start depositing 
+				if (clsManageClientBalance::Deposit(ClientWhoWillReceive, amount) == clsBankClient::enSaveMode::FailedOrEmptyObj)
+				{// undo deposit if failed to save the change on file 
+					clsManageClientBalance::WithDraw(ClientWhoWillReceive, amount); 	cout << colorText("\n\n\a\t\t\t\t\DEPOSIT FAILED !\n","red");
+					return; 
+				}
+
 			}
 			else {   // if not 
 				cout << "\n\n\a\t\t\t\t\tWITHDRAW FAILED !\n";
 				clsManageClientBalance::Deposit(ClientWhoWillSend, amount);  // return the amount that he withdrawal
 				return; 
 			}
-
-			// if withdraw done 
-			 if (WasWithDrawDone == clsBankClient::enSaveMode::SuccessedToSave
-				&& clsManageClientBalance::Deposit(ClientWhoWillReceive, amount) == clsBankClient::enSaveMode::SuccessedToSave)
-			{
-				SaveStatus = clsBankClient::enSaveMode::SuccessedToSave;
-			}
-			
 
 		}
 
