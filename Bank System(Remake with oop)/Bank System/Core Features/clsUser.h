@@ -418,7 +418,8 @@ private :
 									return clsLoginHistory(RecordsOfLogs[0], RecordsOfLogs[1], RecordsOfLogs[2], stoi(RecordsOfLogs[3]));
 								}
 
-								static vector <clsLoginHistory> _LoadLogFileOnVector() {
+								static vector <clsLoginHistory> _LoadLogFileOnVector() 
+								{
 									vector<clsLoginHistory> Record;
 									fstream read;
 									read.open(_LoginLogFileName, ios::in);
@@ -431,6 +432,7 @@ private :
 										}
 										read.close();
 									}
+									else ThrowExceptionCouldnotOpenFile();
 
 									return Record;
 								}
@@ -442,6 +444,9 @@ private :
 								}
 
 							};
+
+
+
 
 };
 
