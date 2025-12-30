@@ -2,6 +2,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsUser.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsUtilPrintUserDetails.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsUtilAddingPermissionsToUserYOrN.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsUtilFillUserData.h"
 
 class clsAddUsers : protected  clsScreen
 {
@@ -16,24 +17,11 @@ private:
     }
 
     static void _FillNewUser(clsUser& User) {
-        string Data = "";
+
         cout << "\n\n";
         clsScreen::_PrintMenuOption(colorText("           Adding New User ", "green")); // will replace the clsScreen print option
 
-        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter Password: ");
-        User.SetPassword(Data);
-
-        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter First Name: ");
-        User.SetFirstName(Data);
-
-        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter Last Name: ");
-        User.SetLastName(Data);
-
-        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter Email: ");
-        User.SetEmail(Data);
-
-        Data = clsInputAndValidation::read_full_line("\n\t\t\t\t\tEnter Phone: ");
-        User.SetPhone(Data);
+        clsUtilFillUserData::_FillNewUser(User);
 
         /// Will add permissions later 
         if (clsInputAndValidation::Confirm(colorText("\n\n\n\t\t\t\tDo You Want To Set Full Permissions To This User[y],[n] : ", "red"))) User.SetPermissions(-1);
