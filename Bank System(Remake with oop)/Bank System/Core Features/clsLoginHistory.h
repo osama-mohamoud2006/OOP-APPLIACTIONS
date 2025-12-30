@@ -46,6 +46,7 @@ private:
 			read.close();
 		}
 
+		return Record;
 	}
 
 

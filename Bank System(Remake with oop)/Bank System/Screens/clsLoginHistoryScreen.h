@@ -5,18 +5,18 @@ class clsLoginHistoryScreen : clsScreen
 {
 
     static void _PrintHeader() {
-        std::cout << "| " << left << colorText("Time - Date", "lightpurple") << setw(15 - 14) << "";
-        std::cout << "| " << left << colorText("UserName", "lightpurple") << setw(25 - 11) << "";
-        std::cout << "| " << left << colorText("Password", "lightpurple") << setw(15 - 5) << "";
-        std::cout << "| " << left << colorText("Permissions", "lightpurple") << setw(30 - 5) << "";
-        std::cout << "\n_____________________________________________________________________________________________________________________\n" << endl;
+        std::cout << "| " << left << colorText("Time - Date", "lightpurple") << setw(25 - 11) << "";
+        std::cout << "| " << left << colorText("UserName", "lightpurple") << setw(15 - 8) << "";
+        std::cout << "| " << left << colorText("Password", "lightpurple") << setw(15 - 8) << "";
+        std::cout << "| " << left << colorText("Permissions", "lightpurple") << setw(15 - 11) << "";
+        std::cout << "\n_________________________________________________________________________________\n" << endl;
     }
-    static void _PrintUserLoginRecord(clsLoginHistory User) {
 
-        std::cout << "| " << setw(15) << left << User.GetTimeDate();
-        std::cout << "| " << setw(25) << left << User.GetUsername();
+    static void _PrintUserLoginRecord(clsLoginHistory User) {
+        std::cout << "| " << setw(25) << left << User.GetTimeDate();
+        std::cout << "| " << setw(15) << left << User.GetUsername();
         std::cout << "| " << setw(15) << left << User.GetPassword();
-        std::cout << "| " << setw(30) << left << User.GetPermission();
+        std::cout << "| " << setw(15) << left << User.GetPermission();
         std::cout << endl;
     }
 
@@ -24,7 +24,7 @@ public:
 	static void ShowLoginHistoryScreen() 
 	{
 		vector < clsLoginHistory> Log = clsLoginHistory::FileOnVector();
-		clsScreen::_PrintMenuOption(colorText("           Login History Screen", "cyan"), "           (" + to_string(Log.size()) + ") User(s).");
+		clsScreen::_PrintMenuOption(colorText("          Login History Screen\n", "cyan"), "           (" + to_string(Log.size()) + ") User(s).");
 
         _PrintHeader();
 
