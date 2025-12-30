@@ -6,17 +6,9 @@
 #include <iomanip>
 using namespace std;
 //  ctrl + m+o
-static  string time() {
-	std::time_t currentTime = std::time(0);
-	std::tm* localTime = std::localtime(&currentTime);
-	return std::asctime(localTime);
-}
 
 int main() {
 
-	string Time = clsDate::GetLocalDateAndTime();
-	cout << Time << endl;
-
-	//while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break;
+while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break;
 
 }

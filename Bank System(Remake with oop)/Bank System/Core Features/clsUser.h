@@ -1,5 +1,6 @@
 #pragma once 
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsPerson.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Utility Library\clsDate.h"
 
 class clsUser : public clsPerson {
 
@@ -367,9 +368,9 @@ private :
 					////                                                    Login History Of User                                    //////////
 
 					private:
-						string _RecordOfLoginDetails() 
+						string  _RecordOfLoginDetails() 
 						{
-							return clsDate::GetLocalDateAndTime() + _Delmi + this->_Username + _Delmi + this->_Password + _Delmi + to_string(this->_Permissions) ;
+							return ( clsDate::GetLocalDateAndTime() + _Delmi + this->_Username + _Delmi + this->_Password + _Delmi + to_string(this->_Permissions) );
 						}
 
 						public:
@@ -379,7 +380,7 @@ private :
 								write.open("LoginHistory.text", ios::out | ios::app);
 								if (write.is_open())
 								{
-									write << _RecordOfLoginDetails << endl;
+									write <<  _RecordOfLoginDetails() << endl;
 									write.close();
 								}
 								else { write.close();  ThrowExceptionCouldnotOpenFile(); }
