@@ -62,7 +62,7 @@ private :
 			  else 
 			  { 
 				  LoginFailed = false;
-				  GCurrentUser.SaveLoginLog();
+				  GCurrentUser.SaveLoginLog(); // Save the successful login details on file 
 				  clsMainMenuScreen::ShowMainMenuScreen();
 				  return true; 
 			  }
@@ -77,5 +77,6 @@ public:
 		clsScreen::_PrintMenuOption(colorText("               Login", "green"));
 		return (_Login()) ? true : false; 
 	}
+
 
 };

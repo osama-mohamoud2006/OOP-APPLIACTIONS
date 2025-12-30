@@ -368,6 +368,8 @@ private :
 					////                                                    Login History Of User                                    //////////
 
 					private:
+						static string _LoginLogFileName;
+
 						string  _RecordOfLoginDetails() 
 						{
 							return ( clsDate::GetLocalDateAndTime() + _Delmi + this->_Username + _Delmi + this->_Password + _Delmi + to_string(this->_Permissions) );
@@ -377,7 +379,7 @@ private :
 							void SaveLoginLog()
 							{
 								fstream write;
-								write.open("LoginHistory.text", ios::out | ios::app);
+								write.open(_LoginLogFileName,ios::out | ios::app);
 								if (write.is_open())
 								{
 									write <<  _RecordOfLoginDetails() << endl;
@@ -385,7 +387,11 @@ private :
 								}
 								else { write.close();  ThrowExceptionCouldnotOpenFile(); }
 							}
+
+
+
 };
 
 string clsUser::_Delmi = "#//#";
 string clsUser::_FileName = "UsersDb.text"; 
+string clsUser::_LoginLogFileName = "LoginHistory.text";
