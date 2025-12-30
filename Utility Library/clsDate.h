@@ -500,6 +500,14 @@ public:
         return clsDate(date.d,date.m,date.y);
     }
 
+    static string GetLocalDateAndTime() 
+    {
+        time_t epoch_time = time(0);
+        tm* date_now = localtime(&epoch_time);
+        string time = to_string(date_now->tm_hour) +":" + to_string(date_now->tm_min)+":" + to_string(date_now->tm_sec);
+                       //  d/m/y + time 
+        return  (to_string(date_now->tm_mday)+"/" + to_string((date_now->tm_mon) + 1) +  "/" + to_string((date_now->tm_year) + 1900) + " - " + time);
+    }
 
     static  int yourAgeInDays(clsDate birthday, clsDate d1)
     {

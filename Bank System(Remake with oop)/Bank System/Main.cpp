@@ -14,7 +14,9 @@ static  string time() {
 
 int main() {
 
+	string Time = clsDate::GetLocalDateAndTime();
+	cout << Time << endl;
 
-	while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break;
+	//while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break;
 
 }
