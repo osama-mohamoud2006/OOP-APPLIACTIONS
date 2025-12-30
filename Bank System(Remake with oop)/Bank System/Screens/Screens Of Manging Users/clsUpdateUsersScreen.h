@@ -92,11 +92,8 @@ private:
     }
 
     static void _FillToUpdateUser(clsUser& User) {
-
-        string Data = "";
         clsUtilFillUserData::_FillNewUser(User);
 
-        /// Will add permissions later 
         if (clsInputAndValidation::Confirm(colorText("\n\n\n\t\t\t\tDo You Want To Set Full Permissions To This User[y],[n] : ", "red"))) User.SetPermissions(-1);
         else  User.SetPermissions(_ReadUserPermission());
 
