@@ -117,7 +117,7 @@ public :
 		{
 			
 			system("cls");
-			clsBankClient::enSaveMode  WasDepositDone = clsBankClient::enSaveMode::FailedOrEmptyObj; // check if the withdraw from who will send done or not 
+			clsBankClient::enSaveMode  WasDone = clsBankClient::enSaveMode::FailedOrEmptyObj; // check if the withdraw from who will send done or not 
 
 			clsScreen::_PrintMenuOption(colorText("     The Client Who Will Receive", "cyan"));
 			ClientWhoWillReceive = _CheckAccountBeforeContinue(); // check if the second account is existing  -- > if found it who will receive will have the  object
@@ -131,23 +131,36 @@ public :
 				return;
 			}
 
-			// check if the withdraw done
-			if (clsManageClientBalance::WithDraw(ClientWhoWillSend, amount) == clsBankClient::enSaveMode::SuccessedToSave )
+			WasDone = clsManageClientBalance::WithDraw(ClientWhoWillSend, amount); // withdraw from sender and send the amount to receiver 
+			
+			switch (WasDone)
 			{
 
-			           // then  start depositing 
-				if (clsManageClientBalance::Deposit(ClientWhoWillReceive, amount) == clsBankClient::enSaveMode::FailedOrEmptyObj)
-				{// undo deposit if failed to save the change on file 
-					clsManageClientBalance::WithDraw(ClientWhoWillReceive, amount); 	cout << colorText("\n\n\a\t\t\t\t\DEPOSIT FAILED !\n","red");
+			case clsBankClient::enSaveMode::FailedOrEmptyObj: // if the WithDraw failed 
+			{
+				cout << colorText("\n\n\t\t\t\t\tThe WithDraw Failed!!\a\n","red");
+				clsManageClientBalance::Deposit(ClientWhoWillSend, amount);
+				return;
+			}
+
+			case clsBankClient::enSaveMode::SuccessedToSave:
+			{
+				clsBankClient::enSaveMode  WasOperationDone = clsBankClient::enSaveMode::FailedOrEmptyObj;
+				WasOperationDone= clsManageClientBalance::Deposit(ClientWhoWillReceive, amount); // deposit to the another client 
+
+				if(WasOperationDone == clsBankClient::enSaveMode::FailedOrEmptyObj) // if the recevier didn't receive 
+				{
+					clsManageClientBalance::Deposit(ClientWhoWillSend, amount);
+					cout << "\n\n\a\t\t\t\t\tOperation Failed!\n";
 					return; 
 				}
 
+				SaveStatus = clsBankClient::enSaveMode::SuccessedToSave;
+				break; 
 			}
-			else {   // if not 
-				cout << "\n\n\a\t\t\t\t\tWITHDRAW FAILED !\n";
-				clsManageClientBalance::Deposit(ClientWhoWillSend, amount);  // return the amount that he withdrawal
-				return; 
+
 			}
+		
 
 		}
 
