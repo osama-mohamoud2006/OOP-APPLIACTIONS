@@ -125,6 +125,8 @@ class clsMainMenuScreen : protected clsScreen
 		clsLoginHistoryScreen::ShowLoginHistoryScreen();
 	}
 
+
+
 	static _enMainMenuOptions  _PerformMainMenuOption(_enMainMenuOptions OptionByuser)
 	{
 		system("cls");
