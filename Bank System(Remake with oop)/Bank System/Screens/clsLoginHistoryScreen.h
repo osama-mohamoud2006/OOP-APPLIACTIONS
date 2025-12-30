@@ -1,5 +1,6 @@
 #pragma once 
-#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsLoginHistory.h"
+//#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsLoginHistory.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsUser.h"
 
 class clsLoginHistoryScreen : clsScreen
 {
@@ -14,7 +15,7 @@ class clsLoginHistoryScreen : clsScreen
         std::cout << "\n" << setw(leftPadding) << "" << "_________________________________________________________________________________\n" << endl;
     }
 
-    static void _PrintUserLoginRecord(clsLoginHistory User) {
+    static void _PrintUserLoginRecord(clsUser::clsLoginHistory User) {
         int leftPadding = 20; // Same padding as header
 
         std::cout << setw(leftPadding) << "" << "| " << setw(25) << left << User.GetTimeDate();
@@ -27,7 +28,7 @@ class clsLoginHistoryScreen : clsScreen
 public:
 	static void ShowLoginHistoryScreen() 
 	{
-		vector < clsLoginHistory> Log = clsLoginHistory::FileOnVector();
+		vector < clsUser::clsLoginHistory> Log = clsUser::clsLoginHistory::FileOnVector();
 		clsScreen::_PrintMenuOption(colorText("         Login History Screen\n", "cyan"), "           (" + to_string(Log.size()) + ") User(s).");
 
         _PrintHeader();
@@ -38,7 +39,7 @@ public:
 
         else {
 
-            for (const clsLoginHistory& U : Log) {
+            for (const clsUser::clsLoginHistory& U : Log) {
                 _PrintUserLoginRecord(U);
             }
             std::cout << "\n_____________________________________________________________________________________________________________________\n" << endl;
