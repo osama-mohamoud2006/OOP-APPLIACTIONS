@@ -345,7 +345,7 @@ private :
 						 }
 
 
-					/////////////////////         Check Permission //////////////
+					/////////////////////                                                                      Check Permission                                                   //////////////
 
 					static bool CheckPermission(enUserPermission &CurrentPermissionToCheck, clsUser& UserToCheck) 
 					{
@@ -364,7 +364,7 @@ private :
 
 
 
-					////                                                    Login History Of User                                    //////////
+					////                                                                                                Login History Of User                                                                             //////////
 
 					private:
 						static string _LoginLogFileName;

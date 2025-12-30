@@ -54,6 +54,12 @@ private:
             hasAnyPermission = true;
         }
 
+        if (clsUser::CheckPermission(clsUser::enUserPermission::eViewLoginLog, Permission)) {
+            if (hasAnyPermission) cout << ", ";
+            cout << colorText("Login Log", "green");
+            hasAnyPermission = true;
+        }
+
         if (!hasAnyPermission) {
             cout << colorText("No Permissions", "red");
         }
