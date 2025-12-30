@@ -31,6 +31,8 @@ private:
                             case clsUser::enUserPermission::eTransactions :
                                 return "TRANSACTIONS SCREEN";
                             
+                            case clsUser::eViewLoginLog:
+                                return  "LOG OF LOGIN SCREEN";
         }
         return "";
     }
