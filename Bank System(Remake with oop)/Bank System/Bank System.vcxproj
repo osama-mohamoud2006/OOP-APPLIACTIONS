@@ -135,6 +135,7 @@
     <ClInclude Include="clsBankClient.h" />
     <ClInclude Include="clsFindAccountBalanceScreen.h" />
     <ClInclude Include="clsFindClientScreen.h" />
+    <ClInclude Include="clsLogHistory.h" />
     <ClInclude Include="clsPerson.h" />
     <ClInclude Include="clsShowListScreen.h" />
     <ClInclude Include="clsWithDrawScreen.h" />

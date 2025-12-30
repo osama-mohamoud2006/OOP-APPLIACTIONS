@@ -6,10 +6,15 @@
 #include <iomanip>
 using namespace std;
 //  ctrl + m+o
+static  string time() {
+	std::time_t currentTime = std::time(0);
+	std::tm* localTime = std::localtime(&currentTime);
+	return std::asctime(localTime);
+}
 
 int main() {
 
-	 // Test Delete Yourself (you aren't logged in as admin) 
+
 	while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break;
 
 }

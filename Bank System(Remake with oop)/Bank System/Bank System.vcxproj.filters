@@ -44,5 +44,8 @@
     <ClInclude Include="clsFindAccountBalanceScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clsLogHistory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

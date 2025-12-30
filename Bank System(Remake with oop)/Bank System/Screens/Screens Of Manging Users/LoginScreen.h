@@ -2,6 +2,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsUser.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\Global.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Ui\clsMainMenuUi.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\clsLogHistory.h"
 
 class clsLoginScreen : protected clsScreen
 {
@@ -44,6 +45,7 @@ private :
 			  // take the username and find it if exist will return true and you will have the object that have that username
 			  if (!clsUser::FindUserAndReturnObj_If_exist(Username, Password, GCurrentUser)) // failed 
 			  {
+				  clsLogHistory::WriteLoginHistoryToFile(Username,Password);
 				  Trials--;
 				  system("cls");
 				  _WaringTheLock(Trials);
@@ -60,6 +62,7 @@ private :
 			  }
 			  else 
 			  { 
+				  clsLogHistory::WriteLoginHistoryToFile(GCurrentUser); 
 				  LoginFailed = false;
 				  clsMainMenuScreen::ShowMainMenuScreen();
 				  return true; 
