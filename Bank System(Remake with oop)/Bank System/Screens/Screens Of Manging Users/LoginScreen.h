@@ -61,8 +61,8 @@ private :
 			  }
 			  else 
 			  { 
-			
 				  LoginFailed = false;
+				  GCurrentUser.SaveLoginLog();
 				  clsMainMenuScreen::ShowMainMenuScreen();
 				  return true; 
 			  }

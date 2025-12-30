@@ -362,6 +362,28 @@ private :
 					}
 
 
+
+
+					////                                                    Login History Of User                                    //////////
+
+					private:
+						string _RecordOfLoginDetails() 
+						{
+							return clsDate::GetLocalDateAndTime() + _Delmi + this->_Username + _Delmi + this->_Password + _Delmi + to_string(this->_Permissions) ;
+						}
+
+						public:
+							void SaveLoginLog()
+							{
+								fstream write;
+								write.open("LoginHistory.text", ios::out | ios::app);
+								if (write.is_open())
+								{
+									write << _RecordOfLoginDetails << endl;
+									write.close();
+								}
+								else { write.close();  ThrowExceptionCouldnotOpenFile(); }
+							}
 };
 
 string clsUser::_Delmi = "#//#";
