@@ -39,6 +39,7 @@ private:
 
 	static void _PrintWithdrawFailed(double enteredAmount, double actualBalance) {
 		cout << "\n\n\a";
+
 		cout << setw(37) << left << "" << colorText("================================================", "cyan") << "\n";
 		cout << setw(37) << left << "" << "              " << colorText(">> FAILED <<", "red") << "\n";
 		cout << setw(37) << left << "" << colorText("================================================", "cyan") << "\n\n";
@@ -72,7 +73,7 @@ private:
 public :
 	static void TransFerBetween2Clients()
 	{
-		clsScreen::_PrintMenuOption(colorText("Transfer Between 2 Clients Screen", "pink"));
+		clsScreen::_PrintMenuOption(colorText("  Transfer Between 2 Clients Screen", "pink"));
 
 
 		clsBankClient ClientWhoWillSend = _CheckAccountBeforeContinue(); // client1
@@ -83,7 +84,7 @@ public :
 		clsUtilClientBalance::PrintClientBalanceRecord(ClientWhoWillSend); // print the client who will send screen 
 
 		double PerAmountOfClient = ClientWhoWillSend.GetBalance();
-		double amount = 0.0; // From ClientWhoWillSend
+		double amount = 0.0; // From ClientWhoWillSend --  balance  - the sum of money 
 		short Trials = 0;
 
 		// Make Sure entered the correct amount , Will Force you To Enter Amount You have Only and give you trials 
@@ -93,9 +94,11 @@ public :
 			amount = clsInputAndValidation::enter_postive_number( ""); 
 			
 			if ((PerAmountOfClient >= amount)) break; // correct amount 
-			else  	_PrintWithdrawFailed(amount, PerAmountOfClient);
+
+			else { system("cls");    _PrintWithdrawFailed(amount, PerAmountOfClient); }
 			
 			if (Trials > 4) {
+				system("cls");
 				cout << "\a\n\n\n\t\t\t\t" << colorText("YOU ENTERTED WRONG WITHDRAW AMOUNT FOR ", "red") << colorText( to_string(Trials),"red") << colorText(" Times THE OPERATION FAILED!\n", "red");
 				_PrintWithdrawFailed(amount, PerAmountOfClient);
 				return; // End the operation 
@@ -104,46 +107,46 @@ public :
 
 		}
 
+         clsBankClient::enSaveMode SaveStatus;
+		 clsBankClient ClientWhoWillReceive = clsBankClient::EmptyObjForInitializing();
 
 		// ClientWhoWillSend ---> withdraw from him
 		if (clsInputAndValidation::Confirm(colorText("\n\t\t\t\tAre You Sure [y],[n]: ","red")))
 		{
-			clsBankClient::enSaveMode SaveStatus;
+			
+			system("cls");
+			clsScreen::_PrintMenuOption(colorText("     The Client Who Will Receive", "cyan"));
+			ClientWhoWillReceive = _CheckAccountBeforeContinue(); // check if the second account is existing  -- > if found it who will receive will have the  object
 
-			SaveStatus = clsManageClientBalance::WithDraw(ClientWhoWillSend, amount);
-
-			if (clsBankClient::enSaveMode::SuccessedToSave == SaveStatus) { // if the 'ClientWhoWillSend' withdrawal succussed
-
+			// check before continuing 
+			if (ClientWhoWillReceive.GetAccountNumber() == ClientWhoWillSend.GetAccountNumber()) {
+				system("color 0F");
 				system("cls");
-				clsScreen::_PrintMenuOption(colorText("The Client Who Will Receive", "cyan"));
-				clsBankClient ClientWhoWillReceive = _CheckAccountBeforeContinue(); // check if the second account is existing 
-
-				if (ClientWhoWillReceive.GetAccountNumber() == ClientWhoWillSend.GetAccountNumber()) {
-					system("color 0F");
-					system("cls");
-					cout << colorText(" \n\n\t\t\t\t\aYOU CANN'T TRANSFER TO YOURSELF!!!!", "red") << "\n";
-					// undo --> return;
-					clsManageClientBalance::Deposit(ClientWhoWillSend, amount);  // return the amount that he withdrawal
-					return;
-				}
-
-				SaveStatus = clsManageClientBalance::Deposit(ClientWhoWillReceive, amount);
-
-				if (clsBankClient::enSaveMode::SuccessedToSave == SaveStatus)
-				{
-					system("cls");
-					screen_color(black);
-					_PrintSuccess(ClientWhoWillSend, ClientWhoWillReceive, amount);
-				}
-
-				else
-				{
-					_PrintTransferFailed(ClientWhoWillSend, ClientWhoWillReceive, amount, ClientWhoWillSend.GetBalance());
-				}
-
+				cout << colorText(" \n\n\t\t\t\t\aYOU CANN'T TRANSFER TO YOURSELF!!!!", "red") << "\n";
+				// undo --> return;
+				//clsManageClientBalance::Deposit(ClientWhoWillSend, amount);  // return the amount that he withdrawal
+				return;
 			}
 
+			// check if the both operation done 
+			else if (clsManageClientBalance::WithDraw(ClientWhoWillSend, amount) == clsBankClient::enSaveMode::SuccessedToSave
+				&& clsManageClientBalance::Deposit(ClientWhoWillReceive, amount) == clsBankClient::enSaveMode::SuccessedToSave)
+			{
+				SaveStatus = clsBankClient::enSaveMode::SuccessedToSave;
+			}
+			
+		}
 
+		if (clsBankClient::enSaveMode::SuccessedToSave == SaveStatus)
+		{
+			system("cls");
+			screen_color(black);
+			_PrintSuccess(ClientWhoWillSend, ClientWhoWillReceive, amount);
+		}
+
+		else
+		{
+			_PrintTransferFailed(ClientWhoWillSend, ClientWhoWillReceive, amount, ClientWhoWillSend.GetBalance());
 		}
 
 	};
