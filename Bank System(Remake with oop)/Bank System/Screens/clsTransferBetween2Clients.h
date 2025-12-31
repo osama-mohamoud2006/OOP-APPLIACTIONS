@@ -90,7 +90,7 @@ public :
 		// Make Sure entered the correct amount , Will Force you To Enter Amount You have Only and give you trials 
 		while (true) { 
 			Trials++;
-			cout << "\n\n\t\t\t\t" << "Enter The Amount You Want To Send To Another Client:  ";
+			cout << "\t\t\t\t\t" << "Enter The Amount You Want To Send To Another Client:  ";
 			amount = clsInputAndValidation::enter_postive_number( ""); 
 			
 			if ((PerAmountOfClient >= amount)) break; // correct amount 
@@ -117,48 +117,32 @@ public :
 		{
 			
 			system("cls");
-			clsBankClient::enSaveMode  WasDone = clsBankClient::enSaveMode::FailedOrEmptyObj; // check if the withdraw from who will send done or not 
-
 			clsScreen::_PrintMenuOption(colorText("     The Client Who Will Receive", "cyan"));
 			ClientWhoWillReceive = _CheckAccountBeforeContinue(); // check if the second account is existing  -- > if found it who will receive will have the  object
 
-			// check before continuing 
-			if (ClientWhoWillReceive.GetAccountNumber() == ClientWhoWillSend.GetAccountNumber()) {
-				system("color 0F");
-				system("cls");
-				cout << colorText(" \n\n\t\t\t\t\aYOU CANN'T TRANSFER TO YOURSELF!!!!", "red") << "\n";
-				// undo --> return;
-				return;
-			}
+			clsManageClientBalance::enTransferStatus TransferStatus = clsManageClientBalance::TransferBetween2Clients(ClientWhoWillSend, ClientWhoWillReceive, amount);
 			
-
-			WasDone = clsManageClientBalance::WithDraw(ClientWhoWillSend, amount); // withdraw from sender and send the amount to receiver 
-			
-			switch (WasDone)
+			switch (TransferStatus)
 			{
-
-			case clsBankClient::enSaveMode::FailedOrEmptyObj: // if the WithDraw failed 
-			{
-				_PrintTransferFailed(ClientWhoWillSend, ClientWhoWillReceive, amount, ClientWhoWillSend.GetBalance());
-				return;
-			}
-
-			case clsBankClient::enSaveMode::SuccessedToSave:
-			{
-				clsBankClient::enSaveMode  WasOperationDone = clsBankClient::enSaveMode::FailedOrEmptyObj;
-				WasOperationDone= clsManageClientBalance::Deposit(ClientWhoWillReceive, amount); // deposit to the another client 
-
-				if(WasOperationDone == clsBankClient::enSaveMode::FailedOrEmptyObj) // if the receiver didn't receive 
+				case clsManageClientBalance::enTransferStatus::eRecieverEqualsSender:
 				{
-					clsManageClientBalance::Deposit(ClientWhoWillSend, amount); // back the money to ssender again 
+					system("color 0F");
+					system("cls");
+					cout << colorText(" \n\n\t\t\t\t\aYOU CANN'T TRANSFER TO YOURSELF!!!!", "red") << "\n";
+					return;
+				}
+				case  clsManageClientBalance::enTransferStatus::eFailed: 
+				{
+					_PrintTransferFailed(ClientWhoWillSend, ClientWhoWillReceive, amount, ClientWhoWillSend.GetBalance());
 					return; 
 				}
+				case clsManageClientBalance::enTransferStatus::eSuccesedToTransfer: 
+				{
+					SaveStatus = clsBankClient::enSaveMode::SuccessedToSave;
+					break; 
+				}
 
-				SaveStatus = clsBankClient::enSaveMode::SuccessedToSave;
-				break; 
-			}
-
-			}
+			};
 		
 
 		}

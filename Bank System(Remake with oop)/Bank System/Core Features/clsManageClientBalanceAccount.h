@@ -48,6 +48,31 @@ public:
 
 	}
 
+	// Transfer
+
+	 enum enTransferStatus {eSuccesedToTransfer =1 , eRecieverEqualsSender=2 , eFailed=3 };
+
+	static enTransferStatus TransferBetween2Clients(clsBankClient& WhoWIlSend, clsBankClient& WhoWillReceive , double amount )
+	{
+
+		if (WhoWIlSend.GetAccountNumber() == WhoWillReceive.GetAccountNumber()) { return enTransferStatus::eRecieverEqualsSender; }
+
+		clsBankClient::enSaveMode ResultsOfWithdraw = WithDraw(WhoWIlSend, amount);
+		switch (ResultsOfWithdraw) 
+		{
+		case 	clsBankClient::enSaveMode::FailedOrEmptyObj: return enTransferStatus::eFailed; // withdraw  & deposit will handle itself if the balance didn't save
+		case  clsBankClient::enSaveMode::SuccessedToSave:
+		{ 
+			clsBankClient::enSaveMode  ResultsOfDeposit = Deposit(WhoWillReceive,amount);
+			return (ResultsOfDeposit == clsBankClient::enSaveMode::SuccessedToSave) ? enTransferStatus::eSuccesedToTransfer : enTransferStatus::eFailed;
+		}
+
+			}
+
+
+	}
+
+
 	// Total Balances
 
 	static double GetTotalBalances() {
