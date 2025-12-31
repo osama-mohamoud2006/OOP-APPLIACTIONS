@@ -64,6 +64,7 @@ public:
 		case  clsBankClient::enSaveMode::SuccessedToSave:
 		{ 
 			clsBankClient::enSaveMode  ResultsOfDeposit = Deposit(WhoWillReceive,amount);
+			if(clsBankClient::enSaveMode::FailedOrEmptyObj == ResultsOfDeposit)  Deposit(WhoWIlSend, amount); // return money to the sender if it failed to deposit 
 			return (ResultsOfDeposit == clsBankClient::enSaveMode::SuccessedToSave) ? enTransferStatus::eSuccesedToTransfer : enTransferStatus::eFailed;
 		}
 
