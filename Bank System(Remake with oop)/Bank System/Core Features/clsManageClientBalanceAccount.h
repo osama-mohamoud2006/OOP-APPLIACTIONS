@@ -98,7 +98,7 @@ private:
 	static string  _LogFileName;
 	static string _LogRecord(clsBankClient &TheAccountWhoWillSend , clsBankClient &TheAccountWhoWillReceive, double Amount ,  clsUser &TheUserWhoDidItTransaction)
 	{
-		return (clsDate::GetLocalDateAndTime() + _Delmi + TheAccountWhoWillSend.GetFullName() + _Delmi + TheAccountWhoWillReceive.GetFullName() + _Delmi + to_string(Amount) + _Delmi + to_string(TheAccountWhoWillSend.GetBalance()) + _Delmi   + to_string(TheAccountWhoWillReceive.GetBalance())+ _Delmi + TheUserWhoDidItTransaction.GetUserName() );
+		return (clsDate::GetLocalDateAndTime() + _Delmi + TheAccountWhoWillSend.GetAccountNumber() + _Delmi + TheAccountWhoWillReceive.GetAccountNumber() + _Delmi + to_string(Amount) + _Delmi + to_string(TheAccountWhoWillSend.GetBalance()) + _Delmi   + to_string(TheAccountWhoWillReceive.GetBalance())+ _Delmi + TheUserWhoDidItTransaction.GetUserName() );
 	}
 	
 	static void _RegisterTransactionLogToFile(clsBankClient& TheAccountWhoWillSend, clsBankClient& TheAccountWhoWillReceive, double Amount, clsUser& TheUserWhoDidItTransaction) {
@@ -119,8 +119,8 @@ private:
 
 		private :
 			string DateTime = "";
-			string  FullNameOfWhoWillSend="";
-			string  FullNameOfWhoWillReceive="";
+			string  AccountNumberOfWhoWillSend="";
+			string  AccountNumberOfWhoWillReceive="";
 
 			double Amount = 0.0;
 
@@ -132,10 +132,10 @@ private:
 
 
 		private :
-			clsLogOfTransfer(string DateTime, string FullNameOfWhoWillSend, string FullNameOfWhoWillReceive, double amount , double BalanceOfWhoWillSend, double BalanceOfWhoWillReceive , string UserWhoDidTheOperation ){
+			clsLogOfTransfer(string DateTime, string AccountNumberOfWhoWillSend, string AccountNumberOfWhoWillReceive, double amount , double BalanceOfWhoWillSend, double BalanceOfWhoWillReceive , string UserWhoDidTheOperation ){
 				this->DateTime = DateTime;
-				this->FullNameOfWhoWillSend = FullNameOfWhoWillSend;
-				this->FullNameOfWhoWillReceive = FullNameOfWhoWillReceive;
+				this->AccountNumberOfWhoWillSend = AccountNumberOfWhoWillSend;
+				this->AccountNumberOfWhoWillReceive = AccountNumberOfWhoWillReceive;
 				this->Amount = amount;
 				this->BalanceOfWhoWillSend = BalanceOfWhoWillSend;
 				this->BalanceOfWhoWillReceive = BalanceOfWhoWillReceive;
@@ -160,8 +160,8 @@ private:
 
 			string  TimeAndDate() { return DateTime; }
 
-			string TheAccountWhoWillSendFullName() { return FullNameOfWhoWillSend; }
-			string TheAccountWhoWillReceiveFullName() { return FullNameOfWhoWillReceive; }
+			string TheAccountWhoWillSend() { return AccountNumberOfWhoWillSend; }
+			string TheAccountWhoWillReceive() { return AccountNumberOfWhoWillReceive; }
 
 			double AmountOfTransfer() { return Amount; }
 
