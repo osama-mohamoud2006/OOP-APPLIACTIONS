@@ -5,31 +5,36 @@ class clsTransferLogScreen : protected clsScreen
 
 
 private :
-	static void _PrintHeader() {
-		int leftPadding = 20; // Adjust for centering
 
-		std::cout << setw(leftPadding) << "" << "| " << left << colorText("Time - Date", "lightpurple") << setw(25 - 11) << "";
-		std::cout << "| " << left << colorText("Who Send", "lightpurple") << setw(15 - 8) << "";
-		std::cout << "| " << left << colorText("Who Received", "lightpurple") << setw(15 - 8) << "";
-		std::cout << "| " << left << colorText("Amount", "lightpurple") << setw(15 - 11) << "";
-		std::cout << "| " << left << colorText("The Balance Of Who Send After Transferring", "lightpurple") << setw(15 - 8) << "";
-		std::cout << "| " << left << colorText("The Balance Of Who Recevied After Transferring", "lightpurple") << setw(15 - 8) << "";
-		std::cout << "| " << left << colorText("The User Who Did The Opeartion", "lightpurple") << setw(15 - 8) << "";
-		std::cout << "\n" << setw(leftPadding) << "" << "_________________________________________________________________________________\n" << endl;
-	}
+        static void _PrintHeader() {
+            int leftPadding = 20;
 
-	static void _PrintRecord(clsManageClientBalance::stLogTransfer & Record)
-	{
-		cout << Record.TimeAndDate << setw(25 - 11) << "|";
-		cout << Record.TheAccountWhoWillSend.GetFullName() << setw(15 - 8) << "|";
-		cout<< Record.TheAccountWhoWillReceive.GetFullName() << setw(15 - 8) << "|";
-		cout << Record.Amount << setw(15 - 11) << "|";
-		cout<< Record.TheAccountWhoWillSend.GetBalance() << setw(15 - 11) << "|";
-		cout<< Record.TheAccountWhoWillReceive.GetBalance()<<setw(15 - 11) << "|";
-		cout<<Record.TheUserWhoDidItTransaction.GetUserName() << setw(15 - 11) << "|";
+            // Print header with proper widths
+            std::cout << setw(leftPadding) << "" << "| " << left << colorText("Time - Date", "lightpurple") << setw(14) << "";
+            std::cout << "| " << left << colorText("Who Send", "lightpurple") << setw(12) << "";
+            std::cout << "| " << left << colorText("Who Received", "lightpurple") << setw(8) << "";
+            std::cout << "| " << left << colorText("Amount", "lightpurple") << setw(9) << "";
+            std::cout << "| " << left << colorText("Sender Balance", "lightpurple") << setw(6) << "";
+            std::cout << "| " << left << colorText("Receiver Balance", "lightpurple") << setw(4) << "";
+            std::cout << "| " << left << colorText("Done By", "lightpurple") << setw(8) << "";
+            std::cout << "|\n";
 
+            std::cout << setw(leftPadding) << "" << string(140, '_') << "\n" << endl;
+        }
 
-	}
+        static void _PrintRecord(clsManageClientBalance::stLogTransfer & Record) {
+            int leftPadding = 20;
+
+            std::cout << setw(leftPadding) << "" << "| " << left << setw(23) << Record.TimeAndDate;
+            std::cout << "| " << left << setw(20) << Record.TheAccountWhoWillSend.GetFullName();
+            std::cout << "| " << left << setw(20) << Record.TheAccountWhoWillReceive.GetFullName();
+            std::cout << "| " << left << setw(15) << Record.Amount;
+            std::cout << "| " << left << setw(20) << Record.TheAccountWhoWillSend.GetBalance();
+            std::cout << "| " << left << setw(20) << Record.TheAccountWhoWillReceive.GetBalance();
+            std::cout << "| " << left << setw(15) << Record.TheUserWhoDidItTransaction.GetUserName();
+            std::cout << "|\n";
+        }
+
 
 public:
 	static void ShowLogTransferScreen()
@@ -44,12 +49,8 @@ public:
 
 		else
 		{
-			for (clsManageClientBalance::stLogTransfer& R : Records)
-			{
-				_PrintRecord(R);
-				cout << endl;
-			}
-
+			for (clsManageClientBalance::stLogTransfer& R : Records) _PrintRecord(R);
+			
 			std::cout << "\n_____________________________________________________________________________________________________________________\n" << endl;
 		}
 	
