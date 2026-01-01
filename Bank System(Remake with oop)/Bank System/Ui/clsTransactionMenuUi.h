@@ -12,7 +12,7 @@ class clsTransactionMenu : clsScreen {
 private:
 
 	enum _enTransactionMenuElements
-	{	eNone=0,eDeposit=1,eWithDraw=2,eTotalBalances=3,eFindClientBalance=4,eTransferBetween2Clients=5,eBackToMainMenu=6};
+	{	eNone=0,eDeposit=1,eWithDraw=2,eTotalBalances=3,eFindClientBalance=4,eTransferBetween2Clients=5,  eTransferLog=6 ,eBackToMainMenu=7  };
 
 	static void _ETransactionsMenu() {
 	
@@ -23,8 +23,9 @@ private:
 		std::cout << setw(37) << left << "" << "\t[2] WithDraw.\n";
 		std::cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
 		std::cout << setw(37) << left << "" << "\t[4] Find Account Balances.\n";
-		std::cout << setw(37) << left << "" << "\t[5] Transfer Money Between 2 Clients.\n";
-		std::cout << setw(37) << left << "" << "\t[6] Main Menu.\n";
+		std::cout << setw(37) << left << "" << "\t[5] Transfer Between 2 Clients.\n";
+		std::cout << setw(37) << left << "" << "\t[5] Transfer Between 2 Clients Log.\n";
+		std::cout << setw(37) << left << "" << "\t[7] Main Menu.\n";
 		
 		std::cout << setw(37) << left << "" << "===========================================\n";
 
@@ -67,6 +68,11 @@ private:
 		clsTransferBetween2UsersScreen::TransFerBetween2Clients();
 	}
 
+	//6 ()
+	static void _ShowTransferLogScreen() {
+
+	}
+
 	static _enTransactionMenuElements _PerformOptionInTransactionMenu(_enTransactionMenuElements option) 
 	{
 		system("cls"); // just clear screen on every option call 
@@ -103,7 +109,14 @@ private:
 			break;
 		}
 
-		case _enTransactionMenuElements::eBackToMainMenu: { //6 
+		case _enTransactionMenuElements::eTransferLog:
+		{
+			_ShowTransferLogScreen();
+			_BackToTransactionsMenuAgain();
+			break;
+		}
+
+		case _enTransactionMenuElements::eBackToMainMenu: { //7
 			return _enTransactionMenuElements::eBackToMainMenu;
 		}
 
@@ -130,7 +143,7 @@ public :
 			clsScreen::_PrintMenuOption(colorText("\t  Transactions Menu", "orange"),GCurrentUser);
 			_ETransactionsMenu(); // show elements of menu 
 			std::cout << setw(37) << left << "" << "Enter Option";
-			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::enter_number_from_to(1, 6, ""));
+			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::enter_number_from_to(1, 7, ""));
 		}
 
 	}

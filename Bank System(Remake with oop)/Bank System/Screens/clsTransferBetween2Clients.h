@@ -155,7 +155,6 @@ public :
 			{
 				system("cls");
 				screen_color(black);
-				//clsManageClientBalance::WriteTransactionDetailsToFile(ClientWhoWillSend, ClientWhoWillReceive, amount, GCurrentUser);
 				_PrintSuccess(ClientWhoWillSend, ClientWhoWillReceive, amount);
 			}
 
