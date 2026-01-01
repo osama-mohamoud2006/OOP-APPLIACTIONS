@@ -6,6 +6,8 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsTotalBalancesScreen.h"
 #include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsUser.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsLogOfTransferScreen.h"
+
 
 class clsTransactionMenu : clsScreen {
 
@@ -70,7 +72,7 @@ private:
 
 	//6 ()
 	static void _ShowTransferLogScreen() {
-
+		clsTransferLogScreen::ShowLogTransferScreen();
 	}
 
 	static _enTransactionMenuElements _PerformOptionInTransactionMenu(_enTransactionMenuElements option) 

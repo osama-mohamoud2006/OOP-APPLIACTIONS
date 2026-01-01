@@ -113,17 +113,19 @@ private:
 		else write.close();
 	}
 
-
+	public:
 	 struct stLogTransfer
 	{ // all objects here doesn't have def constructor so you should send parameters to the constructor to create obj from them 
 		string TimeAndDate;  // ----> as a obj 
 		clsBankClient TheAccountWhoWillSend = clsBankClient::EmptyObjForInitializing();
 		clsBankClient TheAccountWhoWillReceive= clsBankClient::EmptyObjForInitializing();
 		double Amount=0.0;
+
 		clsUser TheUserWhoDidItTransaction= clsUser::ReturnEmptyObjForInitializingUser();
 
 	};
 
+	 private:
 	static stLogTransfer _RecordToStructLog(string Line) {
 		clsManageClientBalance::stLogTransfer temp;
         clsString::SetDelmi(_Delmi);
@@ -133,7 +135,9 @@ private:
 		temp.TheAccountWhoWillSend.GetFullName() = Records[1];
 		temp.TheAccountWhoWillReceive.GetFullName() = Records[2];
 		temp.Amount = stoi(Records[3]);
-		temp.TheUserWhoDidItTransaction.GetUserName() = Records[4];
+		to_string(temp.TheAccountWhoWillSend.GetBalance() )= Records[4];
+		to_string(temp.TheAccountWhoWillReceive.GetBalance() )  = Records[5];
+		temp.TheUserWhoDidItTransaction.GetUserName() = Records[6];
 		return temp; 
 
 	}
