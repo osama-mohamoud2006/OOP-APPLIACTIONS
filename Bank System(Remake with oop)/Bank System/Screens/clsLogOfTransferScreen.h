@@ -6,42 +6,45 @@ class clsTransferLogScreen : protected clsScreen
 
 private :
 
-        static void _PrintHeader() {
-            int leftPadding = 20;
+    static void _PrintHeader() {
+        int leftPadding = 20;
 
-            // Print header with proper widths
-            std::cout << setw(leftPadding) << "" << "| " << left << colorText("Time - Date", "lightpurple") << setw(14) << "";
-            std::cout << "| " << left << colorText("Who Send", "lightpurple") << setw(12) << "";
-            std::cout << "| " << left << colorText("Who Received", "lightpurple") << setw(8) << "";
-            std::cout << "| " << left << colorText("Amount", "lightpurple") << setw(9) << "";
-            std::cout << "| " << left << colorText("Sender Balance", "lightpurple") << setw(6) << "";
-            std::cout << "| " << left << colorText("Receiver Balance", "lightpurple") << setw(4) << "";
-            std::cout << "| " << left << colorText("Done By", "lightpurple") << setw(8) << "";
-            std::cout << "|\n";
+        std::cout << setw(leftPadding) << ""
+            << left
+            << "| " << setw(25) << colorText("Time - Date", "lightpurple")
+            << "| " << setw(20) << colorText("Sender", "lightpurple")
+            << "| " << setw(20) << colorText("Receiver", "lightpurple")
+            << "| " << setw(15) << colorText("Amount", "lightpurple")
+            << "| " << setw(22) << colorText("Sender Balance", "lightpurple")
+            << "| " << setw(22) << colorText("Receiver Balance", "lightpurple")
+            << "| " << setw(15) << colorText("User", "lightpurple")
+            << "|\n";
 
-            std::cout << setw(leftPadding) << "" << string(140, '_') << "\n" << endl;
-        }
+        std::cout << setw(leftPadding) << "" << string(150, '_') << "\n" << endl;
+    }
 
-        static void _PrintRecord(clsManageClientBalance::stLogTransfer & Record) {
-            int leftPadding = 20;
+    static void _PrintRecord(clsManageClientBalance::clsLogOfTransfer& Record) {
+		cout << Record.TimeAndDate() << endl;
+        int leftPadding = 20;
+        std::cout << setw(leftPadding) << ""
+            << left
+            << "| " << setw(25) << Record.TimeAndDate()
+            << "| " << setw(20) << Record.TheAccountWhoWillSendFullName()
+            << "| " << setw(20) << Record.TheAccountWhoWillReceiveFullName()
+            << "| " << setw(15) << fixed << setprecision(2) << Record.AmountOfTransfer()
+            << "| " << setw(22) << fixed << setprecision(2) << Record.TheBalanceWhoWillSendBalance()
+            << "| " << setw(22) << fixed << setprecision(2) << Record.TheBalanceWhoWillReceiveBalance()
+            << "| " << setw(15) << Record.TheUserWhoDidItTransactionUserName()
+			<< "|\n";
 
-            std::cout << setw(leftPadding) << "" << "| " << left << setw(23) << Record.TimeAndDate;
-            std::cout << "| " << left << setw(20) << Record.TheAccountWhoWillSend.GetFullName();
-            std::cout << "| " << left << setw(20) << Record.TheAccountWhoWillReceive.GetFullName();
-            std::cout << "| " << left << setw(15) << Record.Amount;
-            std::cout << "| " << left << setw(20) << Record.TheAccountWhoWillSend.GetBalance();
-            std::cout << "| " << left << setw(20) << Record.TheAccountWhoWillReceive.GetBalance();
-            std::cout << "| " << left << setw(15) << Record.TheUserWhoDidItTransaction.GetUserName();
-            std::cout << "|\n";
-        }
-
+    }
 
 public:
 	static void ShowLogTransferScreen()
 	{
 		clsScreen::_PrintMenuOption(colorText("      Log Of Transfer Screen", "orange"));
 
-		vector<clsManageClientBalance::stLogTransfer> Records = clsManageClientBalance::VectorThatHaveAllTransactionsRecords();
+		vector<clsManageClientBalance::clsLogOfTransfer> Records = clsManageClientBalance::clsLogOfTransfer::VectorThatHaveAllTransactionsRecords();
 
 		_PrintHeader();                                 //header 
 
@@ -49,7 +52,7 @@ public:
 
 		else
 		{
-			for (clsManageClientBalance::stLogTransfer& R : Records) _PrintRecord(R);
+			for (clsManageClientBalance::clsLogOfTransfer& R : Records) _PrintRecord(R);
 			
 			std::cout << "\n_____________________________________________________________________________________________________________________\n" << endl;
 		}

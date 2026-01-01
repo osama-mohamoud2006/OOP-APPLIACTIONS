@@ -114,53 +114,87 @@ private:
 	}
 
 	public:
-	 struct stLogTransfer
-	{ // all objects here doesn't have def constructor so you should send parameters to the constructor to create obj from them 
-		string TimeAndDate;  // ----> as a obj 
-		clsBankClient TheAccountWhoWillSend = clsBankClient::EmptyObjForInitializing();
-		clsBankClient TheAccountWhoWillReceive= clsBankClient::EmptyObjForInitializing();
-		double Amount=0.0;
 
-		clsUser TheUserWhoDidItTransaction= clsUser::ReturnEmptyObjForInitializingUser();
+		class clsLogOfTransfer {
 
-	};
+		private :
+			string DateTime = "";
+			string  FullNameOfWhoWillSend="";
+			string  FullNameOfWhoWillReceive="";
 
-	 private:
-	static stLogTransfer _RecordToStructLog(string Line) {
-		clsManageClientBalance::stLogTransfer temp;
-        clsString::SetDelmi(_Delmi);
-		vector< string> Records = clsString::SplitString(Line); 
-		 
-		temp.TimeAndDate = Records[0];
-		temp.TheAccountWhoWillSend.GetFullName() = Records[1];
-		temp.TheAccountWhoWillReceive.GetFullName() = Records[2];
-		temp.Amount = stoi(Records[3]);
-		to_string(temp.TheAccountWhoWillSend.GetBalance() )= Records[4];
-		to_string(temp.TheAccountWhoWillReceive.GetBalance() )  = Records[5];
-		temp.TheUserWhoDidItTransaction.GetUserName() = Records[6];
-		return temp; 
+			double Amount = 0.0;
 
-	}
+			double BalanceOfWhoWillSend = 0.0;
+			double BalanceOfWhoWillReceive = 0.0;
 
-	public :
-		static vector< stLogTransfer> VectorThatHaveAllTransactionsRecords()
-		{
-			vector< stLogTransfer> AllLogs; 
-			fstream read;
-			read.open(_LogFileName, ios::in); //read mode
-			if (read.is_open())
-			{
-				string Record = "";
-				while (getline(read, Record))
-				{
-					AllLogs.push_back(_RecordToStructLog(Record));
-				}
-				read.close();
+			string UserWhoDidTheOperation = "";
+
+
+
+		private :
+			clsLogOfTransfer(string DateTime, string FullNameOfWhoWillSend, string FullNameOfWhoWillReceive, double amount , double BalanceOfWhoWillSend, double BalanceOfWhoWillReceive , string UserWhoDidTheOperation ){
+				this->DateTime = DateTime;
+				this->FullNameOfWhoWillSend = FullNameOfWhoWillSend;
+				this->FullNameOfWhoWillReceive = FullNameOfWhoWillReceive;
+				this->Amount = amount;
+				this->BalanceOfWhoWillSend = BalanceOfWhoWillSend;
+				this->BalanceOfWhoWillReceive = BalanceOfWhoWillReceive;
+				this->UserWhoDidTheOperation = UserWhoDidTheOperation;
+
+
 			}
-			else read.close();
 
-			return AllLogs;
-		}
+
+			 private:
+      static clsLogOfTransfer  _RecordToStructLog(string Line) 
+      {
+       clsString::SetDelmi(_Delmi);
+   	vector< string> Records = clsString::SplitString(Line); 
+   	    
+	return  clsLogOfTransfer(Records[0], Records[1], Records[2], stoi(Records[3]), stoi(Records[4]), stoi(Records[5]), Records[6]);
+
+      }
+
+
+		public:
+
+			string  TimeAndDate() { return DateTime; }
+
+			string TheAccountWhoWillSendFullName() { return FullNameOfWhoWillSend; }
+			string TheAccountWhoWillReceiveFullName() { return FullNameOfWhoWillReceive; }
+
+			double AmountOfTransfer() { return Amount; }
+
+			double TheBalanceWhoWillSendBalance() { return BalanceOfWhoWillSend; }
+			double TheBalanceWhoWillReceiveBalance() { return BalanceOfWhoWillReceive; }
+
+			string TheUserWhoDidItTransactionUserName() { return UserWhoDidTheOperation; }
+
+			static vector< clsLogOfTransfer> VectorThatHaveAllTransactionsRecords()
+			{
+				vector< clsLogOfTransfer> AllLogs;
+				fstream read;
+				read.open(_LogFileName, ios::in); //read mode
+				if (read.is_open())
+				{
+					string Record = "";
+					while (getline(read, Record))
+					{
+						AllLogs.push_back(_RecordToStructLog(Record));
+					}
+					read.close();
+				}
+				else read.close();
+
+				return AllLogs;
+			}
+
+
+		};
+
+
+
+
 
 
 };

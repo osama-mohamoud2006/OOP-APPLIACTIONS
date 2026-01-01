@@ -26,7 +26,7 @@ private:
 		std::cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
 		std::cout << setw(37) << left << "" << "\t[4] Find Account Balances.\n";
 		std::cout << setw(37) << left << "" << "\t[5] Transfer Between 2 Clients.\n";
-		std::cout << setw(37) << left << "" << "\t[5] Transfer Between 2 Clients Log.\n";
+		std::cout << setw(37) << left << "" << "\t[6] Transfer Between 2 Clients Log.\n";
 		std::cout << setw(37) << left << "" << "\t[7] Main Menu.\n";
 		
 		std::cout << setw(37) << left << "" << "===========================================\n";
