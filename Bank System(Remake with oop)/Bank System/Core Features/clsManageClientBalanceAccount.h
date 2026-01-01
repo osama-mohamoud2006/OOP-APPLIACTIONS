@@ -141,8 +141,21 @@ private:
 	public :
 		static vector< stLogTransfer> VectorThatHaveAllTransactionsRecords()
 		{
+			vector< stLogTransfer> AllLogs; 
 			fstream read;
-			read.open()
+			read.open(_LogFileName, ios::in); //read mode
+			if (read.is_open())
+			{
+				string Record = "";
+				while (getline(read, Record))
+				{
+					AllLogs.push_back(_RecordToStructLog(Record));
+				}
+				read.close();
+			}
+			else read.close();
+
+			return AllLogs;
 		}
 
 
