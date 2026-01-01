@@ -84,4 +84,26 @@ public:
 	}
 
 
+private:
+	static string _Delmi ;
+	static string _LogRecord(clsBankClient &TheAccountWhoWillSend , clsBankClient &TheAccountWhoWillReceive, double Amount ,  clsUser &TheUserWhoDidItTransaction)
+	{
+		return (clsDate::GetLocalDateAndTime() + _Delmi + TheAccountWhoWillSend.GetFullName() + _Delmi + TheAccountWhoWillReceive.GetFullName() + _Delmi + to_string(Amount) + _Delmi + to_string(TheAccountWhoWillSend.GetBalance()) + _Delmi   + to_string(TheAccountWhoWillReceive.GetBalance())+ _Delmi + TheUserWhoDidItTransaction.GetUserName() );
+	}
+	
+public: 
+	static void WriteTransactionDetailsToFile(clsBankClient& TheAccountWhoWillSend, clsBankClient& TheAccountWhoWillReceive, double Amount, clsUser& TheUserWhoDidItTransaction) {
+
+		fstream write;
+		write.open("TransferLog.text", ios::out | ios::app);
+		if (write.is_open())
+		{
+			write <<  _LogRecord(TheAccountWhoWillSend, TheAccountWhoWillReceive, Amount, TheUserWhoDidItTransaction) << endl;
+			write.close();
+		}
+		else write.close();
+	}
+
+
 };
+string clsManageClientBalance::_Delmi = "#//#";

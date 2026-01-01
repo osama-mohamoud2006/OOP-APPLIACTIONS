@@ -299,7 +299,7 @@ private :
 			 }
 
 
-			    ////                                                                                Update                                                                                                                                   /////////
+			    ////                                                                                       Update                                                                                                                                   /////////
 			 private:
 			 void _Update() 
 			 {
@@ -338,7 +338,7 @@ private :
 					 }
 
 
-					 ///                                                     For listing Or What Ever                                            ///////////
+					 ///                                                                                    For listing Or What Ever                                            ///////////
 					 public:
 					static	 vector<clsUser> LoadTheWholeFileOnVector() {
 							 return _LoadFileOnVector();
@@ -364,7 +364,7 @@ private :
 
 
 
-					////                                                                                                Login History Of User                                                                             //////////
+					////                                                                                                                Login Of User                                                                             //////////
 
 					private:
 						static string _LoginLogFileName;

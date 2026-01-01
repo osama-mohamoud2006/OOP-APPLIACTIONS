@@ -42,4 +42,5 @@ class clsUtilClientBalance{
             cout << setw(37) << left << "" << colorText("================================================================", "cyan") << "\n\n";
         }
 
+
 };

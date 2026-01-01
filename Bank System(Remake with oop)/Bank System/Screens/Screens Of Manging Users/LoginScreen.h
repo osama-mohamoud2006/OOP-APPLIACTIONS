@@ -75,7 +75,7 @@ private :
 public:
 	static bool ShowLoginScreen() {
 		clsScreen::_PrintMenuOption(colorText("               Login", "green"));
-		return (_Login()) ? true : false; 
+		return _Login(); 
 	}
 
 

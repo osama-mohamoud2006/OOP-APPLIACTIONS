@@ -4,6 +4,7 @@
 #include  "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsWithDrawScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsUtilPrintClientBalance.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsManageClientBalanceAccount.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\Global.h"
 
 class clsTransferBetween2UsersScreen : protected clsScreen {
 
@@ -113,7 +114,7 @@ public :
 		 bool Confirmed = false; 
 
 		// ClientWhoWillSend ---> withdraw from him
-		if (  (Confirmed= clsInputAndValidation::Confirm(colorText("\n\t\t\t\tAre You Sure [y],[n]: ","red"))  )   )
+		if (  (Confirmed= clsInputAndValidation::Confirm(colorText("\n\n\t\t\t\t\t\t\tAre You Sure [y],[n]: ","red"))  )   )
 		{
 			
 			system("cls");
@@ -154,6 +155,7 @@ public :
 			{
 				system("cls");
 				screen_color(black);
+				clsManageClientBalance::WriteTransactionDetailsToFile(ClientWhoWillSend, ClientWhoWillReceive, amount, GCurrentUser);
 				_PrintSuccess(ClientWhoWillSend, ClientWhoWillReceive, amount);
 			}
 
