@@ -95,6 +95,7 @@ public:
 
 private:
 	static string _Delmi ;
+	static string  _LogFileName;
 	static string _LogRecord(clsBankClient &TheAccountWhoWillSend , clsBankClient &TheAccountWhoWillReceive, double Amount ,  clsUser &TheUserWhoDidItTransaction)
 	{
 		return (clsDate::GetLocalDateAndTime() + _Delmi + TheAccountWhoWillSend.GetFullName() + _Delmi + TheAccountWhoWillReceive.GetFullName() + _Delmi + to_string(Amount) + _Delmi + to_string(TheAccountWhoWillSend.GetBalance()) + _Delmi   + to_string(TheAccountWhoWillReceive.GetBalance())+ _Delmi + TheUserWhoDidItTransaction.GetUserName() );
@@ -103,7 +104,7 @@ private:
 	static void _RegisterTransactionLogToFile(clsBankClient& TheAccountWhoWillSend, clsBankClient& TheAccountWhoWillReceive, double Amount, clsUser& TheUserWhoDidItTransaction) {
 
 		fstream write;
-		write.open("TransferLog.text", ios::out | ios::app);
+		write.open(_LogFileName,ios::out | ios::app);
 		if (write.is_open())
 		{
 			write <<  _LogRecord(TheAccountWhoWillSend, TheAccountWhoWillReceive, Amount, TheUserWhoDidItTransaction) << endl;
@@ -113,5 +114,38 @@ private:
 	}
 
 
+	 struct stLogTransfer
+	{ // all objects here doesn't have def constructor so you should send parameters to the constructor to create obj from them 
+		string TimeAndDate;  // ----> as a obj 
+		clsBankClient TheAccountWhoWillSend = clsBankClient::EmptyObjForInitializing();
+		clsBankClient TheAccountWhoWillReceive= clsBankClient::EmptyObjForInitializing();
+		double Amount=0.0;
+		clsUser TheUserWhoDidItTransaction= clsUser::ReturnEmptyObjForInitializingUser();
+
+	};
+
+	static stLogTransfer _RecordToStructLog(string Line) {
+		clsManageClientBalance::stLogTransfer temp;
+        clsString::SetDelmi(_Delmi);
+		vector< string> Records = clsString::SplitString(Line); 
+		 
+		temp.TimeAndDate = Records[0];
+		temp.TheAccountWhoWillSend.GetFullName() = Records[1];
+		temp.TheAccountWhoWillReceive.GetFullName() = Records[2];
+		temp.Amount = stoi(Records[3]);
+		temp.TheUserWhoDidItTransaction.GetUserName() = Records[4];
+		return temp; 
+
+	}
+
+	public :
+		static vector< stLogTransfer> VectorThatHaveAllTransactionsRecords()
+		{
+			fstream read;
+			read.open()
+		}
+
+
 };
 string clsManageClientBalance::_Delmi = "#//#";
+string clsManageClientBalance::_LogFileName = "TransferLog.text";
