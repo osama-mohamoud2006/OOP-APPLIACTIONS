@@ -52,7 +52,7 @@ public:
 
 	 enum enTransferStatus {eSuccesedToTransfer =1 , eRecieverEqualsSender=2 , eFailed=3 };
 
-	static enTransferStatus TransferBetween2Clients(clsBankClient& WhoWIlSend, clsBankClient& WhoWillReceive , double amount )
+	static enTransferStatus TransferBetween2Clients(clsBankClient& WhoWIlSend, clsBankClient& WhoWillReceive , double amount  , clsUser GCURRENTUSER = GCurrentUser)
 	{
 
 		if (WhoWIlSend.GetAccountNumber() == WhoWillReceive.GetAccountNumber()) { return enTransferStatus::eRecieverEqualsSender; }
@@ -65,11 +65,20 @@ public:
 		{ 
 			clsBankClient::enSaveMode  ResultsOfDeposit = Deposit(WhoWillReceive,amount);
 			if(clsBankClient::enSaveMode::FailedOrEmptyObj == ResultsOfDeposit)  Deposit(WhoWIlSend, amount); // return money to the sender if it failed to deposit 
-			return (ResultsOfDeposit == clsBankClient::enSaveMode::SuccessedToSave) ? enTransferStatus::eSuccesedToTransfer : enTransferStatus::eFailed;
+
+			if (ResultsOfDeposit == clsBankClient::enSaveMode::SuccessedToSave)
+			{
+				_RegisterTransactionLogToFile(WhoWIlSend, WhoWillReceive, amount, GCURRENTUSER); // write transfer details on file 
+				return enTransferStatus::eSuccesedToTransfer;
+			}
+			else return enTransferStatus::eFailed;
+
+
 		}
 
-			}
 
+
+			}
 
 	}
 
@@ -91,8 +100,7 @@ private:
 		return (clsDate::GetLocalDateAndTime() + _Delmi + TheAccountWhoWillSend.GetFullName() + _Delmi + TheAccountWhoWillReceive.GetFullName() + _Delmi + to_string(Amount) + _Delmi + to_string(TheAccountWhoWillSend.GetBalance()) + _Delmi   + to_string(TheAccountWhoWillReceive.GetBalance())+ _Delmi + TheUserWhoDidItTransaction.GetUserName() );
 	}
 	
-public: 
-	static void WriteTransactionDetailsToFile(clsBankClient& TheAccountWhoWillSend, clsBankClient& TheAccountWhoWillReceive, double Amount, clsUser& TheUserWhoDidItTransaction) {
+	static void _RegisterTransactionLogToFile(clsBankClient& TheAccountWhoWillSend, clsBankClient& TheAccountWhoWillReceive, double Amount, clsUser& TheUserWhoDidItTransaction) {
 
 		fstream write;
 		write.open("TransferLog.text", ios::out | ios::app);
