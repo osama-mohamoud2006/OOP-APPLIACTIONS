@@ -65,21 +65,21 @@ Before building the main system, these utility libraries need to be solid.
 
 - [x] Extension 02 - Lock the System After 3 failed Logins
 
-- [ ] Extension 03 - Register Logins In a Log File
+- [x] Extension 03 - Register Logins In a Log File
 
-- [ ] Extension 04 - Show Login Register Screen
+- [x] Extension 04 - Show Login Register Screen
 
-- [ ] Extension 05 - Permission to Show Log Register Screen
+- [x] Extension 05 - Permission to Show Log Register Screen
 
-- [ ] Extension 06 - Transfer Screen
+- [x] Extension 06 - Transfer Screen
 
-- [ ] Extension 07 - Create Transfer Log
+- [x] Extension 07 - Create Transfer Log
 
-- [ ] Extension 08 - Show Transfers Log Screen
+- [x] Extension 08 - Show Transfers Log Screen
 
-- [ ] Extension 09 - Encrypt Password In File
+- [x] Extension 09 - Encrypt Password In File
 
-- [ ] Extension 10 - Abstract Class/lnterface
+
 
 ---
 
