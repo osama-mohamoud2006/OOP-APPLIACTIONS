@@ -201,7 +201,7 @@ static void FillArrayWithRandomKey(string arr[] , short length ,enCharType CharT
  static  void DecryptText(string &Text , short EncryptionKey) {
   string temp="";
   for (int i=0; i<Text.length(); i++) {
-   temp += char ( (Text[i]) -  EncryptionKey);
+   temp += char ( int(Text[i]) -  EncryptionKey);
   }
   Text = temp;
  }
@@ -215,7 +215,7 @@ static void FillArrayWithRandomKey(string arr[] , short length ,enCharType CharT
  static string GetRandomEncryptionKey() { return RandomEncryptionKey; }
 
 
- static string EncryptOrDecryptUsingXor(string  & Text)
+ static string EncryptOrDecryptUsingXor(string   Text)
  {
      for (char& c : Text) { c = c ^ 'd'; } return Text; 
  }

@@ -81,16 +81,16 @@ private :
 	// record sample : username #//# password  #//#  permissions  #//# first name #//# last name  #//# email #//# phone 
 	
 	static  string _ConvertObjectToLine( const clsUser & User) 
-	{
-		return (User._Username + _Delmi  + User._Password +_Delmi + to_string(User._Permissions) + _Delmi + User.GetFirstName() + _Delmi + User.GetLastName() + _Delmi + User.GetEmail() + _Delmi + User.GetPhone());
+	{// Encrypt Password Using Xor  ---> password[i] ^ 'd'
+		return (User._Username + _Delmi  + clsUtil::EncryptOrDecryptUsingXor(User._Password )+ _Delmi + to_string(User._Permissions) + _Delmi + User.GetFirstName() + _Delmi + User.GetLastName() + _Delmi + User.GetEmail() + _Delmi + User.GetPhone());
 	}
 
 	static  clsUser _ConvertLineToObject(const string & UserRecordLine) 
-	{
+	{  // Decrypt Password  
 		clsString::SetDelmi(_Delmi);
 		vector <string> RecordIntoVector =clsString::SplitString(UserRecordLine);
 
-		return  clsUser(_enMode::enUpdateMode, RecordIntoVector.at(0), RecordIntoVector.at(1), stoi(RecordIntoVector.at(2)), RecordIntoVector.at(3), RecordIntoVector.at(4), RecordIntoVector.at(5), RecordIntoVector.at(6) ) ; 
+		return  clsUser(_enMode::enUpdateMode, RecordIntoVector.at(0), clsUtil::EncryptOrDecryptUsingXor(RecordIntoVector.at(1)), stoi(RecordIntoVector.at(2)), RecordIntoVector.at(3), RecordIntoVector.at(4), RecordIntoVector.at(5), RecordIntoVector.at(6) ) ; 
 	}
 
 	 static vector<clsUser> _LoadFileOnVector() {
@@ -370,7 +370,7 @@ private :
 						static string _LoginLogFileName;
 
 						string  _RecordOfLoginDetails() 
-						{// encrypty password with random chars 
+						{// encrypt password with --->  password[i] ^ 'd'
 							return ( clsDate::GetLocalDateAndTime() + _Delmi + this->_Username + _Delmi + clsUtil::EncryptOrDecryptUsingXor(this->_Password )+ _Delmi + to_string(this->_Permissions) );
 						}
 
@@ -397,7 +397,8 @@ private :
 								string pass;
 								int permission;
 
-							public:
+							public: 
+								//Get --> to call 
 								string GetTimeDate() { return DateAndTime; }
 								string GetUsername() { return username; }
 								string GetPassword() { return pass; }
@@ -413,7 +414,7 @@ private :
 								}
 
 								static clsLoginHistory _ConvertLineToObject(string line)
-								{
+								{ // Decrypt Password 
 									clsString::SetDelmi(_Delmi);
 									vector<string> RecordsOfLogs = clsString::SplitString(line);
 									return clsLoginHistory(RecordsOfLogs[0], RecordsOfLogs[1], clsUtil::EncryptOrDecryptUsingXor(RecordsOfLogs[2]) , stoi(RecordsOfLogs[3]));
