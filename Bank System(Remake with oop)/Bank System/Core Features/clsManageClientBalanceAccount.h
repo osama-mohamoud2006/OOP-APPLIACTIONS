@@ -101,7 +101,7 @@ private:
 		return (clsDate::GetLocalDateAndTime() + _Delmi + TheAccountWhoWillSend.GetAccountNumber() + _Delmi + TheAccountWhoWillReceive.GetAccountNumber() + _Delmi + to_string(Amount) + _Delmi + to_string(TheAccountWhoWillSend.GetBalance()) + _Delmi   + to_string(TheAccountWhoWillReceive.GetBalance())+ _Delmi + TheUserWhoDidItTransaction.GetUserName() );
 	}
 	
-	static void _RegisterTransactionLogToFile(clsBankClient& TheAccountWhoWillSend, clsBankClient& TheAccountWhoWillReceive, double Amount, clsUser& TheUserWhoDidItTransaction) {
+	static void _RegisterTransactionLogToFile(clsBankClient& TheAccountWhoWillSend, clsBankClient& TheAccountWhoWillReceive, double Amount, clsUser& TheUserWhoDidItTransaction) { // write log to file 
 
 		fstream write;
 		write.open(_LogFileName,ios::out | ios::app);
@@ -114,6 +114,7 @@ private:
 	}
 
 	public:
+		// class to get the file contents of history on vector 
 		class clsGetHistoryOfTransfer final {
 
 		private :

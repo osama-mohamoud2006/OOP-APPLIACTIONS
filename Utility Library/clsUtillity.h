@@ -169,23 +169,52 @@ static void FillArrayWithRandomKey(string arr[] , short length ,enCharType CharT
   return s;
  }
 
+  private:
+
+      static string GenerateRandomEncryptionKey(short NumOfChars)
+      {
+          string Key = "";
+          for (short i = 0; i < NumOfChars; i++) Key += GetRandomChar(enCharType::mixChar);
+          return Key;
+      }
+
+      static string  RandomEncryptionKey; // it is shared between Encrypt and Decrypt 
+
+       public:
+
  static void EncryptText(string &Text , short EncryptionKey) {
   string temp="";
-  for (int i=0; i<Text.length(); i++) {
-   temp += char (int(Text[i]) +  EncryptionKey);
-  }
+  for (int i=0; i<Text.length(); i++) {temp += char (int(Text[i]) +  EncryptionKey); }
   Text = temp;
 
  }
+
+ static void EncryptText(string& Text ){
+     RandomEncryptionKey = clsUtil::GenerateRandomEncryptionKey(Text.length()); // make Encryption Key The same Length as the Text 
+     string temp = "";
+     for (int i = 0; i < Text.length(); i++) { temp += char(int(Text[i]) + RandomEncryptionKey[i] ); }
+
+     Text = temp;
+ }
+
 
  static  void DecryptText(string &Text , short EncryptionKey) {
   string temp="";
   for (int i=0; i<Text.length(); i++) {
-   temp += char (int(Text[i]) -  EncryptionKey);
+   //temp += char (int(Text[i]) -  EncryptionKey);
   }
   Text = temp;
  }
 
+ static  void DecryptText(string& Text) {
+     string temp = "";
+     for (int i = 0; i < Text.length(); i++) {
+         temp += char (int(Text[i]) - RandomEncryptionKey[i] );
+     }
+     Text = temp;
+ }
+
+ static string GetRandomEncryptionKey() { return RandomEncryptionKey; }
 
  static string NumberToText(int Number)
  {
@@ -230,3 +259,4 @@ static void FillArrayWithRandomKey(string arr[] , short length ,enCharType CharT
  }
 
 };
+string clsUtil::RandomEncryptionKey = "";

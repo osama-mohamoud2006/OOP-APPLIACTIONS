@@ -4,28 +4,20 @@
 #include "AllClasses.h" 
 #include <string>
 #include <iomanip>
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Utility Library\clsUtillity.h"
 using namespace std;
 //  ctrl + m+o
 
-struct x {
-	private: int c = 10;
-public:int y = 20;
 
-	  public: x() {
-		  this->c = 10;
-	  }
-
-	  public :void u() {
-		  cout << "u" << endl;
-	  }
-
-			
-
-};
 
 int main() {
+	srand((unsigned)time(NULL));
+	//string pass = "1234";
 
+	//clsUtil::EncryptText(pass);
+	//clsUtil::DecryptText(pass);
 
+	//cout <<pass<< endl;
 
 while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break;
 
