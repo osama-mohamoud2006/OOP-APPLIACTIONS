@@ -68,7 +68,7 @@ private:
 				system("cls");
 				system("color 0F");
 				cout << colorText("\n\t\t\t\t\tTRIALS EXPIRED , GET OUT!\n\n", "red");
-				return;
+				exit(0)  ;
 			}
 
 			screen_color(red);
