@@ -11,11 +11,11 @@ using namespace std;
 
 
 int main() {
-	srand((unsigned)time(NULL));
-	//string pass = "1234";
 
-	//clsUtil::EncryptText(pass);
-	//clsUtil::DecryptText(pass);
+	//string pass = "121";
+
+	//clsUtil::EncryptOrDecryptUsingXor(pass);
+	//clsUtil::EncryptOrDecryptUsingXor(pass);
 
 	//cout <<pass<< endl;
 

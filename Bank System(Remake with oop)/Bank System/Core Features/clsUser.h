@@ -370,8 +370,8 @@ private :
 						static string _LoginLogFileName;
 
 						string  _RecordOfLoginDetails() 
-						{
-							return ( clsDate::GetLocalDateAndTime() + _Delmi + this->_Username + _Delmi + this->_Password + _Delmi + to_string(this->_Permissions) );
+						{// encrypty password with random chars 
+							return ( clsDate::GetLocalDateAndTime() + _Delmi + this->_Username + _Delmi + clsUtil::EncryptOrDecryptUsingXor(this->_Password )+ _Delmi + to_string(this->_Permissions) );
 						}
 
 						public:
@@ -416,7 +416,7 @@ private :
 								{
 									clsString::SetDelmi(_Delmi);
 									vector<string> RecordsOfLogs = clsString::SplitString(line);
-									return clsLoginHistory(RecordsOfLogs[0], RecordsOfLogs[1], RecordsOfLogs[2], stoi(RecordsOfLogs[3]));
+									return clsLoginHistory(RecordsOfLogs[0], RecordsOfLogs[1], clsUtil::EncryptOrDecryptUsingXor(RecordsOfLogs[2]) , stoi(RecordsOfLogs[3]));
 								}
 
 								static vector <clsLoginHistory> _LoadLogFileOnVector() 
