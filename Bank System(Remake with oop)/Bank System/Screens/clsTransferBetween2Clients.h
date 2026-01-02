@@ -64,12 +64,7 @@ private:
 		while (!(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, Client)))  // isn't existing 
 		{
 			Trials--;
-			if (Trials == 0) {
-				system("cls");
-				system("color 0F");
-				cout << colorText("\n\t\t\t\t\tTRIALS EXPIRED , GET OUT!\n\n", "red");
-				exit(0)  ;
-			}
+			if (EndTheScreen(Trials)) exit(0);
 
 			screen_color(red);
 			cout << "\n\n\aThe Account Number " << AccountNumber << " Isn't Existing !\a" << endl;

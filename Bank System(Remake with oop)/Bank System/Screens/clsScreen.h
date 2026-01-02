@@ -92,5 +92,15 @@ protected:
         else return true ; // if he has permission 
     }
 
+    static bool EndTheScreen(short Trials )
+    {
+        if (Trials == 0) {
+            system("cls");
+            system("color 0F");
+            cout << colorText("\n\t\t\t\t\tTRIALS EXPIRED , GET OUT!\n\n", "red");
+            return true;
+        }
+        else return false; 
+    }
 
 };

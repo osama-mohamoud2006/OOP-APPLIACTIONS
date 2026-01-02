@@ -1,7 +1,7 @@
 #pragma once
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsUtilPrintClientData.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsScreen.h"
-#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h"
 
 class clsShowDeleteClientScreen : protected clsScreen
 {
@@ -22,12 +22,7 @@ public:
         { // if account isn't exist then you should enter exist account number
 
             Trials--;
-            if (Trials == 0) {
-                system("cls");
-                system("color 0F");
-                cout << colorText("\n\t\t\t\t\tTRIALS EXPIRED , GET OUT!\n\n", "red");
-                return;
-            }
+            if (EndTheScreen(Trials)) return;
 
             screen_color(red);
             cout << "\n\aAccount number: " << AccountNumber << " isn't exist please enter correct account number !\n";
