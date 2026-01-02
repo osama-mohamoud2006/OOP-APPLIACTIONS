@@ -8,14 +8,14 @@ class clsDeleteUsersScreen :  protected clsScreen
 private:
 
    static void _PrintConfirmation(string Username) {
-       cout << "\n\n";
+
        cout << setw(37) << left << "" << colorText("================================================", "green") << "\n";
        cout << setw(37) << left << "" << "             " << colorText(">> SUCCESS <<", "green") << "\n";
        cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
        cout << setw(37) << left << "" << "         User Deleted Successfully!\n";
        cout << setw(37) << left << "" << "         Username: " << colorText(Username, "cyan") << "\n\n";
        cout << setw(37) << left << "" << colorText("         Note: This action is irreversible.", "yellow") << "\n\n";
-       cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
+       cout << setw(37) << left << "" << colorText("================================================", "green") ;
     }
 
 public :

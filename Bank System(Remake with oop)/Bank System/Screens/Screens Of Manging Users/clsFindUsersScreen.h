@@ -1,18 +1,14 @@
 #pragma once
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsUser.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsUtilPrintUserDetails.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsUtilPrintStatus.h"
 
 class clsFindUsersScreen :  protected clsScreen 
 {
 
 private:
 	static void _PrintSuccess() {
-		cout << "\n\n";
-		cout << setw(37) << left << "" << colorText("================================================", "green") << "\n";
-		cout << setw(37) << left << "" << "             " << colorText(">> SUCCESS <<", "green") << "\n";
-		cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
-		cout << setw(37) << left << "" << "         USER FOUNDED SUCCESSFULLY!\n";
-		cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
+		clsUtilPrintUserStatus::_PrintSuccess("         USER FOUNDED SUCCESSFULLY!\n");
 	}
 
 public:

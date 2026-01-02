@@ -5,6 +5,8 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsUtilAddingPermissionsToUserYOrN.h"
 
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsUtilFillUserData.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\Screens Of Manging Users\clsUtilPrintStatus.h"
+
 
 class clsUpdateUsersScreen : protected clsScreen
 {
@@ -100,20 +102,10 @@ private:
     }
 
     static void _PrintFailure() {
-        system("cls");
-        cout << setw(37) << left << "" << colorText("================================================", "red") << "\n";
-        cout << setw(37) << left << "" << "             " << colorText(">> FAILED <<", "red") << "\n";
-        cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
-        cout << setw(37) << left << "" << "           USER DIDN'T UPDATE !\n";
-        cout << setw(37) << left << "" << colorText("================================================", "red") << "\n\n";
+        clsUtilPrintUserStatus::_PrintFailure("           USER DIDN'T UPDATE !\n");
     }
     static void _PrintSuccess() {
-        system("cls");
-        cout << setw(37) << left << "" << colorText("================================================", "green") << "\n";
-        cout << setw(37) << left << "" << "             " << colorText(">> SUCCESS <<", "green") << "\n";
-        cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
-        cout << setw(37) << left << "" << "         USER UPDATED SUCCESSFULLY!\n";
-        cout << setw(37) << left << "" << colorText("================================================", "green") << "\n\n";
+        clsUtilPrintUserStatus::_PrintSuccess("         USER UPDATED SUCCESSFULLY!\n");
     }
 
 public:
