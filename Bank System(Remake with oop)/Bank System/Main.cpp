@@ -9,9 +9,4 @@ using namespace std;
 //  ctrl + m+o
 
 
-int main() {
-
-
-while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break;
-
-}
+int main() { while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break; }

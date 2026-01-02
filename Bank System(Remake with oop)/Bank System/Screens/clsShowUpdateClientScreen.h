@@ -4,6 +4,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h" 
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsUtilAddNewClientOrUpdate.h"
 
 class clsShowUpdateClientScreen : protected clsScreen
 {
@@ -12,26 +13,8 @@ private:
     static void _EnterNewDataToUpdate(clsBankClient &Temp)
     {
         std::cout << "\n\n";
-        //_PrintMenuOption(colorText("        Adding New Client", "green"));
-        string DataToFill = "";
-
-        DataToFill = clsInputAndValidation::read_string("\n\tEnter New First Name: ");
-        Temp.SetFirstName(DataToFill);
-
-        DataToFill = clsInputAndValidation::read_string("\n\tEnter New Last Name: ");
-        Temp.SetLastName(DataToFill);
-
-        DataToFill = clsInputAndValidation::read_string("\n\tEnter New Pin: ");
-        Temp.SetPin(DataToFill);
-
-        DataToFill = clsInputAndValidation::read_string("\n\tEnter Email: ");
-        Temp.SetEmail(DataToFill);
-
-        DataToFill = clsInputAndValidation::read_string("\n\tEnter New Phone number: ");
-        Temp.SetPhone(DataToFill);
-
-        double balance = clsInputAndValidation::enter_postive_number("\n\tEnter Balance: ");
-        Temp.SetBalance(balance);
+        clsUtilAddOrUpdateClient::EnterDataOfClient(Temp);
+  
     }
 
     enum _enUpdateSpecific

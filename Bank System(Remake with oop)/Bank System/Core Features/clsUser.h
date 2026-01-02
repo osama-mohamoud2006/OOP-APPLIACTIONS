@@ -2,7 +2,8 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsPerson.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Utility Library\clsDate.h"
 
-class clsUser : public clsPerson {
+
+class clsUser  :public clsPerson {
 
 private :
 	static string _FileName;
@@ -222,7 +223,7 @@ private :
 		 //Save For [ add  , update ]
 
 		 public:
-			static  enum enSave {enSavedSuccessfully=1 , enFailedOrEmptyToSave =2 , enUsernameExists =3 };
+			  enum enSave {enSavedSuccessfully=1 , enFailedOrEmptyToSave =2 , enUsernameExists =3 };
 			 //Save To file and return enum to know the status 
 			 enSave Save() 
 			 {

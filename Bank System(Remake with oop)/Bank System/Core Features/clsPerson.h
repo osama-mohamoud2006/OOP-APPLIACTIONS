@@ -3,7 +3,7 @@
 #include<string>
 
 
-class clsPerson {
+class clsPerson  {
 
 	private:
        string _FirstName ;
@@ -39,5 +39,5 @@ class clsPerson {
                   return _FirstName + " " + _LastName;
               }
  
-
+            
 };

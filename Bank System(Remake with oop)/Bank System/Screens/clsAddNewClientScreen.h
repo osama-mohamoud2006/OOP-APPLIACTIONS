@@ -4,37 +4,18 @@
 
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Core Features\clsBankClient.h"
-#include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h";
+#include"E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Input&Validation Library\clsInputAndVaildation.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsUtilAddNewClientOrUpdate.h"
 
 
 class clsAddNewClientScreen  : protected clsScreen
 {
 
 private:
-	static void  _EnterNewDataToUpdate(clsBankClient& Temp) {
+	static void  _EnterNewDataOfNewClient(clsBankClient& Temp) {
 		std::cout << "\n\n";
 		_PrintMenuOption(colorText("        Adding New Client" ,"green"));
-		string DataToFill = "";
-
-		DataToFill = clsInputAndValidation::read_string("\nEnter New First Name: ");
-		Temp.SetFirstName(DataToFill);
-
-		DataToFill = clsInputAndValidation::read_string("\nEnter New Last Name: ");
-		Temp.SetLastName(DataToFill);
-
-		DataToFill = clsInputAndValidation::read_string("\nEnter New Pin number: ");
-		Temp.SetPin(DataToFill);
-
-		DataToFill = clsInputAndValidation::read_string("\nEnter Email: ");
-		Temp.SetEmail(DataToFill);
-
-		DataToFill = clsInputAndValidation::read_string("\nEnter New Phone number: ");
-		Temp.SetPhone(DataToFill);
-
-		double balance = clsInputAndValidation::enter_postive_number("\nEnter Balance: ");
-		Temp.SetBalance(balance);
-
-
+		clsUtilAddOrUpdateClient::EnterDataOfClient(Temp);
 	}
 
 public:
@@ -62,7 +43,7 @@ public:
 		clsBankClient client = clsBankClient::InitializeToAddNewClient();
 
 	
-		_EnterNewDataToUpdate(client); // fill the new data 
+		_EnterNewDataOfNewClient(client); // fill the new data 
 		client.SetAccountNumber(AccountNumber);
 
 		clsBankClient::enSaveMode SaveStatus; // check the save status 
