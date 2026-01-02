@@ -2,132 +2,272 @@
 
 A comprehensive, object-oriented Banking System implemented in C++. This project demonstrates solid OOP principles including encapsulation, inheritance, polymorphism, and abstraction, along with file handling and data management.
 
+## Table of Contents
+1.  [Features](#features)
+    *   [Client Management](#1-client-management)
+    *   [Transactions](#2-transactions)
+    *   [User Management](#3-user-management-admin)
+    *   [Utilities & Core Features](#4-utilities--core-features)
+2.  [Technical Implementation Details](#technical-implementation-details)
+    *   [Data Persistence](#data-persistence)
+    *   [Search Algorithms](#search-algorithms)
+    *   [Permission System](#permission-system-bitwise-operations)
+3.  [Encryption & Security](#encryption--security)
+4.  [Edge Cases & Validation](#edge-cases-and-validation-covered)
+5.  [Class Diagram](#class-diagram)
+6.  [Project Structure](#project-structure)
+7.  [How to Build and Run](#how-to-build-and-run)
+
+---
+
 ## Features
 
 The system is divided into three main operational areas: Client Management, Transactions, and User Management.
 
 ### 1. Client Management
 Manage bank clients with full CRUD capabilities.
-*   **Show Client List**: View all registered clients with their details (Account Number, Name, Phone, Balance, etc.).
-*   **Add New Client**: Register a new client. The system automatically validates unique account numbers.
-*   **Delete Client**: Remove a client from the system (logical deletion).
-*   **Update Client Info**: Modify client details.
-*   **Find Client**: Search for a client by their unique Account Number.
+*   **Show Client List**: Iterates through the `Clients.txt` file, parses each line into a `clsBankClient` object, and displays it in a formatted table.
+*   **Add New Client**: 
+    1.  Accepts unique Account Number.
+    2.  Validates uniqueness (O(N) search).
+    3.  Appends the new client record to `Clients.txt` immediately upon saving.
+*   **Delete Client**: Use a "Mark for Delete" flag approach. The system loads all clients into a `vector`, marks the target client, and rewrites the entire vector to the file, excluding the marked object.
+*   **Update Client Info**: Similar to delete, it loads data into a vector, finds the object by reference, updates members, and saves the vector back to the file.
+*   **Find Client**: Linearly searches the file/vector for a matching Account Number.
 
 ### 2. Transactions
 Perform financial operations securely with real-time balance validation.
-*   **Deposit**: Add funds to a client's account.
-*   **Withdraw**: Deduct funds from a client's account.
-*   **Total Balances**: View a summary of total balances across all clients.
-*   **Find Account Balance**: Check the specific balance of a client.
-*   **Transfer**: Transfer money between two clients securely.
-*   **Transfer Log**: View a history of all transfer transactions, including sender, receiver, amount, and timestamp.
+*   **Deposit**: Increases the `_Balance` attribute and immediately initiates a `Save()` operation to update the file.
+*   **Withdraw**: Checks `_Balance >= Amount` before proceeding. If valid, subtracts amount and saves.
+*   **Total Balances**: Sums the `_Balance` of all `clsBankClient` objects loaded from the file.
+*   **Transfer**: 
+    1.  Verifies Sender balance.
+    2.  Verifies Receiver existence.
+    3.  Atomically withdraws from Sender and deposits to Receiver.
+    4.  Logs the transaction to `TransferLog.txt`.
+*   **Transfer Log**: reads `TransferLog.txt` line-by-line to reconstruct transfer history.
 
 ### 3. User Management (Admin)
 Control system access and permissions.
-*   **Manage Users**: Add, List, Delete, and Update system users.
-*   **Permissions System**: Granular access control. Admin can assign specific permissions (e.g., allow `AddClient` but deny `Transactions`) using a bitmask system.
-*   **Login History**: Track all user login attempts with timestamps, username, and permissions.
-*   **Login/Logout**: Secure authentication system with encrypted passwords.
+*   **Manage Users**: Full CRUD for system administrators.
+*   **Permissions System**: Uses **Bitwise Operations** to store multiple permissions in a single integer.
+*   **Login History**: Appends a new record to `LoginLog.txt` with timestamp (using `clsDate`) and encrypted password every time a user logs in.
 
 ### 4. Utilities & Core Features
-*   **Utility Library** (`clsUtillity`): String manipulation, encryption/decryption (XOR), and formatting tools.
-*   **Date Library** (`clsDate`): Custom date handling, including leap year calculations, date arithmetic, and comparison.
-*   **Input Validation** (`clsInputAndVaildation`): Robust input handling to prevent crashes and ensure data integrity.
-*   **File Handling**: All data (Clients, Users, Logs) is persisted in text files (`Clients.txt`, `UsersDb.text`, `ResultsHistory.text`).
+*   **Utility Library** (`clsUtillity`):
+    *   **String Manipulation**: Custom `Split`, `Trim`, `UpperAll`, `Join` implementations to avoid dependency on heavy external libraries.
+
+*   **Date Library** (`clsDate`):
+    *   **Logic**: Implemented from scratch without `chrono` for educational purposes. 
+    *   **Features**: Leap year validation, `DayOfWeek` calculation (Zeller's congruence), and date arithmetic (adding/subtracting days).
+*   **Input Validation** (`clsInputAndVaildation`):
+    *   **Stream Handling**: Uses `cin.fail()` checks and `cin.ignore()` to prevent infinite loops when invalid types are entered.
+
+---
+
+## Technical Implementation Details
+
+### Data Persistence
+The project uses a custom file-handling mechanism.
+*   **Format**: Line-based text files.
+*   **Separator**: Custom string separator `#//#` to delimit fields (e.g., `AccNum#//#Pin#//#Name...`).
+*   **Serialization**: `_ConvertObjectToLine()` converts an object's state into a string.
+*   **Deserialization**: `_ConvertLineToObject()` parses a string back into an object.
+
+### Search Algorithms
+*   **Linear Search**: Used for finding clients and users. The system reads the file into a `vector<T>` and iterates `O(N)` to find match.
+*   This is chosen for simplicity and because persistence is file-based (random access is not efficient in text files).
+
+### Permission System (Bitwise Operations)
+Attributes are stored as powers of 2 (1, 2, 4, 8, 16...).
+*   **Check**: `(UserPermissions & RequiredPermission) == RequiredPermission`
+*   **Add**: `UserPermissions | NewPermission`
+*   **Remove**: `UserPermissions & ~PermissionToRemove`
+This allows storing complex access rights (e.g., "Can Add and Update but not Delete") in a single 4-byte integer.
+
+---
+
+## Encryption & Security
+
+The system employs custom encryption techniques to secure sensitive data.
+
+### 1. XOR Encryption (`clsUtil::EncryptOrDecryptUsingXor`)
+*   **Mechanism**: A symmetric encryption algorithm where each character of the string is XORed (`^`) with a key.
+*   **Key**: The character `'d'` (Decimal 100) is used as the fixed key.
+*   **Usage**: Used for **User Passwords** stored in `UsersDb.text`.
+*   **Property**: Running the function twice returns the original string (`(A ^ K) ^ K = A`).
+
 
 ---
 
 ## Edge Cases and Validation Covered
 
-This project is built to be robust and crash-resistant. The following edge cases are explicitly handled:
+This project is built to be robust and crash-resistant.
 
-### 🛡️ Input Validation
-*   **Invalid Data Types**: If a user enters text where a number is expected (e.g., entering "abc" for an amount), the system catches the input stream failure, clears the buffer, and prompts the user to try again.
+### Input Validation
+*   **Invalid Data Types**: If a user enters text where a number is expected (e.g., entering "abc" for an amount), the system catches the input stream failure, clears the buffer (`cin.clear()`), and prompts the user to try again.
 *   **Range Checks**: Menus only accept numbers within the valid range of options (e.g., 1-10).
-*   **Positive Numbers**: Amounts for deposits and withdrawals must be positive. Negative inputs are rejected.
 
-### 💰 Transaction Integrity
-*   **Insufficient Funds**: You cannot withdraw or transfer more money than what is available in the account. The system checks the balance before processing.
-*   **Self-Transfer Prevention**: The system detects if a user tries to transfer money to the same account and blocks the operation.
-*   **Non-Existent Accounts**: When searching for transfer targets or withdrawal accounts, the system verifies the account number exists. It allows 5 retry attempts before returning to the menu to prevent infinite loops.
-
-### 🔒 Security & Data Integrity
-*   **Duplicate Usernames**: When creating a new user, the system checks if the username already exists to prevent duplicates.
-*   **Unique Account Numbers**: Similar to users, client account numbers must be unique.
-*   **Confirmation Prompts**: Critical actions (Delete, Withdraw, Transfer) require an explicit "Are you sure? [y/n]" confirmation to prevent accidental data loss.
-*   **Permission Checks**: If a user tries to access a menu they verify don't have permission for (e.g., "Manage Users"), access is denied with an "Access Denied" message.
+### Transaction Integrity
+*   **Insufficient Funds**: You cannot withdraw or transfer more money than what is available.
+*   **Self-Transfer**: The system explicitly checks `if (SourceAcc == DestAcc)` to prevent self-transfers.
+*   **Non-Existent Accounts**: When searching, if an account isn't found, the system allows 5 retries before locking the screen or returning to menu.
 
 ---
 
 ## Class Diagram
 
-The project follows a modular architecture. Below is the high-level class diagram illustrating the key relationships.
-
 ```mermaid
 classDiagram
+    %% Core Person Class
     class clsPerson {
         -string _FirstName
         -string _LastName
         -string _Email
         -string _Phone
-        +SetFirstName()
-        +GetFirstName()
-        +GetFullName()
+        +clsPerson(string, string, string, string)
+        +SetFirstName(string)
+        +GetFirstName() string
+        +SetLastName(string)
+        +GetLastName() string
+        +SetEmail(string)
+        +GetEmail() string
+        +SetPhone(string)
+        +GetPhone() string
+        +GetFullName() string
     }
 
+    %% Main Client Class
     class clsBankClient {
         -string _AccountNumber
         -string _Pin
         -double _Balance
-        -string FileName
-        +Deposit()
-        +Withdraw()
-        +Transfer()
-        +Save()
+        -bool _MarkForDelete
+        -enum _enMode
+        +clsBankClient(_enMode, string, string, string, string, string, string, double)
+        +IsEmptyClientObj() bool
+        +SetAccountNumber(string)
+        +GetAccountNumber() string
+        +SetPin(string)
+        +GetPin() string
+        +SetBalance(double)
+        +GetBalance() double
+        +DeleteClient() bool
+        +Save() enSaveMode
+        +Deposit(double) enSaveMode
+        +Withdraw(double) enSaveMode
+        +static Find(string) clsBankClient
+        +static Find(string, string) clsBankClient
+        +static IsClientExist(string) bool
+        +static GetTotalBalances() double
     }
 
+    %% User Class (Admin)
     class clsUser {
         -string _Username
         -string _Password
         -int _Permissions
-        +Login()
-        +CheckPermission()
-        +Save()
-        +GetPermissions()
-    }
-
-    class clsScreen {
-        #_PrintMenuOption()
-    }
-
-    class clsMainScreen {
-        +ShowMainMenu()
+        -enum _enMode
+        +clsUser(_enMode, string, string, int, string, string, string, string)
+        +IsEmpty() bool
+        +SetUsername(string)
+        +GetUserName() string
+        +SetPassword(string)
+        +GetPassword() string
+        +SetPermissions(int)
+        +GetPermissions() int
+        +Save() enSave
+        +Delete()
+        +static FindUser(string) clsUser
+        +static FindUser(string, string) clsUser
+        +static IsUserExist(string) bool
+        +static CheckPermission(enUserPermission) bool
+        +SaveLoginDetails()
     }
     
-    class clsTransactionMenu {
-        +ShowTransactionMenu()
+    class clsLoginHistory {
+         -string DateAndTime
+         -string username
+         -string pass
+         -int permission
+         +GetTimeDate() string
+         +GetUsername() string
+         +GetPassword() string
+         +GetPermission() string
     }
 
-    class clsManageUsersMenu {
-        +ShowManageUsersMenu()
+    %% Transaction Manager (Static Logic)
+    class clsManageClientBalance {
+        +static Deposit(clsBankClient, double) enSaveMode
+        +static WithDraw(clsBankClient, double) enSaveMode
+        +static GetTotalBalances() double
+        +static TransferBetween2Clients(clsBankClient, clsBankClient, double) enTransferStatus
+    }
+    
+    class clsGetHistoryOfTransfer {
+        -string DateTime
+        -string AccountNumberOfWhoWillSend
+        -string AccountNumberOfWhoWillReceive
+        -double Amount
+        -string UserWhoDidTheOperation
+        +static VectorThatHaveAllTransactionsRecords() vector
     }
 
-    %% Relationships
+    %% Utility Classes
+    class clsDate {
+        -short y
+        -short m
+        -short d
+        +clsDate()
+        +clsDate(string)
+        +SetD(short)
+        +GetD() short
+        +SetM(short)
+        +GetM() short
+        +SetY(short)
+        +GetY() short
+        +static GetCurrentLocalDate() clsDate
+        +static GetLocalDateAndTime() string
+        +static IsLeapYear(short) bool
+        +static NumberOfDaysInMonth(short, short) short
+    }
+
+    class clsString {
+        -string _value
+        +clsString(string)
+        +static SplitString(string) vector~string~
+        +static Trim(string) string
+        +static UpperAll(string) string
+    }
+
+    class clsUtil {
+        +static EncryptOrDecryptUsingXor(string) string
+    }
+
+    class clsInputAndValidation {
+        +static enter_number(string) double
+        +static IsNumberBetween(int, int, int) bool
+        +static IsDateBetween(clsDate, clsDate, clsDate) bool
+        +static enter_postive_number(string) double
+        +static read_string(string) string
+        +static IsVaildDate(clsDate) bool
+    }
+
+    %% Relationship & Hierarchy
     clsPerson <|-- clsBankClient : Inherits
     clsPerson <|-- clsUser : Inherits
+    clsUser *-- clsLoginHistory : Nested/Composition
     
-    clsScreen <|-- clsMainScreen : Inherits
-    clsScreen <|-- clsTransactionMenu : Inherits
-    clsScreen <|-- clsManageUsersMenu : Inherits
+    clsManageClientBalance *-- clsGetHistoryOfTransfer : Nested/Composition
 
-    clsMainScreen ..> clsBankClient : Uses
-    clsMainScreen ..> clsUser : Uses
-    clsMainScreen ..> clsTransactionMenu : Navigates to
-    clsMainScreen ..> clsManageUsersMenu : Navigates to
-
-    clsTransactionMenu ..> clsBankClient : Manages
-    clsManageUsersMenu ..> clsUser : Manages
+    clsBankClient ..> clsDate : Uses
+    clsUser ..> clsDate : Uses
+    clsBankClient ..> clsString : Uses
+    clsBankClient ..> clsInputAndValidation : Validates Input
+    clsUser ..> clsUtil : Utils
+    
+    clsManageClientBalance ..> clsBankClient : Manipulates
+    clsManageClientBalance ..> clsUser : Logs Transaction
 ```
 
 ## Project Structure
@@ -152,10 +292,6 @@ The project has been refactored for clarity and maintainability:
     ```bash
     ./BankSystem.exe
     ```
-
-## Security Features
-*   **Encryption**: User passwords are encrypted before storage.
-*   **Permissions**: A bitmask-based permission system restricts access to sensitive features based on the logged-in user.
 
 ---
 
