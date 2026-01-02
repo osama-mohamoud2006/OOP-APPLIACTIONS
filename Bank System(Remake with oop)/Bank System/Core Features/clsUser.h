@@ -376,7 +376,7 @@ private :
 
 						public:
 
-							void SaveLoginDetails()
+							void SaveLoginDetails() /// write login session details to file 
 							{
 								fstream write;
 								write.open(_LoginLogFileName,ios::out | ios::app);
