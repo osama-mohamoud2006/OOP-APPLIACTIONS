@@ -30,8 +30,17 @@ public:
 		string AccountNumber = "";
 		AccountNumber = clsInputAndValidation::read_string("Enter account number: ");
 
+		short Trials = 5;
 		while (clsBankClient::IsClientExist(AccountNumber)) // if account number is existing then ask user to enter another acc num
 		{
+			Trials--;
+			if (Trials == 0) {
+				system("cls");
+				system("color 0F");
+				cout << colorText("\n\t\t\t\t\tTRIALS EXPIRED , GET OUT!\n\n", "red");
+				return;
+			}
+
 			screen_color(red);
 			cout << "\t\t\t\a\nThe client with account number: " << AccountNumber << " is existing \nplease enter valid account number!\n";
 			AccountNumber = clsInputAndValidation::read_string("\nEnter account number: ");

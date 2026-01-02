@@ -42,8 +42,17 @@ public:
             string Username = "";
             Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
 
+            short Trials = 5;
             while (clsUser::FindUserAndReturnObj_If_exist(Username, user))  // if the user exists 
             {
+                Trials--;
+                if (Trials == 0) {
+                    system("cls");
+                    system("color 0F");
+                    cout << colorText("\n\t\t\t\t\tTRIALS EXPIRED , GET OUT!\n\n", "red");
+                    return;
+                }
+
                 screen_color(red);
                 cout << "\n\n\t\t\t\t\tThe User Exists!\a\n"; // remove which user that exists for privacy 
                 Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");

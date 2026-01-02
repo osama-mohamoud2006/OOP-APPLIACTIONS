@@ -28,6 +28,7 @@ public :
         string Username = "";
         Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");
 
+        // constraint to avoid deleting the current signed user 
         if (Username == GCurrentUser.GetUserName())
         {
             screen_color(red_on_black);
@@ -35,9 +36,17 @@ public :
             return;
         }
 
-        // won't allow to delete the "admin" as it is the main user and he controls every thing
-        while (!clsUser::FindUserAndReturnObj_If_exist(Username, user) || Username == "admin")  // if the user exists 
+        // won't allow to delete the "admin" as it is the main user and he controls every thing , SuperUser--> is the the admin who shouldn't be deleted
+        short Trials = 5; 
+        while (!clsUser::FindUserAndReturnObj_If_exist(Username, user) || Username == SuperUser)  // if the user exists 
         {
+            Trials--;
+            if (Trials == 0) {
+                system("cls");
+                system("color 0F");
+                cout << colorText("\n\t\t\t\t\tTRIALS EXPIRED , GET OUT!\n\n", "red");
+                return;
+            }
             screen_color(red);
             cout << "\n\n\t\t\t\t\tThe User Doesn't Exist!\a\n";  // remove which user that doesn't exist for privacy 
             Username = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter Username: ");

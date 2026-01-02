@@ -39,8 +39,17 @@ public:
 		AccountNumber = clsInputAndValidation::read_string("\nEnter Account Number: ");
 		clsBankClient Client = clsBankClient::EmptyObjForInitializing();
 
+		short Trials = 5; 
 		while (!(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, Client))) // if the client isn't existing ask for entering the account number again 
 		{
+			Trials--;
+			if (Trials == 0) {
+				system("cls");
+				system("color 0F");
+				cout << colorText("\n\t\t\t\t\tTRIALS EXPIRED , GET OUT!\n\n", "red");
+				return;
+			}
+
 			screen_color(red);
 			cout << "\n\n\aThe Account Number " << AccountNumber << " Isn't Existing !\a" << endl;
 			AccountNumber = clsInputAndValidation::read_string("\nEnter Account Number: ");

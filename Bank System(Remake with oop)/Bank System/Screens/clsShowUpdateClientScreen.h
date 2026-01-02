@@ -108,8 +108,17 @@ public:
         clsBankClient client = clsBankClient::EmptyObjForInitializing();
 
         // if the account isn't existing
+        short Trials = 5;
         while (!(clsBankClient::ReturnCurrentClient_if_ItExists(AccountNumber, client)))
         {
+            Trials--;
+            if (Trials == 0) {
+                system("cls");
+                system("color 0F");
+                cout << colorText("\n\t\t\t\t\tTRIALS EXPIRED , GET OUT!\n\n", "red");
+                return;
+            }
+
             screen_color(red);
             cout << "\a\nAccount number: " << AccountNumber << " isn't existing!" << endl;
             cout << "Try again !\n";
