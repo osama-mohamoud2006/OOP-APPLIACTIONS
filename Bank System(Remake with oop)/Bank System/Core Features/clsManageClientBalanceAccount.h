@@ -114,8 +114,7 @@ private:
 	}
 
 	public:
-
-		class clsLogOfTransfer {
+		class clsGetHistoryOfTransfer final {
 
 		private :
 			string DateTime = "";
@@ -132,7 +131,7 @@ private:
 
 
 		private :
-			clsLogOfTransfer(string DateTime, string AccountNumberOfWhoWillSend, string AccountNumberOfWhoWillReceive, double amount , double BalanceOfWhoWillSend, double BalanceOfWhoWillReceive , string UserWhoDidTheOperation ){
+			clsGetHistoryOfTransfer(string DateTime, string AccountNumberOfWhoWillSend, string AccountNumberOfWhoWillReceive, double amount , double BalanceOfWhoWillSend, double BalanceOfWhoWillReceive , string UserWhoDidTheOperation ){
 				this->DateTime = DateTime;
 				this->AccountNumberOfWhoWillSend = AccountNumberOfWhoWillSend;
 				this->AccountNumberOfWhoWillReceive = AccountNumberOfWhoWillReceive;
@@ -145,34 +144,35 @@ private:
 			}
 
 
-			 private:
-      static clsLogOfTransfer  _RecordToStructLog(string Line) 
+			 private: 
+				 // convert record to obj 
+            static clsGetHistoryOfTransfer  _RecordToClsLogTransferObj(string Line) 
       {
        clsString::SetDelmi(_Delmi);
    	vector< string> Records = clsString::SplitString(Line); 
    	    
-	return  clsLogOfTransfer(Records[0], Records[1], Records[2], stoi(Records[3]), stoi(Records[4]), stoi(Records[5]), Records[6]);
+	return  clsGetHistoryOfTransfer(Records[0], Records[1], Records[2], stoi(Records[3]), stoi(Records[4]), stoi(Records[5]), Records[6]);
 
       }
 
 
 		public:
 
-			string  TimeAndDate() { return DateTime; }
+			string  TimeAndDate() const { return DateTime; }
 
-			string TheAccountWhoWillSend() { return AccountNumberOfWhoWillSend; }
-			string TheAccountWhoWillReceive() { return AccountNumberOfWhoWillReceive; }
+			string TheAccountWhoWillSend() const  { return AccountNumberOfWhoWillSend; }
+			string TheAccountWhoWillReceive() const { return AccountNumberOfWhoWillReceive; }
 
-			double AmountOfTransfer() { return Amount; }
+			double AmountOfTransfer() const  { return Amount; }
 
-			double TheBalanceWhoWillSendBalance() { return BalanceOfWhoWillSend; }
-			double TheBalanceWhoWillReceiveBalance() { return BalanceOfWhoWillReceive; }
+			double TheBalanceWhoWillSendBalance() const  { return BalanceOfWhoWillSend; }
+			double TheBalanceWhoWillReceiveBalance() const  { return BalanceOfWhoWillReceive; }
 
-			string TheUserWhoDidItTransactionUserName() { return UserWhoDidTheOperation; }
+			string TheUserWhoDidItTransactionUserName() const  { return UserWhoDidTheOperation; }
 
-			static vector< clsLogOfTransfer> VectorThatHaveAllTransactionsRecords()
+			static vector< clsGetHistoryOfTransfer> VectorThatHaveAllTransactionsRecords()
 			{
-				vector< clsLogOfTransfer> AllLogs;
+				vector< clsGetHistoryOfTransfer> AllLogs;
 				fstream read;
 				read.open(_LogFileName, ios::in); //read mode
 				if (read.is_open())
@@ -180,7 +180,7 @@ private:
 					string Record = "";
 					while (getline(read, Record))
 					{
-						AllLogs.push_back(_RecordToStructLog(Record));
+						AllLogs.push_back(_RecordToClsLogTransferObj(Record));
 					}
 					read.close();
 				}

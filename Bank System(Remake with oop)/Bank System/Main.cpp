@@ -7,7 +7,25 @@
 using namespace std;
 //  ctrl + m+o
 
+struct x {
+	private: int c = 10;
+public:int y = 20;
+
+	  public: x() {
+		  this->c = 10;
+	  }
+
+	  public :void u() {
+		  cout << "u" << endl;
+	  }
+
+			
+
+};
+
 int main() {
+
+
 
 while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break;
 

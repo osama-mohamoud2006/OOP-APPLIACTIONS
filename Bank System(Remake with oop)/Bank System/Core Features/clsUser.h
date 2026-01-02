@@ -375,7 +375,8 @@ private :
 						}
 
 						public:
-							void SaveLoginLog()
+
+							void SaveLoginDetails()
 							{
 								fstream write;
 								write.open(_LoginLogFileName,ios::out | ios::app);
@@ -387,7 +388,8 @@ private :
 								else { write.close();  ThrowExceptionCouldnotOpenFile(); }
 							}
 
-							class clsLoginHistory
+
+							class clsLoginHistory final
 							{
 							private:
 								string DateAndTime;
@@ -401,14 +403,14 @@ private :
 								string GetPassword() { return pass; }
 								string GetPermission() { return to_string(permission); }
 
+							private:
+
 								clsLoginHistory(string DateAndTime, string username, string pass, int per) {
 									this->DateAndTime = DateAndTime;
 									this->username = username;
 									this->pass = pass;
 									this->permission = per;
 								}
-
-							private:
 
 								static clsLoginHistory _ConvertLineToObject(string line)
 								{
@@ -443,8 +445,6 @@ private :
 								}
 
 							};
-
-
 
 
 };

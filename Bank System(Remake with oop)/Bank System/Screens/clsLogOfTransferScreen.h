@@ -4,7 +4,6 @@ class clsTransferLogScreen : protected clsScreen
 {
 
 
-
 private:
 
 	static void _PrintHeader() {
@@ -23,7 +22,7 @@ private:
 		cout << "_________________________________________\n" << endl;
 	}
 
-	static void PrintTransferLogRecordLine(clsManageClientBalance::clsLogOfTransfer TransferLogRecord)
+	static void PrintTransferLogRecordLine(clsManageClientBalance::clsGetHistoryOfTransfer TransferLogRecord)
 	{
 
 		cout << setw(8) << left << "" << "| " << setw(23) << left << TransferLogRecord.TimeAndDate();
@@ -37,13 +36,12 @@ private:
 		cout << endl;
 	}
 
-
 public:
 	static void ShowLogTransferScreen()
 	{
 		clsScreen::_PrintMenuOption(colorText("        Log Of Transfer Screen", "orange"));
 
-		vector<clsManageClientBalance::clsLogOfTransfer> Records = clsManageClientBalance::clsLogOfTransfer::VectorThatHaveAllTransactionsRecords();
+		vector<clsManageClientBalance::clsGetHistoryOfTransfer> Records = clsManageClientBalance::clsGetHistoryOfTransfer::VectorThatHaveAllTransactionsRecords();
 
 		         _PrintHeader();                            //header 
 
@@ -51,13 +49,12 @@ public:
 
 		else
 		{
-			for (clsManageClientBalance::clsLogOfTransfer& R : Records) PrintTransferLogRecordLine(R);
+			for (clsManageClientBalance::clsGetHistoryOfTransfer& R : Records) PrintTransferLogRecordLine(R);
 			
 			std::cout << "\n_____________________________________________________________________________________________________________________\n" << endl;
 		}
 	
 	}
-
 
 
 };

@@ -9,7 +9,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsLogOfTransferScreen.h"
 
 
-class clsTransactionMenu : clsScreen {
+class clsTransactionMenu : protected clsScreen {
 
 private:
 

@@ -62,7 +62,7 @@ private :
 			  else 
 			  { 
 				  LoginFailed = false;
-				  GCurrentUser.SaveLoginLog(); // Save the successful login details on file 
+				  GCurrentUser.SaveLoginDetails(); // Save the successful login details on file 
 				  clsMainMenuScreen::ShowMainMenuScreen();
 				  return true; 
 			  }

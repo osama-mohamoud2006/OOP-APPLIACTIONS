@@ -1,5 +1,5 @@
 #pragma once 
-class clsLoginHistoryScreen : clsScreen
+class clsLoginHistoryScreen  :  protected clsScreen
 {
 
     static void _PrintHeader() {
