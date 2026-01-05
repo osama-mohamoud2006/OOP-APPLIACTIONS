@@ -138,6 +138,10 @@ public:
 		return  ( !Currency._IsEmpty() );
 	}
 
+	static bool ReturnCurrentObj_IfExistByCountry(clsCurrencyExchange& Currency, string CountryName) {
+		Currency = FindByCountry(CountryName);
+		return  (!Currency._IsEmpty());
+	}
 
 
 };

@@ -21,34 +21,81 @@ void _PrintChoice() {
 	std::cout << setw(37) << left << "" << "===========================================\n";
 }
 
+
 void PrintCurrencyInfo(clsCurrencyExchange& c)
 {
-	cout << c.GetCurrencyName() << endl;
-	cout << c.GetCurrencyCode() << endl;
-	cout << c.GetCountryName() << endl;
-	cout << c.GetCurrentRate() << endl; 
+	system("cls");
+	// Get terminal width and calculate padding
+	int terminalWidth = 120;
+	int contentWidth = 48;
+	int leftPadding = (terminalWidth - contentWidth) / 2;
+
+	cout << "\n\n";
+	cout << setw(leftPadding) << "" << colorText("================================================", "cyan") << "\n";
+	cout << setw(leftPadding) << "" << "           " << colorText(">> CURRENCY CARD <<", "yellow") << "\n";
+	cout << setw(leftPadding) << "" << colorText("================================================", "cyan") << "\n\n";
+
+	cout << setw(leftPadding) << "" << colorText("  CURRENCY INFORMATION", "lightpurple") << "\n";
+	cout << setw(leftPadding) << "" << "  ----------------------------------------------\n";
+	cout << setw(leftPadding) << "" << "    Currency Name : " << c.GetCurrencyName() << "\n";
+	cout << setw(leftPadding) << "" << "    Currency Code : " << colorText(c.GetCurrencyCode(), "cyan") << "\n";
+	cout << setw(leftPadding) << "" << "    Country       : " << c.GetCountryName() << "\n\n";
+
+	cout << setw(leftPadding) << "" << colorText("  EXCHANGE RATE", "yellow") << "\n";
+	cout << setw(leftPadding) << "" << "  ----------------------------------------------\n";
+	cout << setw(leftPadding) << "" << "    Current Rate  : " << colorText("1 USD = " + to_string(c.GetCurrentRate()) + " " + c.GetCurrencyCode(), "green") << "\n\n";
+
+	cout << setw(leftPadding) << "" << colorText("================================================", "cyan") << "\n\n";
 }
+
 
 void _FindCurrencyByCode() 
 {
 	//clsScreen::_PrintMenuOption();
 
 	short trials = 5; 
-	//if (clsScreen::EndTheScreen(Trials)) return; 
-
+	
 	clsCurrencyExchange Currency = clsCurrencyExchange::ReturnEmptyObjForInitializing();
+
 	string CurrencyCode = "";
 	CurrencyCode = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter The Currency Code: ");
 
 	while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCode(Currency, CurrencyCode)) // if it isn't existing 
 	{
 		trials--;
+		//if (clsScreen::EndTheScreen(Trials)) return; 
+		screen_color(red);
 		cout << "\n\t\t\t\tThe Currency Code You Entered Isn't Existing!\a";
 		CurrencyCode = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter The Currency Code: ");
 	}
 
+	system("color 0F");
 	PrintCurrencyInfo(Currency); 
 
+}
+
+
+void _FindCurrencyByCountry() {
+	//clsScreen::_PrintMenuOption();
+
+	short trials = 5;
+
+	clsCurrencyExchange Currency = clsCurrencyExchange::ReturnEmptyObjForInitializing();
+
+	string CountryName= "";
+	CountryName = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter The Country Name: ");
+
+	while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCountry(Currency, CountryName)) // if it isn't existing 
+	{
+		trials--;
+		//if (clsScreen::EndTheScreen(Trials)) return; 
+		screen_color(red);
+		cout << "\n\t\t\t\tThe Country Name You Entered Isn't Existing!\a";
+		CountryName = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter The  Country Name: ");
+	}
+	system("color 0F");
+
+	PrintCurrencyInfo(Currency);
 }
 
 void _PerformFindAccordingToChoice(_enFindChoice Choice )
@@ -59,18 +106,20 @@ void _PerformFindAccordingToChoice(_enFindChoice Choice )
 		system("cls");
 	case _enFindChoice::eFindByCode: 
 	{
+		_FindCurrencyByCode();
 		break; 
 	}
 
 	case _enFindChoice::eFindByCountry:
 	{
-
+		_FindCurrencyByCountry();
 		break;
 	}
 
 	}
 
 }
+
 
 void FindCurrency() 
 {
@@ -97,8 +146,10 @@ void FindCurrency()
 }
 
 
+
 int main() {
 
+	FindCurrency(); 
 	//clsCurrencyExchange c = clsCurrencyExchange::ReturnEmptyObjForInitializing();
 
 	//c = clsCurrencyExchange::FindByCode("usd");
