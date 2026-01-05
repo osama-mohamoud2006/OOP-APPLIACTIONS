@@ -20,7 +20,7 @@ public:
 	clsCurrencyExchange(_enMode CurrentMode,string CountryName, string CurrencyCode, string CurrencyName, double Rate)
 	{
 		this->_CurrentMode = CurrentMode;
-		this->_CurrencyName = CountryName;
+		this->_CountryName = CountryName;
 
 		this->_CurrencyCode = CurrencyCode;
 		this->_CurrencyName = CurrencyName;
@@ -33,9 +33,12 @@ public:
 	string GetCurrencyName()const { return this->_CurrencyName; }
 	double GetCurrentRate()const { return this->_Rate; }
 
-
-private:
 	
+private:
+static	clsCurrencyExchange _EmptyObj() {
+		return clsCurrencyExchange(eEmptyMode, "", "", "", 0.0);
+	}
+
 	bool _IsEmpty() { return (_CurrentMode == eEmptyMode); }
 
 //United States of America#//#USD#//#US Dollar#//#1.000000   --> line
@@ -70,21 +73,71 @@ private:
 	}
 
 
+public:
+	static clsCurrencyExchange ReturnEmptyObjForInitializing() { return _EmptyObj(); }
+
 	///  FindByCountry
 	// FindByCode
 public:
 	static clsCurrencyExchange FindByCountry(string CountryName) 
 	{
-		vector< clsCurrencyExchange> Records = _LoadFileOnVector();
+		CountryName = clsString::UpperAll(CountryName); // to make the search not depend if the word is upper or not 
 		fstream read;
 		read.open(_FileName, ios::in);
 		if (read.is_open())
 		{
-			for (clsCurrencyExchange& C : Records) if (C.GetCountryName() == CountryName) return C;
+			string record = "";
+			while (getline(read, record))
+			{
+				clsCurrencyExchange TheCountry = _ConvertLineToObject(record); // convert each line to object 
+				if ( clsString::UpperAll(TheCountry.GetCountryName() )== CountryName ) { read.close();  return TheCountry; }
+			}
+
+			
+		}
+
+		read.close();
+		return _EmptyObj(); // --> return empty obj if the country isn't existing 
+	}
+
+	static clsCurrencyExchange FindByCode(string Code)
+	{
+		Code = clsString::UpperAll(Code); // to make the search not depend if the word is upper or not 
+		fstream read;
+		read.open(_FileName, ios::in);
+		if (read.is_open())
+		{
+			string record = "";
+			while (getline(read, record))
+			{
+				clsCurrencyExchange TheCountry = _ConvertLineToObject(record); // convert each line to object 
+				if (clsString::UpperAll(TheCountry.GetCurrencyCode()) == Code) { read.close();  return TheCountry; }
+			}
+
 
 		}
 
+		read.close();
+		return _EmptyObj(); // --> return empty obj if the country isn't existing 
 	}
+
+
+	static bool IsCurrencyExist(string CurrencyCode ) {
+		clsCurrencyExchange  c= FindByCode(CurrencyCode);
+		return (!c._IsEmpty()); 
+	}
+
+	static bool IsCountryExist(string CountryName)
+	{
+		clsCurrencyExchange c = FindByCountry(CountryName);
+		return (!c._IsEmpty());
+	}
+
+	static bool ReturnCurrentObj_IfExistByCode(clsCurrencyExchange & Currency , string CurrencyCode) {
+		Currency = FindByCode(CurrencyCode);
+		return  ( !Currency._IsEmpty() );
+	}
+
 
 
 };
