@@ -101,9 +101,9 @@ void _FindCurrencyByCountry() {
 void _PerformFindAccordingToChoice(_enFindChoice Choice )
 {
 
+	system("cls");
 	switch (Choice) 
 	{
-		system("cls");
 	case _enFindChoice::eFindByCode: 
 	{
 		_FindCurrencyByCode();
@@ -134,7 +134,7 @@ void FindCurrency()
 		// clsScreen::
 
 		_PrintChoice(); // show the menu to choose what you  want to find 
-		Option = clsInputAndValidation::enter_number_from_to(1, 2, "\t\t\t\t\tEnter Option[1],[2]: ");
+		Option = clsInputAndValidation::enter_number_from_to(1, 2, "\t\t\t\t\tEnter Option");
 
 		if (Option == 1 || Option == 2) break;
 		else Trials++;
@@ -142,7 +142,6 @@ void FindCurrency()
 	
 	_PerformFindAccordingToChoice(_enFindChoice(Option)); // perform the find According to the user choice 
 
-	//string CountryName = clsInputAndValidation::read_string("\n\t\t\t\t\tEnterTheCountryName: ");
 }
 
 

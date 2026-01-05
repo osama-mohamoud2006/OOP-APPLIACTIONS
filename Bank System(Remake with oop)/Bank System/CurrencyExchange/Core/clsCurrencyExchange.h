@@ -72,6 +72,18 @@ static	clsCurrencyExchange _EmptyObj() {
 		return Vcu;
 	}
 
+	static void UpdateFile(vector< clsCurrencyExchange>& VectorUpdated)
+	{
+		fstream write;
+		write.open(_FileName, ios::out); // overwrite
+		
+		if( write.is_open() )
+		{
+			for (clsCurrencyExchange& C : VectorUpdated) { write << _ConvertObjectToLine(C) << endl;  }
+		}
+
+			write.close();
+	}
 
 public:
 	static clsCurrencyExchange ReturnEmptyObjForInitializing() { return _EmptyObj(); }
@@ -142,6 +154,24 @@ public:
 		Currency = FindByCountry(CountryName);
 		return  (!Currency._IsEmpty());
 	}
+
+	/// Update The Rate 
+	private:
+	 void _UpdateRateOnFile()
+	{
+		vector <clsCurrencyExchange> Records = _LoadFileOnVector();
+
+		for (clsCurrencyExchange& c : Records) { if ( c.GetCurrencyCode() == this->GetCurrencyCode() ) c = *this;  break; }
+		 
+		UpdateFile(Records); 
+	}
+	 
+	 public:
+		 void UpdateRate(double NewRate)
+		 {
+			 this->_Rate = NewRate;
+			 _UpdateRateOnFile();
+		 }
 
 
 };
