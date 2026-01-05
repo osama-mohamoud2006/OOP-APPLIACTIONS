@@ -173,6 +173,11 @@ public:
 			 _UpdateRateOnFile();
 		 }
 
+		 // get the file contents on file
+		static vector< clsCurrencyExchange> LoadFileContentOnVector()
+		 {
+			 return _LoadFileOnVector();
+		 }
 
 };
 string clsCurrencyExchange::_Delmi = "#//#";
