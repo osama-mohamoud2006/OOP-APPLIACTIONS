@@ -8,5 +8,6 @@
 using namespace std;
 //  ctrl + m+o
 
-
+// Good Bye done at : 2/1/2026
+// lol i started this project last year 
 int main() { while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break; }
