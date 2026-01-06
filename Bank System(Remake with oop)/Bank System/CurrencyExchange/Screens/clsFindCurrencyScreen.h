@@ -38,12 +38,16 @@ static	void _FindCurrencyByCode()
 		}
 
 		system("color 0F");
+		if (clsString::UpperAll(CurrencyCode) == "EUR") {
+			vector< clsCurrencyExchange> EUR = clsCurrencyExchange::EURCountries();
+			
+		}
 		clsUtilPrintCurrencyDetails::PrintCurrencyInfo(Currency);
 
 	}
 	static void _FindCurrencyByCountry() {
 
-		clsScreen::_PrintMenuOption(colorText("         Find Currency By Code","pink"));
+		clsScreen::_PrintMenuOption(colorText("         Find Currency By Country","pink"));
 
 		short trials = 5;
 

@@ -133,6 +133,23 @@ public:
 		return _EmptyObj(); // --> return empty obj if the country isn't existing 
 	}
 
+	static vector < clsCurrencyExchange> EURCountries()
+	{
+		vector< clsCurrencyExchange> EUR;
+		fstream read;
+		read.open(_FileName, ios::in);
+		if (read.is_open())
+		{
+			string record = "";
+			while (getline(read, record))
+			{
+				clsCurrencyExchange C = _ConvertLineToObject(record);
+				if (clsString::UpperAll(C.GetCurrencyCode()) == "EUR") EUR.push_back(C);
+			}
+			read.close();
+		}
+		return EUR;
+	}
 
 	static bool IsCurrencyExist(string CurrencyCode ) {
 		clsCurrencyExchange  c= FindByCode(CurrencyCode);
