@@ -29,7 +29,7 @@ private:
 		clsListCurrencies::ShowListCurrencies();
 	}
 
-	//2 ()
+	//2 (done)
 	static void  _FindCurrency()
 	{
 		///cout << "\n\n\n\n\n\t\t\t\t\tWill BE FIND CURRENCY SOOON!!!!\n";

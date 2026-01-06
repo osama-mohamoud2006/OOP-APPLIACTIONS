@@ -112,8 +112,31 @@ public:
 		return _EmptyObj(); // --> return empty obj if the country isn't existing 
 	}
 
-	static clsCurrencyExchange FindByCode(string Code)
+	//static clsCurrencyExchange FindByCode(string Code)
+	//{
+	//	Code = clsString::UpperAll(Code); // to make the search not depend if the word is upper or not 
+	//	fstream read;
+	//	read.open(_FileName, ios::in);
+	//	if (read.is_open())
+	//	{
+	//		string record = "";
+	//		while (getline(read, record))
+	//		{
+	//			clsCurrencyExchange TheCountry = _ConvertLineToObject(record); // convert each line to object 
+	//			if (clsString::UpperAll(TheCountry.GetCurrencyCode()) == Code) { read.close();  return TheCountry; }
+	//		}
+
+
+	//	}
+
+	//	read.close();
+	//	return _EmptyObj(); // --> return empty obj if the country isn't existing 
+	//}
+
+
+	static vector<clsCurrencyExchange> FindByCode(string Code)
 	{
+		vector<clsCurrencyExchange>  C; 
 		Code = clsString::UpperAll(Code); // to make the search not depend if the word is upper or not 
 		fstream read;
 		read.open(_FileName, ios::in);
@@ -123,37 +146,21 @@ public:
 			while (getline(read, record))
 			{
 				clsCurrencyExchange TheCountry = _ConvertLineToObject(record); // convert each line to object 
-				if (clsString::UpperAll(TheCountry.GetCurrencyCode()) == Code) { read.close();  return TheCountry; }
+				if (clsString::UpperAll(TheCountry.GetCurrencyCode()) == Code) { C.push_back(TheCountry);}
 			}
 
 
 		}
 
 		read.close();
-		return _EmptyObj(); // --> return empty obj if the country isn't existing 
+		return C;
 	}
 
-	static vector < clsCurrencyExchange> EURCountries()
-	{
-		vector< clsCurrencyExchange> EUR;
-		fstream read;
-		read.open(_FileName, ios::in);
-		if (read.is_open())
-		{
-			string record = "";
-			while (getline(read, record))
-			{
-				clsCurrencyExchange C = _ConvertLineToObject(record);
-				if (clsString::UpperAll(C.GetCurrencyCode()) == "EUR") EUR.push_back(C);
-			}
-			read.close();
-		}
-		return EUR;
-	}
 
-	static bool IsCurrencyExist(string CurrencyCode ) {
-		clsCurrencyExchange  c= FindByCode(CurrencyCode);
-		return (!c._IsEmpty()); 
+
+	static bool IsCodeExist(string CurrencyCode ) {
+		vector<clsCurrencyExchange>  c=  FindByCode(CurrencyCode);
+		return (!c.empty());  // if the vector isn't empty 
 	}
 
 	static bool IsCountryExist(string CountryName)
@@ -162,9 +169,9 @@ public:
 		return (!c._IsEmpty());
 	}
 
-	static bool ReturnCurrentObj_IfExistByCode(clsCurrencyExchange & Currency , string CurrencyCode) {
+	static bool ReturnCurrentObj_IfExistByCode(vector <clsCurrencyExchange> & Currency , string CurrencyCode) { /// return vector 
 		Currency = FindByCode(CurrencyCode);
-		return  ( !Currency._IsEmpty() );
+		return  ( !Currency.empty() );
 	}
 
 	static bool ReturnCurrentObj_IfExistByCountry(clsCurrencyExchange& Currency, string CountryName) {

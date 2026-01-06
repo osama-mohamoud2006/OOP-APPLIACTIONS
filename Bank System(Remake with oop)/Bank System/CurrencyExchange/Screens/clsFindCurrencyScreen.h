@@ -23,7 +23,7 @@ static	void _FindCurrencyByCode()
 
 		short trials = 5;
 
-		clsCurrencyExchange Currency = clsCurrencyExchange::ReturnEmptyObjForInitializing();
+		vector <clsCurrencyExchange> Currency ;
 
 		string CurrencyCode = "";
 		CurrencyCode = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter The Currency Code: ");
@@ -40,13 +40,7 @@ static	void _FindCurrencyByCode()
 		system("color 0F");
 		system("cls");
 
-		if (clsString::UpperAll(CurrencyCode) == "EUR") {
-			vector< clsCurrencyExchange> EUR = clsCurrencyExchange::EURCountries();
-			for(clsCurrencyExchange&E : EUR ) 	clsUtilPrintCurrencyDetails::PrintCurrencyInfo(E);
-
-		}
-
-		else   clsUtilPrintCurrencyDetails::PrintCurrencyInfo(Currency);
+			for(clsCurrencyExchange&E : Currency) 	clsUtilPrintCurrencyDetails::PrintCurrencyInfo(E);
 
 	}
 	static void _FindCurrencyByCountry() {
