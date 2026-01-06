@@ -60,6 +60,12 @@ private:
             hasAnyPermission = true;
         }
 
+        if (clsUser::CheckPermission(clsUser::enUserPermission::eCurrencyExchange, Permission)) {
+            if (hasAnyPermission) cout << ", ";
+            cout << colorText("Currency Exchange", "green");
+            hasAnyPermission = true;
+        }
+
         if (!hasAnyPermission) {
             cout << colorText("No Permissions", "red");
         }

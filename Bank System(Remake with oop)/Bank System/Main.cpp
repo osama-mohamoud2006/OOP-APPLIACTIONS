@@ -147,12 +147,12 @@ void FindCurrency()
 
 
 int main() {
-	clsCurrencyMenu::ShowCurrencyMenu();
+	//clsCurrencyMenu::ShowCurrencyMenu();
 	//FindCurrency(); 
 	//clsCurrencyExchange c = clsCurrencyExchange::ReturnEmptyObjForInitializing();
 
 	//c = clsCurrencyExchange::FindByCode("usd");
 	//cout << "the country is : " << c.GetCountryName() << endl; 
 
-	//while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break; 
+	while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break; 
 }
