@@ -15,6 +15,7 @@ public :
         if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Do Transactions\"  : ")) Permissions |= clsUser::enUserPermission::eTransactions;
         if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"Manage Users\"  : "))  Permissions |= clsUser::enUserPermission::eManageUsers;
         if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"View Login Log Of Users\"  : "))  Permissions |= clsUser::enUserPermission::eViewLoginLog;
+        if (clsInputAndValidation::Confirm("\n\t\t\t\tDo You Want To Give Access For \"View Currency Exchange Menu\"  : "))  Permissions |= clsUser::enUserPermission::eCurrencyExchange;
 
         return Permissions;
     }

@@ -24,6 +24,9 @@
 // login history 
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\Screens\clsLoginHistoryScreen.h"
 
+// Currency Exchange
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Ui\CurrencyExchangeMainMenu.h"
+
 class clsMainMenuScreen : protected clsScreen
 {
 
@@ -32,14 +35,11 @@ class clsMainMenuScreen : protected clsScreen
     enum _enMainMenuOptions {
         none=0,eListClientsScreen = 1, eAddNewClientScreen = 2, eDeleteClientScreen = 3,
         eUpdateClientScreen = 4, eFindClientScreen = 5, eShowTransactionsMenueScreen = 6,
-        eManageUsersScreen = 7, eDisplayCurrentUserInfo=8,eLoginLogScreen=9, eLogoutScreen = 10, eExitScreen=11
+        eManageUsersScreen = 7, eDisplayCurrentUserInfo=8,  eCurrencyExchangeMenu=9  ,eLoginLogScreen=10, eLogoutScreen = 11, eExitScreen=12
     };
 
 
 	static void _EMainMenu() {
-	
-		//std::cout << setw(37) << left << "" << "===========================================\n";
-		//std::cout << setw(37) << left << "" << "\t\t\tMain Menu\n";
 		std::cout << setw(37) << left << "" << "===========================================\n";
 		std::cout << setw(37) << left << "" << "\t[1] Show Client List.\n";
 		std::cout << setw(37) << left << "" << "\t[2] Add New Client.\n";
@@ -49,9 +49,10 @@ class clsMainMenuScreen : protected clsScreen
 		std::cout << setw(37) << left << "" << "\t[6] Transactions.\n";
 		std::cout << setw(37) << left << "" << "\t[7] Admin Menu.\n";
 		std::cout << setw(37) << left << "" << "\t[8] Display Current User Info.\n";
-		std::cout << setw(36) << left << "" << "\t[9] Login Log Screen.\n";
-		std::cout << setw(37) << left << "" << "\t[10] Logout.\n";
-		std::cout << setw(36) << left << "" << "\t[11] Exit.\n";
+		std::cout << setw(37) << left << "" << "\t[9] Currency Exchange Menu.\n";
+		std::cout << setw(36) << left << "" << "\t[10] Login Log Screen.\n";
+		std::cout << setw(37) << left << "" << "\t[11] Logout.\n";
+		std::cout << setw(36) << left << "" << "\t[12] Exit.\n";
 		std::cout << setw(37) << left << "" << "===========================================\n";
 
 	}
@@ -126,7 +127,11 @@ class clsMainMenuScreen : protected clsScreen
 		clsLoginHistoryScreen::ShowLoginHistoryScreen();
 	}
 
-
+	// 11(done)
+	static void _ShowCurrencyExchangeMenu()
+	{
+		clsCurrencyMenu::ShowCurrencyMenu();
+	}
 
 	static _enMainMenuOptions  _PerformMainMenuOption(_enMainMenuOptions OptionByuser)
 	{
@@ -186,6 +191,12 @@ class clsMainMenuScreen : protected clsScreen
 			break;
 		}
 
+		case _enMainMenuOptions::eCurrencyExchangeMenu:
+		{
+			_ShowCurrencyExchangeMenu();
+			break;
+		}
+
 		case _enMainMenuOptions::eLoginLogScreen: 
 		{
 			_ShowLoginLogScreen();
@@ -214,7 +225,7 @@ public:
 			clsScreen::_PrintMenuOption(colorText("               Main Menu","yellow"),GCurrentUser); // PrintBasicPersonData the name of menu 
 			_EMainMenu(); // print main menu elements 
 			std::cout << setw(37) << left << "" << "Enter Option";
-			OptionByUser =_PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 11, ""));
+			OptionByUser =_PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 12, ""));
 		}
 
 	}

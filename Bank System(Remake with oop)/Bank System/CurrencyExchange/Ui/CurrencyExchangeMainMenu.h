@@ -2,7 +2,6 @@
 
 class clsCurrencyMenu : protected clsScreen
 {
-
 private:
 	enum enCurrencyOp { eNone = 0, eListCurrenices = 1, eFindCurrency = 2, eUpdateRate = 3, eCurrencyCalc = 4, BackToMainMenu = 5 };
 
@@ -32,7 +31,18 @@ private:
 		cout << "\n\n\n\n\n\t\t\t\t\tWill BE FIND CURRENCY SOOON!!!!\n";
 	}
 
-	static void 
+	//3 ()
+	static void _UpdateRate()
+	{
+		cout << "\n\n\n\n\n\t\t\t\t\tWill BE UPDATE CURRENCY SOOON!!!!\n";
+	}
+
+	//4 ()
+	static void _CurrencyCalc()
+	{
+		cout << "\n\n\n\n\n\t\t\t\t\tWill BE CURRENCY CALC SOOON!!!!\n";
+	}
+
 
 	static enCurrencyOp _PerformOption(enCurrencyOp Option )
 	{
@@ -56,14 +66,14 @@ private:
 
 		case enCurrencyOp::eUpdateRate:
 		{
-
+			_UpdateRate();
 			_BackToMenuAgain();
 			break;
 		}
 
 		case enCurrencyOp::eCurrencyCalc:
 		{
-
+			_CurrencyCalc();
 			_BackToMenuAgain();
 			break;
 		}
@@ -83,6 +93,8 @@ private:
 public:
 	static void ShowCurrencyMenu() 
 	{
+		if (!clsScreen::HavePermission(clsUser::enUserPermission::eCurrencyExchange)) return;
+
 		enCurrencyOp Option = enCurrencyOp::eNone;
 		while (Option != enCurrencyOp::BackToMainMenu)
 		{

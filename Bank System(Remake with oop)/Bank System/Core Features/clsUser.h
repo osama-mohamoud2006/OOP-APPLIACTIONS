@@ -24,7 +24,7 @@ private :
 
 public:
 
-	enum enUserPermission {eALL=-1,eListClients=1, eAddClient=2,eDeleteClient=4,eUpdateClient=8 , eFindClient=16 , eTransactions=32,eManageUsers=64 , eViewLoginLog=128};
+	enum enUserPermission {eALL=-1,eListClients=1, eAddClient=2,eDeleteClient=4,eUpdateClient=8 , eFindClient=16 , eTransactions=32,eManageUsers=64 , eViewLoginLog=128 , eCurrencyExchange=256};
 
 	// Parametrized Constructor 
 	clsUser( _enMode Mode, string Username, string  Password, int Permissions
