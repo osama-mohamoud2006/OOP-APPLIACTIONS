@@ -12,13 +12,14 @@ private:
 		std::cout << setw(37) << left << "" << "===========================================\n";
 		std::cout << setw(37) << left << "" << "\t[1] Find By Country Name.\n";
 		std::cout << setw(37) << left << "" << "\t[2] Find By Code Of Currency.\n";
+		std::cout << setw(37) << left << "" << "\t[3] Cancel.\n";
 		std::cout << setw(37) << left << "" << "===========================================\n";
 	}
 
 
 static	void _FindCurrencyByCode()
 	{
-		clsScreen::_PrintMenuOption(colorText("      Find Currency By Code","yellow"));
+		clsScreen::_PrintMenuOption(colorText("           Find Currency By Code","yellow"));
 
 		short trials = 5;
 
@@ -83,6 +84,8 @@ static	void _FindCurrencyByCode()
 			break;
 		}
 
+	
+
 		}
 
 	}
@@ -102,12 +105,13 @@ public:
 
 			if (clsScreen::EndTheScreen(Trials)) return; 
 			_PrintChoice(); // show the menu to choose what you  want to find 
-			Option = clsInputAndValidation::enter_number_from_to(1, 2, "\t\t\t\t\tEnter Option");
+			Option = clsInputAndValidation::enter_number_from_to(1, 3, "\t\t\t\t\tEnter Option");
 
-			if (Option == 1 || Option == 2) break;
+			if (Option == 1 || Option == 2 || Option ==3 ) break;
 			else Trials++;
 		}
 
+		if (Option == 3) return; 
 		_PerformFindAccordingToChoice(_enFindChoice(Option)); // perform the find According to the user choice 
 
 	}
