@@ -42,7 +42,7 @@ static	void _FindCurrencyByCode()
 	}
 	static void _FindCurrencyByCountry() {
 
-		clsScreen::_PrintMenuOption("         Find Currency By Code");
+		clsScreen::_PrintMenuOption(colorText("         Find Currency By Code","pink"));
 
 		short trials = 5;
 
@@ -98,7 +98,7 @@ public:
 		{
 			system("cls");
 			Trials--;
-			clsScreen::_PrintMenuOption("           Find Currency");
+			clsScreen::_PrintMenuOption(colorText("           Find Currency","cyan"));
 
 			if (clsScreen::EndTheScreen(Trials)) return; 
 			_PrintChoice(); // show the menu to choose what you  want to find 
