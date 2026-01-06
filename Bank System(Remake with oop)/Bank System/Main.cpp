@@ -147,8 +147,8 @@ void FindCurrency()
 
 
 int main() {
-
-	FindCurrency(); 
+	clsCurrencyMenu::ShowCurrencyMenu();
+	//FindCurrency(); 
 	//clsCurrencyExchange c = clsCurrencyExchange::ReturnEmptyObjForInitializing();
 
 	//c = clsCurrencyExchange::FindByCode("usd");
