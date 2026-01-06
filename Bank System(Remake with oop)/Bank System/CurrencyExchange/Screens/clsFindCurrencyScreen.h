@@ -28,7 +28,7 @@ static	void _FindCurrencyByCode()
 		string CurrencyCode = "";
 		CurrencyCode = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter The Currency Code: ");
 
-		while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCode(Currency, CurrencyCode)) // if it isn't existing 
+		while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCode(Currency, CurrencyCode) ) // if it isn't existing 
 		{
 			trials--;
 			if (clsScreen::EndTheScreen(trials)) return;
@@ -40,8 +40,7 @@ static	void _FindCurrencyByCode()
 		system("color 0F");
 		system("cls");
 
-			for(clsCurrencyExchange&E : Currency) 	clsUtilPrintCurrencyDetails::PrintCurrencyInfo(E);
-
+		for (clsCurrencyExchange& E : Currency) 	clsUtilPrintCurrencyDetails::PrintCurrencyInfo(E);
 	}
 	static void _FindCurrencyByCountry() {
 

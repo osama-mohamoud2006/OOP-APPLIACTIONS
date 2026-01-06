@@ -156,9 +156,7 @@ public:
 		return C;
 	}
 
-
-
-	static bool IsCodeExist(string CurrencyCode ) {
+	static bool IsCurrencyCodeExist(string CurrencyCode ) {
 		vector<clsCurrencyExchange>  c=  FindByCode(CurrencyCode);
 		return (!c.empty());  // if the vector isn't empty 
 	}
