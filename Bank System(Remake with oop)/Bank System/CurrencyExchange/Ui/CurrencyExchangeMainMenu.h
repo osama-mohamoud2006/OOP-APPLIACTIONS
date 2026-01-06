@@ -1,4 +1,7 @@
 #pragma once
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsListCurrenciesScreen.h"
+
+
 
 class clsCurrencyMenu : protected clsScreen
 {
@@ -22,7 +25,8 @@ private:
 
 	//1 ()
 	static void _ListCurrenciesScreen() {
-		cout << "\n\n\n\n\n\t\t\t\t\tWill BE LIST CURRENCIES SOOON!!!!\n";
+		//cout << "\n\n\n\n\n\t\t\t\t\tWill BE LIST CURRENCIES SOOON!!!!\n";
+		clsListCurrencies::ShowListCurrencies();
 	}
 
 	//2 ()

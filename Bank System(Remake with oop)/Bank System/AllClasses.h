@@ -71,6 +71,12 @@
 
 
 //// Currency Exchange
+
+// core 
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Core\clsCurrencyExchange.h"
 
+// Ui
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Ui\CurrencyExchangeMainMenu.h"
+
+// Screens 
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsListCurrenciesScreen.h"
