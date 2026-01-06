@@ -7,7 +7,7 @@ class clsFindCurrencyScreen : protected clsScreen
 private:
 	enum _enFindChoice { eFindByCountry = 1, eFindByCode = 2 };
 
-	void _PrintChoice() {
+	static void _PrintChoice() {
 
 		std::cout << setw(37) << left << "" << "===========================================\n";
 		std::cout << setw(37) << left << "" << "\t[1] Find By Country Name.\n";
@@ -16,11 +16,9 @@ private:
 	}
 
 
-
-
-	void _FindCurrencyByCode()
+static	void _FindCurrencyByCode()
 	{
-		//clsScreen::_PrintMenuOption();
+		clsScreen::_PrintMenuOption(colorText("      Find Currency By Code","yellow"));
 
 		short trials = 5;
 
@@ -32,7 +30,7 @@ private:
 		while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCode(Currency, CurrencyCode)) // if it isn't existing 
 		{
 			trials--;
-			//if (clsScreen::EndTheScreen(Trials)) return; 
+			if (clsScreen::EndTheScreen(trials)) return;
 			screen_color(red);
 			cout << "\n\t\t\t\tThe Currency Code You Entered Isn't Existing!\a";
 			CurrencyCode = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter The Currency Code: ");
@@ -42,10 +40,9 @@ private:
 		clsUtilPrintCurrencyDetails::PrintCurrencyInfo(Currency);
 
 	}
+	static void _FindCurrencyByCountry() {
 
-
-	void _FindCurrencyByCountry() {
-		//clsScreen::_PrintMenuOption();
+		clsScreen::_PrintMenuOption("         Find Currency By Code");
 
 		short trials = 5;
 
@@ -57,17 +54,18 @@ private:
 		while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCountry(Currency, CountryName)) // if it isn't existing 
 		{
 			trials--;
-			//if (clsScreen::EndTheScreen(Trials)) return; 
+			if (clsScreen::EndTheScreen(trials)) return; 
 			screen_color(red);
 			cout << "\n\t\t\t\tThe Country Name You Entered Isn't Existing!\a";
 			CountryName = clsInputAndValidation::read_string("\n\t\t\t\t\tEnter The  Country Name: ");
 		}
+
 		system("color 0F");
 
 		clsUtilPrintCurrencyDetails::PrintCurrencyInfo(Currency);
 	}
 
-	void _PerformFindAccordingToChoice(_enFindChoice Choice)
+	static void _PerformFindAccordingToChoice(_enFindChoice Choice)
 	{
 
 		system("cls");
@@ -90,7 +88,8 @@ private:
 	}
 
 
-	void FindCurrency()
+public:
+	static void FindCurrency()
 	{
 
 		short Option = 0;
@@ -99,9 +98,9 @@ private:
 		{
 			system("cls");
 			Trials--;
-			//if (clsScreen::EndTheScreen(Trials)) return; 
-			// clsScreen::
+			clsScreen::_PrintMenuOption("           Find Currency");
 
+			if (clsScreen::EndTheScreen(Trials)) return; 
 			_PrintChoice(); // show the menu to choose what you  want to find 
 			Option = clsInputAndValidation::enter_number_from_to(1, 2, "\t\t\t\t\tEnter Option");
 
@@ -112,8 +111,6 @@ private:
 		_PerformFindAccordingToChoice(_enFindChoice(Option)); // perform the find According to the user choice 
 
 	}
-
-
 
 
 

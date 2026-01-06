@@ -1,6 +1,6 @@
 #pragma once
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsListCurrenciesScreen.h"
-
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsFindCurrencyScreen.h"
 
 
 class clsCurrencyMenu : protected clsScreen
@@ -23,7 +23,7 @@ private:
 		system("pause");
 	}
 
-	//1 ()
+	//1 (done)
 	static void _ListCurrenciesScreen() {
 		//cout << "\n\n\n\n\n\t\t\t\t\tWill BE LIST CURRENCIES SOOON!!!!\n";
 		clsListCurrencies::ShowListCurrencies();
@@ -32,7 +32,8 @@ private:
 	//2 ()
 	static void  _FindCurrency()
 	{
-		cout << "\n\n\n\n\n\t\t\t\t\tWill BE FIND CURRENCY SOOON!!!!\n";
+		///cout << "\n\n\n\n\n\t\t\t\t\tWill BE FIND CURRENCY SOOON!!!!\n";
+		clsFindCurrencyScreen::FindCurrency(); 
 	}
 
 	//3 ()
