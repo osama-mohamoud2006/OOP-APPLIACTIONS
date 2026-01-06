@@ -6,12 +6,12 @@ class clsUtilPrintCurrencyDetails
 public :
 	static void PrintCurrencyInfo(clsCurrencyExchange& c)
 	{
-		system("cls");
+		//
 		// Get terminal width and calculate padding
 		int terminalWidth = 120;
 		int contentWidth = 48;
 		int leftPadding = (terminalWidth - contentWidth) / 2;
-
+		cout << "\n\n";
 		cout << setw(leftPadding) << "" << colorText("================================================", "cyan") << "\n";
 		cout << setw(leftPadding) << "" << "           " << colorText(">> CURRENCY CARD <<", "yellow") << "\n";
 		cout << setw(leftPadding) << "" << colorText("================================================", "cyan") << "\n\n";
