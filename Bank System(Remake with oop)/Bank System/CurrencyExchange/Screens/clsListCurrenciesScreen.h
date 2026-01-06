@@ -7,14 +7,14 @@ class clsListCurrencies : protected clsScreen
 private:
 	static void _Header()
 	{
-		cout << setw(8) << left << "" << "\n\t_______________________________________________________";
-		cout << "_______________________________________________\n" << endl;
-		cout << setw(8) << left << "" << "| " << left << colorText("Country", "lightpurple") << setw(30 - 7) << "";
-		cout << "| " << left << colorText("Code", "lightpurple") << setw(8 - 4) << "";
-		cout << "| " << left << colorText("Name", "lightpurple") << setw(45 - 4) << "";
-		cout << "| " << left << colorText("Rate/(1$)", "lightpurple") << setw(10 - 9) << "";
-		cout << "\n" << setw(8) << left << "" << "\t_______________________________________________________";
-		cout << "_______________________________________________\n" << endl;
+		
+			cout << setw(8) << left << "" << "\n\t__________________________________________________________________________________________________________\n" << endl;
+			cout << setw(8) << left << "" << "| " << left << colorText("Country", "lightpurple") << setw(30 - 7) << "";
+			cout << "| " << left << colorText("Code", "lightpurple") << setw(8 - 4) << "";
+			cout << "| " << left << colorText("Name", "lightpurple") << setw(45 - 4) << "";
+			cout << "| " << left << colorText("Rate/(1$)", "lightpurple") << setw(10 - 9) << "";
+			cout << setw(8) << left << "" << "\n\t__________________________________________________________________________________________________________\n" << endl;
+
 	}
 
 	static void _PrintRecord(clsCurrencyExchange C)
