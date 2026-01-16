@@ -1,7 +1,7 @@
 #pragma once
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsListCurrenciesScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsFindCurrencyScreen.h"
-
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsUpdateCurrencyRate.h"
 
 class clsCurrencyMenu : protected clsScreen
 {
@@ -36,10 +36,11 @@ private:
 		clsFindCurrencyScreen::FindCurrency(); 
 	}
 
-	//3 ()
+	//3 (done)
 	static void _UpdateRate()
 	{
-		cout << "\n\n\n\n\n\t\t\t\t\tWill BE UPDATE CURRENCY SOOON!!!!\n";
+	/*	cout << "\n\n\n\n\n\t\t\t\t\tWill BE UPDATE CURRENCY SOOON!!!!\n";*/
+		clsUpdateCurrencyRateScreen::UpdateRateScreen();
 	}
 
 	//4 ()

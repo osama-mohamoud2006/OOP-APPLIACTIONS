@@ -33,6 +33,8 @@ public:
 	string GetCurrencyName()const { return this->_CurrencyName; }
 	double GetCurrentRate()const { return this->_Rate; }
 
+	// Set 
+	void SetCurrencyRate(double& Rate) { this->_Rate = Rate; }
 	
 private:
 static	clsCurrencyExchange _EmptyObj() {
