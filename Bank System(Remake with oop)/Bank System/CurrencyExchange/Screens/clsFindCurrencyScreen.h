@@ -113,7 +113,7 @@ public:
 			else Trials++;
 		}
 
-		if (Option == 3) return; 
+		if (Option == 3) return;  // cancel  option 
 		_PerformFindAccordingToChoice(_enFindChoice(Option)); // perform the find According to the user choice 
 
 	}
