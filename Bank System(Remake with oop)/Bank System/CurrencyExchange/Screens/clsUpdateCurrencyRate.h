@@ -18,7 +18,7 @@ public:
 	static void UpdateRateScreen()
 	{
 	
-		clsScreen::_PrintMenuOption(colorText("      Update Currency Rate Screen", "orange"));
+		clsScreen::_PrintMenuOption(colorText("      Update Currency Rate Screen", "green"));
 
 		string CurrencyCode = clsInputAndValidation::read_string("\t\t\t\t\tEnter Currency Code: ");
 		vector <clsCurrencyExchange>  Rate ;
@@ -30,7 +30,7 @@ public:
 			if (clsScreen::EndTheScreen(Trials)) return; // if the trials becomes 0 
 
 			screen_color(red);
-			cout << "\n\t\tYou Entered Invalid Currency Code!\a" << endl;
+			cout << "\n\t\t\t\tYou Entered Invalid Currency Code!\a" << endl;
 			CurrencyCode = clsInputAndValidation::read_string("\t\t\t\t\tEnter Currency Code: ");
 		}
 
