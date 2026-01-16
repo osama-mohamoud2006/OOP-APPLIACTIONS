@@ -24,13 +24,13 @@ public:
 		vector <clsCurrencyExchange>  Rate ;
 		short Trials = 5;
 
-		while (clsCurrencyExchange::ReturnCurrentObj_IfExistByCode(Rate, CurrencyCode))
+		while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCode(Rate, CurrencyCode))
 		{
 			Trials--;
 			if (clsScreen::EndTheScreen(Trials)) return; // if the trials becomes 0 
 
 			screen_color(red);
-			cout << "\n\t\t\t\t\tYou Entered Invalid Currency Code!\a" << endl;
+			cout << "\n\t\tYou Entered Invalid Currency Code!\a" << endl;
 			CurrencyCode = clsInputAndValidation::read_string("\t\t\t\t\tEnter Currency Code: ");
 		}
 
