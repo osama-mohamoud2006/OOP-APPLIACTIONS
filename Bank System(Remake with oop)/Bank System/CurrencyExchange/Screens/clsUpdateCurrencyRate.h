@@ -36,7 +36,10 @@ public:
 
 		// Enter New  Rate
 		// confrim at first then cls then enter new ....... etc 
-		cout << "\n\n";
+		while (clsInputAndValidation::Confirm(colorText("\n\t\t\t\t\t\t\tAre You Sure About Updating The Currency Rate For This/These Country(ies) ","red")) )
+		{
+			system("cls");
+		}
 		short NRate = clsInputAndValidation::enter_postive_number("\t\t\t\t\t\t\tEnter The New Currency Rate: ");
 
 
