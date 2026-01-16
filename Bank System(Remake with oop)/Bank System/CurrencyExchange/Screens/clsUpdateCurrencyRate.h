@@ -22,6 +22,14 @@ public:
 		vector <clsCurrencyExchange>  Rate;
 
 		string CurrencyCode = clsInputAndValidation::read_string("\t\t\t\t\tEnter Currency Code: ");
+
+		if (clsString::UpperAll(CurrencyCode) == "USD")
+		{
+			system("cls");
+			cout << colorText("\n\t\t\tThe USD Is The Main Reference For All Currencies , So You Cannot Change It !\a","red") << endl;
+			return;
+		}
+
 		short Trials = 5;
 
 		while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCode(Rate, CurrencyCode))

@@ -187,7 +187,6 @@ public:
 
 		for (clsCurrencyExchange& c : Records)  if (c.GetCountryName() == this->GetCountryName() ) { c = *this; break; }
 		
-		 
 		UpdateFile(Records); 
 	}
 	 
