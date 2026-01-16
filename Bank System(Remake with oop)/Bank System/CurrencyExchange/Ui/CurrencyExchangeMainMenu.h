@@ -2,6 +2,7 @@
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsListCurrenciesScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsFindCurrencyScreen.h"
 #include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsUpdateCurrencyRate.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsCurrencyCalc.h"
 
 class clsCurrencyMenu : protected clsScreen
 {
@@ -43,10 +44,11 @@ private:
 		clsUpdateCurrencyRateScreen::UpdateRateScreen();
 	}
 
-	//4 ()
+	//4 (done)
 	static void _CurrencyCalc()
 	{
-		cout << "\n\n\n\n\n\t\t\t\t\tWill BE CURRENCY CALC SOOON!!!!\n";
+		/*cout << "\n\n\n\n\n\t\t\t\t\tWill BE CURRENCY CALC SOOON!!!!\n";*/
+		clsCurrencyCalc::CalcCurrencyScreen();
 	}
 
 

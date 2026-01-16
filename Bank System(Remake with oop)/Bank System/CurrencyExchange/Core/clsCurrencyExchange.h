@@ -114,7 +114,7 @@ public:
 		return _EmptyObj(); // --> return empty obj if the country isn't existing 
 	}
 
-	static clsCurrencyExchange SearchByCode(string Code) // if i want to check if the the currency is existing or not only
+	static clsCurrencyExchange SearchByCode(string Code) // if i want to check if the  currency is existing or not only
 	{
 		Code = clsString::UpperAll(Code); // to make the search not depend if the word is upper or not 
 		fstream read;
@@ -175,11 +175,13 @@ public:
 	}
 
 	static bool ReturnCurrentObj_IfExistByCode(string CurrencyCode,clsCurrencyExchange& Currency) {
+		// i will use it to check if the currency is existing or not no need to get the countries who use this currency 
 		Currency = SearchByCode(CurrencyCode);
 		return (!Currency._IsEmpty());
 	}
 
-	static bool ReturnCurrentObj_IfExistByCountry(clsCurrencyExchange& Currency, string CountryName) {
+
+	static bool ReturnCurrentObj_IfExistByCountry(clsCurrencyExchange& Currency, string CountryName) { 
 		Currency = FindByCountry(CountryName);
 		return  (!Currency._IsEmpty());
 	}

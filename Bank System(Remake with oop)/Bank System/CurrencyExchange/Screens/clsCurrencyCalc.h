@@ -43,7 +43,8 @@ public :
 		clsCurrencyExchange TheCurrencyFrom = CurrencyToOrFrom("Of The Currency You Want To Convert From"); // From
 		clsCurrencyExchange TheCurrencyTo= CurrencyToOrFrom("Of The Currency You Want To Convert To"); // To
 
-		//if(TheCurrencyTo.at(0).GetCurrencyCode() == "USD")  AnyCurrencyToUSD()
+		short Amount = 100; //test
+		if (TheCurrencyTo.GetCurrencyCode() == "USD")  TheCurrencyTo.AnyCurrencyToUSD(Amount);
 		
 	}
 
