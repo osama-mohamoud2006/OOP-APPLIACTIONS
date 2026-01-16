@@ -18,33 +18,37 @@ class clsCurrencyCalc : protected clsScreen
 private :
 	static  clsCurrencyExchange CurrencyToOrFrom(const string &Message)
 	{
-		string CurrencyCode = clsInputAndValidation::read_string("\t\t\tEnter Currency Code "+ Message+" : ");
-		short Trials = 5;
+		string CurrencyCode = clsInputAndValidation::read_string("\n\t\t\tEnter Currency Code "+ Message+" : ");
+		//short Trials = 5;
 		clsCurrencyExchange C = clsCurrencyExchange::ReturnEmptyObjForInitializing();
 
-		while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCode( CurrencyCode, C) ) // will cjheck if the currency is existing or not 
+		while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCode( CurrencyCode, C) ) // will check if the currency is existing or not 
 		{
-			Trials--;
-			if (clsScreen::EndTheScreen(Trials)) return; // if the trials becomes 0 
+			//Trials--;
+			//if (clsScreen::EndTheScreen(Trials)) return; // if the trials becomes 0 
 
 			screen_color(red);
 			cout << "\n\t\t\t\t\tYou Entered Invalid Currency Code!\a" << endl;
 			CurrencyCode = clsInputAndValidation::read_string("\t\t\t\t\tEnter Currency Code: ");
 		}
 
+		system("color 0F");
 		return C;
 	}
 
 public :
 	static void CalcCurrencyScreen() // will convert and display the change no need for changing any files !
 	{
-		clsScreen::_PrintMenuOption(colorText("\t\t\t\t\t\tCurrency Calculator Screen","blue"));
+		clsScreen::_PrintMenuOption(colorText("       Currency Calculator Screen","pink"));
 
 		clsCurrencyExchange TheCurrencyFrom = CurrencyToOrFrom("Of The Currency You Want To Convert From"); // From
 		clsCurrencyExchange TheCurrencyTo= CurrencyToOrFrom("Of The Currency You Want To Convert To"); // To
 
-		short Amount = 100; //test
-		if (TheCurrencyTo.GetCurrencyCode() == "USD")  TheCurrencyTo.AnyCurrencyToUSD(Amount);
+		short Amount = clsInputAndValidation::enter_postive_number("\n\t\t\t\t\tEnter The Amount You Want To Convert To "+ TheCurrencyTo.GetCurrencyCode());
+		if (TheCurrencyTo.GetCurrencyCode() == "USD")  cout<< TheCurrencyFrom.AnyCurrencyToUSD(Amount);
+		else
+		{
+		}
 		
 	}
 
