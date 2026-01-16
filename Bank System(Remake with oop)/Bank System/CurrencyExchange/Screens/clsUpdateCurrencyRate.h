@@ -19,9 +19,9 @@ public:
 	{
 	
 		clsScreen::_PrintMenuOption(colorText("      Update Currency Rate Screen", "green"));
+		vector <clsCurrencyExchange>  Rate;
 
 		string CurrencyCode = clsInputAndValidation::read_string("\t\t\t\t\tEnter Currency Code: ");
-		vector <clsCurrencyExchange>  Rate ;
 		short Trials = 5;
 
 		while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCode(Rate, CurrencyCode))
@@ -30,7 +30,7 @@ public:
 			if (clsScreen::EndTheScreen(Trials)) return; // if the trials becomes 0 
 
 			screen_color(red);
-			cout << "\n\t\t\t\tYou Entered Invalid Currency Code!\a" << endl;
+			cout << "\n\t\t\t\t\tYou Entered Invalid Currency Code!\a" << endl;
 			CurrencyCode = clsInputAndValidation::read_string("\t\t\t\t\tEnter Currency Code: ");
 		}
 
@@ -39,16 +39,17 @@ public:
 		ViewTheCountriesDetails(Rate);// print the rate of the currency (vector)
 
 		// Enter New  Rate
-		if (clsInputAndValidation::Confirm(colorText("\n\t\t\t\t\t\t\tAre You Sure About Updating The Currency Rate For This/These Country(ies) ", "red")))
+		if (clsInputAndValidation::Confirm(colorText("\n\t\t\tAre You Sure About Updating The Currency Rate For This/These Country(ies) [y],[n]:  ", "red")))
 		{
 			system("cls");
 			clsScreen::_PrintMenuOption(colorText("      Updating Currency Rate......", "cyan"));
 
-			double NRate = clsInputAndValidation::enter_postive_number("\t\t\t\t\t\t\tEnter The New Currency Rate: ");
+			double NRate = clsInputAndValidation::enter_postive_number("\t\t\t\t\tEnter The New Currency Rate: ");
 
-			for (clsCurrencyExchange& c : Rate)  c.UpdateRate(NRate); // will update the currency rate for each object 
+			for (clsCurrencyExchange& Currency : Rate) { Currency.UpdateRate(NRate); }// will update the currency rate for each object 
 
-			cout << colorText("\n\t\t\t\tAll Country(ies) With The Currency Code " + CurrencyCode + " Their Rate Updated Successfully!\n","green");
+			system("cls");
+			cout << colorText("\n\t\t\tAll Country(ies) With The Currency Code " + CurrencyCode + " Their Rate Updated Successfully!\n","green");
 
 			ViewTheCountriesDetails(Rate);// print the rate of the currency (vector)
 		}

@@ -185,7 +185,8 @@ public:
 	{
 		vector <clsCurrencyExchange> Records = _LoadFileOnVector();
 
-		for (clsCurrencyExchange& c : Records) { if ( c.GetCurrencyCode() == this->GetCurrencyCode() ) c = *this;  break; }
+		for (clsCurrencyExchange& c : Records)  if (c.GetCountryName() == this->GetCountryName() ) { c = *this; break; }
+		
 		 
 		UpdateFile(Records); 
 	}
