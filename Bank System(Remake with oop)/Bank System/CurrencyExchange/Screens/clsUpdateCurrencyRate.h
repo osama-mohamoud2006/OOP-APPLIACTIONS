@@ -1,13 +1,8 @@
 #pragma once
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsUtilPrintCurrencies.h"
 #include  "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsPrintUtilCurrenctDetails.h"
 class clsUpdateCurrencyRateScreen : protected  clsScreen
 {
-	
-private:
-	static void ViewTheCountriesDetails(vector <clsCurrencyExchange>  Rate)
-	{
-		for (clsCurrencyExchange& c : Rate)clsUtilPrintCurrencyDetails::PrintCurrencyInfo(c); 
-	}
 
 public:
 
@@ -39,7 +34,7 @@ public:
 
 		system("color 0F");
 
-		ViewTheCountriesDetails(Rate);// print the rate of the currency (vector)
+		clsPrintCurrencies::ViewTheCountriesDetails(Rate);// print the rate of the currency (vector)
 
 		// Enter New  Rate
 		if (clsInputAndValidation::Confirm(colorText("\n\t\t\tAre You Sure About Updating The Currency Rate For This/These Country(ies) [y],[n]:  ", "red")))
@@ -54,7 +49,7 @@ public:
 			system("cls");
 			cout << colorText("\n\t\t\tAll Country(ies) With The Currency Code " + CurrencyCode + " Their Rate Updated Successfully!\n","green");
 
-			ViewTheCountriesDetails(Rate);// print the rate of the currency (vector)
+			clsPrintCurrencies::ViewTheCountriesDetails(Rate);// print the rate of the currency (vector)
 		}
 
 		else cout << colorText("\n\n\t\t\t\t\tOKAY NO CHANGE !\n","pink");

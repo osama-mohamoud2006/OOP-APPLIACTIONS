@@ -39,8 +39,8 @@ static	void _FindCurrencyByCode()
 
 		system("color 0F");
 		system("cls");
-
-		for (clsCurrencyExchange& E : Currency) 	clsUtilPrintCurrencyDetails::PrintCurrencyInfo(E);
+		clsPrintCurrencies::ViewTheCountriesDetails(Currency);
+		/*for (clsCurrencyExchange& E : Currency) 	clsUtilPrintCurrencyDetails::PrintCurrencyInfo(E);*/
 	}
 	static void _FindCurrencyByCountry() {
 
