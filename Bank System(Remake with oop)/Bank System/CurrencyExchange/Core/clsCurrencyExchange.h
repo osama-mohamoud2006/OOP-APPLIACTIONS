@@ -114,26 +114,26 @@ public:
 		return _EmptyObj(); // --> return empty obj if the country isn't existing 
 	}
 
-	//static clsCurrencyExchange FindByCode(string Code)
-	//{
-	//	Code = clsString::UpperAll(Code); // to make the search not depend if the word is upper or not 
-	//	fstream read;
-	//	read.open(_FileName, ios::in);
-	//	if (read.is_open())
-	//	{
-	//		string record = "";
-	//		while (getline(read, record))
-	//		{
-	//			clsCurrencyExchange TheCountry = _ConvertLineToObject(record); // convert each line to object 
-	//			if (clsString::UpperAll(TheCountry.GetCurrencyCode()) == Code) { read.close();  return TheCountry; }
-	//		}
+	static clsCurrencyExchange SearchByCode(string Code) // if i want to check if the the currency is existing or not only
+	{
+		Code = clsString::UpperAll(Code); // to make the search not depend if the word is upper or not 
+		fstream read;
+		read.open(_FileName, ios::in);
+		if (read.is_open())
+		{
+			string record = "";
+			while (getline(read, record))
+			{
+				clsCurrencyExchange TheCountry = _ConvertLineToObject(record); // convert each line to object 
+				if (clsString::UpperAll(TheCountry.GetCurrencyCode()) == Code) { read.close();  return TheCountry; }
+			}
 
 
-	//	}
+		}
 
-	//	read.close();
-	//	return _EmptyObj(); // --> return empty obj if the country isn't existing 
-	//}
+		read.close();
+		return _EmptyObj(); // --> return empty obj if the country isn't existing 
+	}
 
 
 	static vector<clsCurrencyExchange> FindByCode(string Code)
@@ -172,6 +172,11 @@ public:
 	static bool ReturnCurrentObj_IfExistByCode(vector <clsCurrencyExchange> & Currency , string CurrencyCode) { /// return vector 
 		Currency = FindByCode(CurrencyCode);
 		return  ( !Currency.empty() );
+	}
+
+	static bool ReturnCurrentObj_IfExistByCode(string CurrencyCode,clsCurrencyExchange& Currency) {
+		Currency = SearchByCode(CurrencyCode);
+		return (!Currency._IsEmpty());
 	}
 
 	static bool ReturnCurrentObj_IfExistByCountry(clsCurrencyExchange& Currency, string CountryName) {
