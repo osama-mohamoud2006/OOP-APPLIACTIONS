@@ -1,5 +1,6 @@
 #pragma once
 #include  "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsPrintUtilCurrenctDetails.h"
+#include "E:\projects\c++ course\11 - OOP as it Should Be (Applications)\Bank System(Remake with oop)\Bank System\CurrencyExchange\Screens\clsUtilPrintCurrencies.h"
 
 class clsFindCurrencyScreen : protected clsScreen
 {

@@ -191,7 +191,7 @@ public:
 	}
 	 
 	 public:
-		 void UpdateRate(double NewRate)
+		 void UpdateRate(const double &NewRate)
 		 {
 			 this->_Rate = NewRate;
 			 _UpdateRateOnFile();
@@ -202,6 +202,15 @@ public:
 		 {
 			 return _LoadFileOnVector();
 		 }
+
+
+		 double AnyCurrencyToUSD(const double & Amount)
+		{
+			/*Converting Euros(Any Currency) to USD(Multiply) :
+				You have €100.The EUR / USD rate is 1.20.
+				€100 * 1.20 = $120. */
+			 return (this->GetCurrentRate() * Amount);
+		}
 
 };
 string clsCurrencyExchange::_Delmi = "#//#";
