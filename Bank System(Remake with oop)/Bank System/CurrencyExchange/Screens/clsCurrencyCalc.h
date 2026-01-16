@@ -16,7 +16,7 @@ class clsCurrencyCalc : protected clsScreen
    $100 / 0.80 = €125.
 	*/
 private :
-	static vector <clsCurrencyExchange> CurrencyToOrFrom(const string &Message)
+	static  clsCurrencyExchange CurrencyToOrFrom(const string &Message)
 	{
 		string CurrencyCode = clsInputAndValidation::read_string("\t\t\tEnter Currency Code "+ Message+" : ");
 		short Trials = 5;
@@ -32,6 +32,7 @@ private :
 			CurrencyCode = clsInputAndValidation::read_string("\t\t\t\t\tEnter Currency Code: ");
 		}
 
+		return C;
 	}
 
 public :
@@ -39,8 +40,8 @@ public :
 	{
 		clsScreen::_PrintMenuOption(colorText("\t\t\t\t\t\tCurrency Calculator Screen","blue"));
 
-		vector<clsCurrencyExchange> TheCurrencyFrom = CurrencyToOrFrom("Of The Currency You Want To Convert From"); // From
-		vector<clsCurrencyExchange> TheCurrencyTo= CurrencyToOrFrom("Of The Currency You Want To Convert To"); // To
+		clsCurrencyExchange TheCurrencyFrom = CurrencyToOrFrom("Of The Currency You Want To Convert From"); // From
+		clsCurrencyExchange TheCurrencyTo= CurrencyToOrFrom("Of The Currency You Want To Convert To"); // To
 
 		//if(TheCurrencyTo.at(0).GetCurrencyCode() == "USD")  AnyCurrencyToUSD()
 		
