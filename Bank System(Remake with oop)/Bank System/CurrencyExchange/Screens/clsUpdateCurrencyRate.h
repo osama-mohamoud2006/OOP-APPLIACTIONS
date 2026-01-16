@@ -3,10 +3,6 @@
 class clsUpdateCurrencyRateScreen : protected  clsScreen
 {
 	
-	// 2 view the enterd currency code details if it exits
-	// 3 enter the new currency 
-	// 4 update the currency 
-
 private:
 	static void ViewTheCountriesDetails(vector <clsCurrencyExchange>  Rate)
 	{
@@ -19,10 +15,8 @@ public:
 	{
 	
 		clsScreen::_PrintMenuOption(colorText("      Update Currency Rate Screen", "green"));
-		vector <clsCurrencyExchange>  Rate;
 
 		string CurrencyCode = clsInputAndValidation::read_string("\t\t\t\t\tEnter Currency Code: ");
-
 		if (clsString::UpperAll(CurrencyCode) == "USD")
 		{
 			system("cls");
@@ -30,6 +24,7 @@ public:
 			return;
 		}
 
+		vector <clsCurrencyExchange>  Rate;
 		short Trials = 5;
 
 		while (!clsCurrencyExchange::ReturnCurrentObj_IfExistByCode(Rate, CurrencyCode))
