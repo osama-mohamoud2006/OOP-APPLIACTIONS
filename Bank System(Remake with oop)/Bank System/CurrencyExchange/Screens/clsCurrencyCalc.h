@@ -3,17 +3,7 @@
 
 class clsCurrencyCalc : protected clsScreen
 {
-	// 1 ask for the first  currency & second currency
-	// 2 check if the second obj is usd or not
-	// 3 if it is use then formula will be = currency1 rate /rate of  usd , else usd * currency rate 2
-	
-	/*
 
-    Converting USD to Euros (Divide):
-    You have $100. The USD/EUR rate is 0.80 (meaning 1 USD buys 0.80 Euros).
-   $100 / 0.80 = 
-   €125. -- output 
-	*/
 private :
 	static  clsCurrencyExchange CurrencyToOrFrom(const string &Message)
 	{
@@ -25,7 +15,7 @@ private :
 		{
 			//Trials--;
 			//if (clsScreen::EndTheScreen(Trials)) return; // if the trials becomes 0 
-			cout << "\n\t\t\t\t\tYou Entered Invalid Currency Code!\a" << endl;
+			cout << colorText("\n\n\t\t\t\t\tYou Entered Invalid Currency Code!\a" ,"red") << endl;
 			CurrencyCode = clsInputAndValidation::read_string("\t\t\t\t\tEnter Currency Code: ");
 		}
 
@@ -96,7 +86,7 @@ private :
 
 		while (TheCurrencyFrom.GetCurrencyCode() == TheCurrencyTo.GetCurrencyCode())
 		{
-			cout << "\n\t\t\t\t\t\aTO AND FROM CANNOT BE THE SAME !!\n\n";
+			cout << colorText("\n\n\t\t\t\t\t\aTO AND FROM CANNOT BE THE SAME !!\n\n","red");
 			return; 
 		}
 
@@ -106,7 +96,8 @@ private :
 		if (TheCurrencyTo.GetCurrencyCode() == "USD") { system("cls");  PrintFromAnyCurrencyToUSD_Details(TheCurrencyFrom, Amount, ConversationToUSD); }
 		else
 		{
-			PrintFromAnyCurrencyToUSD_Details(TheCurrencyFrom, Amount, ConversationToUSD);
+			system("cls");
+			//PrintFromAnyCurrencyToUSD_Details(TheCurrencyFrom, Amount, ConversationToUSD);
 			PrintFromUSDToAnyCurrencyDetails(Amount, TheCurrencyTo.FromUSDToAnyCurrency(ConversationToUSD), TheCurrencyFrom, TheCurrencyTo);
 	
 		}
