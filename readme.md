@@ -86,12 +86,12 @@ Before building the main system, these utility libraries need to be solid.
 
 Handling multi-currency transactions and rates.
 
-- [ ] Currency Exchange Main System
-- [ ] Feature: Exchange 01
-- [ ] Feature: Exchange 02
-- [ ] Feature: Exchange 03
-- [ ] Feature: Exchange 04
-- [ ] Feature: Exchange 05
+- [x] Currency Exchange Main System
+- [x] Feature: Exchange 01
+- [x] Feature: Exchange 02
+- [x] Feature: Exchange 03
+- [x] Feature: Exchange 04
+- [x] Feature: Exchange 05
 - [ ] Feature: Exchange 06
 
 ---
