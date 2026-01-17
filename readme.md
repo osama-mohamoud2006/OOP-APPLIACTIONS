@@ -92,7 +92,7 @@ Handling multi-currency transactions and rates.
 - [x] Feature: Exchange 03
 - [x] Feature: Exchange 04
 - [x] Feature: Exchange 05
-- [ ] Feature: Exchange 06
+- [x] Feature: Exchange 06
 
 ---
 
