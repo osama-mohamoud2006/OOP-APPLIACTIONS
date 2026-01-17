@@ -75,7 +75,7 @@ private :
 		cout << setw(leftPadding) << "" << colorText("================================================", "cyan") << "\n\n";
 	}
 
-	static void CalcCurrencyScreen() // will convert and display the change no need for changing any files !
+	static void _CalcCurrencyScreen() // will convert and display the change no need for changing any files !
 	{
 		clsScreen::_PrintMenuOption(colorText("       Currency Calculator Screen","pink"));
 
@@ -110,7 +110,7 @@ private :
 			do
 			{
 				system("cls");
-				CalcCurrencyScreen();
+				_CalcCurrencyScreen();
 
 			} while (clsInputAndValidation::Confirm(colorText("\n\t\t\t\t\tDo You Want To Make Another Calc [y],[n]: ","red")));
 		}

@@ -213,12 +213,12 @@ public:
 
 		 double AnyCurrencyToUSD(const double & Amount)
 		{
-			 return (Amount / this->GetCurrentRate() );
+			 return (double)(Amount / this->GetCurrentRate() );
 		}
 
 		 double FromUSDToAnyCurrency(const double& AmountOfUSD)
 		 {
-			 return (AmountOfUSD *this->GetCurrentRate());
+			 return (double)(AmountOfUSD *  this->GetCurrentRate());
 
 		 }
 
