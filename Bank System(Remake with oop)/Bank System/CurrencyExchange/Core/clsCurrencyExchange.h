@@ -213,11 +213,14 @@ public:
 
 		 double AnyCurrencyToUSD(const double & Amount)
 		{
-			/*Converting Euros(Any Currency) to USD(Multiply) :
-				You have €100.The EUR / USD rate is 1.20.
-				€100 * 1.20 = $120. */
-			 return (this->GetCurrentRate() * Amount);
+			 return (Amount / this->GetCurrentRate() );
 		}
+
+		 double FromUSDToAnyCurrency(const double& AmountOfUSD)
+		 {
+			 return (AmountOfUSD *this->GetCurrentRate());
+
+		 }
 
 };
 string clsCurrencyExchange::_Delmi = "#//#";

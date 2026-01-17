@@ -48,7 +48,7 @@ private:
 	static void _CurrencyCalc()
 	{
 		/*cout << "\n\n\n\n\n\t\t\t\t\tWill BE CURRENCY CALC SOOON!!!!\n";*/
-		clsCurrencyCalc::CalcCurrencyScreen();
+		clsCurrencyCalc::StartCalcCurrencyScreen();
 	}
 
 
