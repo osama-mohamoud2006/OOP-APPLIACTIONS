@@ -119,6 +119,7 @@ private :
 		{
 			do
 			{
+				system("cls");
 				CalcCurrencyScreen();
 
 			} while (clsInputAndValidation::Confirm(colorText("\n\t\t\t\t\tDo You Want To Make Another Calc [y],[n]: ","red")));
