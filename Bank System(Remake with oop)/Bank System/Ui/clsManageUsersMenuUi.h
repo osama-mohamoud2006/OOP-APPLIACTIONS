@@ -142,7 +142,7 @@ public:
 			_EManageUsersMenu(); // Show the menu options 
 			cout << "\n";
 			std::cout << setw(39) << left << "" << "Enter Option";
-			option = _PerformMenuOption((_enManagUsers)clsInputAndValidation::enter_number_from_to(1,6,""));
+			option = _PerformMenuOption((_enManagUsers)clsInputAndValidation::clsReadNum<short>::enter_number_from_to(1,6,""));
 		}
 
 	}

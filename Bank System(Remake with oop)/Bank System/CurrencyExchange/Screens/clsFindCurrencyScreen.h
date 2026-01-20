@@ -108,7 +108,7 @@ public:
 
 			if (clsScreen::EndTheScreen(Trials)) return; 
 			_PrintChoice(); // show the menu to choose what you  want to find 
-			Option = clsInputAndValidation::enter_number_from_to(1, 3, "\t\t\t\t\tEnter Option");
+			Option = clsInputAndValidation::clsReadNum<short> ::enter_number_from_to(1, 3, "\t\t\t\t\tEnter Option");
 
 			if (Option == 1 || Option == 2 || Option ==3 ) break;
 			else Trials++;

@@ -24,7 +24,7 @@ public:
 		DataToFill = clsInputAndValidation::read_string("\nEnter New Phone number: ");
 		Temp.SetPhone(DataToFill);
 
-		double balance = clsInputAndValidation::enter_postive_number("\nEnter Balance: ");
+		double balance = clsInputAndValidation::clsReadNum<double>::enter_postive_number("\nEnter Balance: ");
 		Temp.SetBalance(balance);
 	}
 

@@ -89,7 +89,7 @@ private :
 			return; 
 		}
 
-		double Amount = clsInputAndValidation::enter_postive_number(colorText("\n\n\t\t\tEnter The Amount You Want To Convert To "+ TheCurrencyTo.GetCurrencyCode()+" : ","green"));
+		double Amount = clsInputAndValidation::clsReadNum<double>::enter_postive_number(colorText("\n\n\t\t\tEnter The Amount You Want To Convert To "+ TheCurrencyTo.GetCurrencyCode()+" : ","green"));
 		double ConversationToUSD = TheCurrencyFrom.AnyCurrencyToUSD(Amount);
 
 		if (TheCurrencyTo.GetCurrencyCode() == "USD") { system("cls");  _PrintFromAnyCurrencyToUSD_Details(TheCurrencyFrom, Amount, ConversationToUSD); }

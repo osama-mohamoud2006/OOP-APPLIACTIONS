@@ -96,7 +96,7 @@ public :
 		while (true) { 
 			Trials++;
 			cout << "\t\t\t\t\t" << "Enter The Amount You Want To Send To Another Client:  ";
-			amount = clsInputAndValidation::enter_postive_number( ""); 
+			amount = clsInputAndValidation::clsReadNum<int>::enter_postive_number( ""); 
 			
 			if ((PerAmountOfClient >= amount)) break; // correct amount 
 

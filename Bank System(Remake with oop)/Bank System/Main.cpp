@@ -8,18 +8,12 @@
 using namespace std;
 //  ctrl + m+o
 
-// Good Bye done at : 2/1/2026 --> i thought it has done
+// Good Bye done at : 20/1/2026 
 // lol i started this project last year 
 
 
 
 int main() {
-	//clsCurrencyMenu::ShowCurrencyMenu();
-	//FindCurrency(); 
-	//clsCurrencyExchange c = clsCurrencyExchange::ReturnEmptyObjForInitializing();
-
-	//c = clsCurrencyExchange::FindByCode("usd");
-	//cout << "the country is : " << c.GetCountryName() << endl; 
 
 	while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break; 
 }

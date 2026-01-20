@@ -154,7 +154,7 @@ public:
                 system("cls");
                 clsScreen::_PrintMenuOption(colorText("        Updating.....", "cyan")); // Menu Option
                 _ShowUpdateOptionsMenu(); // Show menu
-                _PerformAccordingTheOrder((_enUpdateSpecific)clsInputAndValidation::enter_number_from_to(1, 6, "\n\t\t\t\t\tEnter Option"), user);
+                _PerformAccordingTheOrder((_enUpdateSpecific)clsInputAndValidation::clsReadNum<short>::enter_number_from_to(1, 6, "\n\t\t\t\t\tEnter Option"), user);
             }
 
         }

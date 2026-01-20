@@ -145,7 +145,7 @@ public :
 			clsScreen::_PrintMenuOption(colorText("\t  Transactions Menu", "orange"),GCurrentUser);
 			_ETransactionsMenu(); // show elements of menu 
 			std::cout << setw(37) << left << "" << "Enter Option";
-			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::enter_number_from_to(1, 7, ""));
+			Option = _PerformOptionInTransactionMenu((_enTransactionMenuElements)clsInputAndValidation::clsReadNum<short> ::enter_number_from_to(1, 7, ""));
 		}
 
 	}

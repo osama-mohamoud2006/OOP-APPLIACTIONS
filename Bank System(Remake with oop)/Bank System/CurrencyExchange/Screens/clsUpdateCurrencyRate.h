@@ -42,7 +42,7 @@ public:
 			system("cls");
 			clsScreen::_PrintMenuOption(colorText("      Updating Currency Rate......", "cyan"));
 
-			double NRate = clsInputAndValidation::enter_postive_number("\t\t\t\t\tEnter The New Currency Rate: ");
+			double NRate = clsInputAndValidation::clsReadNum<double> ::enter_postive_number("\t\t\t\t\tEnter The New Currency Rate: ");
 
 			for (clsCurrencyExchange& Currency : Rate) { Currency.UpdateRate(NRate); }// will update the currency rate for each object 
 

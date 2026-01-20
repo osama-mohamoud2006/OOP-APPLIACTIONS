@@ -109,7 +109,7 @@ public:
 			system("cls");
 			clsScreen::_PrintMenuOption(colorText("       Currency Exchange Menu", "orange"), GCurrentUser);
 			_EMainMenu();
-			Option =  _PerformOption((enCurrencyOp)clsInputAndValidation::enter_number_from_to(1, 5, "\n\t\t\t\t\tEnter Option"));//Perform According To Option                                 
+			Option = _PerformOption((enCurrencyOp)clsInputAndValidation::clsReadNum<short> ::enter_number_from_to(1, 5, "\n\t\t\t\t\tEnter Option"));//Perform According To Option                                 
 		}
 
 	}

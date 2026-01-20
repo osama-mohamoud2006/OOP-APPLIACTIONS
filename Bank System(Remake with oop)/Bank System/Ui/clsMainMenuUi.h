@@ -225,7 +225,7 @@ public:
 			clsScreen::_PrintMenuOption(colorText("               Main Menu","yellow"),GCurrentUser); // PrintBasicPersonData the name of menu 
 			_EMainMenu(); // print main menu elements 
 			std::cout << setw(37) << left << "" << "Enter Option";
-			OptionByUser =_PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::enter_number_from_to(1, 12, ""));
+			OptionByUser =_PerformMainMenuOption((_enMainMenuOptions)clsInputAndValidation::clsReadNum<short>::enter_number_from_to(1, 12, ""));
 		}
 
 	}
