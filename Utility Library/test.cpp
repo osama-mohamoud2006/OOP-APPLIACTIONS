@@ -75,7 +75,7 @@ int main() {
 
     // ===== TEST 6: Multiple Keys Generation (Vector) =====
     PrintSection("TEST 6: Key Generation (Multiple - Vector)");
-    vector<string> keys = clsUtil::GenerateKeys(5, true, 3, clsUtil::capitalLetter, 4);
+    vector<string> keys = clsUtil::GenerateKeys(5);
     cout << "Generated " << keys.size() << " keys stored in vector:" << endl;
     for (int i = 0; i < keys.size(); i++) {
         cout << "  Key " << i + 1 << ": " << keys[i] << endl;
@@ -103,7 +103,7 @@ int main() {
     // ===== TEST 9: Fill Array with Random Keys =====
     PrintSection("TEST 9: Fill Array with Random Keys");
     string keyArray[3];
-    clsUtil::FillArrayWithRandomKey(keyArray, 3, clsUtil::mixChar, 5);
+    clsUtil::FillArrayWithRandomKey(keyArray, 3, 4,clsUtil::mixChar);
     cout << "Array of 3 random keys:" << endl;
     for (int i = 0; i < 3; i++) {
         cout << "  " << i + 1 << ". " << keyArray[i] << endl;
