@@ -100,7 +100,7 @@ Handling multi-currency transactions and rates.
 
 Polishing the code and implementing generic programming.
 
-- [ ] **Project 5:** Template Functions & Classes
-- [ ] 📂 **Refactor:** Organize Classes & Header Files
+- [x] **Project 5:** Template Functions & Classes
+- [x] 📂 **Refactor:** Organize Classes & Header Files
 
 ---
