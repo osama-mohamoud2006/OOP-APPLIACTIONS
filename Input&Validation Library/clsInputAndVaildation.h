@@ -12,6 +12,8 @@
 class clsInputAndValidation
 {
 
+   private:
+
    static string time()
    {
       std::time_t currentTime = std::time(0);
@@ -56,10 +58,9 @@ class clsInputAndValidation
       return arr[BoolFlag];
    }
 
-   template <class N>
-   friend class clsReadNum; // to make clsReadNum access private data members
-
+   
    public:
+   
    template <class N> // To Use it in class clsReadNum , to avoid unnessary repetion of code and make user decide the correct data type of the function instead of using double only
 
    class clsReadNum
