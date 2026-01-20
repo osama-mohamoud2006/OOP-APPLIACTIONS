@@ -8,13 +8,12 @@
 #include <fstream>
 #include <cctype>
 
-// template <class T>
 class clsInputAndValidation
 {
 
    private:
 
-   static string time()
+   static std::string time()
    {
       std::time_t currentTime = std::time(0);
       std::tm *localTime = std::localtime(&currentTime);
@@ -26,21 +25,21 @@ class clsInputAndValidation
    static void WriteTheLastResultToFile(T LastResult)
    {
 
-      fstream write;
-      write.open("ResultsHistory.text", ios::out | ios::app); // overwrite
+      std::fstream write;
+      write.open("ResultsHistory.text", std::ios::out | std::ios::app); // overwrite
       if (write.is_open())
       {
          // write the time and the last output to file
-         write << "Date And time is: " << time() << endl;
-         write << "The last input is: " << LastResult << endl;
+         write << "Date And time is: " << time() << std::endl;
+         write << "The last input is: " << LastResult << std::endl;
          write.close();
       }
    }
 
    static void WriteTheLastResultToFile(bool LastResult)
    {
-      fstream write;
-      write.open("ResultsHistory.text", ios::out | ios::app);
+      std::fstream write;
+      write.open("ResultsHistory.text", std::ios::out | std::ios::app);
       if (write.is_open())
       {
          // write the time and the last output to file
@@ -52,9 +51,9 @@ class clsInputAndValidation
       }
    }
 
-   static string PrintTrueOrFalse(bool BoolFlag)
+   static std::string PrintTrueOrFalse(bool BoolFlag)
    {
-      string arr[] = {"false", "true"};
+      std::string arr[] = {"false", "true"};
       return arr[BoolFlag];
    }
 
@@ -67,22 +66,22 @@ class clsInputAndValidation
    {
    public:
       // enter normal number without any validation
-      static N enter_number(string message)
+      static N enter_number(std::string message)
       {
-         cout << message;
+         std::cout << message;
          N number;
-         cin >> number;
-         while (cin.fail())
+         std::cin >> number;
+         while (std::cin.fail())
          {
-            cin.clear(); // to claer cin>> to reuse it
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            cout << '\a';
-            system("color 4f"); // red console screen
-            cout << "\n\nplease enter correct number!: ";
-            cin >> number;
+            std::cin.clear(); // to claer cin>> to reuse it
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << '\a';
+            std::system("color 4f"); // red console screen
+            std::cout << "\n\nplease enter correct number!: ";
+            std::cin >> number;
          }
 
-         system("color 0F"); // rest the screen to original color
+         std::system("color 0F"); // rest the screen to original color
          WriteTheLastResultToFile(number);
          return number;
       }
@@ -95,27 +94,27 @@ class clsInputAndValidation
       }
 
       // enter positive number
-      static N enter_postive_number(string text)
+      static N enter_postive_number(std::string text)
       {
          bool vaild = false;
          N n = 0;
          do
          {
-            cout << text;
-            cin >> n;
-            if (cin.fail())
+            std::cout << text;
+            std::cin >> n;
+            if (std::cin.fail())
             {
-               cin.clear(); // to reuse cin>>
-               cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-               cout << "\a";
-               system("color 4F"); // red if number isn't in range
+               std::cin.clear(); // to reuse cin>>
+               std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+               std::cout << "\a";
+               std::system("color 4F"); // red if number isn't in range
             }
 
             else if (0 >= n)
             {
-               cout << "\a";
-               system("color 4F"); // red if number isn't in range
-               cout << "\nplease enter postive number!\n ";
+               std::cout << "\a";
+               std::system("color 4F"); // red if number isn't in range
+               std::cout << "\nplease enter postive number!\n ";
             }
 
             else
@@ -125,23 +124,23 @@ class clsInputAndValidation
 
          } while (vaild == false);
 
-         system("color 0F"); // rest screen color
+         std::system("color 0F"); // rest screen color
          WriteTheLastResultToFile(n);
          return n;
       }
 
       // enter number in range
-      static N enter_number_from_to(N from, N to, string text)
+      static N enter_number_from_to(N from, N to, std::string text)
       {
 
          N number = 0;
-         string mess = text + " (" + to_string((int)from) + " to " + to_string((int)to) + "):  ";
+         std::string mess = text + " (" + std::to_string((int)from) + " to " + std::to_string((int)to) + "):  ";
          number = enter_number(mess);
          while (!IsNumberBetween(number, from, to))
          {
-            cout << "\a";
-            system("color 4F"); // red if number isn't in range
-            cout << "\nplease enter correct number which in range you assigned!\n";
+            std::cout << "\a";
+            std::system("color 4F"); // red if number isn't in range
+            std::cout << "\nplease enter correct number which in range you assigned!\n";
             number = enter_number(text);
          }
 
@@ -156,9 +155,9 @@ class clsInputAndValidation
          number = enter_number("");
          while (!IsNumberBetween(number, from, to))
          {
-            system("color 0F"); // rest screen color
-            cout << "\nEnter correct number within range you assigned ! \n";
-            cout << "\a";
+            std::system("color 0F"); // rest screen color
+            std::cout << "\nEnter correct number within range you assigned ! \n";
+            std::cout << "\a";
             number = enter_number("");
          }
 
@@ -181,11 +180,11 @@ class clsInputAndValidation
    }
 
    // read string
-   static string read_string(string message)
+   static std::string read_string(std::string message)
    {
-      cout << message;
-      string str;
-      cin >> str;
+      std::cout << message;
+      std::string str;
+      std::cin >> str;
       WriteTheLastResultToFile(str);
       return str;
    }
@@ -194,22 +193,22 @@ class clsInputAndValidation
    static char EnterChar()
    {
       char c;
-      cin >> c;
+      std::cin >> c;
       WriteTheLastResultToFile(c);
-      return toupper(c);
+      return std::toupper(c);
    }
 
    // read full line
-   static string read_full_line(const string &message)
+   static std::string read_full_line(const std::string &message)
    {
-      cout << message;
-      if (cin.peek() == '\n')
+      std::cout << message;
+      if (std::cin.peek() == '\n')
       {
-         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
       }
 
-      string line = "";
-      getline(cin, line);
+      std::string line = "";
+      std::getline(std::cin, line);
       WriteTheLastResultToFile(line);
       return line;
    }
@@ -223,13 +222,13 @@ class clsInputAndValidation
    }
 
    // return true if 'Y' or 'y'
-   static bool Confirm(string message)
+   static bool Confirm(std::string message)
    {
       char choice = ' ';
 
       do
       {
-         cout << message;
+         std::cout << message;
          choice = clsInputAndValidation::EnterChar(); // make the char toupper also
 
       } while (choice != 'N' && choice != 'Y');
