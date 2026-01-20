@@ -1,9 +1,9 @@
-﻿#pragma once
+#pragma once
 
-#include "../Screens/clsScreen.h"
-#include "../Core Features/clsBankClient.h"
-#include "../Core Features/clsManageClientBalanceAccount.h"
-#include  "../Lib/clsUtillity.h"
+#include "Screens/clsScreen.h"
+#include "Core Features/clsBankClient.h"
+#include "Core Features/clsManageClientBalanceAccount.h"
+#include  "Lib/clsUtillity.h"
 
 class clsTotalBalanceScreen : protected clsScreen
 {

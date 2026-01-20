@@ -1,7 +1,7 @@
-﻿#pragma once
-#include "../Lib/clsString.h"
-#include"../AllStuff.h"  
-#include "../Core Features/clsPerson.h"
+#pragma once
+#include "Lib/clsString.h"
+#include"AllStuff.h"  
+#include "Core Features/clsPerson.h"
 #include<fstream>
 #include<string>
 #include<vector>
@@ -393,4 +393,3 @@ public:
 
 string clsBankClient::FileName = "Clients.txt";
 string clsBankClient::Delmi = "#//#";
-

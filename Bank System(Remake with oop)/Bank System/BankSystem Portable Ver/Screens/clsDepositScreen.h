@@ -1,8 +1,8 @@
-﻿#pragma once 
-#include "../Core Features/clsBankClient.h" // core 
-#include   "../Core Features/clsManageClientBalanceAccount.h" // core -- > Deposit 
-#include "../Screens/clsScreen.h"
-#include "../Screens/clsUtilPrintClientBalance.h"
+#pragma once 
+#include "Core Features/clsBankClient.h" // core 
+#include   "Core Features/clsManageClientBalanceAccount.h" // core -- > Deposit 
+#include "Screens/clsScreen.h"
+#include "Screens/clsUtilPrintClientBalance.h"
 
 class clsDepositScreen : protected clsScreen {
 	
@@ -51,7 +51,7 @@ public:
 		screen_color(black);
 		clsUtilClientBalance::PrintClientBalanceRecord(Client);    //print balance details
 
-		double amount = clsInputAndValidation::enter_postive_number("\n\n\t\t\t\tEnter The Amount You Want To Deposit: ");
+		double amount = clsInputAndValidation::clsReadNum<double>::enter_postive_number("\n\n\t\t\t\tEnter The Amount You Want To Deposit: ");
 		double PerBalance = Client.GetBalance();
 
 		if (clsInputAndValidation::Confirm(colorText("\n\n\t\t\t\tYou Are About Depositing " + to_string(amount) + " Are You Sure [y],[n]: ","cyan")))
@@ -74,6 +74,5 @@ public:
 	}
 
 };
-
 
 

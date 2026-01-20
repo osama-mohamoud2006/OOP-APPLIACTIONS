@@ -1,7 +1,7 @@
-﻿#pragma once
-#include "../Screens/clsScreen.h"
-#include "../Screens/clsUtilPrintClientData.h"
-#include "../Core Features/clsBankClient.h"
+#pragma once
+#include "Screens/clsScreen.h"
+#include "Screens/clsUtilPrintClientData.h"
+#include "Core Features/clsBankClient.h"
 class clsFindClientScreen : protected clsScreen
 {
 	
@@ -53,5 +53,4 @@ public:
 	}
 
 };
-
 

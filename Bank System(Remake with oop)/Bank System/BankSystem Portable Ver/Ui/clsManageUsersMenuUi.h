@@ -1,12 +1,12 @@
-﻿#pragma once 
-#include"../Lib/clsInputAndVaildation.h"
-#include "../Screens/clsScreen.h"
-#include "../Screens/Screens Of Manging Users\clsListUsersScreen.h""
-#include "../Screens/Screens Of Manging Users\clsAddUsers.h"
-#include "../Screens/Screens Of Manging Users\clsDeleteUsersScreen.h"
-#include "../Screens/Screens Of Manging Users\clsUpdateUsersScreen.h"
-#include "../Screens/Screens Of Manging Users\clsFindUsersScreen.h"
-#include "../Core Features/clsUser.h"
+#pragma once 
+#include"Lib/clsInputAndVaildation.h"
+#include "Screens/clsScreen.h"
+#include "Screens/Screens Of Manging Users/clsListUsersScreen.h""
+#include "Screens/Screens Of Manging Users/clsAddUsers.h"
+#include "Screens/Screens Of Manging Users/clsDeleteUsersScreen.h"
+#include "Screens/Screens Of Manging Users/clsUpdateUsersScreen.h"
+#include "Screens/Screens Of Manging Users/clsFindUsersScreen.h"
+#include "Core Features/clsUser.h"
 
 class clsMangeUsersMenu  : protected clsScreen 
 {
@@ -142,7 +142,7 @@ public:
 			_EManageUsersMenu(); // Show the menu options 
 			cout << "\n";
 			std::cout << setw(39) << left << "" << "Enter Option";
-			option = _PerformMenuOption((_enManagUsers)clsInputAndValidation::enter_number_from_to(1,6,""));
+			option = _PerformMenuOption((_enManagUsers)clsInputAndValidation::clsReadNum<short>::enter_number_from_to(1,6,""));
 		}
 
 	}

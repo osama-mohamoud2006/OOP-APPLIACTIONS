@@ -1,7 +1,7 @@
-﻿#pragma once
-#include "../Screens/clsUtilPrintClientData.h"
-#include "../Screens/clsScreen.h"
-#include "../Lib/clsInputAndVaildation.h"
+#pragma once
+#include "Screens/clsUtilPrintClientData.h"
+#include "Screens/clsScreen.h"
+#include "Lib/clsInputAndVaildation.h"
 
 class clsShowDeleteClientScreen : protected clsScreen
 {

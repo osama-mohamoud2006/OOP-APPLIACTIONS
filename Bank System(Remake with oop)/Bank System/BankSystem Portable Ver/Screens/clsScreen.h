@@ -1,9 +1,9 @@
-﻿#pragma once 
+#pragma once 
 #include <iomanip>
-#include "../Core Features/clsBankClient.h"
-#include "../Core Features/clsUser.h"
-#include "../Core Features/Global.h"
-#include  "../Lib/clsDate.h"
+#include "Core Features/clsBankClient.h"
+#include "Core Features/clsUser.h"
+#include "Core Features/Global.h"
+#include  "Lib/clsDate.h"
 
 class clsScreen
 {
@@ -104,4 +104,3 @@ protected:
     }
 
 };
-

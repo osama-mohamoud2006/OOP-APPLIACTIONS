@@ -1,6 +1,6 @@
-﻿#pragma once
-#include "../../Core Features/clsUser.h"
-#include "../../Screens/clsScreen.h"
+#pragma once
+#include "Core Features/clsUser.h"
+#include "Screens/clsScreen.h"
 
 class clsListUsersScreen : protected clsScreen
 {

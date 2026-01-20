@@ -1,11 +1,11 @@
-﻿#pragma once
+#pragma once
 
-#include "../Screens/clsUtilPrintClientData.h"
+#include "Screens/clsUtilPrintClientData.h"
 
-#include "../Screens/clsScreen.h"
-#include "../Core Features/clsBankClient.h"
-#include"../Lib/clsInputAndVaildation.h"
-#include "../Screens/clsUtilAddNewClientOrUpdate.h"
+#include "Screens/clsScreen.h"
+#include "Core Features/clsBankClient.h"
+#include"Lib/clsInputAndVaildation.h"
+#include "Screens/clsUtilAddNewClientOrUpdate.h"
 
 
 class clsAddNewClientScreen  : protected clsScreen
@@ -71,5 +71,4 @@ public:
 
 
 };
-
 

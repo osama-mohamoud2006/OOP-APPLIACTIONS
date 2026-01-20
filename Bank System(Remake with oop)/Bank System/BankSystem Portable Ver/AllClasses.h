@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "Lib/clsUtillity.h"
 //core
@@ -21,7 +21,7 @@
 #include "Screens/clsShowDeleteScreen.h"
 #include "Screens/clsShowUpdateClientScreen.h"
 #include "Screens/clsFindClientScreen.h"
-#include "Screens/Screens Of Manging Users\clsShowCurrentLoggedinUserInfo.h"
+#include "Screens/Screens Of Manging Users/clsShowCurrentLoggedinUserInfo.h"
 
 
 // Core Of Each Transaction Operation
@@ -48,22 +48,38 @@
 #include "Core Features/Global.h" /// ---> current signed in user 
 
 // Screens - For Managing Users
-#include "Screens/Screens Of Manging Users\clsListUsersScreen.h"
-#include "Screens/Screens Of Manging Users\clsAddUsers.h"
-#include "Screens/Screens Of Manging Users\clsDeleteUsersScreen.h"
-#include "Screens/Screens Of Manging Users\clsUpdateUsersScreen.h"
-#include "Screens/Screens Of Manging Users\clsFindUsersScreen.h"
+#include "Screens/Screens Of Manging Users/clsListUsersScreen.h"
+#include "Screens/Screens Of Manging Users/clsAddUsers.h"
+#include "Screens/Screens Of Manging Users/clsDeleteUsersScreen.h"
+#include "Screens/Screens Of Manging Users/clsUpdateUsersScreen.h"
+#include "Screens/Screens Of Manging Users/clsFindUsersScreen.h"
 
 
 // Login 
-#include "Screens/Screens Of Manging Users\LoginScreen.h"
+#include "Screens/Screens Of Manging Users/LoginScreen.h"
 
 // login history 
 #include "Screens/clsLoginHistoryScreen.h"
 
 // Utils
 #include "Screens/clsUtilPrintClientBalance.h"
-#include "Screens/Screens Of Manging Users\clsUtilPrintStatus.h"
-#include "Screens/Screens Of Manging Users\clsUtilPrintUserDetails.h"
-#include "Screens/Screens Of Manging Users\clsUtilAddingPermissionsToUserYOrN.h"
-#include "Screens/Screens Of Manging Users\clsUtilFillUserData.h"
+#include "Screens/Screens Of Manging Users/clsUtilPrintStatus.h"
+#include "Screens/Screens Of Manging Users/clsUtilPrintUserDetails.h"
+#include "Screens/Screens Of Manging Users/clsUtilAddingPermissionsToUserYOrN.h"
+#include "Screens/Screens Of Manging Users/clsUtilFillUserData.h"
+#include  "CurrencyExchange/Screens/clsPrintUtilCurrenctDetails.h"
+#include "CurrencyExchange/Screens/clsUtilPrintCurrencies.h"
+
+//// Currency Exchange
+
+// core 
+#include "CurrencyExchange/Core/clsCurrencyExchange.h"
+
+// Ui
+#include "CurrencyExchange/Ui/CurrencyExchangeMainMenu.h"
+
+// Screens 
+#include "CurrencyExchange/Screens/clsListCurrenciesScreen.h"
+#include "CurrencyExchange/Screens/clsFindCurrencyScreen.h"
+#include "CurrencyExchange/Screens/clsUpdateCurrencyRate.h"
+#include "CurrencyExchange/Screens/clsCurrencyCalc.h"

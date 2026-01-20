@@ -1,8 +1,8 @@
-﻿#pragma once
-#include "../Core Features/clsBankClient.h"
-#include "../Core Features/clsPerson.h"
-#include "../Screens/clsScreen.h"
-#include"../Lib/clsInputAndVaildation.h";
+#pragma once
+#include "Core Features/clsBankClient.h"
+#include "Core Features/clsPerson.h"
+#include "Screens/clsScreen.h"
+#include"Lib/clsInputAndVaildation.h";
 
 #include<vector>
 #include<string>
@@ -61,7 +61,6 @@ public:
 
 
 };
-
 
 
 

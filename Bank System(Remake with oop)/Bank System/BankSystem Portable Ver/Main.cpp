@@ -1,5 +1,5 @@
-﻿#include <iostream>
-#include"Lib/clsInputAndVaildation.h"
+#include <iostream>
+#include "Lib/clsInputAndVaildation.h"
 #include "AllStuff.h"
 #include "AllClasses.h" 
 #include <string>
@@ -8,6 +8,12 @@
 using namespace std;
 //  ctrl + m+o
 
+// Good Bye done at : 20/1/2026 
+// lol i started this project last year 
 
-int main() { while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break; }
 
+
+int main() {
+
+	while (true) 	if (!clsLoginScreen::ShowLoginScreen()) break; 
+}

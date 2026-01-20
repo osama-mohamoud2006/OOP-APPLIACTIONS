@@ -1,6 +1,6 @@
-﻿#pragma once
-#include "../../Core Features/Global.h"
-#include "../../Screens/Screens Of Manging Users\clsUtilPrintUserDetails.h"
+#pragma once
+#include "Core Features/Global.h"
+#include "Screens/Screens Of Manging Users/clsUtilPrintUserDetails.h"
 
 class clsDisplayCurrentUserInfo : protected  clsScreen
 {

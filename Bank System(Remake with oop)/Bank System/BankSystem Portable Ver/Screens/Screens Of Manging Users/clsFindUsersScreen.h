@@ -1,7 +1,7 @@
-﻿#pragma once
-#include "../../Core Features/clsUser.h"
-#include "../../Screens/Screens Of Manging Users\clsUtilPrintUserDetails.h"
-#include "../../Screens/Screens Of Manging Users\clsUtilPrintStatus.h"
+#pragma once
+#include "Core Features/clsUser.h"
+#include "Screens/Screens Of Manging Users/clsUtilPrintUserDetails.h"
+#include "Screens/Screens Of Manging Users/clsUtilPrintStatus.h"
 
 class clsFindUsersScreen :  protected clsScreen 
 {

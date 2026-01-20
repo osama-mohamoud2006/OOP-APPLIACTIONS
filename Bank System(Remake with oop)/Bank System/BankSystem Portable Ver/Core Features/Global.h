@@ -1,5 +1,5 @@
-﻿#pragma once
-#include "../Core Features/clsUser.h"
+#pragma once
+#include "Core Features/clsUser.h"
 
 // This header will have the things that should be accessed for all classes 
 

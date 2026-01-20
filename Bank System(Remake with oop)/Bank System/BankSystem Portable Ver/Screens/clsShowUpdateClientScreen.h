@@ -1,10 +1,10 @@
-﻿#pragma once
+#pragma once
 
-#include "../Screens/clsUtilPrintClientData.h"
-#include "../Screens/clsScreen.h"
-#include "../Core Features/clsBankClient.h"
-#include "../Lib/clsInputAndVaildation.h" 
-#include "../Screens/clsUtilAddNewClientOrUpdate.h"
+#include "Screens/clsUtilPrintClientData.h"
+#include "Screens/clsScreen.h"
+#include "Core Features/clsBankClient.h"
+#include "Lib/clsInputAndVaildation.h" 
+#include "Screens/clsUtilAddNewClientOrUpdate.h"
 
 class clsShowUpdateClientScreen : protected clsScreen
 {
@@ -65,7 +65,7 @@ private:
         case   _enUpdateSpecific::enChangeBalance :{
             DataToFill = "";
             double balance = 0.0;
-            balance = clsInputAndValidation::enter_postive_number("\n\tEnter Balance: ");
+            balance = clsInputAndValidation::clsReadNum<double>::enter_postive_number("\n\tEnter Balance: ");
             Temp.SetBalance(balance);
             break;
         }
@@ -133,7 +133,7 @@ public:
             clsScreen::_PrintMenuOption(colorText("        Updating.....", "cyan"));
             _ShowUpdateOptionsMenu();
 
-            _PerformAccordingTheOrder( (_enUpdateSpecific)clsInputAndValidation::enter_number_from_to(1, 6, "\t\t\t\tEnter What You Want To Change"), client);
+            _PerformAccordingTheOrder( (_enUpdateSpecific)clsInputAndValidation::clsReadNum<short>::enter_number_from_to(1, 6, "\t\t\t\tEnter What You Want To Change"), client);
 
             clsBankClient::enSaveMode FinalSave;
             FinalSave = client.Save();

@@ -1,7 +1,7 @@
-﻿#pragma once 
-#include "../../Core Features/clsUser.h"
-#include "../../Core Features/Global.h"
-#include "../../Ui/clsMainMenuUi.h"
+#pragma once 
+#include "Core Features/clsUser.h"
+#include "Core Features/Global.h"
+#include "Ui/clsMainMenuUi.h"
 
 class clsLoginScreen : protected clsScreen
 {

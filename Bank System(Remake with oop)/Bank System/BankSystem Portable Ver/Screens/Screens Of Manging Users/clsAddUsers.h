@@ -1,8 +1,8 @@
-﻿#pragma once 
-#include "../../Core Features/clsUser.h"
-#include "../../Screens/Screens Of Manging Users\clsUtilPrintUserDetails.h"
-#include "../../Screens/Screens Of Manging Users\clsUtilAddingPermissionsToUserYOrN.h"
-#include "../../Screens/Screens Of Manging Users\clsUtilFillUserData.h"
+#pragma once 
+#include "Core Features/clsUser.h"
+#include "Screens/Screens Of Manging Users/clsUtilPrintUserDetails.h"
+#include "Screens/Screens Of Manging Users/clsUtilAddingPermissionsToUserYOrN.h"
+#include "Screens/Screens Of Manging Users/clsUtilFillUserData.h"
 
 class clsAddUsers : protected  clsScreen
 {

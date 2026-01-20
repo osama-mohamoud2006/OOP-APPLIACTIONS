@@ -1,11 +1,11 @@
-﻿#pragma once 
-#include "../../Screens/Screens Of Manging Users\clsUtilPrintUserDetails.h"
-#include "../../Core Features/clsUser.h"
-#include "../../Core Features/Global.h"
-#include "../../Screens/Screens Of Manging Users\clsUtilAddingPermissionsToUserYOrN.h"
+#pragma once 
+#include "Screens/Screens Of Manging Users/clsUtilPrintUserDetails.h"
+#include "Core Features/clsUser.h"
+#include "Core Features/Global.h"
+#include "Screens/Screens Of Manging Users/clsUtilAddingPermissionsToUserYOrN.h"
 
-#include "../../Screens/Screens Of Manging Users\clsUtilFillUserData.h"
-#include "../../Screens/Screens Of Manging Users\clsUtilPrintStatus.h"
+#include "Screens/Screens Of Manging Users/clsUtilFillUserData.h"
+#include "Screens/Screens Of Manging Users/clsUtilPrintStatus.h"
 
 
 class clsUpdateUsersScreen : protected clsScreen
@@ -154,7 +154,7 @@ public:
                 system("cls");
                 clsScreen::_PrintMenuOption(colorText("        Updating.....", "cyan")); // Menu Option
                 _ShowUpdateOptionsMenu(); // Show menu
-                _PerformAccordingTheOrder((_enUpdateSpecific)clsInputAndValidation::enter_number_from_to(1, 6, "\n\t\t\t\t\tEnter Option"), user);
+                _PerformAccordingTheOrder((_enUpdateSpecific)clsInputAndValidation::clsReadNum<short>::enter_number_from_to(1, 6, "\n\t\t\t\t\tEnter Option"), user);
             }
 
         }

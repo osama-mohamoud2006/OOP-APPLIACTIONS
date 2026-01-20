@@ -7,7 +7,6 @@
 #include "clsDate.h"
 #include <ctime>
 
-
 class clsUtil
 {
 
@@ -80,18 +79,18 @@ public:
         }
     }
 
-    static string GenerateRandomWord(enCharType CharType, short NumberOfChars = 5)
+    static std::string GenerateRandomWord(enCharType CharType, short NumberOfChars = 5)
     {
-        string Word = "";
+        std::string Word = "";
         for (short i = 0; i < NumberOfChars; i++)
             Word += GetRandomChar(CharType);
 
         return Word;
     }
 
-    static string GenerateKey(short NumOfKeys = 5, enCharType CharType = capitalLetter, short NumberOfCharsForEachUnit = 5)
+    static std::string GenerateKey(short NumOfKeys = 5, enCharType CharType = capitalLetter, short NumberOfCharsForEachUnit = 5)
     {
-        string Key = "";
+        std::string Key = "";
         for (int i = 0; i < NumOfKeys; i++)
         {
             Key += GenerateRandomWord(CharType, NumberOfCharsForEachUnit) + "-";
@@ -100,10 +99,9 @@ public:
         return Key;
     }
 
-
-    static vector<string> GenerateKeys(short numOfKeys, short LengthOfKey = 5, enCharType CharType = capitalLetter, short NumberOfCharsForEachUnit = 5)
+    static std::vector<std::string> GenerateKeys(short numOfKeys, short LengthOfKey = 5, enCharType CharType = capitalLetter, short NumberOfCharsForEachUnit = 5)
     {
-        vector<string> Keys;
+        std::vector<std::string> Keys;
         for (short i = 0; i < numOfKeys; i++)
             Keys.push_back(GenerateKey(LengthOfKey, CharType, NumberOfCharsForEachUnit));
 
@@ -116,19 +114,19 @@ public:
             arr[i] = Random(From, To);
     }
 
-    static void FillArrayWithRandomWords(string arr[], short Length, enCharType CharType = capitalLetter, short NumberOfChars = 5)
+    static void FillArrayWithRandomWords(std::string arr[], short Length, enCharType CharType = capitalLetter, short NumberOfChars = 5)
     {
         for (int i = 0; i < Length; i++)
             arr[i] = GenerateRandomWord(CharType, NumberOfChars);
     }
 
-    static void FillArrayWithRandomKey(string arr[], short NumOfKeys,short length, enCharType CharType = capitalLetter, short NumberOfCharsForEachUnit = 5)
+    static void FillArrayWithRandomKey(std::string arr[], short NumOfKeys, short length, enCharType CharType = capitalLetter, short NumberOfCharsForEachUnit = 5)
     {
         for (short i = 0; i < length; i++)
             arr[i] = GenerateKey(NumOfKeys, CharType, NumberOfCharsForEachUnit);
     }
 
-    static void CopyArray(string arr[], short length, string arr2[])
+    static void CopyArray(std::string arr[], short length, std::string arr2[])
     {
         for (short i = 0; i < length; i++)
             arr2[i] = arr[i];
@@ -141,29 +139,29 @@ public:
             Swap(arr[Random(1, length) - 1], arr[Random(1, length) - 1]);
     }
 
-    static string Tabs(short NumOfTabs)
+    static std::string Tabs(short NumOfTabs)
     {
-        string s = "";
+        std::string s = "";
         for (short i = 0; i < NumOfTabs; i++)
             s += "\t";
         return s;
     }
 
 private:
-    static string GenerateRandomEncryptionKey(short NumOfChars)
+    static std::string GenerateRandomEncryptionKey(short NumOfChars)
     {
-        string Key = "";
+        std::string Key = "";
         for (short i = 0; i < NumOfChars; i++)
             Key += GetRandomChar(enCharType::smallLetter);
         return Key;
     }
 
-    static string RandomEncryptionKey; // it is shared between Encrypt and Decrypt
+    static std::string RandomEncryptionKey; // it is shared between Encrypt and Decrypt
 
 public:
-    static void EncryptText(string &Text, short EncryptionKey)
+    static void EncryptText(std::string &Text, short EncryptionKey)
     {
-        string temp = "";
+        std::string temp = "";
         for (int i = 0; i < Text.length(); i++)
         {
             temp += char(int(Text[i]) + EncryptionKey);
@@ -171,9 +169,9 @@ public:
         Text = temp;
     }
 
-    static void DecryptText(string &Text, short EncryptionKey)
+    static void DecryptText(std::string &Text, short EncryptionKey)
     {
-        string temp = "";
+        std::string temp = "";
         for (int i = 0; i < Text.length(); i++)
         {
             temp += char(int(Text[i]) - EncryptionKey);
@@ -181,7 +179,7 @@ public:
         Text = temp;
     }
 
-    static string EncryptOrDecryptUsingXor(string Text)
+    static std::string EncryptOrDecryptUsingXor(std::string Text)
     {
         for (char &c : Text)
         {
@@ -190,7 +188,7 @@ public:
         return Text;
     }
 
-    static string NumberToText(int Number)
+    static std::string NumberToText(int Number)
     {
         if (Number == 0)
         {
@@ -199,13 +197,13 @@ public:
 
         if (Number >= 1 && Number <= 19)
         {
-            string arr[] = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+            std::string arr[] = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
             return arr[Number] + " ";
         }
 
         if (Number >= 20 && Number <= 99)
         {
-            string arr[] = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+            std::string arr[] = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
             return arr[Number / 10] + " " + NumberToText(Number % 10);
         }
 
@@ -231,6 +229,4 @@ public:
 
         return "";
     }
-
-
 };
