@@ -7,7 +7,8 @@ A comprehensive, object-oriented Banking System implemented in C++. This project
     *   [Client Management](#1-client-management)
     *   [Transactions](#2-transactions)
     *   [User Management](#3-user-management-admin)
-    *   [Utilities & Core Features](#4-utilities--core-features)
+    *   [Currency Exchange System](#4-currency-exchange-system)
+    *   [Utilities & Core Features](#5-utilities--core-features)
 2.  [Technical Implementation Details](#technical-implementation-details)
     *   [Data Persistence](#data-persistence)
     *   [Search Algorithms](#search-algorithms)
@@ -53,7 +54,33 @@ Control system access and permissions.
 *   **Permissions System**: Uses **Bitwise Operations** to store multiple permissions in a single integer.
 *   **Login History**: Appends a new record to `LoginLog.txt` with timestamp (using `clsDate`) and encrypted password every time a user logs in.
 
-### 4. Utilities & Core Features
+### 4. Currency Exchange System
+A comprehensive module for managing and converting currencies, built for accuracy and extensibility.
+
+#### **Technical Specifications**
+*   **Base Currency**: The system uses **USD (United States Dollar)** as the reference currency. All exchange rates are stored relative to 1 USD (e.g., if 1 USD = 0.85 GBP, the rate stored is 0.85).
+*   **Data Structure**: Currency data is identified by `Country Name` and `Currency Code` (e.g., "Egypt", "EGP"). The file `Currencies.text` functions as a database.
+*   **File Format**: Line-based storage using the separator `#//#`.
+    *   Format: `Country#//#Code#//#Name#//#Rate`
+    *   Example: `Tunisia#//#TND#//#Tunisian Dinar#//#3.11`
+
+#### **Core Functionalities**
+1.  **List Currencies**:
+    *   Iterates through the file and deserializes each line into a `clsCurrencyExchange` object.
+    *   Displays metadata (Country, Name, Code) and the current rate vs. USD.
+2.  **Find Currency**:
+    *   Supports lookup by **Country Name** or **Currency Code**.
+    *   Uses `clsString::UpperAll` to ensure case-insensitive searching.
+3.  **Update Rate**:
+    *   Allows modifying the exchange rate for any existing currency.
+    *   Updates are performed in memory (updating the vector) and then flushed to `Currencies.text` to ensure atomicity.
+4.  **Currency Calculator**:
+    *   **Algorithm**: To convert between two non-USD currencies (e.g., CAD to GBP), the system uses a **Two-Step Conversion**:
+        1.  **To Base (USD)**: `Amount_USD = Amount_Source / Source_Rate`
+        2.  **To Target**: `Final_Amount = Amount_USD * Target_Rate`
+    *   **Result**: Displays the full calculation path including the intermediate USD value for transparency.
+
+### 5. Utilities & Core Features
 *   **Utility Library** (`clsUtillity`):
     *   **String Manipulation**: Custom `Split`, `Trim`, `UpperAll`, `Join` implementations to avoid dependency on heavy external libraries.
 
@@ -253,6 +280,22 @@ classDiagram
         +static IsVaildDate(clsDate) bool
     }
 
+    class clsCurrencyExchange {
+        -string _CountryName
+        -string _CurrencyCode
+        -string _CurrencyName
+        -double _Rate
+        +GetCountryName() string
+        +GetCurrencyCode() string
+        +GetCurrencyName() string
+        +GetCurrentRate() double
+        +UpdateRate(double)
+        +static FindByCountry(string) clsCurrencyExchange
+        +static FindByCode(string) clsCurrencyExchange
+        +AnyCurrencyToUSD(double) double
+        +FromUSDToAnyCurrency(double) double
+    }
+
     %% Relationship & Hierarchy
     clsPerson <|-- clsBankClient : Inherits
     clsPerson <|-- clsUser : Inherits
@@ -268,11 +311,13 @@ classDiagram
     
     clsManageClientBalance ..> clsBankClient : Manipulates
     clsManageClientBalance ..> clsUser : Logs Transaction
+
+    clsCurrencyExchange ..> clsString : Uses
 ```
 
 ## Project Structure
 
-The project has been refactored for clarity and maintainability:
+The project has been refactored for clarity, maintainability, and portability. All include paths utilize relative paths (e.g., `Lib/clsDate.h` instead of absolute paths), allowing the project to be compiled from any location.
 
 *   `Core Features/`: Contains the business logic entities (`clsBankClient`, `clsUser`, `clsPerson`).
 *   `Screens/`: Contains the presentation layer classes (UI Screens).
@@ -286,12 +331,14 @@ The project has been refactored for clarity and maintainability:
 2.  **Compilation**:
     Navigate to the project root and run:
     ```bash
-    g++ -o BankSystem.exe Main.cpp
+    g++ -std=c++17 -o BankSystem.exe Main.cpp -I. -static -static-libgcc -static-libstdc++
     ```
+    > [!NOTE]
+    > The `-static` flags are crucial for creating a **portable executable** that runs on any Windows machine without requiring MinGW DLLs to be installed.
 3.  **Run**:
     ```bash
     ./BankSystem.exe
     ```
 
----
+
 
