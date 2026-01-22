@@ -1,5 +1,5 @@
 #pragma once
-
+ #pragma warning(disable : 4996)
 #include <iostream>
 #include "E:\projects\c++ course\10-OOP Concepts\Project 2\Project 2\clsString.h"
 #include <string>
